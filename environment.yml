@@ -1,0 +1,24 @@
+name: fall2025
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - jupyterlab
+  - ipykernel
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - statsmodels
+  - linearmodels
+  - pyarrow
+  - openpyxl
+  - pip:
+      - econml
+      - dowhy
+      - ruff
+      - black
+      - pre-commit

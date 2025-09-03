@@ -1,0 +1,24 @@
+# Auto-detect text files and normalize line endings to LF
+* text=auto eol=lf
+
+# Ensure specific file types always treated as text
+*.py     text diff=python
+*.ipynb  text
+*.R      text
+*.tex    text
+*.do     text
+
+# Treat these as binary (no diff, avoid corruption)
+*.pdf    binary
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.svg    binary
+*.docx   binary
+*.xlsx   binary
+*.sav    binary
+*.dta    binary
+
+# Handle Jupyter notebooks better (optional, if you install nbstripout)
+*.ipynb  filter=nbstripout

@@ -1,0 +1,54 @@
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+.history/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
+# Jupyter
+*.nbconvert.ipynb
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Stata
+*.stpr
+*.smcl
+*.stata.log
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+_build/
+latex.out/
+
+# Data & outputs (keep folders but ignore contents)
+**/data/raw/*
+!**/data/raw/.gitkeep
+**/data/processed/*
+!**/data/processed/.gitkeep
+**/figures/*
+!**/figures/.gitkeep
+**/outputs/*
+!**/outputs/.gitkeep
