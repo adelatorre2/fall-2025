@@ -1,10 +1,11 @@
-
-
 # Contributing Guidelines
 
 Thank you for your interest in contributing! Please follow the instructions below based on your role.
 
 ## For Classmates (Contributors)
+
+**Expectations:**  
+Contributors must fork the repository, open pull requests (PRs) for their changes, and expect review and approval before merging. Direct pushes to the `main` branch are not allowed.
 
 Follow these steps to contribute changes:
 
@@ -42,35 +43,68 @@ Follow these steps to contribute changes:
 
 ## For Repo Owner (Alejandro)
 
-Follow these steps to review and merge contributions:
+**Expectations:**  
+As the repo owner, you are responsible for maintaining code quality. You can push directly to the `main` branch but must be diligent to avoid introducing buggy commits.
 
-1. **Fetch Latest Changes**
-   ```bash
-   git checkout main
-   git pull origin main
-   ```
+**Daily Workflow for Alejandro:**
+```bash
+git checkout main
+git pull origin main
+# make edits
+git add -A
+git commit -m "Your message"
+git push origin main
+```
 
-2. **Review Pull Requests**
-   - Check the "Pull Requests" tab on GitHub.
-   - Review code, request changes if needed, and discuss with contributor.
+**Optional Feature Branch Workflow:** (for staging)
+```bash
+git checkout -b alejandro/feature-branch
+# edits
+git add -A
+git commit -m "Work"
+git checkout main
+git pull origin main
+git merge --no-ff alejandro/feature-branch
+git push origin main
+git branch -d alejandro/feature-branch
+git push origin --delete alejandro/feature-branch
+```
 
-3. **Test Contributions Locally**
-   ```bash
-   git fetch origin pull/PR_NUMBER/head:pr-branch
-   git checkout pr-branch
-   # Run tests or review as needed
-   ```
+**Reviewing and Merging PRs from Contributors:**  
+Continue to review pull requests submitted by contributors. Contributors must still go through the PR process for their changes to be merged.
 
-4. **Merge Approved Pull Requests**
-   - Use GitHub's interface to merge after approval.
 
-5. **Clean Up Local Branches**
-   ```bash
-   git branch -d pr-branch
-   ```
+# Quick Command Reference
 
-6. **Pull Latest Main**
-   ```bash
-   git checkout main
-   git pull origin main
-   ```
+## For Contributors
+```bash
+git checkout -b your-feature-or-fix
+git add .
+git commit -m "Describe your changes"
+git push origin your-feature-or-fix
+# Then open a Pull Request on GitHub
+```
+
+## For Alejandro
+```bash
+git checkout main
+git pull origin main
+git add -A
+git commit -m "Message"
+git push origin main
+```
+
+_Optional: Feature branch workflow summary (recommended for larger changes):_
+```bash
+# create branch → edit → merge → delete branch
+git checkout -b alejandro/feature-branch
+# make edits
+git add -A
+git commit -m "Work"
+git checkout main
+git pull origin main
+git merge --no-ff alejandro/feature-branch
+git push origin main
+git branch -d alejandro/feature-branch
+git push origin --delete alejandro/feature-branch
+```
