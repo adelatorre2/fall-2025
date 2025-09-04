@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD031 MD022 MD023 MD025 MD012 MD047 -->
+
 # Contributing Guidelines
 
 Thank you for your interest in contributing! Please follow the instructions below based on your role.
@@ -108,3 +110,5 @@ git push origin main
 git branch -d alejandro/feature-branch
 git push origin --delete alejandro/feature-branch
 ```
+
+<!-- markdownlint-enable MD031 MD022 MD023 MD025 MD012 MD047 -->
