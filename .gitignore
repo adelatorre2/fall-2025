@@ -51,4 +51,4 @@ latex.out/
 **/figures/*
 !**/figures/.gitkeep
 **/outputs/*
-!**/outputs/.gitkeep
+!**/outputs/.gitkeep.virtual_documents/
