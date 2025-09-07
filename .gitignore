@@ -51,4 +51,8 @@ latex.out/
 **/figures/*
 !**/figures/.gitkeep
 **/outputs/*
-!**/outputs/.gitkeep.virtual_documents/
+!**/outputs/.gitkeep
+
+.virtual_documents/
+**/.ipynb_checkpoints/
+.DS_Store

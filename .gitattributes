@@ -22,3 +22,6 @@
 
 # Handle Jupyter notebooks better (optional, if you install nbstripout)
 *.ipynb  filter=nbstripout
+*.ipynb filter=nbstripout
+*.zpln filter=nbstripout
+*.ipynb diff=ipynb

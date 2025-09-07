@@ -82,7 +82,7 @@ Continue to review pull requests submitted by contributors. Contributors must st
 ```bash
 git checkout -b your-feature-or-fix
 git add .
-git commit -m "Describe your changes"
+git commit -m "Describe your changes"`
 git push origin your-feature-or-fix
 # Then open a Pull Request on GitHub
 ```
@@ -110,5 +110,28 @@ git push origin main
 git branch -d alejandro/feature-branch
 git push origin --delete alejandro/feature-branch
 ```
+
+
+### Environment Management Notes
+
+Switching between Conda environments:
+
+```bash
+# list all environments
+conda env list
+
+# activate the ECON 695 environment
+conda activate econ695
+
+# deactivate current environment
+conda deactivate
+
+# switch back to the base environment
+conda activate base
+```
+
+- **econ695** is the dedicated environment for this class (Python 3.13.5 + Jupyter + core packages).
+- If you create other environments (e.g., fall2025), just `conda activate fall2025` when needed.
+- In VS Code: select the right kernel/interpreter from the top-right of a notebook or via Command Palette.
 
 <!-- markdownlint-enable MD031 MD022 MD023 MD025 MD012 MD047 -->

@@ -1,0 +1,20 @@
+name: econ695
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13.5
+  - pip
+  - jupyterlab
+  - ipykernel
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - statsmodels
+  - scikit-learn
+  - pyarrow
+  - linearmodels
+  - pip:
+      - black
+      - ruff
+      - nbstripout
