@@ -1,0 +1,209 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \\documentclass[12pt]\{article\}\
+\
+% --- Packages ---\
+\\usepackage\{amsmath, amssymb, amsthm\} % Math environments, symbols, theorems\
+\\usepackage\{enumitem\} % Better control over lists\
+\\usepackage\{geometry\} % Adjust margins\
+\\usepackage\{fancyhdr\} % Header/footer customization\
+\\usepackage\{graphicx\} % In case you want images\
+\\usepackage\{hyperref\} % Clickable references\
+\
+% --- Page setup ---\
+\\geometry\{margin=1in\}\
+\\pagestyle\{fancy\}\
+\\fancyhf\{\}\
+\\rhead\{Math 421 \'96 003, Fall 2025\}\
+\\lhead\{Homework 1\}\
+\\rfoot\{\\thepage\}\
+\
+% --- Title info ---\
+\\title\{Homework 1\}\
+\\author\{Alejandro De La Torre \\\\ MATH 421 \'96 The Theory of Single Variable Calculus \\\\ Section 003 \\\\ Instructor: Grace Work\}\
+\\date\{September 2025\}\
+\
+% --- Theorem environments (optional but handy) ---\
+\\newtheorem\{theorem\}\{Theorem\}\
+\\newtheorem\{lemma\}\{Lemma\}\
+\\newtheorem\{proposition\}\{Proposition\}\
+\\newtheorem\{corollary\}\{Corollary\}\
+\
+\\begin\{document\}\
+\
+\\maketitle\
+\
+\\section*\{Collaboration Statement\}\
+I worked on this homework independently. No outside collaborators or resources were used. \
+% <-- Adjust as needed\
+\
+\\section*\{Problem 1\}\
+Determine whether the following statements are true or false and provide a short justification.\
+\
+\\begin\{enumerate\}[label=\\Alph*.]\
+    \\item For every integer $x$, $x \\leq 5$ and $x > 3$.\
+\
+    \\textbf\{Solution:\} This statement is \\textbf\{false\}, by counterexample.  \
+    For instance, $x = 7$ is an integer such that $x > 3$, but $x \\nleq 5$.  \
+    Therefore, not every integer satisfies the conditions.\
+\
+    \\item There exists an integer $n$ such that $n \\leq 5$ and $n > 3$.\
+\
+    \\textbf\{Solution:\} The statement claims that there exists an integer $n$ such that \
+    $n \\leq 5$ and $n > 3$. Consider $n = 4$. Clearly, $4 \\in \\mathbb\{Z\}$, and it satisfies both $4 \\leq 5$ and $4 > 3$. Therefore, the statement is \\textbf\{true\}.\
+\
+    \\item There exists a unique integer $x$ such that $x \\le 5$ and $x > 3$.\
+\
+    \\textbf\{Solution:\} The statement is \\textbf\{false\}. Both $x=4$ and $x=5$ are integers with $x\\le 5$ and $x>3$. Since more than one integer satisfies the condition, the solution is not unique.\
+    \
+    \\item There exists an integer $x$ such that for all integers $y$, $xy = x$.\
+\
+    \\textbf\{Solution:\} This statement is \\textbf\{true\}.  \
+    We want to determine whether there is some integer $x$ such that for all $y \\in \\mathbb\{Z\}$, the equality $xy = x$ holds.  \
+    \
+    If $x = 0$, then for every integer $y$, we have $0 \\cdot y = 0 = x$.  \
+    Thus, $x = 0$ satisfies the condition.  \
+    \
+    If $x \\neq 0$, consider $y = 2$. Then $xy = 2x \\neq x$.  \
+    Therefore, no nonzero integer $x$ works.  \
+    \
+    Hence, the statement is true, and the only integer $x$ with this property is $x = 0$.\
+    \
+    \\item For all integers $x$ there exists an integer $y$ such that $xy = x$.\
+\
+    \\textbf\{Solution:\} The statement is \\textbf\{true\}. Let $x\\in\\mathbb\{Z\}$ be arbitrary.\
+    Choose $y=1$. Then $xy = x\\cdot 1 = x$. Since $x$ was arbitrary, we conclude that\
+    $\\forall x\\in\\mathbb\{Z\}\\ \\exists y\\in\\mathbb\{Z\}$ with $xy=x$.\
+    \
+\\end\{enumerate\}\
+\
+\\section*\{Problem 2\}\
+Create an (A) example of an "if..., then..." statement (can be mathematical or not), then write the (B) converse and (C) contrapositive of your statement. \
+\
+\\vspace\{6pt\}\
+\\textbf\{Solution:\}\
+\
+\\begin\{enumerate\}[label=\\Alph*.]\
+    \\item \\textbf\{Example:\} If there is no endogeneity, then there \\emph\{might\} be causality.\
+    \
+    \\item \\textbf\{Converse:\} If there \\emph\{might\} be causality, then there is no endogeneity.\
+    \
+    \\item \\textbf\{Contrapositive:\} If there is not causality, then there is endogeneity.\
+\\end\{enumerate\}\
+\
+\\section*\{Problem 3\}\
+Use a truth table to show that the converse of an ``if..., then...'' statement \
+is not equivalent to the original statement.\
+\
+\\textbf\{Solution:\} \
+Let $P$ and $Q$ be statements. The original statement is $P \\Rightarrow Q$, \
+and the converse is $Q \\Rightarrow P$. We construct the truth table:\
+\
+\\[\
+\\begin\{array\}\{|c|c|c|c|\}\
+\\hline\
+P & Q & P \\Rightarrow Q & Q \\Rightarrow P \\\\\
+\\hline\
+T & T & T & T \\\\\
+T & F & F & T \\\\\
+F & T & T & F \\\\\
+F & F & T & T \\\\\
+\\hline\
+\\end\{array\}\
+\\]\
+\
+From the table, we see that $P \\Rightarrow Q$ and $Q \\Rightarrow P$ do not \
+always have the same truth value (for instance, in the second and third rows). \
+Therefore, the converse of a conditional statement is \\textbf\{not\} logically \
+equivalent to the original statement.\
+\
+\\newpage\
+\
+\\section*\{Problem 4\}\
+\\begin\{theorem\}\
+If $x$ and $y$ are odd integers, then $xy$ is an odd integer.\
+\\end\{theorem\}\
+\
+\\begin\{proof\}\
+Let $x$ and $y$ be odd integers. Then there exist integers $k, m \\in \\mathbb\{Z\}$ such that\
+\\[\
+x = 2k + 1 \\quad \\text\{and\} \\quad y = 2m + 1.\
+\\]\
+Multiplying, we have\
+\\[\
+xy = (2k+1)(2m+1) = 4km + 2k + 2m + 1 = 2(2km + k + m) + 1.\
+\\]\
+Let $j = 2km + k + m$, which is an integer since $k, m \\in \\mathbb\{Z\}$. Thus,\
+\\[\
+xy = 2j + 1,\
+\\]\
+which is the definition of an odd integer. Therefore, $xy$ is odd.\
+\\end\{proof\}\
+\
+\\section*\{Problem 5\}\
+\\begin\{theorem\}\
+If $x$ and $y$ are two integers with the same parity (that is, both even or both odd), then $x+y$ is even.\
+\\end\{theorem\}\
+\
+\\begin\{proof\}\
+We split the proof into two cases:\
+\
+\\textbf\{Case 1: $x$ and $y$ are both odd.\}  \
+Then there exist integers $k, m \\in \\mathbb\{Z\}$ such that $x = 2k+1$ and $y = 2m+1$.  \
+\\[\
+x+y = (2k+1) + (2m+1) = 2(k+m+1).\
+\\]\
+Thus, $x+y$ is even.\
+\
+\\textbf\{Case 2: $x$ and $y$ are both even.\}  \
+Then there exist integers $k, m \\in \\mathbb\{Z\}$ such that $x = 2k$ and $y = 2m$.  \
+\\[\
+x+y = 2k + 2m = 2(k+m).\
+\\]\
+Thus, $x+y$ is even.\
+\
+Since both cases lead to $x+y$ being even, we conclude that if $x$ and $y$ have the same parity, then $x+y$ is even.\
+\\end\{proof\}\
+\
+\\newpage\
+\
+\\section*\{Problem 6\}\
+\\begin\{theorem\}\
+For all real numbers $x$ and $y$,\
+\\[\
+(x+y)^2 = x^2 + y^2 \\quad \\text\{if and only if\} \\quad x=0 \\text\{ or \} y=0.\
+\\]\
+\\end\{theorem\}\
+\
+\\begin\{proof\}\
+Let $P$ be the statement $(x+y)^2 = x^2 + y^2$ and let $Q$ be the statement $x=0$ or $y=0$.  \
+We will prove the biconditional $P \\Leftrightarrow Q$ by showing both directions: $P \\Rightarrow Q$ and $Q \\Rightarrow P$.\
+\
+\\medskip\
+\\noindent\\textbf\{($P \\Rightarrow Q$)\} Suppose $(x+y)^2 = x^2 + y^2$. Expanding the left-hand side gives\
+\\[\
+x^2 + 2xy + y^2 = x^2 + y^2.\
+\\]\
+Subtracting $x^2 + y^2$ from both sides yields $2xy=0$, hence $xy=0$. Over $\\mathbb\{R\}$ this implies $x=0$ or $y=0$. Thus, $Q$ holds.\
+\
+\\medskip\
+\\noindent\\textbf\{($Q \\Rightarrow P$)\} Conversely, suppose $x=0$ or $y=0$.\
+\\begin\{itemize\}\
+    \\item If $x=0$, then $(x+y)^2 = (0+y)^2 = y^2 = x^2 + y^2$.\
+    \\item If $y=0$, then $(x+y)^2 = (x+0)^2 = x^2 = x^2 + y^2$.\
+\\end\{itemize\}\
+In either case, $P$ holds.\
+\
+\\medskip\
+Since we have shown both $P \\Rightarrow Q$ and $Q \\Rightarrow P$, we conclude that\
+\\[\
+(x+y)^2 = x^2 + y^2 \\quad \\text\{if and only if\} \\quad x=0 \\text\{ or \} y=0.\
+\\]\
+\\end\{proof\}\
+\
+\\end\{document\}}
