@@ -1,0 +1,216 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{fancyhdr} % for headers/footers
+\usepackage{graphicx} % for pics
+\usepackage{hyperref}
+
+% --- Page Stepup ---
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 421 -- 003, Fall 2025}
+\lhead{Homework 2}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Title info ---
+\title{Homework 2}
+\author{Alejandro De La Torre \\ MATH 421 -- The Theory of Single Variable Calculus \\ Section 003 \\ Instructor: Grace Work}
+\date{September 2025}
+
+% --- Theorem environments ---
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+
+\maketitle
+
+\section*{Collaboration Statement}
+I worked on this homework independently. No outside collaborators or resources were used.
+% Adjust if you used any resources.
+
+\section*{Problem 1}
+Determine whether the following statements are true or false and provide a short justification.
+\begin{enumerate}[label=\Alph*.]
+   \item $\{\{\varnothing\}\} \cup \varnothing = \{\varnothing, \{\varnothing\}\}$
+
+   \textbf{Solution:} The left-hand side is $\{\{\varnothing\}\} \cup \varnothing$. 
+   Since the union with the empty set adds nothing, this is just $\{\{\varnothing\}\}$. 
+   This set has exactly \emph{one element}, namely the set $\{\varnothing\}$.
+   
+   The right-hand side is $\{\varnothing, \{\varnothing\}\}$, which has 
+   \emph{two elements}: $\varnothing$ and $\{\varnothing\}$. 
+   
+   Since the left-hand side has one element and the right-hand side has two, the sets are not equal. 
+   
+   Therefore, the statement is \textbf{false}.
+   
+   \item $\{\{\varnothing\}\}\cup\{\varnothing\}=\{\varnothing,\{\varnothing\}\}$
+
+   \textbf{Solution.} The left-hand side is the set $\{\{\varnothing\},\varnothing\}$, which has two elements: $\varnothing$ and $\{\varnothing\}$.  
+   The right-hand side is also $\{\varnothing,\{\varnothing\}\}$.  
+   Since both sides contain exactly the same two elements, the equality holds.  
+   \textbf{True}.
+   
+   \vspace{0.2cm}
+   
+   % --- Problem 1C ---
+   \item $\{\varnothing,\{\varnothing\}\}\cap\{\{\varnothing\},\{\{\varnothing\}\}\}=\{\varnothing\}$
+   
+   \textbf{Solution.} The first set has elements $\varnothing$ and $\{\varnothing\}$; the second has
+   $\{\varnothing\}$ and $\{\{\varnothing\}\}$.  
+   The only common element is $\{\varnothing\}$, so
+   \[
+   \{\varnothing,\{\varnothing\}\}\cap\{\{\varnothing\},\{\{\varnothing\}\}\}=\{\{\varnothing\}\}.
+   \]
+   This is not $\{\varnothing\}$. \textbf{False}.
+   
+   \vspace{0.2cm}
+   
+   % --- Problem 1D ---
+   \item $\{\varnothing,\{\varnothing\}\}\cap\{\{\varnothing\},\{\{\varnothing\}\}\}=\{\{\varnothing\}\}$
+   
+   \textbf{Solution.} As computed above, the intersection consists of the single common element
+   $\{\varnothing\}$. Hence the intersection is $\{\{\varnothing\}\}$. \textbf{True}.
+\end{enumerate}
+
+\section*{Problem 2 (Ross 1.11)}
+For each $n\in\mathbb N$, let $P_n$ be the assertion \emph{$n^2+5n+1$ is an even integer.}
+
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Show $P_{n+1}$ is true whenever $P_n$ is true.}
+
+\textit{Proof.}
+We compute
+\begin{align*}
+(n+1)^2+5(n+1)+1
+&= n^2+2n+1+5n+5+1 \\
+&= n^2+7n+7 \\
+&= \underbrace{(n^2+5n+1)}_{\text{the $P_n$ expression}}
+    + \underbrace{(2n+6)}_{=\,2(n+3)\ \text{even}}.
+\end{align*}
+If $P_n$ holds, then $n^2+5n+1$ is even; adding the even number $2(n+3)$ yields an even number.
+Hence $P_{n+1}$ holds whenever $P_n$ holds. \qed
+
+\item \textbf{For which $n$ is $P_n$ actually true? What is the moral?}
+
+For any $n\in\mathbb N$, whether $n$ is even or odd, the value $n^2+5n+1$ is odd:
+\[
+\begin{cases}
+n\ \text{even} \ \Rightarrow\ n^2,\,5n\ \text{even} \Rightarrow n^2+5n+1\ \text{odd},\\[2pt]
+n\ \text{odd} \ \Rightarrow\ n^2,\,5n\ \text{odd} \Rightarrow n^2+5n\ \text{even} \Rightarrow n^2+5n+1\ \text{odd}.
+\end{cases}
+\]
+Thus $P_n$ is \emph{false for every} $n\in\mathbb N$.
+
+\medskip
+\textit{Moral.} The inductive implication $P_n\Rightarrow P_{n+1}$ can be perfectly correct even if no $P_n$
+is true. Induction requires a true base case \emph{and} the inductive step; the step alone proves nothing.
+\end{enumerate}
+
+
+\section*{Problem 3}
+Prove using induction: If $x\in\mathbb R$ and $x\ne 1$, then
+\[
+\sum_{i=0}^{n} x^{i}=\frac{1-x^{\,n+1}}{1-x}\qquad\text{for every }n\in\mathbb N.
+\]
+
+\textit{Proof.} We proceed by induction on $n$.
+
+\emph{Base case $n=0$.} We have
+\[
+\sum_{i=0}^{0}x^i=x^0=1
+\quad\text{and}\quad
+\frac{1-x^{0+1}}{1-x}=\frac{1-x}{1-x}=1
+\]
+(since $x\ne1$). Hence the claim holds for $n=0$.
+
+\emph{Inductive step.} Assume for some $n\ge0$ that
+\[
+\sum_{i=0}^{n}x^i=\frac{1-x^{\,n+1}}{1-x}.
+\]
+Then
+\[
+\sum_{i=0}^{n+1}x^i
+=\left(\sum_{i=0}^{n}x^i\right)+x^{n+1}
+=\frac{1-x^{\,n+1}}{1-x}+x^{n+1}
+=\frac{1-x^{\,n+1}+x^{n+1}(1-x)}{1-x}
+=\frac{1-x^{\,n+2}}{1-x}.
+\]
+Thus the formula holds for $n+1$, and by induction it holds for all $n\in\mathbb N$.
+\qed
+\section*{Problem 4 (Ross 1.9)}
+\textbf{(a) For which integers is $2^{n}>n^{2}$ true?}
+
+\emph{Small cases.} For $n\le -1$, $2^{n}\in(0,1)$ while $n^{2}\ge 1$, so $2^{n}\not> n^{2}$ (false).
+For $n=0$, $1>0$ (true). For $n=1$, $2>1$ (true). For $n=2,3,4$ we have
+$4\not>4$, $8\not>9$, $16\not>16$ (all false). For $n=5$, $32>25$ (true).
+Part (b) shows the inequality is then true for every larger $n$.
+
+Hence, for all integers,
+\[
+2^{n}>n^{2} \quad \Longleftrightarrow \quad n\in\{0,1\}\ \cup\ \{n\in\mathbb Z:\ n\ge 5\}.
+\]
+(If restricting to positive integers, the answer is $n=1$ or $n\ge 5$.)
+
+\medskip
+\textbf{(b) Induction proof for $n\ge 5$.}
+We prove by induction on $n$ that $2^{n}>n^{2}$ for every $n\ge 5$.
+
+\emph{Base case $n=5$.} $2^{5}=32>25=5^{2}$.
+
+\emph{Inductive step.} Fix $n\ge 5$ and assume $2^{n}>n^{2}$. Then
+\[
+2^{n+1}=2\cdot 2^{n} \;>\; 2n^{2}.
+\]
+Since
+\[
+2n^{2}-(n+1)^{2}=n^{2}-2n-1=(n-1)^{2}-2 \ge 4^{2}-2=14>0,
+\]
+we have $2n^{2}>(n+1)^{2}$. Therefore $2^{n+1}>(n+1)^{2}$.
+
+By induction, $2^{n}>n^{2}$ holds for all $n\ge 5$. Combined with the small-case
+analysis in part (a), this fully answers the question.
+
+\emph{Moral.} Induction can be started at a convenient threshold $n_{0}$; once a statement
+is true at $n_{0}$ and implies truth at $n_{0}+1$, it propagates to all $n\ge n_{0}$ even if it
+fails for earlier $n$.
+
+
+\section*{Problem 5}
+\begin{theorem}
+Suppose $A$ and $B$ are subsets of a set $S$. If $A \subseteq B$, then $B^{c} \subseteq A^{c}$,
+where complements are taken relative to $S$ (i.e., $A^{c}=S\setminus A$).
+\end{theorem}
+
+\begin{proof}
+Let $x\in B^{c}$. By definition, $x\in S$ and $x\notin B$. If, towards a contradiction,
+we had $x\in A$, then since $A\subseteq B$ we would get $x\in B$, contradicting $x\notin B$.
+Hence $x\notin A$, which means $x\in A^{c}$. Therefore $B^{c}\subseteq A^{c}$.
+\end{proof}
+
+\section*{Problem 6}
+Prove, using a proof by contradiction, that
+\[
+\{\,2k+1 : k\in \mathbb{N}\,\}\ \cap\ \{\,4k : k\in \mathbb{N}\,\}\ =\ \varnothing.
+\]
+
+\textbf{Proof.} Suppose, for contradiction, that the intersection is nonempty.
+Then there exists an integer \(n\) and integers \(a,b\in\mathbb{N}\) such that
+\[
+n = 2a+1 \qquad\text{and}\qquad n = 4b.
+\]
+From \(n=4b\) we have \(n=2(2b)\), so \(n\) is even. But from \(n=2a+1\) we have
+that \(n\) is odd. This is impossible, since no integer is both even and odd.
+Therefore our assumption was false, and the intersection is empty:
+\[
+\{\,2k+1 : k\in \mathbb{N}\,\}\ \cap\ \{\,4k : k\in \mathbb{N}\,\} = \varnothing.\qedhere
+\]
+
+\end{document}
