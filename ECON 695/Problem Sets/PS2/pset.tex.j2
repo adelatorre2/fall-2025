@@ -1,0 +1,15 @@
+((* extends 'article.tex.j2' *))
+
+((* block preamble *))
+{{ super() }}
+\usepackage{microtype}
+\usepackage{booktabs,longtable}
+\usepackage{hyperref}
+\hypersetup{breaklinks=true}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Menlo} % has Greek beta on macOS
+\urlstyle{same}
+\setlength\emergencystretch{3em}
+((* endblock preamble *))
