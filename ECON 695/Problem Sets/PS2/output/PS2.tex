@@ -1,0 +1,1354 @@
+%===============================
+% ECON 695 — Problem Set 2 
+%===============================
+\documentclass[12pt]{article}
+
+% --- Page + typography ---
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{float} % needed for [H] float placement
+\usepackage{lmodern} % crisp fonts
+\usepackage{setspace} % in case you want 1.15x/1.2x later
+
+% --- Tables (professional look) ---
+\usepackage{booktabs}           % \toprule, \midrule, \bottomrule
+\usepackage{tabularx}
+\usepackage{siunitx}            % S column for aligned numbers
+\sisetup{
+   round-mode=places,
+   round-precision=3,
+   table-number-alignment=center,
+   group-minimum-digits=4, % so 38553 prints as 38 553 if you use \num
+}
+\usepackage{siunitx,booktabs,makecell}
+\sisetup{
+  table-number-alignment = center,
+  round-mode             = places,
+  round-precision        = 3
+}
+\usepackage{booktabs,siunitx,tabularx,makecell}
+\sisetup{detect-weight=true,detect-inline-weight=math}
+
+
+% --- Math ---
+\usepackage{amsmath, amssymb, amsthm}
+% Shorthand for expectation (and friends if you want them later)
+\newcommand{\E}{\mathbb{E}}
+\numberwithin{equation}{section}
+
+% --- Lists, refs, links ---
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+
+% --- Code (nice syntax highlighting) ---
+% Overleaf: Menu → Settings → Enable shell escape
+\usepackage[newfloat]{minted}
+\setminted{
+  breaklines,
+  linenos,
+  fontsize=\small,
+  autogobble,
+  frame=lines
+}
+\SetupFloatingEnvironment{listing}{name=Listing}
+
+% --- Headers/footers like your MATH 421 doc ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{ECON 695 — Problem Set 2}
+\rhead{Fall 2025}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+
+% --- Title ---
+\title{PS2}
+\author{Alejandro De La Torre}
+\date{September 2025\\[2pt]
+\small Due: 11:59pm Central, Friday 09/26/2025. Submit a PDF to Canvas.}
+
+% --- Simple “Solution” label helper ---
+\newcommand{\solution}{\paragraph{Solution.}}
+
+\begin{document}
+\maketitle
+
+\section{Population Regression vs.\ CEF}  % Problem 1
+In lecture 2, we considered three objects: $y_i$, $E[y_i\mid x_i]$, and $x_i' \beta^{\ast}$, the
+``infeasible'' (population) OLS target. We can write
+\[
+y_i \;=\; x_i' \beta^{\ast} + u_i, \qquad
+\beta^{\ast} \;=\; \arg\min_b\, \mathbb{E}\!\left[(y_i - x_i' b)^2\right].
+\]
+\begin{enumerate}[label=\arabic*.]
+  \item Show that $\mathbb{E}[x_i u_i]=0$.
+  \item Show that $\displaystyle \beta^{\ast} = \Big(\mathbb{E}[x_i x_i']\Big)^{-1}\mathbb{E}[x_i y_i]$.
+  \item Show that $\mathbb{E}[u_i\mid x_i]=0 \Rightarrow \mathbb{E}[x_i u_i]=0$. (Hint: Law of Iterated Expectations.)
+  \item List two cases where $\mathbb{E}[u_i\mid x_i]=0$. Clearly state your assumption and explain why it implies $\mathbb{E}[u_i\mid x_i]=0$.
+\end{enumerate}
+
+\solution
+\begin{enumerate}[label=(\arabic*),leftmargin=1.3em]
+  \item 
+    We want to show that $\E[x_i u_i] = 0$.  
+        
+        Recall that 
+        \[
+        u_i = y_i - x_i'\beta^*,
+        \]
+        where $\beta^*$ solves
+        \[
+        \beta^* = \arg\min_b \, \E\!\big[(y_i - x_i'b)^2\big].
+        \]
+        
+        Define the objective
+        \[
+        Q(b) = \E\!\big[(y_i - x_i'b)^2\big].
+        \]
+        
+        Taking the gradient with respect to $b$ gives
+        \[
+        \frac{\partial Q(b)}{\partial b} 
+        = \E\!\big[-2x_i(y_i - x_i'b)\big].
+        \]
+        
+        At $b=\beta^*$, the first-order condition requires
+        \[
+        \E\!\big[x_i(y_i - x_i'\beta^*)\big] = 0.
+        \]
+        
+        Distributing the terms inside the expectation:
+        \[
+        \E[x_i y_i] - \E[x_i x_i']\beta^* = 0.
+        \]
+        
+        Equivalently,
+        \[
+        \E[x_i u_i] = 0.
+        \]
+        
+        Thus, by construction of the population regression, the regressors are orthogonal to the residuals. \qed
+
+  \item 
+    We want to show that
+    \[
+    \beta^* = \E[x_i x_i']^{-1} \E[x_i y_i].
+    \]
+
+    Recall that $\beta^*$ is defined as the minimizer of the population least squares problem:
+    \[
+    \beta^* = \arg \min_b \, \E\!\left[(y_i - x_i'b)^2\right].
+    \]
+
+    Define the objective function
+    \[
+    Q(b) = \E\!\left[(y_i - x_i'b)^2\right].
+    \]
+
+    Taking the partial derivative with respect to $b$ gives
+    \[
+    \frac{\partial Q(b)}{\partial b} = \E\!\left[-2x_i(y_i - x_i'b)\right].
+    \]
+
+    Setting the first-order condition to zero at $b=\beta^*$:
+    \[
+    \E\!\left[x_i(y_i - x_i'\beta^*)\right] = 0.
+    \]
+
+    Distributing the terms inside the expectation:
+    \[
+    \E[x_i y_i] - \E[x_i x_i'] \beta^* = 0.
+    \]
+
+    Rearranging:
+    \[
+    \E[x_i x_i'] \beta^* = \E[x_i y_i].
+    \]
+
+    Assuming $\E[x_i x_i']$ is invertible, we obtain
+    \[
+    \beta^* = \E[x_i x_i']^{-1} \E[x_i y_i].
+    \]
+
+    \qed
+  \item
+    Assume $\E[u_i \mid x_i]=0$. We want to show $\E[x_i u_i]=0$.
+
+    Apply the Law of Iterated Expectations (LIE):
+    \[
+      \E[x_i u_i] \;=\; \E\!\big[\,\E[x_i u_i \mid x_i]\,\big].
+    \]
+
+    Because $x_i$ is measurable with respect to $\sigma(x_i)$, it is constant inside the inner conditional expectation; hence
+    \[
+      \E[x_i u_i \mid x_i] \;=\; x_i\,\E[u_i \mid x_i].
+    \]
+
+    Substitute the assumption $\E[u_i \mid x_i]=0$:
+    \[
+      \E[x_i u_i \mid x_i] \;=\; x_i\cdot 0 \;=\; 0.
+    \]
+
+    Take unconditional expectations:
+    \[
+      \E[x_i u_i] \;=\; \E[0] \;=\; 0.
+    \]
+    \qed
+  \item
+    \textbf{Two situations implying $\E[u_i \mid x_i]=0$.}
+    \begin{enumerate}[label=\roman*.,leftmargin=1.5em]
+    \item \textit{Linear CEF (correctly specified linear model).}  
+    Assume the conditional expectation function is linear:
+    \[
+      m(x) \equiv \E[y_i \mid x_i=x] = x'\beta_0 \quad \text{for some }\beta_0.
+    \]
+    Define the error as the deviation from the CEF:
+    \[
+      u_i \;=\; y_i - m(x_i) \;=\; y_i - x_i'\beta_0 .
+    \]
+    Then
+    \[
+      \E[u_i \mid x_i]
+      \;=\; \E[\,y_i - m(x_i) \mid x_i\,]
+      \;=\; \E[y_i \mid x_i] - m(x_i)
+      \;=\; m(x_i) - m(x_i)
+      \;=\; 0.
+    \]
+    Hence $\E[u_i \mid x_i]=0$ when the CEF is linear (the “correctly specified” linear model).
+
+    \item \textit{Mean-zero error independent of $x_i$ (e.g., randomized $x_i$).}  
+    Suppose the data are generated by
+    \[
+      y_i \;=\; x_i'\beta_0 + v_i,
+    \]
+    where $v_i$ has mean zero and is independent of $x_i$:
+    \[
+      \E[v_i]=0, \qquad v_i \;\perp\!\!\!\perp\; x_i.
+    \]
+    Take $u_i \equiv v_i$. Independence implies conditional expectations equal unconditional ones, so
+    \[
+      \E[u_i \mid x_i]
+      \;=\; \E[v_i \mid x_i]
+      \;=\; \E[v_i]
+      \;=\; 0.
+    \]
+    A canonical example is a randomized experiment where treatment (an element of $x_i$) is assigned independently of potential outcomes.
+  \end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\section{Regressions with Dummies}  % Problem 2
+Suppose we have a sample of size $N$ formed by two groups, $0$ and $1$.
+Let $D_i$ be a dummy with $D_i=1$ indicating group $1$. Let $N_0$ and $N_1$ be the group sizes ($N=N_0+N_1$).
+\begin{enumerate}[label=\alph*)]
+  \item Consider the OLS model $y_i=\alpha+\beta D_i+u_i$. Using the normal equations for $(\hat\alpha,\hat\beta)$, show that
+  \[
+    \hat\alpha \;=\; \frac{1}{N_0}\sum_{i\in 0} y_i,
+    \qquad
+    \hat\alpha+\hat\beta \;=\; \frac{1}{N_1}\sum_{i\in 1} y_i.
+  \]
+  \item Now suppose there are 3 groups $0,1,2$ with dummies $D_{1i}=1\{i\in 1\}$ and $D_{2i}=1\{i\in 2\}$ and model
+  \[
+    y_i=\alpha+\beta_1 D_{1i}+\beta_2 D_{2i}+u_i.
+  \]
+  \begin{enumerate}[label=\roman*.]
+    \item Write the first-order conditions (FOC) that define the OLS estimator.
+    \item Use the FOC to show
+      \[
+      \hat\alpha=\frac{1}{N_0}\sum_{i\in 0}y_i,\quad
+      \hat\alpha+\hat\beta_1=\frac{1}{N_1}\sum_{i\in 1}y_i,\quad
+      \hat\alpha+\hat\beta_2=\frac{1}{N_2}\sum_{i\in 2}y_i.
+      \]
+  \end{enumerate}
+\end{enumerate}
+
+\solution
+\begin{enumerate}[label=(\alph*),leftmargin=1.3em]
+  \item[(a)] \textbf{Using the OLS first–order conditions.}
+        Model: \(y_i=\alpha+\beta D_i+u_i\) with \(D_i\in\{0,1\}\), \(D_i=1\) for group 1 and \(0\) otherwise.
+        Let \(N_0=\#\{i:D_i=0\}\) and \(N_1=\#\{i:D_i=1\}\) (so \(N=N_0+N_1\)).
+        
+        Minimize the sum of squared residuals
+        \[
+        S(\alpha,\beta)=\sum_{i=1}^N\big(y_i-\alpha-\beta D_i\big)^2 .
+        \]
+        
+        \emph{FOC w.r.t.\ \(\alpha\):}
+        \[
+        \frac{\partial S}{\partial \alpha}
+        = -2\sum_{i=1}^N\big(y_i-\alpha-\beta D_i\big)=0
+        \quad\Longrightarrow\quad
+        \sum_{i=1}^N y_i
+        = N\alpha+\beta\sum_{i=1}^N D_i
+        = N\alpha+\beta N_1. \tag{NE-$\alpha$}
+        \]
+        
+        \emph{FOC w.r.t.\ \(\beta\):}
+        \[
+        \frac{\partial S}{\partial \beta}
+        = -2\sum_{i=1}^N D_i\big(y_i-\alpha-\beta D_i\big)=0
+        \]
+        \[
+        \Longrightarrow\quad
+        \sum_{i=1}^N D_i y_i
+        = \alpha\sum_{i=1}^N D_i + \beta\sum_{i=1}^N D_i^2
+        = \alpha N_1 + \beta N_1, \tag{NE-$\beta$}
+        \]
+        using \(D_i^2=D_i\). Since \(D_i y_i=y_i\) only when \(i\in1\),
+        \[
+        \sum_{i\in 1} y_i = N_1(\alpha+\beta)
+        \quad\Longrightarrow\quad
+        \ \alpha+\beta = \frac{1}{N_1}\sum_{i\in 1} y_i\ . \tag{A}
+        \]
+        
+        Subtract (NE-\(\beta\)) from (NE-\(\alpha\)):
+        \[
+        \sum_{i=1}^N y_i - \sum_{i\in 1} y_i
+        = N\alpha+\beta N_1 - (\alpha N_1+\beta N_1)
+        = (N-N_1)\alpha
+        = N_0 \alpha .
+        \]
+        But \(\sum_{i=1}^N y_i - \sum_{i\in 1} y_i = \sum_{i\in 0} y_i\). Hence
+        \[
+        \ \alpha = \frac{1}{N_0}\sum_{i\in 0} y_i\ . \tag{B}
+        \]
+        
+        Therefore, the OLS estimators are
+        \[
+        \hat\alpha \;=\; \frac{1}{N_0}\sum_{i\in 0} y_i,
+        \qquad
+        \hat\alpha+\hat\beta \;=\; \frac{1}{N_1}\sum_{i\in 1} y_i.
+        \]
+        In other words, $\hat\alpha$ is the sample mean of group $0$, and 
+        $\hat\beta$ is the difference in sample means $\bar y_1 - \bar y_0$.
+
+  \item[(b)]
+    \begin{enumerate}[label=\roman*.]
+      \item 
+      \textbf{First–order conditions for the 3–group model.}
+        \textit{Model}:
+        \[
+        y_i \;=\; \alpha \;+\; \beta_1 D_{1i} \;+\; \beta_2 D_{2i} \;+\; u_i,
+        \qquad D_{1i}=1\{i\in 1\},\;\; D_{2i}=1\{i\in 2\}.
+        \]
+        Groups are mutually exclusive: for every $i$, exactly one of $\{i\in0, i\in1, i\in2\}$ holds, so
+        \[
+        D_{1i}^2=D_{1i},\quad D_{2i}^2=D_{2i},\quad D_{1i}D_{2i}=0,
+        \]
+        and let $N_g=\#\{i:i\in g\}$ for $g\in\{0,1,2\}$ with $N=N_0+N_1+N_2$.
+        
+        Minimize the sum of squared residuals
+        \[
+        S(\alpha,\beta_1,\beta_2)=\sum_{i=1}^N \big(y_i-\alpha-\beta_1 D_{1i}-\beta_2 D_{2i}\big)^2.
+        \]
+        
+        \emph{FOC w.r.t.\ $\alpha$:}
+        \[
+        \frac{\partial S}{\partial \alpha}
+        = -2\sum_{i=1}^N\!\big(y_i-\alpha-\beta_1 D_{1i}-\beta_2 D_{2i}\big)=0
+        \]
+        \[
+        \Longrightarrow\quad
+        \sum_{i=1}^N y_i
+        \;=\; N\alpha \;+\; \beta_1\sum_{i=1}^N D_{1i} \;+\; \beta_2\sum_{i=1}^N D_{2i}
+        \;=\; N\alpha \;+\; \beta_1 N_1 \;+\; \beta_2 N_2. \tag{NE-$\alpha$}
+        \]
+        
+        \emph{FOC w.r.t.\ $\beta_1$:}
+        \[
+        \frac{\partial S}{\partial \beta_1}
+        = -2\sum_{i=1}^N\! D_{1i}\big(y_i-\alpha-\beta_1 D_{1i}-\beta_2 D_{2i}\big)=0
+        \]
+        \[
+        \Longrightarrow\quad
+        \sum_{i=1}^N D_{1i} y_i
+        \;=\; \alpha\sum_{i=1}^N D_{1i} \;+\; \beta_1\sum_{i=1}^N D_{1i}^2 \;+\; \beta_2\sum_{i=1}^N D_{1i}D_{2i}.
+        \]
+        Using $D_{1i}^2=D_{1i}$ and $D_{1i}D_{2i}=0$,
+        \[
+        \sum_{i\in 1} y_i \;=\; N_1\alpha \;+\; \beta_1 N_1
+        \quad\Longrightarrow\quad
+        \sum_{i\in 1} y_i \;=\; N_1(\alpha+\beta_1). \tag{NE-$\beta_1$}
+        \]
+        
+        \emph{FOC w.r.t.\ $\beta_2$:}
+        \[
+        \frac{\partial S}{\partial \beta_2}
+        = -2\sum_{i=1}^N\! D_{2i}\big(y_i-\alpha-\beta_1 D_{1i}-\beta_2 D_{2i}\big)=0
+        \]
+        \[
+        \Longrightarrow\quad
+        \sum_{i=1}^N D_{2i} y_i
+        \;=\; \alpha\sum_{i=1}^N D_{2i} \;+\; \beta_1\sum_{i=1}^N D_{1i}D_{2i} \;+\; \beta_2\sum_{i=1}^N D_{2i}^2.
+        \]
+        Using $D_{2i}^2=D_{2i}$ and $D_{1i}D_{2i}=0$,
+        \[
+        \sum_{i\in 2} y_i \;=\; N_2\alpha \;+\; \beta_2 N_2
+        \quad\Longrightarrow\quad
+        \sum_{i\in 2} y_i \;=\; N_2(\alpha+\beta_2). \tag{NE-$\beta_2$}
+        \]
+        
+        The three normal equations \textnormal{(NE-$\alpha$)}, \textnormal{(NE-$\beta_1$)}, and \textnormal{(NE-$\beta_2$)} are the FOCs that define the OLS estimator for the 3–group dummy regression.
+      \item 
+        \textbf{Solving the FOCs to get the sample estimates.}
+            Let $N_g=\#\{i:i\in g\}$ for $g\in\{0,1,2\}$ and define the group means
+            \[
+            \bar y_g \;=\; \frac{1}{N_g}\sum_{i\in g} y_i .
+            \]
+            
+            From the FOCs in part (i) we have
+            \begin{align}
+            \sum_{i=1}^N y_i &= N\alpha + \beta_1 N_1 + \beta_2 N_2, &&\text{(NE-$\alpha$)}\label{nea}\\
+            \sum_{i\in 1} y_i &= N_1(\alpha+\beta_1), &&\text{(NE-$\beta_1$)}\label{neb1}\\
+            \sum_{i\in 2} y_i &= N_2(\alpha+\beta_2). &&\text{(NE-$\beta_2$)}\label{neb2}
+            \end{align}
+            
+            Divide \eqref{neb1} and \eqref{neb2} by $N_1$ and $N_2$:
+            \[
+            \alpha+\beta_1 \;=\; \frac{1}{N_1}\sum_{i\in 1} y_i \;=\; \bar y_1,
+            \qquad
+            \alpha+\beta_2 \;=\; \frac{1}{N_2}\sum_{i\in 2} y_i \;=\; \bar y_2.
+            \]
+            
+            Substitute $\beta_1=\bar y_1-\alpha$ and $\beta_2=\bar y_2-\alpha$ into \eqref{nea}:
+            \begin{align*}
+            \sum_{i=1}^N y_i
+            &= N\alpha + N_1(\bar y_1-\alpha) + N_2(\bar y_2-\alpha)  \\
+            &= N_0\alpha + N_1\bar y_1 + N_2\bar y_2.
+            \end{align*}
+            But by definition of the total sample mean decomposed by groups,
+            \[
+            \sum_{i=1}^N y_i \;=\; N_0\bar y_0 + N_1\bar y_1 + N_2\bar y_2.
+            \]
+            Equate the two expressions and cancel $N_1\bar y_1 + N_2\bar y_2$:
+            \[
+            N_0\bar y_0 \;=\; N_0\alpha
+            \quad\Longrightarrow\quad
+            \hat\alpha \;=\; \bar y_0 \;=\; \frac{1}{N_0}\sum_{i\in 0} y_i.
+            \]
+            
+            Finally,
+            \[
+            \hat\alpha+\hat\beta_1=\bar y_1=\frac{1}{N_1}\sum_{i\in 1} y_i,
+            \qquad
+            \hat\alpha+\hat\beta_2=\bar y_2=\frac{1}{N_2}\sum_{i\in 2} y_i,
+            \]
+            so
+            \[
+            \hat\beta_1=\bar y_1-\bar y_0,
+            \qquad
+            \hat\beta_2=\bar y_2-\bar y_0.
+            \]
+            Thus $\hat\alpha$ is the mean of group 0, and each $\hat\beta_g$ is the difference between group $g$’s mean and the group-0 mean.
+    \end{enumerate}
+\end{enumerate}
+
+\bigskip
+
+\section{Residualized Regression (Frisch--Waugh)}  % Problem 3
+
+In lecture 4, we showed that the $j$th row of the population regression coefficient 
+$\beta^\ast$ from the model
+\[
+y_i = x_i'\beta^\ast + u_i
+\]
+can be obtained by first getting the residual from an auxiliary regression of $x_{ji}$ 
+on all the other $x$'s:
+\[
+x_{ji} = x_{(\sim j)i}' \pi + \xi_i
+\]
+then forming:
+\[
+\beta_j^\ast = \E[\xi_i^2]^{-1}\E[\xi_i y_i].
+\]
+
+Suppose that we also ``residualized'' the dependent variable using an auxiliary regression 
+of $y_i$ on all the other $x$'s:
+\[
+y_i = x_{(\sim j)i}' \lambda + \phi_i
+\]
+Show that it is also true that:
+\[
+\beta_j^\ast = \E[\xi_i^2]^{-1}\E[\xi_i \phi_i].
+\]
+
+(In other words, we could residualize \emph{both} $x_{ji}$ and $y_i$ and still get the 
+same right answer).
+
+\solution
+    Fix $j\in\{1,\dots,K\}$. Let $x_i=(x_{1i},\ldots,x_{Ki})'$ and write $x_{(\sim j)i}$ for the vector $x_i$ with the $j$th coordinate removed. The population regression is
+    \[
+    y_i = x_i'\beta^* + u_i, \qquad \E[x_i u_i]=0.
+    \]
+    
+    Consider the linear projection of $x_{ji}$ on the other regressors:
+    \[
+    x_{ji} = x_{(\sim j)i}'\pi + \xi_i,
+    \]
+    where $\xi_i$ is the residual. The FOC for $\pi$ give the orthogonality conditions
+    \[
+    \E[x_{(\sim j)i}\,\xi_i]=0, \qquad \E[\xi_i]=0.
+    \]
+    
+    We then multiply the main model by $\xi_i$ and take expectations as follows:
+    \[
+    \E[\xi_i y_i]
+    = \E\!\big[\xi_i(x_i'\beta^*+u_i)\big]
+    = \sum_{m=1}^K \beta_m^*\,\E[\xi_i x_{mi}] \;+\; \E[\xi_i u_i].
+    \]
+    By the auxiliary FOC, $\E[\xi_i x_{mi}]=0$ for every $m\neq j$. Also,
+    \[
+    \E[\xi_i u_i]=\E[(x_{ji}-x_{(\sim j)i}'\pi)u_i]
+    = \E[x_{ji}u_i]-\pi'\E[x_{(\sim j)i}u_i]=0- \pi'\cdot 0=0,
+    \]
+    because $\E[x_i u_i]=0$. Hence
+    \[
+    \E[\xi_i y_i] \;=\; \beta_j^*\,\E[\xi_i x_{ji}].
+    \]
+    
+    We then identify $\E[\xi_i x_{ji}]$ as $\E[\xi_i^2]$). Then, by using $x_{ji}=x_{(\sim j)i}'\pi+\xi_i$,
+    \[
+    \E[\xi_i x_{ji}]
+    = \E[\xi_i(x_{(\sim j)i}'\pi+\xi_i)]
+    = \pi'\E[\xi_i x_{(\sim j)i}] + \E[\xi_i^2]
+    = 0 + \E[\xi_i^2].
+    \]
+    Therefore
+    \[
+    \;\beta_j^* \;=\; \E[\xi_i^2]^{-1}\,\E[\xi_i y_i]\;
+    \]
+    which is the Frisch–Waugh formula stated in the slide.
+
+    \medskip
+
+    We also residualize $y$ as well.
+    Let $y_i = x_{(\sim j)i}'\lambda + \phi_i$ be the linear projection of $y$ on $x_{(\sim j)}$, with residual $\phi_i$. Then $\E[x_{(\sim j)i}\phi_i]=0$ and
+    \[
+    \E[\xi_i\phi_i]
+    = \E\!\big[\xi_i(y_i - x_{(\sim j)i}'\lambda)\big]
+    = \E[\xi_i y_i] - \lambda'\E[\xi_i x_{(\sim j)i}]
+    = \E[\xi_i y_i].
+    \]
+    Thus the same coefficient can be written as:
+    \[
+    \;\beta_j^* \;=\; \E[\xi_i^2]^{-1}\,\E[\xi_i \phi_i]\;
+    \]
+    In this way, we show that you can residualize both $x_{ji}$ \emph{and} $y_i$ on the other $x$’s and regress one residual on the other.
+
+
+\bigskip
+
+\section{Oaxaca Decomposition}  % Problem 4
+
+The goal of this problem is to extend the analysis of public--private pay gaps in Lecture 3 to \emph{male workers}. The file \texttt{pay.csv} contains 45{,}404 observations on male workers, age 30--50, with education of 12 or more years, in the March 2012 and 2013 CPS files. The variables are:
+\begin{itemize}[leftmargin=2em]
+  \item \texttt{govt} $=1$ if government worker
+  \item \texttt{logwage} $=$ log hourly wage based on earnings, weeks worked, and average hours per week last year
+  \item \texttt{educ} $=$ years of education
+  \item \texttt{hs} $=1$ if high school grad (12 years of schooling)
+  \item \texttt{somecoll} $=1$ if education is 13--14 years
+  \item \texttt{college} $=1$ if BA (16 years of education)
+  \item \texttt{ma} $=1$ if masters degree (18 years of schooling)
+  \item \texttt{phd} $=1$ if PhD or LLD or medical degree (20 years of schooling)
+  \item \texttt{age} $=$ age in years (range 30--50)
+\end{itemize}
+
+\noindent\textbf{Note.} \texttt{somecoll} combines two education levels (13 and 14 years). (13 years are people with some college but no degree; 14 years are people with an AA degree from a community college.)
+
+\medskip
+\noindent Please create two new variables: \texttt{educ13}$=1\{\texttt{educ}=13\}$ and \texttt{educ14}$=1\{\texttt{educ}=14\}$ so you will have a total of 6 possible categories for education: \texttt{phd}, \texttt{ma}, \texttt{college}, \texttt{educ14}, \texttt{educ13}, \texttt{hs}.
+
+    \bigskip
+    \textbf{Preliminary Setup.}  
+    We begin by importing the necessary Python packages and setting the working directory.
+    
+        \begin{listing}[H]
+        \begin{minted}[fontsize=\small,linenos]{python}
+        # Packages we might need
+        import pandas as pd   # data manipulation
+        import os             # setting directory
+        import statsmodels.formula.api as smf  # OLS regressions
+        import numpy as np    # arrays and matrices
+        
+        print(os.getcwd())
+        # os.chdir('your_directory_here')  # set working directory
+        \end{minted}
+        \caption{Python setup: packages and working directory.}
+        \end{listing}
+
+    \newpage
+    \textbf{Data Preparation.} 
+    We next load the dataset, create the two new education dummies \texttt{educ13} and \texttt{educ14}, 
+    and then define a categorical variable \texttt{educ\_level} with 6 categories.
+    
+        \begin{minted}[fontsize=\small, linenos]{python}
+        # Load dataset (using pandas "pd")
+        pay = pd.read_csv("pay.csv")   # adjust path if necessary
+        
+        # Create 2 new variables: educ13, educ14
+        pay['educ13'] = 1 * (pay['educ'] == 13)
+        pay['educ14'] = 1 * (pay['educ'] == 14)
+        print(pay.head(2))
+        
+        # Define variable for 6 education levels:
+        # 1=hs, 2=educ13, 3=educ14, 4=college, 5=ma, 6=phd
+        pay['educ_level'] = (
+              1 * (pay['hs'] == 1)
+            + 2 * (pay['educ13'] == 1)
+            + 3 * (pay['educ14'] == 1)
+            + 4 * (pay['college'] == 1)
+            + 5 * (pay['ma'] == 1)
+            + 6 * (pay['phd'] == 1)
+        )
+        
+        print(pay['educ_level'].value_counts(dropna=False))
+        \end{minted}
+    
+    \textbf{Output (excerpt).}
+        \begin{verbatim}
+           age  educ  somecoll  college  ma  govt  educ13  educ14
+        0   39    14         2        0   0     1       0       1
+        1   39    14         2        0   0     0       0       1
+        
+        educ_level
+        1    11265
+        2     1418
+        3      575
+        4    23837
+        5     4311
+        6     1998
+        Name: count, dtype: int64
+        \end{verbatim}
+
+\begin{enumerate}[leftmargin=2em]
+  \item Construct a table like the 1st table (page 7) in Lecture 3. Show the means of all the variables for workers in the private (\texttt{govt}=0) and public (\texttt{govt}=1) sectors, and the differences in these means.
+
+    \solution
+    % ---------- Q4(1) — Means of all variables (private vs public) ----------
+    \paragraph{1. Means of all variables in the private and public sectors.}
+    
+    \begin{listing}
+    \begin{minted}[fontsize=\small, linenos]{python}
+    import numpy as np
+    import pandas as pd
+    
+    # Which rows (variables) to show, and their labels
+    vars_to_show = ["logwage", "educ", "hs", "educ13", "educ14", "college", "ma", "phd"]
+    row_labels = {
+        "logwage": "Mean Log Wage",
+        "educ":    "Mean Education",
+        "hs":      "Fraction HS (12)",
+        "educ13":  "Fraction 13 years",
+        "educ14":  "Fraction 14 years",
+        "college": "Fraction BA (16)",
+        "ma":      "Fraction MA (18)",
+        "phd":     "Fraction PhD (20)",
+    }
+    
+    # Group means for private (govt=0) and government (govt=1)
+    gm = (
+        pay.groupby("govt", observed=True)[vars_to_show]
+           .mean()
+           .T
+           .rename(index=row_labels)
+    )
+    
+    # Build lecture-style wide table with grouped headers
+    cols = pd.MultiIndex.from_tuples([
+        ("Private Sector Workers",   "Mean"),
+        ("Government Workers",       "Mean"),
+        ("Public–Private Gap",       ""),   # gap = govt - private
+    ])
+    table1_pretty = pd.DataFrame(index=gm.index, columns=cols)
+    table1_pretty[("Private Sector Workers", "Mean")] = gm[0]
+    table1_pretty[("Government Workers", "Mean")]   = gm[1]
+    table1_pretty[("Public–Private Gap", "")]       = gm[1] - gm[0]
+    
+    # Add sample-size row
+    n_by_sector = pay.groupby("govt", observed=True).size()
+    all_row = pd.Series({
+        ("Private Sector Workers", "Mean"): n_by_sector.get(0, np.nan),
+        ("Government Workers",   "Mean"):   n_by_sector.get(1, np.nan),
+        ("Public–Private Gap",   ""):       np.nan,
+    }, name="Sample Size")
+    
+    # Final touches: order, labels, rounding
+    table1_pretty.index.name = " "
+    table1_pretty = pd.concat([table1_pretty, all_row.to_frame().T], axis=0)
+    num_rows = table1_pretty.index != "Sample Size"
+    table1_pretty.loc[num_rows] = table1_pretty.loc[num_rows].astype(float).round(3)
+    table1_pretty.loc["Sample Size"] = table1_pretty.loc["Sample Size"].astype("Int64")
+    
+    display(table1_pretty)
+    \end{minted}
+    \caption{Code: Means by sector and public–private gaps.}
+    \end{listing}
+    
+    % === Output Table: Means by sector and public–private gap ===
+        \begin{table}[H]
+          \centering
+          
+          % In academic econ papers, the convetion is usually caption above the table (so I am told), so I follow that convention here.
+          
+          \caption{Means of variables by sector (govt$=1$ vs govt$=0$) and public--private gap (govt$-$private). 
+          Entries rounded to three decimals; sample sizes shown as counts.}
+
+          \vspace{0.3cm} % To give a little space between the caption and the table
+
+          \label{tab:means-by-sector}
+          \begin{tabular}{l S S S}
+                \toprule
+                & {\textbf{Private Mean}} & {\textbf{Govt Mean}} & {\textbf{Gap (Govt--Priv)}}\\
+                \midrule
+                Mean Log Wage     & 3.087 & 3.299 & 0.212 \\
+                Mean Education    & 13.287 & 13.618 & 0.331 \\
+                Fraction HS (12)  & 0.337 & 0.173 & -0.164 \\
+                Fraction 13 years & 0.089 & 0.191 & 0.102 \\
+                Fraction 14 years & 0.083 & 0.081 & -0.002 \\
+                Fraction BA (16)  & 0.264 & 0.305 & 0.041 \\
+                Fraction MA (18)  & 0.173 & 0.181 & 0.008 \\
+                Fraction PhD (20) & 0.059 & 0.086 & 0.027 \\
+                \midrule
+                \textbf{Sample Size} & {\num{38553}} & {\num{6681}} & {} \\
+                \bottomrule
+              \end{tabular}
+            \end{table}
+
+  \item Construct a table like the 2nd table (page 8) in Lecture 3. Show the fractions of private and government workers at each education level, and the mean wages of the two groups in each education level, and the public--private wage gap at each level.
+    
+    \solution
+    % === Code: Education and Wage Gaps (Table 2) ===
+    \begin{listing}[H]
+        \begin{minted}[fontsize=\small, linenos]{python}
+        # --- Table 2: Education-specific composition and wage gaps ---
+        import numpy as np
+        import pandas as pd
+        from IPython.display import display
+        
+        # (Optional) keep wide tables on one line in VS Code / Jupyter
+        pd.set_option('display.expand_frame_repr', False)
+        
+        # 1) Define a single education code: 12, 13, 14, 16, 18, 20
+        edu_code = np.select(
+            [
+                pay['hs'].eq(1), pay['educ13'].eq(1), pay['educ14'].eq(1),
+                pay['college'].eq(1), pay['ma'].eq(1), pay['phd'].eq(1),
+            ],
+            [12, 13, 14, 16, 18, 20],
+            default=np.nan
+        )
+        cats = [12, 13, 14, 16, 18, 20]
+        pay['edu_code'] = pd.Categorical(edu_code, categories=cats, ordered=True)
+        
+        # 2) Drop invalid rows
+        df = pay.dropna(subset=['edu_code']).copy()
+        
+        # 3) Group by (education, sector): counts + mean log wages
+        g = df.groupby(['edu_code', 'govt'], observed=True)
+        by_cell = g.agg(n=('logwage','size'), mean_logw=('logwage','mean')).reset_index()
+        \end{minted}
+        \caption{Code (Part 1): Setup, education codes, grouping.}
+        \end{listing}
+        
+        % --- Split across pages ---
+        
+        \begin{listing}[H]
+        \begin{minted}[fontsize=\small, linenos]{python}
+        # 4) Fractions within each sector
+        by_cell['sector_total'] = by_cell.groupby('govt')['n'].transform('sum')
+        by_cell['fraction_in_group'] = by_cell['n'] / by_cell['sector_total']
+        
+        # 5) Pivot to wide
+        wide_w = by_cell.pivot(index='edu_code', columns='govt', values='mean_logw')
+        wide_f = by_cell.pivot(index='edu_code', columns='govt', values='fraction_in_group')
+        
+        # 6) Assemble table
+        cols = pd.MultiIndex.from_tuples([
+            ('Private Sector Workers','Mean Log Wage'),
+            ('Private Sector Workers','Fraction in Group'),
+            ('Government Workers','Mean Log Wage'),
+            ('Government Workers','Fraction in Group'),
+            ('Govt Wage Premium','')
+        ])
+        table2 = pd.DataFrame({
+            ('Private Sector Workers','Mean Log Wage'): wide_w.get(0),
+            ('Private Sector Workers','Fraction in Group'): wide_f.get(0),
+            ('Government Workers','Mean Log Wage'): wide_w.get(1),
+            ('Government Workers','Fraction in Group'): wide_f.get(1),
+        })
+        table2[('Govt Wage Premium','')] = table2[('Government Workers','Mean Log Wage')] - table2[('Private Sector Workers','Mean Log Wage')]
+        
+        # 7) Add “All” row
+        overall = df.groupby('govt').agg(n=('logwage','size'), mean_logw=('logwage','mean'))
+        all_row = pd.Series({
+            ('Private Sector Workers','Mean Log Wage'): overall.loc[0,'mean_logw'],
+            ('Private Sector Workers','Fraction in Group'): 1.0,
+            ('Government Workers','Mean Log Wage'): overall.loc[1,'mean_logw'],
+            ('Government Workers','Fraction in Group'): 1.0,
+            ('Govt Wage Premium',''): overall.loc[1,'mean_logw'] - overall.loc[0,'mean_logw']
+        }, name='All')
+        table2 = pd.concat([table2, all_row.to_frame().T], axis=0)
+        table2.index.name = 'Education'
+        table2 = table2.round(3)
+        
+        display(table2)
+        \end{minted}
+        \caption{Code (Part 2): Fractions, wide pivot, and final wage gap table.}
+    \end{listing}
+        
+ 
+    % === Output Table: Education-specific wage gaps (Table 2) ===
+        \begin{table}[H]
+          \centering
+          \caption{Education-specific composition and wage gaps by sector.
+          Entries rounded to three decimals. “Govt Wage Premium” is government minus private.}
+          \label{tab:edu-wage-gaps}
+        
+          \vspace{0.3em} % small breathing room after caption
+          \small
+          \setlength{\tabcolsep}{5pt} % slightly tighter columns
+        
+          \begin{tabularx}{\textwidth}{@{}l
+              S[table-format=1.3] S[table-format=1.3]
+              S[table-format=1.3] S[table-format=1.3]
+              S[table-format=1.3]@{}}
+            \toprule
+            & \multicolumn{2}{c}{\makecell{\textbf{Private Sector}\\\textbf{Workers}}}
+            & \multicolumn{2}{c}{\makecell{\textbf{Government}\\\textbf{Workers}}}
+            & \multicolumn{1}{c}{\makecell{\textbf{Govt}\\\textbf{Wage Prem.}}} \\
+            \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(l){6-6}
+            \textbf{Education} & {Mean Log Wage} & {\makecell{Frac.\\in Group}}
+                               & {Mean Log Wage} & {\makecell{Frac.\\in Group}} & {} \\
+            \midrule
+            12 & 2.703 & 0.307 & 2.968 & 0.192 &  0.265 \\
+            13 & 2.873 & 0.113 & 3.123 & 0.250 &  0.250 \\
+            14 & 2.935 & 0.048 & 3.157 & 0.121 &  0.222 \\
+            16 & 3.354 & 0.246 & 3.483 & 0.258 &  0.129 \\
+            18 & 3.542 & 0.043 & 3.413 & 0.069 & -0.129 \\
+            20 & 3.692 & 0.040 & 3.543 & 0.067 & -0.149 \\
+            \midrule
+            All& 3.007 & 1.000 & 3.219 & 1.000 &  0.212 \\
+            \bottomrule
+          \end{tabularx}
+          \normalsize
+        \end{table}  
+        
+  \item Using the notation of Lecture 3, let private sector workers be called ``group $a$'' (the reference group), let government workers be called ``group $b$'', and define the 6 category variables $D_{gi}$ for education level $g=1,\dots,6$. Let
+  \[
+    x_i^a = (D_{1i}, D_{2i}, \ldots, D_{6i})'.
+  \]
+  Find $\bar{x}^a$ and $\bar{x}^b$.
+
+    % --- Part 3: setup (groups, education dummies, \bar x^a and \bar x^b) ---
+    \paragraph{Setup for Part 3.}
+    Let private‐sector workers be “group \(a\)” (\(govt=0\)) and government workers be “group \(b\)” (\(govt=1\)).
+    Define six education dummies \(D_{gi}\) for \(g\in\{12,13,14,16,18,20\}\).
+    For each group, compute the within–group means of these dummies,
+    \(\bar x^a\) and \(\bar x^b\), which are the shares of each education level in groups \(a\) and \(b\).
+    
+    % (compact code cell that builds the indicators once)
+    \begin{listing}[H]
+    \begin{minted}[fontsize=\small,linenos]{python}
+    # Groups and education dummies; compute \bar x^a and \bar x^b once
+    pay["group"] = np.where(pay["govt"].eq(0), "a", "b")
+    
+    # six education indicators
+    pay["D_12"] = (pay["hs"]==1).astype(int)
+    pay["D_13"] = (pay["educ"]==13).astype(int)
+    pay["D_14"] = (pay["educ"]==14).astype(int)
+    pay["D_16"] = (pay["college"]==1).astype(int)
+    pay["D_18"] = (pay["ma"]==1).astype(int)
+    pay["D_20"] = (pay["phd"]==1).astype(int)
+    D_cols = ["D_12","D_13","D_14","D_16","D_18","D_20"]
+    
+    # within–group means (shares)
+    xbar_a = pay.loc[pay["group"].eq("a"), D_cols].mean().rename("Private share (x̄^a)")
+    xbar_b = pay.loc[pay["group"].eq("b"), D_cols].mean().rename("Govt share (x̄^b)")
+    xbar_tbl = (pd.concat([xbar_a, xbar_b], axis=1)
+                  .rename(index={"D_12":"12","D_13":"13","D_14":"14",
+                                 "D_16":"16","D_18":"18","D_20":"20"})
+                  .round(3))
+    display(xbar_tbl)
+    \end{minted}
+    \caption{Code: groups, education dummies, and within–group shares \(\bar x^a,\bar x^b\).}
+    \end{listing}
+    
+    % Nice, compact table version of xbar^a and xbar^b for the PDF
+    \begin{table}[H]
+      \centering
+      \caption{Within–group education shares.  \(\bar x^a\) and \(\bar x^b\) are the
+      means of \(D_{gi}\) inside each group (equal to the “Fraction in Group” columns from Table~\ref{tab:edu-wage-gaps} for the level rows).}
+      \label{tab:xbar-ab}
+      \small
+      \setlength{\tabcolsep}{6pt}
+      \begin{tabular}{l S[table-format=1.3] S[table-format=1.3]}
+        \toprule
+        \textbf{Education} & {\textbf{Private share (\(\bar x^a\))}} & {\textbf{Govt share (\(\bar x^b\))}} \\
+        \midrule
+        12 & 0.337 & 0.192 \\
+        13 & 0.180 & 0.182 \\
+        14 & 0.113 & 0.121 \\
+        16 & 0.246 & 0.258 \\
+        18 & 0.083 & 0.180 \\
+        20 & 0.040 & 0.067 \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+    % ---------- end Part 3 setup ----------
+  
+  \begin{enumerate}[label=(\alph*),leftmargin=1.6em]
+    \item Fit an OLS regression model for wages on $x_i$ for each group, and estimate the coefficients $\hat{\beta}^a$ and $\hat{\beta}^b$. Verify that these coefficients are the mean log wages of groups $a$ and $b$, respectively, for each level of education.
+
+    \solution
+    % --- Part 1 of the code block ---
+    \begin{listing}[H]
+        \begin{minted}[fontsize=\small,linenos]{python}
+        # --- Part 3(a): OLS of log wages on education dummies, by group ---
+    
+        import numpy as np
+        import pandas as pd
+        import statsmodels.formula.api as smf
+    
+        # Ensure educ13/educ14 exist and create categorical edu_code
+        if 'educ13' not in pay.columns:
+            pay['educ13'] = (pay['educ'] == 13).astype(int)
+        if 'educ14' not in pay.columns:
+            pay['educ14'] = (pay['educ'] == 14).astype(int)
+    
+        if 'edu_code' not in pay.columns:
+            edu_code = np.select(
+                [
+                    pay['hs'].eq(1),
+                    pay['educ13'].eq(1),
+                    pay['educ14'].eq(1),
+                    pay['college'].eq(1),
+                    pay['ma'].eq(1),
+                    pay['phd'].eq(1),
+                ],
+                [12, 13, 14, 16, 18, 20],
+                default=np.nan
+            )
+            pay['edu_code'] = pd.Categorical(
+                edu_code, categories=[12,13,14,16,18,20], ordered=True
+            )
+    
+        # Split into private (a) and government (b)
+        a = pay.loc[pay['govt'] == 0].copy()
+        b = pay.loc[pay['govt'] == 1].copy()
+    
+        # OLS with no intercept: coefficients = cell means
+        formula = "logwage ~ 0 + D_12 + D_13 + D_14 + D_16 + D_18 + D_20"
+        fit_a = smf.ols(formula, data=a).fit(cov_type='HC1')
+        fit_b = smf.ols(formula, data=b).fit(cov_type='HC1')
+    
+        # Extract coefficients and match to edu codes
+        beta_a = fit_a.params.rename(index=lambda s: int(s.split('_')[1])).sort_index()
+        beta_b = fit_b.params.rename(index=lambda s: int(s.split('_')[1])).sort_index()
+    
+        # Direct means for verification
+        mean_a = a.groupby('edu_code', observed=True)['logwage'].mean().reindex(beta_a.index)
+        mean_b = b.groupby('edu_code', observed=True)['logwage'].mean().reindex(beta_b.index)
+        \end{minted}
+        \end{listing}
+    
+        % --- Part 2 of the code block ---
+        \begin{listing}[H]
+        \begin{minted}[fontsize=\small,linenos]{python}
+        # Sanity check: coefficients ≈ group means
+        assert np.allclose(beta_a.values, mean_a.values)
+        assert np.allclose(beta_b.values, mean_b.values)
+    
+        # Display tidy comparison table
+        out_a_b = pd.DataFrame({
+            'OLS coef (a)': beta_a.round(3),
+            'Mean log wage (a)': mean_a.round(3),
+            'OLS coef (b)': beta_b.round(3),
+            'Mean log wage (b)': mean_b.round(3),
+        })
+        out_a_b.index.name = 'Education'
+        display(out_a_b)
+        \end{minted}
+        \caption{Code: OLS of log wages on education dummies by group.}
+    \end{listing}
+        
+    \begin{table}[H]
+        \centering
+        \caption{OLS coefficients and direct mean log wages, by education level and sector. 
+        Coefficients equal the cell means, as expected.}
+
+        \vspace{0.3cm}
+        
+        \label{tab:ols-coef}
+        \begin{tabular}{l S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3]}
+        \toprule
+        \textbf{Education} & \textbf{OLS coef (a)} & \textbf{Mean log wage (a)} & 
+        \textbf{OLS coef (b)} & \textbf{Mean log wage (b)} \\
+        \midrule
+        12 & 2.703 & 2.703 & 2.968 & 2.968 \\
+        13 & 2.873 & 2.873 & 3.123 & 3.123 \\
+        14 & 2.935 & 2.935 & 3.157 & 3.157 \\
+        16 & 3.354 & 3.354 & 3.483 & 3.483 \\
+        18 & 3.542 & 3.542 & 3.413 & 3.413 \\
+        20 & 3.692 & 3.692 & 3.543 & 3.543 \\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+
+    \item Using your estimates of $\bar{x}^a$, $\bar{x}^b$, $\hat{\beta}^a$ and $\hat{\beta}^b$, construct
+    \[
+      \bar{y}^a = \sum_g p_g^a y_g^a \;=\; (\bar{x}^a)'\hat{\beta}^a,
+      \qquad
+      \bar{y}^b = \sum_g p_g^b y_g^b \;=\; (\bar{x}^b)'\hat{\beta}^b,
+    \]
+    and verify that these match the means of wages for groups $a$ and $b$ that you construct directly.
+
+    \solution
+        % --- Listing 1/2: setup, dummies, and group-specific OLS (coefficients are cell means)
+        \begin{listing}[H]
+        \begin{minted}[fontsize=\small,linenos]{python}
+        # --- Q3(b) Part 1: setup, dummies, and group OLS ---
+        
+        import numpy as np
+        import pandas as pd
+        import statsmodels.formula.api as smf
+        
+        # 1) Split groups: a = private (govt=0), b = government (govt=1)
+        a = pay.loc[pay['govt'].eq(0)].copy()
+        b = pay.loc[pay['govt'].eq(1)].copy()
+        
+        # 2) Education-category dummies (D_12,...,D_20).
+        #    (If created earlier, this just reasserts them.)
+        pay['D_12'] = (pay['hs']      == 1).astype(int)
+        pay['D_13'] = (pay['educ']    == 13).astype(int)
+        pay['D_14'] = (pay['educ']    == 14).astype(int)
+        pay['D_16'] = (pay['college'] == 1).astype(int)
+        pay['D_18'] = (pay['ma']      == 1).astype(int)
+        pay['D_20'] = (pay['phd']     == 1).astype(int)
+        
+        # align dummies to a/b rows
+        D_cols = ['D_12','D_13','D_14','D_16','D_18','D_20']
+        a[D_cols] = pay.loc[a.index, D_cols]
+        b[D_cols] = pay.loc[b.index, D_cols]
+        
+        # 3) Dummy-only OLS (no intercept ⇒ each coefficient = cell mean)
+        mod_a = smf.ols("logwage ~ 0 + D_12 + D_13 + D_14 + D_16 + D_18 + D_20", data=a).fit(cov_type='HC1')
+        mod_b = smf.ols("logwage ~ 0 + D_12 + D_13 + D_14 + D_16 + D_18 + D_20", data=b).fit(cov_type='HC1')
+        
+        beta_a = mod_a.params[D_cols]     # \hat{β}^a_g = mean log wage in group a, cell g
+        beta_b = mod_b.params[D_cols]     # \hat{β}^b_g = mean log wage in group b, cell g
+        \end{minted}
+        \caption{Code (Part 1): Setup, dummies, and group-specific OLS (cell means).}
+        \end{listing}
+        
+        % --- Listing 2/2: compute shares \bar x, weighted means \bar y, compare to direct means
+        \begin{listing}[H]
+        \begin{minted}[fontsize=\small,linenos]{python}
+        # --- Q3(b) Part 2: shares, weighted averages, and checks ---
+        
+        # 4) Within-group education shares  \bar{x}^a and \bar{x}^b
+        xbar_a = a[D_cols].mean()   # p_g^a
+        xbar_b = b[D_cols].mean()   # p_g^b
+        
+        # 5) Weighted-average means:  \bar{y}^a = (\bar{x}^a)' \hat{β}^a,  \bar{y}^b = (\bar{x}^b)' \hat{β}^b
+        ybar_a_weighted = float(np.dot(xbar_a.values, beta_a.values))
+        ybar_b_weighted = float(np.dot(xbar_b.values, beta_b.values))
+        
+        # 6) Direct sample means for verification
+        ybar_a_direct = a['logwage'].mean()
+        ybar_b_direct = b['logwage'].mean()
+        
+        # 7) Neat comparison table
+        check = pd.DataFrame({
+            "Weighted avg (x̄'β̂)": [ybar_a_weighted, ybar_b_weighted],
+            "Direct mean logwage":  [ybar_a_direct,   ybar_b_direct],
+            "Difference":           [ybar_a_weighted - ybar_a_direct,
+                                     ybar_b_weighted - ybar_b_direct]
+        }, index=pd.Index(['Group a (private)','Group b (government)'], name='Group')).round(3)
+        
+        display(check)
+        
+        # Optional: assert equality up to rounding
+        assert np.isclose(ybar_a_weighted, ybar_a_direct)
+        assert np.isclose(ybar_b_weighted, ybar_b_direct)
+        \end{minted}
+        \caption{Code (Part 2): Shares, weighted mean log wages, and equality check to direct means.}
+        \end{listing}
+        
+        % --- Output table (matches your notebook numbers; 3 decimals) ---
+        \begin{table}[H]
+        \centering
+        \caption{Weighted-average mean log wages equal the direct sample means (law of iterated expectations).}
+        \sisetup{table-number-alignment = center, round-mode = places, round-precision = 3}
+        \begin{tabular}{l S S S}
+        \toprule
+        & {Weighted avg $(\bar x' \hat\beta)$} & {Direct mean logwage} & {Difference}\\
+        \midrule
+        Group a (private)     & 3.007 & 3.007 & 0.000 \\
+        Group b (government)  & 3.219 & 3.219 & 0.000 \\
+        \bottomrule
+        \end{tabular}
+        \label{tab:q3b-weighted-vs-direct}
+        \end{table}
+
+    
+    \item Using your estimates of $\bar{x}^a$ and $\hat{\beta}^b$ construct
+    \[
+      \bar{y}_{\text{counterf}}^{\,b} \;=\; \sum_g p_g^a y_g^b \;=\; (\bar{x}^a)'\hat{\beta}^b.
+    \]
+    Find the adjusted wage gap: $\bar{y}_{\text{counterf}}^{\,b}-\bar{y}^a$. How does this compare to the actual gap $\bar{y}^b-\bar{y}^a$?
+
+    \solution
+        \begin{listing}[H]
+            \begin{minted}[fontsize=\small,linenos]{python}
+                # --- 3(c) Counterfactual using a's composition and b's returns ---
+                
+                import numpy as np
+                import pandas as pd
+                import statsmodels.formula.api as smf
+                
+                # Dummies (should already exist from part 3 setup)
+                D_cols = ['D_12','D_13','D_14','D_16','D_18','D_20']
+                order  = [f'D_{g}' for g in [12,13,14,16,18,20]]
+                
+                # Split data
+                a = pay.loc[pay['govt'].eq(0)].copy()  # private (group a)
+                b = pay.loc[pay['govt'].eq(1)].copy()  # government (group b)
+                
+                # 1) Returns for group b: \hat{beta}^b from a no-constant dummy regression
+                formula_b = "logwage ~ 0 + " + " + ".join(D_cols)
+                fit_b = smf.ols(formula_b, data=b).fit(cov_type='HC1')
+                beta_b = fit_b.params.reindex(order)
+                
+                # 2) Composition for group a: xbar^a (mean of education dummies)
+                xbar_a = a[D_cols].mean().reindex(order)
+                
+                # 3) Counterfactual mean for group b under a's composition
+                ybar_b_counterf = float(np.dot(xbar_a.values, beta_b.values))
+                
+                # 4) Actual means and gaps
+                ybar_a = a['logwage'].mean()
+                ybar_b = b['logwage'].mean()
+                
+                gap_actual   = ybar_b - ybar_a
+                gap_adjusted = ybar_b_counterf - ybar_a
+                \end{minted}
+                \caption{Code (Part 1): Counterfactual setup, returns, composition, and adjusted gap.}
+                \end{listing}
+                
+                \begin{listing}[H]
+                \begin{minted}[fontsize=\small,linenos]{python}
+                # (Optional) Oaxaca-style split when using b-coefficients as reference
+                # composition piece: (xbar^b - xbar^a)' * beta^b
+                xbar_b = b[D_cols].mean().reindex(order)
+                composition = float(np.dot((xbar_b - xbar_a).values, beta_b.values))
+                
+                # returns piece: (beta^b - beta^a)' * xbar^a
+                fit_a = smf.ols("logwage ~ 0 + " + " + ".join(D_cols), data=a).fit(cov_type='HC1')
+                beta_a = fit_a.params.reindex(order)
+                returns = float(np.dot((beta_b - beta_a).values, xbar_a.values))
+                
+                # 5) Display tidy summary
+                out = pd.DataFrame(
+                    {
+                        "Mean log wage": [ybar_a, ybar_b, ybar_b_counterf],
+                        "—": ["", "", ""],
+                        "Gap vs group a": [0.0, gap_actual, gap_adjusted],
+                    },
+                    index=["Group a (private)", "Group b (govt) – actual", "Group b – counterfactual"]
+                )
+                
+                pieces = pd.DataFrame(
+                    {
+                        "Composition piece (using β^b)": [composition],
+                        "Returns piece (using x̄^a)": [returns],
+                        "Composition + Returns": [composition + returns],
+                        "Actual gap ȳ^b − ȳ^a": [gap_actual],
+                    }
+                )
+                
+                display(out.round(3))
+                display(pieces.round(3))
+            \end{minted}
+            \caption{Code (Part 2): Oaxaca-style decomposition and summary output.}
+        \end{listing}
+    
+        \begin{table}[H]
+        \centering
+        \small
+        \caption{Counterfactual with private-sector composition and government returns (Part 3(c)).}
+        \label{tab:counterfactual}
+        \begin{tabularx}{\textwidth}{l S S}
+                \toprule
+                \multicolumn{3}{l}{\textbf{Panel A. Mean log wages and gaps}}\\
+                \midrule
+                \textbf{Group} & {\textbf{Mean log wage}} & {\textbf{Gap vs group $a$}}\\
+                \midrule
+                Group $a$ (private)              & 3.007 & 0.000 \\
+                Group $b$ (government) — actual  & 3.219 & 0.212 \\
+                Group $b$ — counterfactual       & 3.154 & 0.147 \\
+                \midrule
+                \addlinespace[4pt]
+                \multicolumn{3}{l}{\textbf{Panel B. Oaxaca-style decomposition (using $\hat\beta^{\,b}$ as reference)}}\\
+                \midrule
+                \textbf{Component} & \multicolumn{2}{c}{\textbf{Value}}\\
+                \cmidrule(lr){2-3}
+                Composition effect $(\bar x^{\,b}-\bar x^{\,a})'\hat\beta^{\,b}$ & \multicolumn{2}{c}{0.065} \\
+                Returns effect $(\hat\beta^{\,b}-\hat\beta^{\,a})'\bar x^{\,a}$   & \multicolumn{2}{c}{0.147} \\
+                \addlinespace[2pt]
+                Composition $+$ Returns                                           & \multicolumn{2}{c}{0.212} \\
+                Actual gap $\bar y^{\,b}-\bar y^{\,a}$                            & \multicolumn{2}{c}{0.212} \\
+                \bottomrule
+            \end{tabularx}
+
+            \medskip
+            \raggedright
+                \footnotesize
+                Notes: Panel A reports observed and counterfactual mean log wages when group $b$ (government) is evaluated at the private-sector education mix $\bar x^{\,a}$ with government returns $\hat\beta^{\,b}$. Panel B decomposes the total gap into a composition (education mix) piece and a returns (pay for the same education) piece; values are rounded to three decimals.
+            \end{table}
+
+        \paragraph{Interpretation of Part (c).}
+        The observed public--private wage gap is
+        \[
+          \bar{y}^b - \bar{y}^a \;=\; 3.219 - 3.007 \;=\; 0.212.
+        \]
+        
+        Using the Oaxaca decomposition, we compute the counterfactual mean log wage 
+        for government workers under the private-sector education distribution:
+        \[
+          \bar{y}^b_{\text{counterf}} = 3.154.
+        \]
+        
+        This implies an adjusted wage gap of
+        \[
+          \bar{y}^b_{\text{counterf}} - \bar{y}^a \;=\; 3.154 - 3.007 \;=\; 0.147,
+        \]
+        which is smaller than the actual observed gap.
+        
+        Decomposing the total gap of $0.212$, we find:
+        \begin{itemize}
+          \item \textit{Composition effect (education mix):} $0.065$,
+          \item \textit{Returns effect (differences in pay for the same education):} $0.147$.
+        \end{itemize}
+        
+        Thus, approximately $31\%$ of the wage gap can be attributed to differences in 
+        the education distribution across sectors, while the remaining $69\%$ reflects 
+        differences in returns to education between government and private-sector employment.
+
+    \newpage
+    
+    \item Construct the weight
+    \[
+      w_g \;=\; \frac{N_g^a}{N_g^b}
+    \]
+    for education categories $g=1,\ldots,6$. Use this to construct
+    \[
+      \bar{y}_{\text{counterf2}}^{\,b}
+      \;=\;
+      \frac{\sum_{i\in b} w_{g_i}\, y_i}{\sum_{i\in b} w_{g_i}}
+      \quad\text{and verify that}\quad
+      \bar{y}_{\text{counterf}}^{\,b} \;=\; \bar{y}_{\text{counterf2}}^{\,b},
+    \]
+    that is,
+    \[
+      \sum_g p_g^a y_g^b
+      \;=\;
+      \frac{\sum_{i\in b} w_{g_i}\, y_i}{\sum_{i\in b} w_{g_i}}.
+    \]
+
+    \solution
+    \begin{listing}[H]
+        \begin{minted}[fontsize=\small,linenos]{python}
+        import numpy as np
+        import pandas as pd
+        
+        # --- (d) Counterfactual 2: cell weights and weighted mean ---
+        
+        # Counts by education cell in each group
+        Na_g = a[D_cols].sum(axis=0)   # number of a (private) in each edu cell
+        Nb_g = b[D_cols].sum(axis=0)   # number of b (govt)   in each edu cell
+        
+        # Weights w_g = Na_g / Nb_g (defined cell-by-cell)
+        w_g = (Na_g / Nb_g).rename('w_g')
+        
+        # Attach weights to each person in group b according to their edu cell
+        # For each person i in b, w_i = sum_g w_g * D_gi  (since exactly one D_gi=1)
+        w_i = pd.Series(0.0, index=b.index)
+        for col in D_cols:
+            w_i = w_i + w_g[col] * b[col]
+        
+        # Weighted mean of log wages for group b under weights w_g:
+        numer = (w_i * b['logwage']).sum()
+        denom = w_i.sum()
+        ybar_b_counterf2 = numer / denom
+        
+        # Compare to the counterfactual from (c): (xbar^a)' beta^b
+        # (Assumes you already computed ybar_b_counterf)
+        diff_cf = ybar_b_counterf2 - ybar_b_counterf
+        
+        # Adjusted gap using the cell-weighted counterfactual
+        gap_adj_d = ybar_b_counterf2 - ybar_a_direct
+        
+        # Tidy display
+        check_d = pd.DataFrame({
+            "ybar_b (counterf2)": [ybar_b_counterf2],
+            "ybar_b (xbar^a beta^b)": [ybar_b_counterf],
+            "Difference": [diff_cf],
+            "Adjusted gap (counterf2 - ybar_a)": [gap_adj_d]
+        })
+        display(check_d.round(3))
+        \end{minted}
+        \caption{Code (Part 3d): Counterfactual 2 using cell weights and weighted means.}
+    \end{listing}
+
+    \begin{table}[H]
+    \centering
+    \small
+    \caption{Counterfactual 2 with cell weights and weighted means (Part 3(d)).}
+    \label{tab:counterfactual2}
+    \begin{tabularx}{\textwidth}{l S S S S}
+        \toprule
+        & {\textbf{$\bar{y}^b_{\text{counterf2}}$}} & {\textbf{$\bar{y}^b = (\bar{x}^a)'\hat{\beta}^b$}} & {\textbf{Difference}} & {\textbf{Adjusted gap $(\bar{y}^b_{\text{counterf2}} - \bar{y}^a)$}} \\
+        \midrule
+        Value & 3.154 & 3.154 & 0.000 & 0.147 \\
+        \bottomrule
+    \end{tabularx}
+    
+    \medskip
+    \raggedright
+    \footnotesize Notes: Table compares the counterfactual mean log wage for government workers using 
+    cell weights $\{w_g\}$ (Column 1) to the alternative construction $(\bar{x}^a)'\hat{\beta}^b$ from Part (c) (Column 2). 
+    The near-zero difference confirms both methods are consistent. The last column reports the adjusted wage gap relative to private workers. 
+    \end{table}
+    
+    \paragraph{Interpretation of Part (d).}
+    In Part (d), we constructed the counterfactual mean log wage for government workers using 
+    cell weights defined as
+    \[
+      w_g = \frac{N_g^a}{N_g^b}, \quad g=1,\dots,6
+    \]
+    where $N_g^a$ and $N_g^b$ are the numbers of workers in education category $g$ for the private and government sectors, respectively. 
+    
+    The weighted counterfactual mean is
+    \[
+      \bar{y}^b_{\text{counterf2}} = \frac{\sum_{i \in b} w_g y_{gi}}{\sum_{i \in b} w_g} = 3.154.
+    \]
+    
+    We then verified that this equals the alternative construction from Part (c),
+    \[
+      \bar{y}^b_{\text{counterf2}} = (\bar{x}^a)'\hat{\beta}^b = 3.154,
+    \]
+    with a difference of essentially $0.0$, confirming that both methods are consistent.
+    
+    Finally, the adjusted wage gap using this counterfactual is
+    \[
+      \bar{y}^b_{\text{counterf2}} - \bar{y}^a = 3.154 - 3.007 = 0.147,
+    \]
+    which matches the \emph{returns} component identified earlier in the Oaxaca decomposition. Thus, Part (d) confirms that the decomposition result is robust to the alternative construction of the counterfactual mean.
+    
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
