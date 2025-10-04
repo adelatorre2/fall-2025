@@ -1,0 +1,299 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{fancyhdr}   % headers/footers
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+% --- Page Setup ---
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 421 -- 003, Fall 2025}
+\lhead{Homework 4}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Title info ---
+\title{Homework 4}
+\author{Alejandro De La Torre \\ MATH 421 -- The Theory of Single Variable Calculus \\ Section 003 \\ Instructor: Grace Work}
+\date{October 2025}
+
+% --- Theorem environments (handy if you need them) ---
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+\maketitle
+
+\section*{Collaboration Statement}
+I worked on this homework independently. No outside collaborators or resources were used, except for the textbook \textit{Elementary Analysis: The Theory of Calculus} by Ross and my own class notes. 
+
+% ---------------- Problem 1 ----------------
+\section*{Problem 1 (Ross Chapter 1, 4.7)}
+Let $S$ and $T$ be nonempty bounded subsets of $\mathbb{R}$.
+
+\medskip
+\noindent\textbf{(a)} If $S\subseteq T$, then
+\[
+\inf T \;\le\; \inf S \;\le\; \sup S \;\le\; \sup T .
+\]
+
+\begin{proof}
+Assume $S\subseteq T$. We verify the three inequalities separately.
+\begin{enumerate}[label=\roman*)]
+  \item \emph{$\sup S\le \sup T$.}  Every element of $S$ lies in $T$, so any
+  upper bound of $T$ is an upper bound of $S$. In particular,
+  $\sup T$ is an upper bound of $S$. By minimality of the least upper bound,
+  $\sup S\le \sup T$.
+
+  \item \emph{$\inf T\le \inf S$.}  Again $S\subseteq T$, hence any lower bound
+  of $T$ is a lower bound of $S$. In particular, $\inf T$ is a lower
+  bound of $S$. By maximality of the greatest lower bound, $\inf T\le \inf S$.
+
+  \item \emph{$\inf S\le \sup S$.}  Because $S$ is nonempty and bounded,
+  there exists $s\in S$ and every $s\in S$ satisfies
+  $\inf S\le s\le \sup S$. Hence $\inf S\le \sup S$.
+\end{enumerate}
+Putting the three statements together yields
+$\inf T \le \inf S \le \sup S \le \sup T$.
+\end{proof}
+
+\medskip
+\noindent\textbf{(b)} Without assuming $S\subseteq T$,
+\[
+\sup(S\cup T)=\max\{\sup S,\sup T\}.
+\]
+
+\begin{proof}
+Let $\alpha:=\sup S$ and $\beta:=\sup T$, and set $M:=\max\{\alpha,\beta\}$.
+
+\emph{Step 1: $M$ is an upper bound for $S\cup T$.}
+If $x\in S\cup T$, then either $x\in S$ or $x\in T$.
+In the first case $x\le \alpha\le M$; in the second $x\le \beta\le M$.
+Hence $x\le M$ for all $x\in S\cup T$.
+
+\emph{Step 2: $M$ is the least such upper bound.}
+Let $u$ be any upper bound for $S\cup T$.
+Then $u$ is an upper bound for $S$ and for $T$, so
+$\alpha=\sup S\le u$ and $\beta=\sup T\le u$. Consequently
+$M=\max\{\alpha,\beta\}\le u$.
+
+By Steps~1–2, $M$ is an upper bound for $S\cup T$ that is no larger
+than any other upper bound; by definition, $M=\sup(S\cup T)$.
+\end{proof}
+
+% ---------------- Problem 2 ----------------
+\section*{Problem 2 (Ross Chapter 1, 4.8)}
+Let $S$ and $T$ be nonempty subsets of $\mathbb{R}$ with the property
+\[
+(\ast)\qquad s\le t \quad\text{for all } s\in S \text{ and } t\in T .
+\]
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+
+\item \textbf{Observation. $S$ is bounded above and $T$ is bounded below.}
+
+\emph{Reason.}
+Pick any $t_0\in T$ (possible because $T\neq\varnothing$).  By $(\ast)$, for every
+$s\in S$ we have $s\le t_0$, so $t_0$ is an upper bound of $S$ and hence $S$
+is bounded above.
+
+Likewise, pick any $s_0\in S$.  Then for every $t\in T$ we have $s_0\le t$, so
+$s_0$ is a lower bound of $T$ and hence $T$ is bounded below. \hfill $\square$
+
+\item \textbf{} $\displaystyle \sup S \le \inf T$.
+
+\begin{proof}
+By part (a), $\sup S$ and $\inf T$ exist (since $S\neq\varnothing$ is bounded
+above and $T\neq\varnothing$ is bounded below).
+Fix $t\in T$.  Property $(\ast)$ implies $s\le t$ for all $s\in S$, i.e., $t$ is an
+upper bound for $S$.  Hence $\sup S\le t$ for every $t\in T$.
+Therefore $\sup S$ is a lower bound for $T$, and by maximality of $\inf T$,
+\(\sup S \le \inf T\).
+\end{proof}
+
+\item \textbf{Example with $S\cap T\neq\varnothing$.}
+
+Take
+\[
+S=[0,1], \qquad T=[1,2].
+\]
+Then for any $s\in S$ we have $s\le 1\le t$ for every $t\in T$, so $(\ast)$ holds.
+Moreover, $S\cap T=\{1\}\neq\varnothing$.
+
+\item \textbf{Example with $\sup S=\inf T$ and $S\cap T=\varnothing$.}
+
+Take
+\[
+S=(0,1), \qquad T=[1,2] \quad\text{(or }T=(1,2]\text{)}.
+\]
+For any $s\in(0,1)$ and any $t\in T$ we have $s<1\le t$, so $(\ast)$ holds.
+Here $\sup S=1=\inf T$, while $S\cap T=\varnothing$ because $1\notin S$ (and if
+$T=(1,2]$ then $1\notin T$ either).
+\end{enumerate}
+
+% ---------------- Problem 3 ----------------
+\section*{Problem 3 (Ross Chapter 1, 4.12)}
+Let $\mathbb{I}$ be the set of real numbers that are not rational; elements of $\mathbb{I}$ are called \emph{irrational numbers}.  
+Prove: if $a<b$, then there exists $x\in\mathbb{I}$ such that $a<x<b$.
+
+\begin{lemma}[A rational in any open interval]
+\label{lem:densityQ}
+If $u<v$ are real numbers, then there exists $r\in\mathbb{Q}$ with $u<r<v$.
+\end{lemma}
+
+\begin{proof}
+By the Archimedean property, choose $n\in\mathbb{N}$ with $n(v-u)>1$.  
+There is an integer $m$ with $nu<m<nv$ (e.g., take $m=\lfloor nv\rfloor$; then $m<nv$ and $m>nv-1>nu$).  
+Set $r=\dfrac{m}{n}\in\mathbb{Q}$. Then
+\[
+u<\frac{nu}{n}<\frac{m}{n}<\frac{nv}{n}<v,
+\]
+so $u<r<v$.
+\end{proof}
+
+\begin{lemma}\label{lem:shift}
+If $r\in\mathbb{Q}$, then $r+\sqrt2\in\mathbb{I}$.
+\end{lemma}
+
+\begin{proof}
+Suppose, toward a contradiction, that $r+\sqrt2\in\mathbb{Q}$.  
+Since $\mathbb{Q}$ is closed under subtraction (is a field where the difference of rationals is rational?), $(r+\sqrt2)-r=\sqrt2$ would be rational, which contradicts the well–known fact that $\sqrt2$ is irrational.  
+Hence $r+\sqrt2$ is irrational; i.e., $r+\sqrt2\in\mathbb{I}$.
+\end{proof}
+
+For any $a<b$ in $\mathbb{R}$, there exists $x\in\mathbb{I}$ with $a<x<b$.
+
+\begin{proof}
+Apply Lemma~\ref{lem:densityQ} to the interval $(a-\sqrt2,\; b-\sqrt2)$ to obtain
+a rational $r\in\mathbb{Q}$ such that
+\[
+a-\sqrt2 \;<\; r \;<\; b-\sqrt2.
+\]
+Let $x:=r+\sqrt2$.  Adding $\sqrt2$ to the inequalities gives
+\[
+a \;<\; x \;<\; b.
+\]
+By Lemma~\ref{lem:shift}, $x=r+\sqrt2$ is irrational; hence $x\in\mathbb{I}$, as required.
+\end{proof}
+
+\newpage
+
+% ---------------- Problem 4 ----------------
+\section*{Problem 4 (Ross Chapter 1, 4.14(a))}
+
+4.14 Let $A$ and $B$ be nonempty bounded subsets of $\mathbb{R}$, and let 
+$A + B$ be the set of all sums $a + b$ where $a \in A$ and $b \in B$.  
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Prove $\sup(A+B) = \sup A + \sup B$. 
+  \textit{Hint:} To show $\sup A + \sup B \le \sup(A+B)$, show that for each $b \in B$, 
+  $\sup(A+B) - b$ is an upper bound for $A$, hence $\sup A \le \sup(A+B) - b$. 
+  Then show $\sup(A+B) - \sup A$ is an upper bound for $B$. 
+\end{enumerate}
+
+\begin{proof}
+Since $A$ and $B$ are nonempty and bounded, $\sup A$ and $\sup B$ exist.  
+Set $\alpha:=\sup A$ and $\beta:=\sup B$.
+
+We prove the two inequalities separately.
+
+\smallskip
+\noindent\emph{(i) $\sup(A+B)\le \alpha+\beta$.}
+For any $a\in A$ and $b\in B$ we have $a\le \alpha$ and $b\le \beta$, hence
+\[
+a+b\le \alpha+\beta.
+\]
+Thus $\alpha+\beta$ is an upper bound for $A+B$, and by minimality of the least upper bound,
+\[
+\sup(A+B)\le \alpha+\beta.
+\]
+
+\smallskip
+\noindent\emph{(ii) $\sup(A+B)\ge \alpha+\beta$.}
+Fix $b\in B$. For every $a\in A$ we have $a+b\le \sup(A+B)$, so
+\[
+a\le \sup(A+B)-b\qquad(a\in A).
+\]
+Hence $\sup(A+B)-b$ is an upper bound for $A$, and therefore
+\[
+\alpha=\sup A\le \sup(A+B)-b \quad\text{for every } b\in B,
+\]
+which implies $\alpha+b\le \sup(A+B)$ for every $b\in B$. Taking suprema over $b$ gives
+\[
+\sup_{b\in B}(\alpha+b)\le \sup(A+B).
+\]
+Since adding a constant preserves order, \(\sup_{b\in B}(\alpha+b)=\alpha+\sup B=\alpha+\beta\). Hence
+\[
+\alpha+\beta\le \sup(A+B).
+\]
+
+\smallskip
+Combining (i) and (ii) yields \(\sup(A+B)=\alpha+\beta=\sup A+\sup B\).
+\end{proof}
+
+\vspace{3cm}
+
+% ---------------- Problem 5 ----------------
+\section*{Problem 5 (Ross Chapter 1, 4.15)}
+Let $a,b\in\mathbb{R}$. Show: if $a\le b+\dfrac{1}{n}$ for all $n\in\mathbb{N}$, then $a\le b$. 
+(Compare Exercise 3.8.)
+
+\begin{proof}
+We argue by contradiction. Suppose $a>b$. Set $\varepsilon:=a-b>0$.  
+By the Archimedean property, there exists $n\in\mathbb{N}$ with
+\[
+\frac{1}{n}<\varepsilon=a-b.
+\]
+Then
+\[
+b+\frac{1}{n}\;<\;b+(a-b)\;=\;a,
+\]
+which contradicts the hypothesis $a\le b+\dfrac{1}{n}$ (true for every $n\in\mathbb{N}$).  
+Therefore our assumption $a>b$ is impossible, and we conclude $a\le b$.
+\end{proof}
+
+
+% ---------------- Problem 6 ----------------
+\section*{Problem 6 (Ross Chapter 1, 4.16)}
+Show
+\[
+\sup\{\, r \in \mathbb{Q} : r < a \,\} \;=\; a
+\quad\text{for each } a \in \mathbb{R}.
+\]
+
+\begin{proof}
+Let 
+\[
+S := \{\, r \in \mathbb{Q} : r < a \,\}.
+\]
+
+\begin{enumerate}[label=\textbf{Step \arabic*.}]
+  \item \emph{\(S\) is nonempty and bounded above.}  
+  By the density of \(\mathbb{Q}\) in \(\mathbb{R}\), for any \(u<v\) there exists \(q\in\mathbb{Q}\) with \(u<q<v\).  
+  Taking \(u=a-1\), \(v=a\), we get \(q<a\), so \(S\neq\varnothing\).  
+  Since every \(r\in S\) satisfies \(r<a\), the real number \(a\) is an upper bound for \(S\).  
+  Hence \(\sup S\) exists and \(\sup S \le a\).
+  
+  \item \emph{\(a\) is the least upper bound.}  
+  Let \(\varepsilon>0\). By the density of \(\mathbb{Q}\), there exists \(q\in\mathbb{Q}\) with
+  \[
+  a-\varepsilon < q < a.
+  \]
+  Then \(q\in S\) and \(q>a-\varepsilon\). Thus \(a-\varepsilon\) is not an upper bound of \(S\).  
+  Therefore \(\sup S \ge a-\varepsilon\).  
+  Since this is true for every \(\varepsilon>0\), we conclude \(\sup S \ge a\).
+\end{enumerate}
+
+Combining Step~1 and Step~2 gives
+\[
+\sup S = a.
+\]
+\end{proof}
+
+\end{document}
