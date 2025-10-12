@@ -1,0 +1,8 @@
+Level 	Command	Document Class
+-1	\part{...}	report, book
+0	\chapter{...}	report, book
+1	\section{...}	article, report, book
+2	\subsection{...}	article, report, book
+3	\subsubsection{...}	article, report, book
+4	\paragraph{...}	article, report, book
+5	\subparagraph{...}

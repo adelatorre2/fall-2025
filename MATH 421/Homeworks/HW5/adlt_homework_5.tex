@@ -1,0 +1,339 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% --- Page setup ---
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 421 -- 003, Fall 2025}
+\lhead{Homework 5}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Title info ---
+\title{Homework 5}
+\author{Alejandro De La Torre \\ MATH 421 -- The Theory of Single Variable Calculus \\ Section 003 \\ Instructor: Grace Work}
+\date{October 2025}
+
+\begin{document}
+\maketitle
+
+\section*{Collaboration Statement}
+Work compared with Griffin Hailman, with whom brief advice and discussion were exchanged on some problems.
+
+% ---------------- Problem 1 ----------------
+\section*{Problem 1 (Ross Chapter 2, 7.4)}
+Give examples of
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item A sequence $(x_n)$ of irrational numbers having a limit $\lim x_n$ that is a rational number.
+  \item A sequence $(r_n)$ of rational numbers having a limit $\lim r_n$ that is an irrational number.
+\end{enumerate}
+
+\paragraph{Discussion}
+\textit{Foreword}: I realize now that I did not read and all I had to do is provide examples that did not need proofs. Still, despite 2 hours of sunk cost, I am going to keep this (probably incomplete) proof here because I feel mildly proud of it and hope that, in the case where my subsequent work lacks, I hope this justifies some additional points (pretty please). \smallskip
+
+    This problem asks us to construct two specific kinds of sequences using what we know about rational and irrational numbers.
+    
+    A \emph{sequence} is simply a function whose domain is the natural numbers (or a tail of them), so each integer $n$ corresponds to a real value $s_n$.  We say that a sequence \emph{converges} to a real number $s$ if for every $\varepsilon>0$ there exists some $N$ such that $|s_n-s|<\varepsilon$ whenever $n>N$.
+    
+    Recall that a number is \emph{rational} if it can be expressed as $\tfrac{m}{n}$ for integers $m,n$ with $n\neq0$; otherwise it is \emph{irrational}.  The set of rational numbers is closed under addition, subtraction, and multiplication.  From this it follows that:
+    the product of a nonzero rational number and an irrational number is irrational, and the sum of a rational and an irrational number is irrational.
+    
+    For \textit{part (a)} we want every term of the sequence to be irrational, but the sequence should approach a rational number as $n$ grows.  One natural idea is to start with a rational target, say $1$, and then \emph{perturb} it by a small irrational piece that tends to $0$.  This ensures each term stays irrational, while the irrational part vanishes in the limit.
+    
+    For \textit{part (b)} we reverse the situation: every term should be rational, but the sequence should approach an irrational limit.  Here we can use the \emph{density of the rationals in the reals}, which guarantees that rationals can approximate any real number---even an irrational one---as closely as we like.
+
+
+\paragraph{Proof for (a)}
+Let
+\[
+x_n = 1 + \frac{\sqrt{2}}{n}, \qquad n\in\mathbb{N}.
+\]
+Since $\sqrt{2}$ is irrational, $\tfrac{\sqrt{2}}{n}$ must also be irrational: if it were rational, then multiplying by the rational number $n$ would make $\sqrt{2}$ rational, which is impossible.  Furthermore, adding a rational number (here $1$) to an irrational number produces an irrational number.  Hence every $x_n$ is irrational.
+
+Because $\lim\tfrac{1}{n}=0$, we have
+\[
+\lim_{n\to\infty}x_n
+  = \lim_{n\to\infty}\!\Bigl(1+\frac{\sqrt{2}}{n}\Bigr)
+  = 1 + \sqrt{2}\!\cdot\!\lim_{n\to\infty}\!\frac{1}{n}
+  = 1+0=1.
+\]
+Therefore the sequence $(x_n)$ consists of irrational numbers and converges to the rational number $1$. In other words, $(x_n)$ is irrational for all $n$, and $\displaystyle\lim x_n=1$.
+
+\paragraph{Proof for (b)}
+We want to construct a sequence of rational numbers that converges to an irrational number.  
+Since $\sqrt{2}$ is irrational, it is a natural choice for our limit.  
+The idea is to take rational numbers that approximate $\sqrt{2}$ more and more closely.
+
+\smallskip
+Let
+\[
+r_n = 1.4,\, 1.41,\, 1.414,\, 1.4142,\, \dots
+\]
+denote the sequence obtained by truncating the decimal expansion of $\sqrt{2}$ after $n$ digits.  
+Formally, each $r_n$ is a rational number because it has only finitely many decimal places.  
+As we add more digits of $\sqrt{2}$, these rational numbers get arbitrarily close to $\sqrt{2}$.
+
+\smallskip
+To express this idea symbolically, we can write
+\[
+|r_n - \sqrt{2}| < \frac{1}{10^n}.
+\]
+Since $\frac{1}{10^n} \to 0$ as $n \to \infty$, it follows that
+\[
+\lim_{n \to \infty} r_n = \sqrt{2}.
+\]
+
+\smallskip
+Therefore, $(r_n)$ is a sequence of rational numbers whose limit is the irrational number $\sqrt{2}$.  
+In summary:
+\[
+r_n \in \mathbb{Q} \text{ for all } n, 
+\qquad \text{and} \qquad
+\lim_{n \to \infty} r_n = \sqrt{2}.
+\]
+
+% ---------------- Problem 2 ----------------
+\section*{Problem 2 (Ross Chapter 2, 8.1c)}
+Prove the following:
+\[
+\lim_{n \to \infty} \frac{2n - 1}{3n + 2} = \frac{2}{3}.
+\]
+
+\paragraph{Discussion}
+Intuitively, the highest powers of \(n\) dominate both the numerator and the denominator:
+\((2n-1)\) behaves like \(2n\) and \((3n+2)\) behaves like \(3n\), so the ratio should
+approach \(2n/3n = 2/3\). A tidy way to formalize this with limit laws is to divide
+numerator and denominator by \(n\), which turns the “lower order” terms into \(1/n\)-type
+pieces that go to \(0\). If we want an explicit convergence argument, we can
+also compute the difference from \(2/3\) exactly and bound it by \(\varepsilon\).
+
+\paragraph{Proof (via limit laws)}
+Write
+\[
+\frac{2n-1}{3n+2}
+= \frac{\,\displaystyle 2-\frac1n\,}{\,\displaystyle 3+\frac2n\,}.
+\]
+Since \(\lim_{n\to\infty}\tfrac1n=\lim_{n\to\infty}\tfrac2n=0\), we have
+\[
+\lim_{n\to\infty}\Bigl(2-\tfrac1n\Bigr)=2
+\quad\text{and}\quad
+\lim_{n\to\infty}\Bigl(3+\tfrac2n\Bigr)=3\neq 0.
+\]
+By the quotient law for limits,
+\[
+\lim_{n\to\infty}\frac{2n-1}{3n+2}
+=\frac{\;\lim(2-\tfrac1n)\;}{\;\lim(3+\tfrac2n)\;}
+=\frac{2}{3}.
+\]
+
+\paragraph{Proof (via Convergence)}
+For every \(n\),
+\[
+\left|\frac{2n-1}{3n+2}-\frac23\right|
+= \left|\frac{(2n-1)(3)-(3n+2)(2)}{(3n+2)\,3}\right|
+= \frac{7}{9n+6}.
+\]
+Given \(\varepsilon>0\), choose
+\[
+N>\frac{1}{9}\left(\frac{7}{\varepsilon}-6\right).
+\]
+Then for all \(n\ge N\),
+\[
+\left|\frac{2n-1}{3n+2}-\frac23\right|=\frac{7}{9n+6}
+\le \frac{7}{9N+6}<\varepsilon.
+\]
+Hence $\lim_{n\to\infty}\frac{2n-1}{3n+2}=\frac{2}{3}$.
+
+% ---------------- Problem 3 ----------------
+\section*{Problem 3 (Ross Chapter 2, 8.4)}
+Let $(t_n)$ be a bounded sequence, i.e., there exists $M$ such that $|t_n| \le M$ for all $n$, and let $(s_n)$ be a sequence such that $\lim s_n = 0$. Prove $\lim (s_n t_n) = 0$.
+
+\paragraph{Discussion}
+So we are given that $|t_n| \leq M \space \forall \space n \in \mathbb{N}$ such that $t_n$ is never going to be greater than M. 
+We are asked to prove that if one sequence $(s_n)$ tends to zero and another sequence $(t_n)$
+remains bounded, then their product $(s_n t_n)$ also tends to zero. 
+
+The intuition is that $(t_n)$ cannot grow without bound—there is a fixed number $M$ such that 
+$|t_n| \le M$ for all $n$. As $(s_n)$ becomes smaller and smaller (approaching $0$), multiplying 
+it by any bounded number cannot “blow it up.” In fact, the inequality 
+\[
+|s_n t_n| = |s_n||t_n| \le M|s_n|
+\]
+captures this relationship precisely. Because $|s_n|$ can be made as small as we wish, $M|s_n|$
+can also be made arbitrarily small. Therefore, $(s_n t_n)$ must converge to $0$.
+
+\paragraph{Proof}
+Let $\varepsilon > 0$ be given. Since $\lim s_n = 0$, there exists $N$ such that
+\[
+|s_n| < \frac{\varepsilon}{M} \quad \text{for all } n > N.
+\]
+Because $(t_n)$ is bounded, we have $|t_n| \le M$ for all $n$. Then, for $n > N$,
+\[
+|s_n t_n| = |s_n||t_n| \le M|s_n| < M \cdot \frac{\varepsilon}{M} = \varepsilon.
+\]
+Thus, by the definition of convergence, $\lim_{n \to \infty} (s_n t_n) = 0$.\qed
+
+
+% ---------------- Problem 4 ----------------
+\section*{Problem 4 (Ross Chapter 2, 8.5)}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Consider three sequences $(a_n)$, $(b_n)$, and $(s_n)$ such that $a_n \le s_n \le b_n$ for all $n$ and $\lim a_n = \lim b_n = s$. Prove $\lim s_n = s$. \\
+  \textit{This is called the “squeeze lemma.”}
+  \item Suppose $(s_n)$ and $(t_n)$ are sequences such that $|s_n| \le t_n$ for all $n$ and $\lim t_n = 0$. Prove $\lim s_n = 0$.
+\end{enumerate}
+
+\paragraph{Solution to (a)}
+\subparagraph{Discussion}
+The idea is: for the same index $n$, each $s_n$ sits between $a_n$ and $b_n$.  
+As $a_n$ and $b_n$ both get arbitrarily close to $s$, the “gap’’ \,$[a_n,b_n]$ shrinks to the single
+point $s$. There is no room left for $s_n$ to go anywhere else, so $s_n$ must also approach $s$.
+
+\subparagraph{Proof}
+Let $\varepsilon>0$. Since $\lim a_n=s$, there is $N_1$ such that $|a_n-s|<\varepsilon$ for all $n>N_1$.
+Similarly, since $\lim b_n=s$, there is $N_2$ such that $|b_n-s|<\varepsilon$ for all $n>N_2$.
+With $N=\max\{N_1,N_2\}$, for all $n>N$ we have
+\[
+s-\varepsilon<a_n\le s_n\le b_n<s+\varepsilon,
+\]
+so $|s_n-s|<\varepsilon$. Hence, by the definition of convergence, $\lim s_n=s$.
+\qed
+
+\paragraph{Solution to (b)}
+\subparagraph{Discussion}
+The hypothesis $|s_n|\le t_n$ forces $t_n\ge0$. If $t_n\to0$, then eventually $t_n$ is smaller than any
+prescribed $\varepsilon>0$. The squeeze $-t_n\le s_n\le t_n$ then pins $s_n$ within $\varepsilon$ of $0$,
+so $s_n\to0$. (Formally, this is just the squeeze lemma with $a_n=-t_n$, $b_n=t_n$, $s=0$.)
+
+\subparagraph{Proof}
+Let $\varepsilon>0$. Because $\lim t_n=0$, there exists $N$ such that $n>N$ implies $t_n<\varepsilon$.
+For such $n$ we have
+\[
+|s_n-0|=|s_n|\le t_n<\varepsilon.
+\]
+Therefore $s_n\to0$ by the definition of convergence.  \qed
+
+
+% ---------------- Problem 5 ----------------
+\section*{Problem 5 (Ross Chapter 2, 8.8b)}
+Prove the following:
+\[
+\lim_{n \to \infty} [\sqrt{n^2 + n} - n] = \frac{1}{2}.
+\]
+\paragraph{Discussion}
+We want to prove $\displaystyle\lim_{n\to\infty}\bigl(\sqrt{n^2+n}-n\bigr)=\tfrac12$ by the
+$\varepsilon$–$N$ definition. The obstacle is the square root.
+A standard trick in these situations is to \emph{rationalize} the
+expression we must control; i.e., multiply and divide by a suitable
+conjugate so that the square root disappears from the numerator.
+Here the target limit is $\tfrac12$, so we study
+\[
+\Bigl|\sqrt{n^2+n}-n-\frac12\Bigr|.
+\]
+If we set $a=\sqrt{n^2+n}$ and $b=n+\tfrac12$, then
+$a-b=\dfrac{a^2-b^2}{a+b}$, which removes the square root from the
+numerator. This produces an expression whose size is $\sim\! \dfrac{1}{n}$
+because the denominator grows linearly with $n$. Once we bound the
+difference by a constant multiple of $\tfrac{1}{n}$, the
+$\varepsilon$–$N$ argument is routine.
+
+\paragraph{Proof}
+Let $\varepsilon>0$ be given. Write
+\[
+\sqrt{n^2+n}-n-\frac12
+=\frac{(\sqrt{n^2+n}-n-\tfrac12)\bigl(\sqrt{n^2+n}+n+\tfrac12\bigr)}
+      {\sqrt{n^2+n}+n+\tfrac12}
+=\frac{(n^2+n)-(n+\tfrac12)^2}{\sqrt{n^2+n}+n+\tfrac12}.
+\]
+Since $(n+\tfrac12)^2=n^2+n+\tfrac14$, the numerator simplifies to
+$-\tfrac14$. Hence
+\[
+\Bigl|\sqrt{n^2+n}-n-\frac12\Bigr|
+=\frac{1}{4\bigl(\sqrt{n^2+n}+\,n+\tfrac12\bigr)}.
+\]
+Because $\sqrt{n^2+n}\ge n$ for all $n\ge 1$, we have
+\[
+4\bigl(\sqrt{n^2+n}+\,n+\tfrac12\bigr)
+\;\ge\;4\bigl(n+n+\tfrac12\bigr)
+\;=\;8n+2,
+\]
+and therefore
+\[
+\Bigl|\sqrt{n^2+n}-n-\frac12\Bigr|
+\;\le\;\frac{1}{8n+2}
+\;<\;\frac{1}{8n}\qquad(n\ge1).
+\]
+Choose $N\in\mathbb{N}$ with $N>\dfrac{1}{8\varepsilon}$.
+Then for all $n\ge N$,
+\[
+\Bigl|\sqrt{n^2+n}-n-\frac12\Bigr|
+\;<\;\frac{1}{8n}
+\;\le\;\frac{1}{8N}
+\;<\;\varepsilon.
+\]
+By the definition of convergence, $\displaystyle\lim_{n\to\infty}
+\bigl(\sqrt{n^2+n}-n\bigr)=\tfrac12$.
+\qed
+% ---------------- Problem 6 ----------------
+\section*{Problem 6 (Ross Chapter 2, 8.9)}
+Let $(s_n)$ be a sequence that converges.
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Show that if $s_n \ge a$ for all but finitely many $n$, then $\lim s_n \ge a$.
+  \item Show that if $s_n \le b$ for all but finitely many $n$, then $\lim s_n \le b$.
+  \item Conclude that if all but finitely many $s_n$ belong to $[a,b]$, then $\lim s_n$ belongs to $[a,b]$.
+\end{enumerate}
+
+\paragraph{Solution to (a)}
+\subparagraph{Discussion}
+If a convergent sequence $(s_n)$ is eventually bounded \emph{below} by $a$, then its tail never dips under $a$. 
+Intuitively, once $s_n$ is within any $\varepsilon>0$ of its limit $s$, all far–out terms lie in $(s-\varepsilon,s+\varepsilon)$.
+If $s<a$, we can pick $\varepsilon$ so small that $(s-\varepsilon,s+\varepsilon)$ lies strictly below $a$, which contradicts
+the fact that all sufficiently large $s_n$ are $\ge a$. Hence $s\ge a$.
+
+\subparagraph{Proof}
+Let $(s_n)$ converge to $s$ and assume $s_n\ge a$ for all but finitely many $n$.
+Suppose, for a contradiction, that $s<a$. Set $\varepsilon:=\dfrac{a-s}{2}>0$.
+Because $s_n\to s$, there exists $N_1$ such that $|s_n-s|<\varepsilon$ for all $n>N_1$, hence
+\[
+s_n<s+\varepsilon \;=\; \frac{s+a}{2} \;<\; a \qquad(n>N_1).
+\]
+Also, since only finitely many $n$ violate $s_n\ge a$, there exists $N_2$ with $s_n\ge a$ for all $n>N_2$.
+Taking $N=\max\{N_1,N_2\}$ yields a contradiction for $n>N$. Therefore $s\ge a$. \qed
+
+\bigskip
+
+\paragraph{Solution to (b)}
+\subparagraph{Discussion}
+This is the upper-bound analogue of part (a). If $s_n\le b$ eventually but the limit were $s>b$,
+then for a small $\varepsilon$ the tail $(s-\varepsilon,s+\varepsilon)$ would lie strictly above $b$, 
+contradicting $s_n\le b$ for all large $n$. Hence $s\le b$.
+
+\subparagraph{Proof}
+Let $(s_n)\to s$ and assume $s_n\le b$ for all but finitely many $n$.
+Suppose, for a contradiction, that $s>b$. Set $\varepsilon:=\dfrac{s-b}{2}>0$.
+Then there exists $N_1$ with $|s_n-s|<\varepsilon$ for all $n>N_1$, so
+\[
+s_n> s-\varepsilon \;=\; \frac{s+b}{2} \;>\; b \qquad(n>N_1).
+\]
+Since only finitely many $n$ violate $s_n\le b$, there exists $N_2$ such that $s_n\le b$ for all $n>N_2$.
+Taking $N=\max\{N_1,N_2\}$ gives a contradiction for $n>N$. Hence $s\le b$. \qed
+
+\bigskip
+
+\paragraph{Solution to (c)}
+\subparagraph{Discussion}
+“All but finitely many $s_n$ lie in $[a,b]$” means that beyond some index, $s_n\ge a$ and $s_n\le b$ simultaneously.
+Parts (a) and (b) then force $a\le \lim s_n \le b$, i.e., the limit belongs to $[a,b]$.
+
+\subparagraph{Proof}
+If all but finitely many $s_n$ lie in $[a,b]$, then for some $N$ we have $a\le s_n\le b$ for all $n>N$.
+By (a) we get $\lim s_n\ge a$, and by (b) we get $\lim s_n\le b$. Therefore $\lim s_n\in[a,b]$. \qed
+
+\end{document}
