@@ -1,0 +1,100 @@
+
+
+Q: What does it mean for a set \( S \subset \mathbb{R} \) to be bounded above?
+A: There exists \( M \in \mathbb{R} \) such that \( x \le M \) for all \( x \in S \).
+
+Q: What does it mean for a set \( S \subset \mathbb{R} \) to be bounded below?
+A: There exists \( m \in \mathbb{R} \) such that \( m \le x \) for all \( x \in S \).
+
+Q: Define the supremum of a set \( S \subset \mathbb{R} \).
+A: \( u = \sup S \) if \( u \) is an upper bound of \( S \) and for all \( \varepsilon > 0 \), there exists \( x \in S \) such that \( u - \varepsilon < x \).
+
+Q: Define the infimum of a set \( S \subset \mathbb{R} \).
+A: \( \ell = \inf S \) if \( \ell \) is a lower bound of \( S \) and for all \( \varepsilon > 0 \), there exists \( x \in S \) such that \( x < \ell + \varepsilon \).
+
+Q: State the Completeness Axiom of \( \mathbb{R} \).
+A: Every nonempty set of real numbers that is bounded above has a supremum in \( \mathbb{R} \).
+
+Q: What does the Archimedean Property state?
+A: For every \( a > 0 \) and \( b \in \mathbb{R} \), there exists \( n \in \mathbb{N} \) such that \( n a > b \).
+
+Q: What does it mean for a sequence \( (s_n) \) to converge to \( s \)?
+A: For every \( \varepsilon > 0 \), there exists \( N \) such that for all \( n > N \), \( |s_n - s| < \varepsilon \).
+
+Q: What does \( \lim s_n = +\infty \) mean?
+A: For every \( M > 0 \), there exists \( N \) such that for all \( n > N \), \( s_n > M \).
+
+Q: What does \( \lim s_n = -\infty \) mean?
+A: For every \( M < 0 \), there exists \( N \) such that for all \( n > N \), \( s_n < M \).
+
+Q: Define an increasing sequence.
+A: A sequence \( (s_n) \) is increasing if \( s_n \le s_{n+1} \) for all \( n \).
+
+Q: Define a decreasing sequence.
+A: A sequence \( (s_n) \) is decreasing if \( s_{n+1} \le s_n \) for all \( n \).
+
+Q: What does it mean for a sequence to be bounded?
+A: There exists \( M > 0 \) such that \( |s_n| \le M \) for all \( n \).
+
+
+    START HERE
+
+Q: State the Monotone Convergence Theorem.
+A: Every bounded, monotone sequence converges.
+
+Q: If a sequence is increasing and unbounded, what is its limit?
+A: \( +\infty \).
+
+Q: If a sequence is decreasing and unbounded below, what is its limit?
+A: \( -\infty \).
+
+Q: Define a Cauchy sequence.
+A: For every \( \varepsilon > 0 \), there exists \( N \) such that for all \( m, n > N \), \( |s_m - s_n| < \varepsilon \).
+
+Q: What is true of every convergent sequence in \( \mathbb{R} \)?
+A: It is bounded.
+
+Q: What is true of every Cauchy sequence in \( \mathbb{R} \)?
+A: It converges.
+
+Q: Define \( S_N \), \( u_N \), and \( v_N \) for a sequence \( (s_n) \).
+A: \( S_N = \{ s_n : n > N \} \), \( u_N = \inf S_N \), and \( v_N = \sup S_N \).
+
+Q: Define \( \liminf s_n \) and \( \limsup s_n \).
+A: \( \liminf s_n = \lim_{N \to \infty} u_N \) and \( \limsup s_n = \lim_{N \to \infty} v_N \).
+
+Q: When does \( \lim s_n \) exist in terms of \( \liminf \) and \( \limsup \)?
+A: When \( \liminf s_n = \limsup s_n = L \).
+
+Q: What does the Bolzano–Weierstrass theorem state?
+A: Every bounded sequence has a convergent subsequence.
+
+Q: Define a subsequence.
+A: A subsequence is a sequence \( (t_k) = (s_{n_k}) \) where \( n_1 < n_2 < \dots \).
+
+Q: What is the limit of a subsequence of a convergent sequence?
+A: The same as the original sequence’s limit.
+
+Q: What is the relationship between subsequential limits and \( \liminf \), \( \limsup \)?
+A: Every subsequential limit lies between \( \liminf s_n \) and \( \limsup s_n \).
+
+Q: What does the Squeeze Theorem state?
+A: If \( s_n \le t_n \le u_n \) and \( \lim s_n = \lim u_n = L \), then \( \lim t_n = L \).
+
+Q: State the sum rule for limits.
+A: \( \lim (s_n + t_n) = \lim s_n + \lim t_n \).
+
+Q: State the product rule for limits.
+A: \( \lim (s_n t_n) = (\lim s_n)(\lim t_n) \).
+
+Q: State the quotient rule for limits.
+A: If \( \lim s_n \ne 0 \), then \( \lim (t_n / s_n) = (\lim t_n) / (\lim s_n) \).
+
+Q: State the triangle inequality.
+A: \( |x + y| \le |x| + |y| \).
+
+Q: State the reverse triangle inequality.
+A: \( ||x| - |y|| \le |x - y| \).
+
+Q: State the density of the rationals in \( \mathbb{R} \).
+A: Between any two real numbers, there exists a rational number.
