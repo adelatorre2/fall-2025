@@ -1,0 +1,207 @@
+\documentclass[12pt]{article}
+
+% --- Core math + proof tools ---
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Lists and spacing ---
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=\textbf{(\alph*)}, leftmargin=2em, itemsep=0.25em}
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+
+% --- Page geometry + header/footer ---
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{csquotes} % to use blockquotes
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 421 — 003, Fall 2025}
+\lhead{Homework 6}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Links (nice for references, stays subtle) ---
+\usepackage[hidelinks]{hyperref}
+
+% --- Title info ---
+\title{Homework 6}
+\author{Alejandro De La Torre \\ MATH 421 — The Theory of Single Variable Calculus \\ Section 003 \\ Instructor: Grace Work}
+\date{October 2025}
+
+% --- (Optional) proof environments you might want ---
+\newtheorem*{claim}{Claim}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{remark}{Remark}
+
+% --- Convenience: a Problem header command ---
+\newcommand{\problem}[2][]{%
+  \vspace{0.5em}
+  \hrule\vspace{0.4em}
+  \textbf{Problem #2}\if\relax\detokenize{#1}\relax\else\; \textit{(#1)}\fi
+  \vspace{0.25em}\hrule\vspace{0.8em}
+}
+
+
+\begin{document}
+\maketitle
+
+% ------------------ collaboration + sources ------------------
+\section*{Collaboration Statement}
+%TODO
+
+
+\bigskip
+
+% ------------------ problems ------------------
+
+\problem[ Ross Chapter 2, 9.3 ]{1}
+\textit{Suppose $\lim a_n = a$, $\lim b_n = b$, and $s_n = \dfrac{a_n^3 + 4a_n}{b_n^2 + 1}$. Prove that $\lim s_n = \dfrac{a^3 + 4a}{b^2 + 1}$ carefully, using the limit theorems.}
+
+\vspace{0.75em}
+\textbf{Discussion.} %(Very brief plan / key ideas.)
+Here we essentially want to break the problem up into the individual limit components and apply the limit theorems 9.1-9.7 accordingly to show that the limit converges to $\frac{a^3+4a}{b^2+1}$.
+
+For reference, here is what each of the 9.1-9.7 theorems say in a nutshell:
+\begin{center}
+\begin{minipage}{0.7\textwidth}
+\begin{footnotesize}
+\begin{enumerate}[label=9.\arabic* Theorem:]
+    \item Convergent sequences are bounded.
+    \item If $\lim s_n = s$, then $\lim (ks_n) = k \lim s_n$.
+    \item If $\lim s_n = s$ and $\lim t_n = t$, then $\lim (s_n + t_n ) = \lim s_n + \lim t_n$.
+    \item If $\lim s_n = s$ and $\lim t_n = t$, then $\lim (s_n t_n) = (\lim s_n)(\lim t_n)$.
+    \item If $\lim s_n = s$, $(s \neq 0)$  and $s_n \neq 0$ for all n, then $\lim \frac{1}{s_n}= \frac{1}{s}$.
+    \item If $\lim s_n = s$, $(s \neq 0)$, $s_n \neq 0$ for all n, and $\lim t_n = t$, then $\lim \frac{t_n}{s_n}=\frac{t}{s}$.
+    \item  
+    \begin{enumerate}
+        \item $\lim \frac{1}{n^p}=0$ for $p>0$.
+        \item $\lim a^n=0$ if $|a|<1$.
+        \item $\lim (n^{\frac{1}{n}})=1$.
+        \item $\lim (a^{\frac{1}{n}})=1$ for $a > 0$.
+    \end{enumerate}
+\end{enumerate}
+\end{footnotesize}
+\end{minipage}
+\end{center}
+\vspace{0.25em}
+
+\textbf{Proof.}
+Given that $\lim a_n = a$ and $\lim b_n = b$, we can then express $\lim\frac{a_n^3 + 4a_n}{b_n^2 + 1}$ as $\frac{\lim a_n^3 + \lim 4a_n}{\lim b_n^2 + \lim 1}$. We can express the result of $\lim a_n^3$ as $a^3$, and  $\lim b_n^2=b^2$ by theorem 9.4. Next we can show that $\lim 4a_n = 4a$ by theorem 9.2. Then, using the result from theorem 9.3, we can show that $\lim (a_n^3+4a_n) = a^3+4a$ and $\lim (b_n^2+1) = b^2+1$. Finally, using the result from theorem 9.6, we show that:
+\[
+\lim s_n = \frac{\lim (a_n^3 + 4a_n)}{\lim (b_n^2 + 1)} = \frac{a^3+4a}{b^2+1}
+\]
+for $b^2+1 \neq 0$ for all n.
+\qed
+
+\problem[Ross Chapter 2, 9.9(b)]{2}
+% The prompt asks you to convince yourself that (a) and (c) are true (no write-up needed).
+
+\textit{Suppose there exists $N_0$ such that $s_n \leq t_n$ for all $n > N_0$. 
+Prove that if $\lim t_n = -\infty$, then $\lim s_n = -\infty$.}
+
+\vspace{0.75em}
+
+\textbf{Discussion.} %(What the statement says; which definitions/theorems you’ll use.)
+Here we want to leverage the definition of divergence which is given in Ross 9.8 theorem, which states that:
+
+\begin{quote}
+    \textit{We write $\lim s_n = -\infty$ provided for each $M < 0$ there is a number such that $ n > N$ implies $s_n < M$.}
+\end{quote}
+
+The nuance here is that we are comparing a sequence diverging to a 'negative infinity' ($t_n$) to another sequence that we are given to suppose is 'more negative' ($s_n$) after a certain point ($N_0$;  for all $n > N_0$). In other words, we are comparing a sequence diverging to negative infinity ($t_n$) with another sequence ($s_n$) that is eventually less than or equal to it.
+
+So if $\lim t_n = -\infty$ is true, then we know by theorem 9.8 that for every $M<0$ there is a number $N_1$ such that $n > N_1$ implies $t_n < M$. We also know that there has got to be a $N_0$ (we suppose there is) such that $s_n \leq t_n$ for all $n > N_0$, so we can then just define an $N$ that is greatest of the set of $\{N_0, N_1\}$ in whatever arbitrary case we take on (which we know much exist) so that we can say $s_n \leq t_n \leq M$ so that we can henceforth conclude that $s_n < M$ which is what we need to say that $s_n$ diverges.
+\vspace{0.25em}
+
+\textbf{Proof.}
+Let $M<0$. We know that there exists an $N_1$ such that $n > N_1$ implies $t_n \leq M$.
+
+Let $N = \max \{N_0, N_1\}$. Thus, $n > N$ implies
+\[
+s_n \leq t_n \leq M
+\]
+which implies
+\[
+s_n \leq M
+\]
+Therefore $\lim s_n = - \infty$
+\qed
+
+\problem[ Ross Chapter 2, 9.10(b) ]{3}
+% Again, only part (b) is to be written; (a) and (c) you just check mentally.
+
+\textit{Show that $\lim s_n = +\infty$ if and only if $\lim (-s_n) = -\infty$.}
+\vspace{0.75em}
+
+\textbf{Discussion.}
+We want to utilize theorem 9.8 and use a distinct M according to each case (since this is an iff statement) and prove divergence accordingly.
+
+We will begin by show it first in the forward ($\implies$) direction: "if $\lim s_n = + \infty$, then $\lim (-s_n) = -\infty$, wherein we would let $M < 0$ so that we can say $ s_n > -M$ then manipulate the expression to arrive at the conclusion that if $\lim s_n = +\infty$ then $\lim (-s_n) = - \infty$.
+
+Then we would show the backward ($\impliedby$) direction of the iff statement such that: "if $\lim (-s_n) = -\infty$ then $\lim s_n = + \infty$", and follow the same procedure but with $M>0$ to show the divergence toward a positive $\infty$ result.
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+    ($\implies$) Let $\lim s_n = - \infty$. Let $M < 0$. For each $M < 0$ there is a number $N$ such that $n > N$ implies
+    \[
+    s_n > -M
+    \]
+    which implies
+    \[
+    -s_n < M
+    \]
+    Thus, $\lim (-s_n) = -\infty$ \\ 
+
+\bigskip
+
+    ($\impliedby$) Let $\lim(-s_n) = - \infty$. Let $M > 0$, For each $M > 0$ there us a number $N$ such that $n>N$ implies 
+    \[
+    (-s_n) > -M
+    \]
+    which implies
+    \[
+    s_n > M
+    \]
+    Thus, $\lim(s_n) = \infty$
+\qed
+
+\problem[ Ross Chapter 2, 10.2 ]{4}
+
+\textit{Prove Theorem 10.2 for bounded decreasing sequences.}
+\vspace{0.75em}
+
+\textbf{Discussion.}
+We know that Theorem 10.2 states that \textit{"All bounded monotone sequences converge"}, and proves such by employing the definition of supS
+
+\vspace{0.25em}
+
+\textbf{Proof.}
+\qed
+
+\problem[ Ross Chapter 2, 10.5 ]{5}
+
+\textit{Prove Theorem 10.4(ii).}
+
+\textbf{Discussion.} Theorem 10.4 (ii) states:  
+\textit{If $(s_n)$ is an unbounded decreasing sequence, then $\lim s_n = -\infty$.}  
+In this exercise, you are asked to prove this statement directly, likely by adapting the argument used in part (i) of Theorem 10.4 for unbounded increasing sequences.
+\vspace{0.25em}
+
+\textbf{Proof.}
+\qed
+
+\problem[ Ross Chapter 2, 10.7 ]{6}
+\textit{Let $S$ be a bounded nonempty subset of $\mathbb{R}$ such that $\sup S$ is not in $S$. Prove there is a sequence $(s_n)$ of points in $S$ such that $\lim s_n = \sup S$. See also Exercise 11.11.}
+
+\vspace{0.75em}
+
+\textbf{Discussion.} This problem asks you to construct a sequence $(s_n)$ within $S$ that approaches $\sup S$. Compare this to Exercise 11.11, which states a similar result but allows $S$ to include its supremum and requires the sequence to be increasing. In contrast, this problem only assumes $\sup S \notin S$, so the challenge is to use the definition of $\sup S$ to choose terms of the sequence that get arbitrarily close to it without ever reaching it.
+\vspace{0.25em}
+
+\textbf{Proof.}
+\qed
+
+\end{document}
