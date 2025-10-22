@@ -61,7 +61,7 @@
 \textit{Suppose $\lim a_n = a$, $\lim b_n = b$, and $s_n = \dfrac{a_n^3 + 4a_n}{b_n^2 + 1}$. Prove that $\lim s_n = \dfrac{a^3 + 4a}{b^2 + 1}$ carefully, using the limit theorems.}
 
 \vspace{0.75em}
-\textbf{Discussion.} %(Very brief plan / key ideas.)
+\textbf{Discussion.} \\%(Very brief plan / key ideas.)
 Here we essentially want to break the problem up into the individual limit components and apply the limit theorems 9.1-9.7 accordingly to show that the limit converges to $\frac{a^3+4a}{b^2+1}$.
 
 For reference, here is what each of the 9.1-9.7 theorems say in a nutshell:
@@ -88,7 +88,7 @@ For reference, here is what each of the 9.1-9.7 theorems say in a nutshell:
 \end{center}
 \vspace{0.25em}
 
-\textbf{Proof.}
+\textbf{Proof.}\\
 Given that $\lim a_n = a$ and $\lim b_n = b$, we can then express $\lim\frac{a_n^3 + 4a_n}{b_n^2 + 1}$ as $\frac{\lim a_n^3 + \lim 4a_n}{\lim b_n^2 + \lim 1}$. We can express the result of $\lim a_n^3$ as $a^3$, and  $\lim b_n^2=b^2$ by theorem 9.4. Next we can show that $\lim 4a_n = 4a$ by theorem 9.2. Then, using the result from theorem 9.3, we can show that $\lim (a_n^3+4a_n) = a^3+4a$ and $\lim (b_n^2+1) = b^2+1$. Finally, using the result from theorem 9.6, we show that:
 \[
 \lim s_n = \frac{\lim (a_n^3 + 4a_n)}{\lim (b_n^2 + 1)} = \frac{a^3+4a}{b^2+1}
@@ -104,7 +104,7 @@ Prove that if $\lim t_n = -\infty$, then $\lim s_n = -\infty$.}
 
 \vspace{0.75em}
 
-\textbf{Discussion.} %(What the statement says; which definitions/theorems you’ll use.)
+\textbf{Discussion.} \\
 Here we want to leverage the definition of divergence which is given in Ross 9.8 theorem, which states that:
 
 \begin{quote}
@@ -116,7 +116,7 @@ The nuance here is that we are comparing a sequence diverging to a 'negative inf
 So if $\lim t_n = -\infty$ is true, then we know by theorem 9.8 that for every $M<0$ there is a number $N_1$ such that $n > N_1$ implies $t_n < M$. We also know that there has got to be a $N_0$ (we suppose there is) such that $s_n \leq t_n$ for all $n > N_0$, so we can then just define an $N$ that is greatest of the set of $\{N_0, N_1\}$ in whatever arbitrary case we take on (which we know much exist) so that we can say $s_n \leq t_n \leq M$ so that we can henceforth conclude that $s_n < M$ which is what we need to say that $s_n$ diverges.
 \vspace{0.25em}
 
-\textbf{Proof.}
+\textbf{Proof.}\\
 Let $M<0$. We know that there exists an $N_1$ such that $n > N_1$ implies $t_n \leq M$.
 
 Let $N = \max \{N_0, N_1\}$. Thus, $n > N$ implies
@@ -173,24 +173,70 @@ Then we would show the backward ($\impliedby$) direction of the iff statement su
 \textit{Prove Theorem 10.2 for bounded decreasing sequences.}
 \vspace{0.75em}
 
-\textbf{Discussion.}
-We know that Theorem 10.2 states that \textit{"All bounded monotone sequences converge"}, and proves such by employing the definition of supS
+\textbf{Discussion.}\\
+Theorem 10.2 states that \textit{“All bounded monotone sequences converge.”} In the textbook, this theorem is proven first for the case of a bounded increasing sequence, using the concept of the supremum (\textit{sup}). To prove the theorem for a bounded decreasing sequence, we instead use the \textit{infimum} (\textit{inf}) as our central idea. Intuitively, the argument mirrors the increasing case: rather than the terms of the sequence being squeezed upward toward the supremum, here they are squeezed downward toward the infimum.
+
+So, given a bounded decreasing sequence $(s_n)$, we recognize that since it is bounded below, there exists an $\inf S$, say $L$, which acts as the “greatest lower bound” of the set $\{s_n : n \in \mathbb{N}\}$. The proof strategy is to show that $s_n$ converges to this infimum $L$ using the $\varepsilon$-definition of convergence, just as the increasing case shows convergence to the supremum. The main difference is in the direction of the inequalities: where the increasing case used $s_N > u - \varepsilon$, we will use $s_N < L + \varepsilon$. This reflects how a decreasing sequence approaches its lower bound from above.
 
 \vspace{0.25em}
 
-\textbf{Proof.}
+\textbf{Proof.}\\
+Let $(s_n)$ be a bounded decreasing sequence. Since $(s_n)$ is bounded, the set $S = \{s_n : n \in \mathbb{N}\}$ is bounded below. By the Completeness Axiom, there exists an infimum $L = \inf S$.
+
+Let $\varepsilon > 0$. Since $L + \varepsilon$ is not a lower bound for $S$, there exists some $N \in \mathbb{N}$ such that $s_N < L + \varepsilon$. Because the sequence is decreasing, for all $n > N$ we have
+\[
+s_n \leq s_N < L + \varepsilon.
+\]
+We also know that, by definition of the infimum, $L \leq s_n$ for all $n$. Combining these inequalities, we get
+\[
+L \leq s_n < L + \varepsilon,
+\]
+which implies that
+\[
+|s_n - L| < \varepsilon.
+\]
+Therefore, $\lim s_n = L = \inf S$.
+
 \qed
 
 \problem[ Ross Chapter 2, 10.5 ]{5}
 
 \textit{Prove Theorem 10.4(ii).}
 
-\textbf{Discussion.} Theorem 10.4 (ii) states:  
-\textit{If $(s_n)$ is an unbounded decreasing sequence, then $\lim s_n = -\infty$.}  
-In this exercise, you are asked to prove this statement directly, likely by adapting the argument used in part (i) of Theorem 10.4 for unbounded increasing sequences.
+\textbf{Discussion.}\\
+Theorem 10.4 (ii) states:
+
+\begin{quote}
+\textit{If $(s_n)$ is an unbounded decreasing sequence, then $\lim s_n = -\infty$.}
+\end{quote}
+
+To prove this, we should recall the definitions of an \textit{unbounded} and a \textit{decreasing} sequence.
+
+A sequence $(s_n)$ is called \textbf{decreasing} if for every $n \in \mathbb{N}$, $s_{n+1} \leq s_n$.  
+It is called \textbf{unbounded below} if for every real number $M < 0$, there exists an $N \in \mathbb{N}$ such that $s_N < M$.  
+
+Together, these properties describe a sequence whose terms continually decrease without bound. Our goal is to show that this precisely means the limit of $(s_n)$ diverges to negative infinity.
+
+The strategy of the proof parallels that of part (i) of Theorem 10.4, which treats the unbounded increasing case (where $\lim s_n = +\infty$). Instead of showing the sequence eventually exceeds any given positive number, we will show that for every negative number $M$, the sequence eventually falls below it. We will also use the monotonic property (that $s_n$ is decreasing) to ensure that once the sequence passes below $M$, it stays there for all subsequent $n$.
+
 \vspace{0.25em}
 
-\textbf{Proof.}
+\textbf{Proof.}\\
+To show that if $(s_n)$ is an unbounded decreasing sequence, then $\lim s_n = -\infty$, let $M < 0$.
+
+Since the set $\{s_n : n \in \mathbb{N}\}$ is unbounded and it is bounded above by $s_1$, it must be unbounded below. Hence, there exists some $N \in \mathbb{N}$ such that $s_N < M$.
+
+Because $(s_n)$ is decreasing, for all $n > N$ we have
+\[
+s_n \leq s_N < M.
+\]
+Thus, for every $M < 0$, there exists an $N$ such that $n > N$ implies $s_n < M$.
+
+By definition of divergence to negative infinity, we conclude that
+\[
+\lim s_n = -\infty.
+\]
+
 \qed
 
 \problem[ Ross Chapter 2, 10.7 ]{6}
