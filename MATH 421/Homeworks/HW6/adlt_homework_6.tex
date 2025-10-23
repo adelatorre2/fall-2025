@@ -244,10 +244,49 @@ By definition of divergence to negative infinity, we conclude that
 
 \vspace{0.75em}
 
-\textbf{Discussion.} This problem asks you to construct a sequence $(s_n)$ within $S$ that approaches $\sup S$. Compare this to Exercise 11.11, which states a similar result but allows $S$ to include its supremum and requires the sequence to be increasing. In contrast, this problem only assumes $\sup S \notin S$, so the challenge is to use the definition of $\sup S$ to choose terms of the sequence that get arbitrarily close to it without ever reaching it.
+\textbf{Discussion.} \\
+I am feeling really slow right now, so I am going to take things very slowly for this one. So let's begin by restate what we know. We know:
+
+    \begin{enumerate}[label=(\arabic*)]
+        \item $S$ is bounded. (So $\sup S$ exists by the Completeness Axiom.)
+            \begin{enumerate}
+                \item $S$ being bounded means there exists some $M \in \mathbb{R}$ such that for all $s \in S$, $|s| \leq M$. So $[-M, M]$ is an interval that contains $S$.
+                \item From the completeness axiom, we know every nonempty set of real numbers that is bounded above has a supremum in $\mathbb{R}$. In other words we know S has a supremum by the completeness axiom since it is bounded.
+            \end{enumerate}
+        \item $S$ is nonempty: $S \neq \emptyset$. (So there is at least one point in our sequence).
+        \item $S \subseteq \mathbb{R}$.
+        \item $\sup S \notin S$.
+    \end{enumerate}
+
+From these three points, we can then construct a sequence $(s_n)$ in $S$ that converges to $\sup S$. The thing is, we do not know what $\sup S$ is exactly (it's arbitrary), but we do know that it is the least upper bound of $S$. 
+
+So to keep things arbitrary, we can define a $t$ such that $t = \sup S$ and since $S \subseteq \mathbb{R}$, we know $t \in \mathbb{R}$. We know $t$ is the least upper bound of $S$ and must indeed exist for any arbitrary set $S$ by the completeness axiom, but not an element of $S$.
+
+Now, to construct our sequence $(s_n)$ in $S$ that converges to $t$, we can use the definition of supremum. Since $t$ is the least upper bound of $S$, for every $\varepsilon > 0$, there exists an element $s \in S$ such that $t - \varepsilon < s \leq t$. This means we can find elements of $S$ that are arbitrarily close to $t$, without $t$ itself being in $S$.
+
+So we can define our sequence $(s_n)$ by choosing $s_n \in S$ such that $t - \frac{1}{n} < s_n \leq t$ for each natural number $n$. This way, as $n$ increases, $s_n$ gets closer and closer to $t$.
+
+So that set up alone intuitively takes us to the conclusion that $\lim s_n = t = \sup S$. So this is awesome because now we have a sequence defined in a way that converges to $\sup S$. Half the battle is won. \\
+
+The other half of the battle involves us proving convergence and then formalize this into a proof. Given our set up, we can easily prove convergence via the squeeze lemma (which we proved in \textit{Chapter 2 \S8, Exercise $8.5 (a)$}) which states that if we have three sequences $(a_n)$, $(b_n)$, and $(c_n)$ such that $a_n \leq b_n \leq c_n$ for all $n$ beyond some index $N$, and if $\lim a_n = \lim c_n = L$, then $\lim b_n = L$ as well. So check this proof out below.
+
+\small Shoutout Professor Work for helping me with this one. My bad that my brain was exceptionally smooth when I came into office hours. \normalsize
 \vspace{0.25em}
 
-\textbf{Proof.}
+\textbf{Proof.} \\ 
+Let $S \subseteq \mathbb{R}$ be a bounded nonempty set such that $\sup S \notin S$. Let $t = \sup S$. Since $t$ is the least upper bound of $S$, for every $\varepsilon > 0$, there exists an element $s \in S$ such that $t - \varepsilon < s \leq t$. \\
+
+Define the sequence $(s_n)$ by choosing $s_n \in S$ such that $t - \frac{1}{n} < s_n \leq t$ $\forall n \in \mathbb{N}$. In other words, for each natural number $n$, we select an element $s_n$ from $S$ that lies within the interval $(t - \frac{1}{n}, t]$. \\
+
+From the squeeze lemma, we can then say that since $t - \frac{1}{n} < s_n \leq t$, we can define two sequences $(a_n)$ and $(c_n)$ such that $a_n = t - \frac{1}{n}$ and $c_n = t$. We can then see that $a_n \leq s_n \leq c_n$ for all $n$. 
+Now we can compute the limits of $(a_n)$ and $(c_n)$:
+\[
+\lim a_n = \lim (t - \frac{1}{n}) = t - 0 = t
+\]
+and
+\[\lim c_n = \lim t = t
+\]
+By the squeeze lemma, since $\lim a_n = \lim c_n = t$, we have $\lim s_n = t = \sup S$.
 \qed
 
 \end{document}
