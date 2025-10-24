@@ -4,37 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "4328b7591394c750",
+        "id": "26414bd3b4bb01ac",
         "type": "tabs",
-        "dimension": 60.9375,
         "children": [
           {
-            "id": "7785c3eac1a0fdce",
+            "id": "a48090221334efed",
             "type": "leaf",
             "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "090515-421F25-LogicBasics-11-a"
-            }
-          }
-        ]
-      },
-      {
-        "id": "bbe1787ac0595856",
-        "type": "tabs",
-        "dimension": 39.0625,
-        "children": [
-          {
-            "id": "3802a35a70f9f28c",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -90,7 +70,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -111,10 +92,10 @@
               "type": "backlink",
               "state": {
                 "file": "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
-                "collapseAll": false,
-                "extraContext": false,
+                "collapseAll": true,
+                "extraContext": true,
                 "sortOrder": "alphabetical",
-                "showSearch": false,
+                "showSearch": true,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
@@ -171,8 +152,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -182,12 +162,19 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "workspaces:Manage workspace layouts": false,
+      "audio-recorder:Start/stop recording": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "3802a35a70f9f28c",
+  "active": "bafc85f8d793b8a2",
   "lastOpenFiles": [
+    "!NOTES/Daily Notes/2025-10-24.md",
+    "2025-10-24.md",
+    "!NOTES/Daily Notes",
     "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
+    "Convergence.md",
     "Attachments",
     "untitled folder",
     "!NOTES",
@@ -196,8 +183,6 @@
     "!old/Learning Resources/foundations.txt",
     "!old/Learning Resources/Effective learning_ Twenty rules of formulating knowledge - SuperMemo.pdf",
     "!old/Learning Resources",
-    "!old",
-    "Work_Math_421_3_Fall_2025_Syllabus.pdf",
     "Welcome.md"
   ]
 }
