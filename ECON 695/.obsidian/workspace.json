@@ -1,20 +1,22 @@
 {
   "main": {
-    "id": "6e2427d5d7d2c9fe",
+    "id": "92ebcfc9b7d42864",
     "type": "split",
     "children": [
       {
-        "id": "26414bd3b4bb01ac",
+        "id": "8d1c941acd0d7f3b",
         "type": "tabs",
         "children": [
           {
-            "id": "a48090221334efed",
+            "id": "796ac7082df531d5",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "type": "pdf",
+              "state": {
+                "file": "Problem Sets/PS3/Solutions/PS3_sln_revised.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "PS3_sln_revised"
             }
           }
         ]
@@ -23,15 +25,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "2e34dbbd69b6eb54",
+    "id": "743391766124b3d2",
     "type": "split",
     "children": [
       {
-        "id": "2ac575cbff9bbdeb",
+        "id": "cda9d80f5549cde9",
         "type": "tabs",
         "children": [
           {
-            "id": "b324e58c967e5239",
+            "id": "b753d50bc0221eac",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,7 +46,7 @@
             }
           },
           {
-            "id": "34053868f01d54e3",
+            "id": "55dff3a25891ef1a",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,7 +63,7 @@
             }
           },
           {
-            "id": "bafc85f8d793b8a2",
+            "id": "f659b7fea4bf3a30",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -74,50 +76,51 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300
   },
   "right": {
-    "id": "e93b0b711897f718",
+    "id": "6b9e18cf9128d985",
     "type": "split",
     "children": [
       {
-        "id": "09897d02ddc700b4",
+        "id": "bf680ed3a15bd9ad",
         "type": "tabs",
         "children": [
           {
-            "id": "bf8251c4b1600043",
+            "id": "b162817ff8049b63",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "collapseAll": true,
-                "extraContext": true,
+                "file": "Problem Sets/PS3/Solutions/PS3_sln_revised.pdf",
+                "collapseAll": false,
+                "extraContext": false,
                 "sortOrder": "alphabetical",
-                "showSearch": true,
+                "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for PS3_sln_revised"
             }
           },
           {
-            "id": "7cd9db851631343c",
+            "id": "e3e72469c4d7928e",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
+                "file": "Problem Sets/PS3/Solutions/PS3_sln_revised.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 090515-421F25-LogicBasics-11-a"
+              "title": "Outgoing links from PS3_sln_revised"
             }
           },
           {
-            "id": "f62f1abfa9e87b7a",
+            "id": "be273109f170373f",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -132,25 +135,26 @@
             }
           },
           {
-            "id": "abf9ade9cad0a4ba",
+            "id": "0f8482e97ec55989",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
+                "file": "Problem Sets/PS3/Solutions/PS3_sln_revised.pdf",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 090515-421F25-LogicBasics-11-a"
+              "title": "Outline of PS3_sln_revised"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -160,27 +164,9 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false,
-      "workspaces:Manage workspace layouts": false,
-      "audio-recorder:Start/stop recording": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "bases:Create new base": false
     }
   },
-  "active": "b324e58c967e5239",
-  "lastOpenFiles": [
-    "!NOTES/Daily Notes/2025-10-24.md",
-    "2025-10-24.md",
-    "!NOTES/Daily Notes",
-    "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
-    "Convergence.md",
-    "Attachments",
-    "untitled folder",
-    "!NOTES",
-    "NOTES",
-    "Books/Elementary Analysis by Ross.pdf",
-    "!old/Learning Resources/foundations.txt",
-    "!old/Learning Resources/Effective learning_ Twenty rules of formulating knowledge - SuperMemo.pdf",
-    "!old/Learning Resources",
-    "Welcome.md"
-  ]
+  "active": "796ac7082df531d5",
+  "lastOpenFiles": []
 }

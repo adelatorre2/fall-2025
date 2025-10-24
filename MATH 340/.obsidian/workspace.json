@@ -1,20 +1,22 @@
 {
   "main": {
-    "id": "6e2427d5d7d2c9fe",
+    "id": "ac91c8097b251c97",
     "type": "split",
     "children": [
       {
-        "id": "26414bd3b4bb01ac",
+        "id": "48c566934ec3684f",
         "type": "tabs",
         "children": [
           {
-            "id": "a48090221334efed",
+            "id": "4286ae81ae4f975f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "type": "pdf",
+              "state": {
+                "file": "Discussions/Unit 2/Chapter 16_ Abstract Vector Spaces Worksheet.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Chapter 16_ Abstract Vector Spaces Worksheet"
             }
           }
         ]
@@ -23,15 +25,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "2e34dbbd69b6eb54",
+    "id": "1139c69c30cb7581",
     "type": "split",
     "children": [
       {
-        "id": "2ac575cbff9bbdeb",
+        "id": "6935f7fa872a5033",
         "type": "tabs",
         "children": [
           {
-            "id": "b324e58c967e5239",
+            "id": "498875632795e25f",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,7 +46,7 @@
             }
           },
           {
-            "id": "34053868f01d54e3",
+            "id": "19788f3cd955070a",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,7 +63,7 @@
             }
           },
           {
-            "id": "bafc85f8d793b8a2",
+            "id": "dd2b9e51a3795163",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -74,50 +76,51 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300
   },
   "right": {
-    "id": "e93b0b711897f718",
+    "id": "6e52bf7451f68120",
     "type": "split",
     "children": [
       {
-        "id": "09897d02ddc700b4",
+        "id": "9cd2efab1f0e6407",
         "type": "tabs",
         "children": [
           {
-            "id": "bf8251c4b1600043",
+            "id": "cb3507911406f8b9",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "collapseAll": true,
-                "extraContext": true,
+                "file": "Discussions/Unit 2/Chapter 16_ Abstract Vector Spaces Worksheet.pdf",
+                "collapseAll": false,
+                "extraContext": false,
                 "sortOrder": "alphabetical",
-                "showSearch": true,
+                "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Chapter 16_ Abstract Vector Spaces Worksheet"
             }
           },
           {
-            "id": "7cd9db851631343c",
+            "id": "8dc5d1195138cee0",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
+                "file": "Discussions/Unit 2/Chapter 16_ Abstract Vector Spaces Worksheet.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 090515-421F25-LogicBasics-11-a"
+              "title": "Outgoing links from Chapter 16_ Abstract Vector Spaces Worksheet"
             }
           },
           {
-            "id": "f62f1abfa9e87b7a",
+            "id": "9bbfe19ad596daf6",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -132,25 +135,26 @@
             }
           },
           {
-            "id": "abf9ade9cad0a4ba",
+            "id": "690679a44b23101f",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
+                "file": "Discussions/Unit 2/Chapter 16_ Abstract Vector Spaces Worksheet.pdf",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 090515-421F25-LogicBasics-11-a"
+              "title": "Outline of Chapter 16_ Abstract Vector Spaces Worksheet"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -160,27 +164,9 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false,
-      "workspaces:Manage workspace layouts": false,
-      "audio-recorder:Start/stop recording": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "bases:Create new base": false
     }
   },
-  "active": "b324e58c967e5239",
-  "lastOpenFiles": [
-    "!NOTES/Daily Notes/2025-10-24.md",
-    "2025-10-24.md",
-    "!NOTES/Daily Notes",
-    "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
-    "Convergence.md",
-    "Attachments",
-    "untitled folder",
-    "!NOTES",
-    "NOTES",
-    "Books/Elementary Analysis by Ross.pdf",
-    "!old/Learning Resources/foundations.txt",
-    "!old/Learning Resources/Effective learning_ Twenty rules of formulating knowledge - SuperMemo.pdf",
-    "!old/Learning Resources",
-    "Welcome.md"
-  ]
+  "active": "4286ae81ae4f975f",
+  "lastOpenFiles": []
 }
