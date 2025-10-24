@@ -6,6 +6,7 @@
       {
         "id": "4328b7591394c750",
         "type": "tabs",
+        "dimension": 60.9375,
         "children": [
           {
             "id": "7785c3eac1a0fdce",
@@ -24,6 +25,7 @@
       {
         "id": "bbe1787ac0595856",
         "type": "tabs",
+        "dimension": 39.0625,
         "children": [
           {
             "id": "3802a35a70f9f28c",
@@ -92,7 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "e93b0b711897f718",
@@ -183,19 +185,19 @@
       "bases:Create new base": false
     }
   },
-  "active": "7785c3eac1a0fdce",
+  "active": "3802a35a70f9f28c",
   "lastOpenFiles": [
+    "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
+    "Attachments",
+    "untitled folder",
+    "!NOTES",
+    "NOTES",
     "Books/Elementary Analysis by Ross.pdf",
     "!old/Learning Resources/foundations.txt",
     "!old/Learning Resources/Effective learning_ Twenty rules of formulating knowledge - SuperMemo.pdf",
     "!old/Learning Resources",
     "!old",
     "Work_Math_421_3_Fall_2025_Syllabus.pdf",
-    "Proof Resources/proof reading self explanation strategy.pdf",
-    "Proof Resources/Writing Mathematical Proofs1.pdf",
-    "Proof Resources/ProofRecipeCard.pdf",
-    "Proof Resources/LeeAGuideToWritingMathematics.pdf",
-    "Proof Resources/MunkresCommentsOnStyle.pdf",
     "Welcome.md"
   ]
 }
