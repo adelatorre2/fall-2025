@@ -36,9 +36,6 @@ A: A sequence \( (s_n) \) is decreasing if \( s_{n+1} \le s_n \) for all \( n \)
 Q: What does it mean for a sequence to be bounded?
 A: There exists \( M > 0 \) such that \( |s_n| \le M \) for all \( n \).
 
-
-    START HERE
-
 Q: State the Monotone Convergence Theorem.
 A: Every bounded, monotone sequence converges.
 

@@ -1,0 +1,201 @@
+{
+  "main": {
+    "id": "6e2427d5d7d2c9fe",
+    "type": "split",
+    "children": [
+      {
+        "id": "4328b7591394c750",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7785c3eac1a0fdce",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "090515-421F25-LogicBasics-11-a"
+            }
+          }
+        ]
+      },
+      {
+        "id": "bbe1787ac0595856",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3802a35a70f9f28c",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2e34dbbd69b6eb54",
+    "type": "split",
+    "children": [
+      {
+        "id": "2ac575cbff9bbdeb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b324e58c967e5239",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "34053868f01d54e3",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "bafc85f8d793b8a2",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e93b0b711897f718",
+    "type": "split",
+    "children": [
+      {
+        "id": "09897d02ddc700b4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bf8251c4b1600043",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 090515-421F25-LogicBasics-11-a"
+            }
+          },
+          {
+            "id": "7cd9db851631343c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 090515-421F25-LogicBasics-11-a"
+            }
+          },
+          {
+            "id": "f62f1abfa9e87b7a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "abf9ade9cad0a4ba",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Lectures/Professor Annotated/090515-421F25-LogicBasics-11-a.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 090515-421F25-LogicBasics-11-a"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "7785c3eac1a0fdce",
+  "lastOpenFiles": [
+    "Books/Elementary Analysis by Ross.pdf",
+    "!old/Learning Resources/foundations.txt",
+    "!old/Learning Resources/Effective learning_ Twenty rules of formulating knowledge - SuperMemo.pdf",
+    "!old/Learning Resources",
+    "!old",
+    "Work_Math_421_3_Fall_2025_Syllabus.pdf",
+    "Proof Resources/proof reading self explanation strategy.pdf",
+    "Proof Resources/Writing Mathematical Proofs1.pdf",
+    "Proof Resources/ProofRecipeCard.pdf",
+    "Proof Resources/LeeAGuideToWritingMathematics.pdf",
+    "Proof Resources/MunkresCommentsOnStyle.pdf",
+    "Welcome.md"
+  ]
+}
