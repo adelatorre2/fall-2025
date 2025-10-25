@@ -1,5 +1,10 @@
 [
   "better-mathjax",
   "table-editor-obsidian",
-  "obsidian-pandoc"
+  "obsidian-pandoc",
+  "obsidian-latex-suite",
+  "obsidian-extract-pdf-highlights",
+  "dataview",
+  "obsidian-annotator",
+  "pdf-plus"
 ]
