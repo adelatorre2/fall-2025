@@ -1,0 +1,38 @@
+        import numpy as np
+        import pandas as pd
+
+        # --- (d) Counterfactual 2: cell weights and weighted mean ---
+
+        # Counts by education cell in each group
+        Na_g = a[D_cols].sum(axis=0)   # number of a (private) in each edu cell
+        Nb_g = b[D_cols].sum(axis=0)   # number of b (govt)   in each edu cell
+
+        # Weights w_g = Na_g / Nb_g (defined cell-by-cell)
+        w_g = (Na_g / Nb_g).rename('w_g')
+
+        # Attach weights to each person in group b according to their edu cell
+        # For each person i in b, w_i = sum_g w_g * D_gi  (since exactly one D_gi=1)
+        w_i = pd.Series(0.0, index=b.index)
+        for col in D_cols:
+            w_i = w_i + w_g[col] * b[col]
+
+        # Weighted mean of log wages for group b under weights w_g:
+        numer = (w_i * b['logwage']).sum()
+        denom = w_i.sum()
+        ybar_b_counterf2 = numer / denom
+
+        # Compare to the counterfactual from (c): (xbar^a)' beta^b
+        # (Assumes you already computed ybar_b_counterf)
+        diff_cf = ybar_b_counterf2 - ybar_b_counterf
+
+        # Adjusted gap using the cell-weighted counterfactual
+        gap_adj_d = ybar_b_counterf2 - ybar_a_direct
+
+        # Tidy display
+        check_d = pd.DataFrame({
+            "ybar_b (counterf2)": [ybar_b_counterf2],
+            "ybar_b (xbar^a beta^b)": [ybar_b_counterf],
+            "Difference": [diff_cf],
+            "Adjusted gap (counterf2 - ybar_a)": [gap_adj_d]
+        })
+        display(check_d.round(3))

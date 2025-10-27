@@ -46,15 +46,29 @@
                 "file": "Lectures/Unannotated/102425-421-liminflimsup(cont).pdf",
                 "page": 4,
                 "left": -28,
-                "top": 186,
+                "top": 324,
                 "zoom": 0.5546875
               },
               "icon": "lucide-file-text",
               "title": "102425-421-liminflimsup(cont)"
             }
+          },
+          {
+            "id": "159a11f51607e619",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Cauchy Sequences.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Cauchy Sequences"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -210,21 +224,22 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "81b2df50c5ffda9c",
+  "active": "159a11f51607e619",
   "lastOpenFiles": [
+    "Lectures/Professor Annotated/102425-421-liminflimsup(cont)-11.pdf",
+    "Lectures/Professor Annotated/Unconfirmed 957985.crdownload",
+    "Lectures/Unannotated/102725-421-Cauchy.pdf",
+    "Untitled.md",
+    "Cauchy Sequences.md",
+    "Lectures/Unannotated/102425-421-liminflimsup(cont).pdf",
     "Lectures/Professor Annotated/102225-421-liminflimsup-11.pdf",
     "Books/Elementary Analysis by Ross.pdf",
     "Lectures/Professor Annotated/091925-421-AbsValue(cont.)-11.pdf",
     "Lectures/Professor Annotated/092225-Bounded-InfSup-11.pdf",
-    "Untitled.md",
     "Lectures/Professor Annotated/092425-421-Completeness-11.pdf",
     "Lectures/Professor Annotated/091525-421-Induction(cont.)-11.pdf",
     "Lectures/Professor Annotated/091725-421-RealsAbsValue-11.pdf",
     "!NOTES/Daily Notes/2025-10-24.md",
-    "Books/Introduction to Proof by Ron Taylor.pdf",
-    "Lectures/Professor Annotated/100125-421-ProvingConvergence(cont.)-11.pdf",
-    "Homeworks/HW6/adlt_homework_6.synctex(busy)",
-    "Books/Other/How To Read And Do Proofs PDF.pdf",
     "Untitled.canvas",
     "HW6 Latex test.md",
     "2025-10-24.md",
