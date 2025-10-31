@@ -57,13 +57,14 @@
 % ------------------ collaboration + sources ------------------
 \section*{Collaboration Statement}
 % (List any classmates you collaborated with here, or write ``I worked alone'' if you did not collaborate with anyone.)
+% Went to course assistant 5:30-7pm on 10/30
 
 \bigskip
 
 % ------------------ problem 1 ------------------
 \problem[Ross Chapter 2 11.4]{1}
 Repeat Exercise 11.2 for the sequences: \\
-$w_n = -(2)^n$, $x_n= 5 ^{(-1)^{n}}$, $y_n=1+(-1)^n$, $z_n=n \cos(\frac{n \pi}{4})$.\\
+$w_n = (-2)^n$, $x_n= 5 ^{(-1)^{n}}$, $y_n=1+(-1)^n$, $z_n=n \cos(\frac{n \pi}{4})$.\\
 \vspace{0.05cm}
 
 \textit{Question 11.2 asks you to do the following for each sequence}:
@@ -79,10 +80,25 @@ $w_n = -(2)^n$, $x_n= 5 ^{(-1)^{n}}$, $y_n=1+(-1)^n$, $z_n=n \cos(\frac{n \pi}{4
 
 \textbf{Discussion.} \\
 %(Very brief plan / key ideas.)
+So we will analyze each sequence one by one, finding monotone subsequences (which we know must exist by 11.4 Theorem), subsequential limits, lim sup and lim inf, convergence/divergence, and boundedness for each.
+
+For review, here are the relevant definitions:
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Monotone subsequence}: A subsequence that is either non-increasing or non-decreasing.
+    \item \textbf{Subsequential limits}: The set of all limits of subsequences of a given sequence.
+    \item \textbf{Limit superior (lim sup)}: The largest subsequential limit of a sequence.
+    \item \textbf{Limit inferior (lim inf)}: The smallest subsequential limit of a sequence.
+\end{enumerate}
 \vspace{0.25em}
 
-\textbf{Proof.}\\
-% (Your proof goes here.)
+\textbf{Answers.}\\
+For $w_n = (-2)^n$:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Monotone subsequence: All the even terms of the sequence form an increasing, monotone subsequence  $n$ is even, ${w}_{{2k}}$ such that we have the terms: $(4,16,64, \dots)$. Alternatively, all the odd terms of the sequence form a decreasing, monotone subsequence $n$ is odd, ${w}_{2k+1}$ for $k \in \mathbb{Z}^{+}$ such that we have: $(-2,-8, -32, \dots)$.
+    \item 
+\end{enumerate}
+
 \qed
 
 % ------------------ problem 2 ------------------
@@ -94,11 +110,11 @@ Use Definition 10.6 and Exercise 5.4 to prove $\lim \inf s_n = - \lim \sup (-s_n
 \textbf{10.6 Definition}:\\
 Let ($s_n$) be a sequence in $\mathbb{R}$. We define: \\
 \[
-\lim \sup s_n = \lim_{N \to \infty} \sup \{ s_n : n \geq N \}
+\lim \sup s_n = \lim_{N \to \infty} \sup \{ s_n : n > N \}
 \]
 and
 \[
-\lim \inf s_n = \lim_{N \to \infty} \inf \{ s_n : n \geq N \}
+\lim \inf s_n = \lim_{N \to \infty} \inf \{ s_n : n > N \}
 \]
 \\
 \textbf{5.4 Exercise}:\\
@@ -106,7 +122,15 @@ Let $S$ be a nonempty subset $\mathbb{R}$, and let $-S = { -s : s \in S }$. Prov
 
 \vspace{0.25em}
 \textbf{Proof.}\\
-% (Your proof goes here.)
+From the definition of 10.6, we have:
+\[
+\lim \inf s_n = \lim_{N \to \infty} \inf \{ s_n : n > N \}
+\]
+where we describe the set $S_N = \{ s_n : n > N \}$ such that we can rewrite the expression for $\lim \inf (s_n)$ as:
+
+Thus, we have:
+\[\lim \inf s_n = -\lim \sup (-s_n)\]
+which applies for every sequence ($s_n$) since we know the result from Exercise 5.4 holds for any nonempty subset of $\mathbb{R}$, and thus every sequence.
 \qed
 
 % ------------------ problem 3 ------------------

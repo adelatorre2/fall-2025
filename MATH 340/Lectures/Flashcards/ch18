@@ -1,0 +1,65 @@
+Here is the DRAFT flashcard set for **Chapter 18: Linear Independence** based on your lecture notes. It’s optimized for **fast review**, with each card focusing on a single core fact using **minimum information**, **variety of phrasing**, and **inline LaTeX for math**:
+
+---
+
+### 🟦 BASIC CARDS
+
+**Front** | **Back**
+--- | ---
+What does it mean for vectors \( v_1, v_2, \ldots, v_n \) to be linearly independent? | Only solution to \( a_1v_1 + \ldots + a_nv_n = 0 \) is all \( a_i = 0 \)
+What is the trivial linear combination of vectors? | All coefficients zero
+What defines linear dependence among vectors \( v_1, \ldots, v_n \)? | Some nonzero combination gives zero vector
+If a set includes the zero vector, is it linearly independent? | No
+What’s the status of a set containing only \( \vec{0} \)? | Linearly dependent
+Is a set with one nonzero vector linearly independent? | Yes
+Are two vectors linearly dependent if one is a scalar multiple of the other? | Yes
+When are two vectors \( u \) and \( v \) linearly independent? | When they are not parallel
+How do you test if vectors are linearly independent? | Solve \( a_1v_1 + \ldots + a_kv_k = 0 \) and check if all \( a_i = 0 \)
+What's the key result if the only solution to the homogeneous equation is zero? | Vectors are independent
+What must be true for \( \{v_1, \ldots, v_k\} \) to be dependent? | At least one is a linear combo of others
+If a vector in a set is a linear combination of the others, the set is...? | Dependent
+In \( \mathbb{R}^n \), when is a set \( \{v_1,\ldots,v_n\} \) independent? | When \( Ax = 0 \) has only the trivial solution
+Why is a smaller spanning set more efficient? | Fewer vectors, no redundancy
+What makes a spanning set “better”? | It is linearly independent
+Is every spanning set minimal? | No
+
+---
+
+### 🟨 CLOZE DELETION CARDS
+
+**Cloze Format**
+```text
+The vectors \( v_1, \ldots, v_n \) are linearly independent if {{c1::\( a_1 = a_2 = \ldots = a_n = 0 \)}} is the only solution to \( a_1v_1 + \ldots + a_nv_n = 0 \).
+```
+
+```text
+A set is linearly dependent if {{c1::some vector is a linear combination of the others}}.
+```
+
+```text
+If a set contains {{c1::the zero vector}}, then it is linearly {{c2::dependent}}.
+```
+
+```text
+Two vectors are dependent if {{c1::one is a scalar multiple of the other}}.
+```
+
+```text
+To test independence, solve {{c1::a linear combination}} set to the {{c2::zero vector}}.
+```
+
+```text
+Vectors are independent ⇔ the system \( Ax = 0 \) has {{c1::only the trivial solution}}.
+```
+
+```text
+The trivial linear combination has {{c1::all zero coefficients}}.
+```
+
+```text
+A spanning set that is also {{c1::linearly independent}} is more efficient.
+```
+
+---
+
+Does this flashcard draft meet your expectations? If yes, I’ll format it into a CSV for Anki. If you want more cards or adjustments (e.g. examples, more clozes), just let me know.
