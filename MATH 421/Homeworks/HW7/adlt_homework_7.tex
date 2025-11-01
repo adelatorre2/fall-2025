@@ -56,8 +56,7 @@
 
 % ------------------ collaboration + sources ------------------
 \section*{Collaboration Statement}
-% (List any classmates you collaborated with here, or write ``I worked alone'' if you did not collaborate with anyone.)
-% Went to course assistant 5:30-7pm on 10/30
+I went to course assistant 5:30-7pm on 10/30 namely to get a direction/high level overview on how to do problem 6 because I was high key overthinking it. All written work and final write-up are my own.
 
 \bigskip
 
@@ -82,21 +81,55 @@ $w_n = (-2)^n$, $x_n= 5 ^{(-1)^{n}}$, $y_n=1+(-1)^n$, $z_n=n \cos(\frac{n \pi}{4
 %(Very brief plan / key ideas.)
 So we will analyze each sequence one by one, finding monotone subsequences (which we know must exist by 11.4 Theorem), subsequential limits, lim sup and lim inf, convergence/divergence, and boundedness for each.
 
-For review, here are the relevant definitions:
-\begin{enumerate}[label=(\alph*)]
-    \item \textbf{Monotone subsequence}: A subsequence that is either non-increasing or non-decreasing.
-    \item \textbf{Subsequential limits}: The set of all limits of subsequences of a given sequence.
-    \item \textbf{Limit superior (lim sup)}: The largest subsequential limit of a sequence.
-    \item \textbf{Limit inferior (lim inf)}: The smallest subsequential limit of a sequence.
-\end{enumerate}
-\vspace{0.25em}
+So from textbook, we know that a \textit{monotone subsequence} is a subsequence that is either nonincreasing or nondecreasing. 
+
+A \textit{subsequential limit} is a limit of some subsequence of the original sequence. 
+
+The $\lim \sup$ is the supremum (least upper bound) of the set of subsequential limits, and the $\lim \inf$ is the infimum (greatest lower bound) of the set of subsequential limits.
+ 
+We also have a ton of helpful theorems to use from the textbook, including:
+\begin{itemize}
+    \item \textbf{11.2 Theorem}: Let ($s_n$) be a sequence. 
+    \begin{enumerate}[label=(\roman*)]
+        \item If $t \in \mathbb{R}$, then $\exists$ a subsequence of ($s_n$) that converges to $t$ if and only if the set $\{ n \in \mathbb{N} \colon | s_n - t | < \epsilon \}$ is infinite for every $\epsilon > 0$.
+        \item If ($s_n$) is unbounded above, it has a subsequence with limit $+\infty$.
+        \item If ($s_n$) is unbounded below, it has a subsequence with limit $-\infty$.
+    \end{enumerate}
+    \indent In either case, the subsequence can be taken to be monotonic.
+    \item \textbf{11.3 Theorem}: If the sequence ($s_n$) converges, then every subsequence of ($s_n$) converges to the same limit.
+    \item \textbf{11.4 Theorem}: Every sequence has a monotone subsequence.
+    \item \textbf{11.5 Theorem (Bolzano-Weierstrass Theorem)}: Every bounded sequence has a convergent subsequence.
+    \item \textbf{11.7 Theorem}: Let ($s_n$) be a sequence. There exists a monotonic subsequence whose limit is $\lim \sup s_n$, and there exists a monotonic subsequence whose limit is $\lim \inf s_n$.
+    \item \textbf{11.8 Theorem}: Let ($s_n$) be a sequence in $\mathbb{R}$, let $S$ be the set of subsequential limits of ($s_n$).
+    \begin{enumerate}[label=(\roman*)]
+        \item $S \neq \emptyset$
+        \item $\sup S = \lim \sup s_n$ and $\inf S = \lim \inf s_n$
+        \item $\lim s_n$ exists $\iff$ $S$ contains exactly 1 element (namely $\lim s_n$)
+    \end{enumerate}
+    \item \textbf{11.9 Theorem}: Let $S$ denote the set of subsequential limits of a sequence ($s_n$). Suppose ($t_n$) is a sequence in $S \cap \mathbb{R}$ and that $t = \lim t_n$. Then $t \in S$.
+    
+    TL;DR: The set of subsequential limits is closed.
+
+    So with all this in the back of our minds (or in front of my face because I have not yet fully baked these theorem in my head), we can use this to help find subsequential limits for each sequence.
+\end{itemize}
 
 \textbf{Answers.}\\
-For $w_n = (-2)^n$:
-
+For \textbf{$w_n = (-2)^n$}, we know the sequence follows the pattern: ($-2, 4, -8, 16, -32, 64, \dots )$ whose even terms diverge to $+\infty$ and odd terms to $-\infty$ as $n$ increases. With this in mind:
 \begin{enumerate}[label=(\alph*)]
-    \item Monotone subsequence: All the even terms of the sequence form an increasing, monotone subsequence  $n$ is even, ${w}_{{2k}}$ such that we have the terms: $(4,16,64, \dots)$. Alternatively, all the odd terms of the sequence form a decreasing, monotone subsequence $n$ is odd, ${w}_{2k+1}$ for $k \in \mathbb{Z}^{+}$ such that we have: $(-2,-8, -32, \dots)$.
-    \item 
+    \item Monotone subsequence of $w_n$ could be the even terms: ($4, 16, 64, \dots$) which is increasing wherein the selector function could be $\sigma(k) = 2k$ for $k \in \mathbb{N}$. The other monotone subsequence could be the odd terms: ($-2, -8, -32, \dots$) which is decreasing wherein the selector function could be $\sigma(k) = 2k - 1$ for $k \in \mathbb{N}$.
+    \item The set of subsequential limits is $\{ +\infty, -\infty \}$ since we have subsequences that diverge to both $+\infty$ and $-\infty$.
+    \item $\lim \sup w_n = +\infty$ and $\lim \inf w_n = -\infty$.
+    \item The sequence diverges to both $+\infty$ and $-\infty$.
+    \item The sequence is unbounded.
+\end{enumerate}
+
+For \textbf{$x_n = 5^{(-1)^n}$}, we know the sequence follows the pattern: ($5^{-1}, 5^{1}, 5^{-1}, 5^{1}, \dots$) or ($\frac{1}{5}, 5, \frac{1}{5}, 5, \dots$). With this in mind:
+\begin{enumerate}[label=(\alph*)]
+    \item Monotone subsequence of $x_n$ could be the odd terms: ($\frac{1}{5}, \frac{1}{5}, \frac{1}{5}, \dots$) which is constant (and thus nondecreasing) wherein the selector function could be $\sigma(k) = 2k - 1$ for $k \in \mathbb{N}$. The other monotone subsequence could be the even terms: ($5, 5, 5, \dots$) which is constant (and thus nondecreasing) wherein the selector function could be $\sigma(k) = 2k$ for $k \in \mathbb{N}$.
+    \item The set of subsequential limits is $\{ \frac{1}{5}, 5 \}$ since we have subsequences that converge to both $\frac{1}{5}$ and $5$.
+    \item $\lim \ sup x_n = 5$ and $\lim \ inf x_n = \frac{1}{5}$.
+    \item The sequence diverges.
+    \item The sequence is bounded.
 \end{enumerate}
 
 \qed
