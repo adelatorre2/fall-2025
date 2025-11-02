@@ -119,17 +119,43 @@ For \textbf{$w_n = (-2)^n$}, we know the sequence follows the pattern: ($-2, 4, 
     \item Monotone subsequence of $w_n$ could be the even terms: ($4, 16, 64, \dots$) which is increasing wherein the selector function could be $\sigma(k) = 2k$ for $k \in \mathbb{N}$. The other monotone subsequence could be the odd terms: ($-2, -8, -32, \dots$) which is decreasing wherein the selector function could be $\sigma(k) = 2k - 1$ for $k \in \mathbb{N}$.
     \item The set of subsequential limits is $\{ +\infty, -\infty \}$ since we have subsequences that diverge to both $+\infty$ and $-\infty$.
     \item $\lim \sup w_n = +\infty$ and $\lim \inf w_n = -\infty$.
-    \item The sequence diverges to both $+\infty$ and $-\infty$.
+    \item Its subsequences diverge to both $+\infty$ and $-\infty$, however I do not think the sequence itself diverges to either $+\infty$ or $-\infty$ since it oscillates between large positive and negative values.
     \item The sequence is unbounded.
 \end{enumerate}
 
-For \textbf{$x_n = 5^{(-1)^n}$}, we know the sequence follows the pattern: ($5^{-1}, 5^{1}, 5^{-1}, 5^{1}, \dots$) or ($\frac{1}{5}, 5, \frac{1}{5}, 5, \dots$). With this in mind:
+For \textbf{$x_n = 5^{(-1)^n}$}, we see the pattern $(\tfrac{1}{5}, 5, \tfrac{1}{5}, 5, \dots)$—odd indices give $\tfrac{1}{5}$ and even indices give $5$. With this in mind:
 \begin{enumerate}[label=(\alph*)]
-    \item Monotone subsequence of $x_n$ could be the odd terms: ($\frac{1}{5}, \frac{1}{5}, \frac{1}{5}, \dots$) which is constant (and thus nondecreasing) wherein the selector function could be $\sigma(k) = 2k - 1$ for $k \in \mathbb{N}$. The other monotone subsequence could be the even terms: ($5, 5, 5, \dots$) which is constant (and thus nondecreasing) wherein the selector function could be $\sigma(k) = 2k$ for $k \in \mathbb{N}$.
-    \item The set of subsequential limits is $\{ \frac{1}{5}, 5 \}$ since we have subsequences that converge to both $\frac{1}{5}$ and $5$.
-    \item $\lim \ sup x_n = 5$ and $\lim \ inf x_n = \frac{1}{5}$.
-    \item The sequence diverges.
-    \item The sequence is bounded.
+    \item A monotone subsequence of $x_n$ could be the odd terms: $(\tfrac{1}{5}, \tfrac{1}{5}, \tfrac{1}{5}, \dots)$, which is constant (hence nondecreasing). A selector is $\sigma(k)=2k-1$ for $k\in\mathbb{N}$.  
+    The other monotone subsequence is the even terms: $(5, 5, 5, \dots)$, also constant (hence nondecreasing), with selector $\sigma(k)=2k$.
+    \item The set of subsequential limits is $\bigl\{\tfrac{1}{5},\,5\bigr\}$, since these two constant subsequences converge to $\tfrac{1}{5}$ and to $5$.
+    \item $\limsup_{n\to\infty} x_n = 5 \quad\text{and}\quad \liminf_{n\to\infty} x_n = \tfrac{1}{5}$.
+    \item The subsequences of this sequence converge to two different limits, but the sequence itself does not seem to converge or diverge.
+    \item The sequence is \emph{bounded} (indeed, $\tfrac{1}{5} \le x_n \le 5$ for all $n$).
+\end{enumerate}
+
+
+For \textbf{$y_n = 1 + (-1)^n$}, the terms simply alternate $2, 0, 2, 0, \dots$ so there are two “flat” strands to exploit. With this in mind:
+\begin{enumerate}[label=(\alph*)]
+    \item A monotone subsequence of $y_n$ could be the even indices: $(2,2,2,\dots)$, which is constant (hence nondecreasing). A selector is $\sigma(k)=2k$.  
+    The other monotone subsequence is the odd indices: $(0,0,0,\dots)$, also constant (hence nondecreasing), with selector $\sigma(k)=2k-1$.
+    \item The set of subsequential limits is $\{0,\,2\}$, since we have constant subsequences converging to $0$ and to $2$.
+    \item $\lim\sup y_n = 2$ and $\lim\inf y_n = 0$.
+    \item The subsequences of this sequence converge to two different limits, but the sequence itself does not seem to converge or diverge.
+    \item The sequence is bounded (indeed, $0 \le y_n \le 2$ for all $n$).
+\end{enumerate}
+
+\textbf{$z_n = n \cos\!\big(\tfrac{n\pi}{4}\big)$}. The cosine factor cycles with period $8$ through $1, \tfrac{\sqrt2}{2}, 0, -\tfrac{\sqrt2}{2}, -1, -\tfrac{\sqrt2}{2}, 0, \tfrac{\sqrt2}{2}$, so we see large positive spikes, large negative spikes, and infinitely many zeros. With this in mind:
+\begin{enumerate}[label=(\alph*)]
+    \item Two clean monotone subsequences are:
+    \begin{itemize}
+        \item $n=8k$: $z_{8k}=8k$ is strictly increasing (selector $\sigma(k)=8k$).
+        \item $n=8k+4$: $z_{8k+4}=-(8k+4)$ is strictly decreasing toward $-\infty$ (selector $\sigma(k)=8k+4$).
+    \end{itemize}
+    (There are also constant zero subsequences at $n=8k+2$ and $n=8k+6$.)
+    \item The set of subsequential limits is $\{-\infty,\,0,\,+\infty\}$: along $n=8k$ we get $+\infty$; along $n=8k+4$ we get $-\infty$; and along $n=8k+2$ (or $8k+6$) we get $0$.
+    \item $\lim\sup z_n = +\infty$ and $\lim\inf z_n = -\infty$.
+    \item The subsequences of this sequence diverge to two different limits, but the sequence itself does not seem to converge or diverge.
+    \item The sequence is unbounded (positively and negatively).
 \end{enumerate}
 
 \qed
@@ -140,6 +166,7 @@ Use Definition 10.6 and Exercise 5.4 to prove $\lim \inf s_n = - \lim \sup (-s_n
 \\
 \vspace{0.75em}
 \textbf{Discussion.} \\
+To prove that $\liminf s_n = -\limsup(-s_n)$ for any sequence $(s_n)$, we need to connect two key ideas: the formal definitions of $\liminf$ and $\limsup$, and a useful identity from Exercise 5.4 involving infimum and supremum.\\
 \textbf{10.6 Definition}:\\
 Let ($s_n$) be a sequence in $\mathbb{R}$. We define: \\
 \[
@@ -153,17 +180,47 @@ and
 \textbf{5.4 Exercise}:\\
 Let $S$ be a nonempty subset $\mathbb{R}$, and let $-S = { -s : s \in S }$. Prove $\inf S = -\sup(-S)$. \textit{Hint: For the case $-\infty < \inf S$, simply state that this was proved in Exercise 4.9}.
 
+\\
 \vspace{0.25em}
 \textbf{Proof.}\\
-From the definition of 10.6, we have:
+We know, from Exercise 5.4, that for any nonempty subset \( S \subset \mathbb{R} \),
 \[
-\lim \inf s_n = \lim_{N \to \infty} \inf \{ s_n : n > N \}
+\inf S = -\sup(-S)
 \]
-where we describe the set $S_N = \{ s_n : n > N \}$ such that we can rewrite the expression for $\lim \inf (s_n)$ as:
+where \( s \in S \) implies \( -s \in -S \).
 
-Thus, we have:
-\[\lim \inf s_n = -\lim \sup (-s_n)\]
-which applies for every sequence ($s_n$) since we know the result from Exercise 5.4 holds for any nonempty subset of $\mathbb{R}$, and thus every sequence.
+We also know that
+\[
+\liminf s_n = \lim_{N \to \infty} \inf \{ s_n : n > N \}
+\]
+and
+\[
+\limsup s_n = \lim_{N \to \infty} \sup \{ s_n : n > N \}.
+\]
+
+Using the result from Exercise 5.4, we can write
+\[
+\inf \{ s_n : n > N \} = -\sup \{ -s_n : n > N \}.
+\]
+
+Thus,
+\[
+\liminf s_n = \lim_{N \to \infty} \inf \{ s_n : n > N \}
+\]
+\[
+= \lim_{N \to \infty} \big( -\sup \{ -s_n : n > N \} \big)
+\]
+\[
+= -\lim_{N \to \infty} \sup \{ -s_n : n > N \}
+\]
+\[
+= -\limsup(-s_n).
+\]
+
+Therefore, we have shown that
+\[
+\liminf s_n = -\limsup(-s_n)
+\]
 \qed
 
 % ------------------ problem 3 ------------------
@@ -185,22 +242,83 @@ order.
 
 \vspace{0.75em}
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+Future me — here’s how I thought through this one.
+
+So, the problem asks me to find the set of all subsequential limits of the sequence shown in the figure. The key here is remembering what a subsequential limit actually means: it is any number that some subsequence of $s_n$ converges to.  
+
+In this particular figure, the sequence goes through the numbers $\tfrac{1}{n}$ infinitely often. That means each $\tfrac{1}{n}$ keeps reappearing infinitely many times as $n$ runs through the natural numbers. Because of that, I can create a constant subsequence for each fixed $n$ — that is, just pick the same $\tfrac{1}{n}$ value over and over again. So each $\tfrac{1}{n}$ is a subsequential limit.  
+
+But we also know from earlier theorems that the set of all subsequential limits is closed. So if we take all the $\tfrac{1}{n}$ values, their limit points must also be included in the set. Since $\lim_{n \to \infty} \tfrac{1}{n} = 0$, that means $0$ must also be in the set of subsequential limits.  
+
+Once we know the set $S$, the second part is easy: $\limsup s_n$ is just the supremum of $S$ and $\liminf s_n$ is the infimum of $S$. Since $S$ is bounded between $0$ and $1$, we’ll get $\limsup s_n = 1$ and $\liminf s_n = 0$.  
+
+That’s the entire logic chain: first find all constant subsequences, then close the set, and finally use the definitions of $\limsup$ and $\liminf$.
+
 \vspace{0.25em}
 \textbf{Proof.}\\
-% (Your proof goes here.)
+(a) To find the set of subsequential limits, note that $\tfrac{1}{n}$ appears infinitely many times for all $n \in \mathbb{N}$.  
+
+Therefore, if we fix $n$, the constant subsequence consisting of $\tfrac{1}{n}$ for all terms converges to $\tfrac{1}{n}$. Hence, each $\tfrac{1}{n}$ is a subsequential limit, and the set of subsequential limits appears to be
+\[
+\left\{ \tfrac{1}{n} : n \in \mathbb{N} \right\}.
+\]
+
+However, since the set of subsequential limits must be closed, it must contain all of its limit points.  
+
+Because
+\[
+\lim_{n \to \infty} \tfrac{1}{n} = 0,
+\]
+the point $0$ must also belong to $S$.  
+
+Thus, the set of subsequential limits is
+\[
+S = \left\{ \tfrac{1}{n} : n \in \mathbb{N} \right\} \cup \{0\}.
+\]
+
+(b) From the definitions, we know that
+\[
+\limsup s_n = \sup S
+\quad \text{and} \quad
+\liminf s_n = \inf S.
+\]
+
+Since the largest element in $S$ is $1$ and the smallest is $0$, it follows that
+\[
+\limsup s_n = 1
+\quad \text{and} \quad
+\liminf s_n = 0.
+\]
+
 \qed
 
 % ------------------ problem 4------------------
 \problem[Ross Chapter 2 12.2]{4}
-Prove $\lim \sup | s_n | = 0$ if and only if $\lim s_n = 0$.
+Prove $\limsup |s_n| = 0$ if and only if $\lim s_n = 0$.
 \vspace{0.75em}
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+Future me — here is the clean way to see this. One direction is immediate: if $s_n \to 0$, then by continuity of the absolute value, $|s_n| \to 0$, so the largest tail supremum of $|s_n|$ is $0$, i.e., $\limsup |s_n|=0$. For the converse, the tail-definition of $\limsup$ says
+\[
+\limsup |s_n| = \lim_{N\to\infty}\, \sup\{|s_n|: n>N\}=0.
+\]
+This means that for every $\varepsilon>0$, there is $N$ such that \emph{all} tail terms satisfy $|s_n|<\varepsilon$ for $n>N$. That is exactly the $\varepsilon$–$N$ definition of $s_n\to 0$. If I want an alternate viewpoint, I can also note that $|s_n|\ge s_n$ and $|s_n|\ge -s_n$, hence $\limsup|s_n|\ge \limsup s_n$ and $\limsup|s_n|\ge \limsup(-s_n)=-\liminf s_n$, which forces $\limsup s_n\le 0\le \liminf s_n$ and therefore $\lim s_n=0$.
+
 \vspace{0.25em}
 \textbf{Proof.}\\
-% (Your proof goes here.)
-\qed
+($\Rightarrow$) Suppose $\lim s_n = 0$. Then $|s_n| \to 0$ by continuity of $x\mapsto |x|$. Hence
+\[
+\limsup |s_n| = 0.
+\]
+
+($\Leftarrow$) Suppose $\limsup |s_n| = 0$. By the tail definition of $\limsup$,
+\[
+\forall\,\varepsilon>0\ \exists\,N\ \text{such that}\ \sup\{|s_n|:n>N\}<\varepsilon.
+\]
+Therefore, for all $n>N$ we have $|s_n|<\varepsilon$, i.e. $-\varepsilon<s_n<\varepsilon$. Since this holds for every $\varepsilon>0$, it follows that
+\[
+\lim_{n\to\infty} s_n = 0.
+\]
+This completes the proof. \qed
 
 
 % ------------------ problem 5 ------------------
@@ -227,11 +345,63 @@ Find
 \end{multicols}
 
 \vspace{0.75em}
-\textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+\textbf{Discussion.}\\
+Future me — both $(s_n)$ and $(t_n)$ just cycle through $\{0,1,2\}$. So their
+subsequential limits are exactly $\{0,1,2\}$, giving $\liminf=0$ and
+$\limsup=2$ for each. For the sum and product, write one cycle explicitly,
+read off the values that reappear infinitely often, and then take $\inf/\sup$
+of those sets.
+
 \vspace{0.25em}
 \textbf{Proof.}\\
-% (Your proof goes here.)
+First note
+\[
+S_s=\{0,1,2\}, \quad \liminf s_n=0,\quad \limsup s_n=2,
+\]
+\[
+S_t=\{0,1,2\}, \quad \liminf t_n=0,\quad \limsup t_n=2.
+\]
+
+For the sum $u_n:=s_n+t_n$, one period is
+\[
+(2,\,2,\,3,\,1),
+\]
+so the set of subsequential limits of $(u_n)$ is $\{1,2,3\}$ and hence
+\[
+\liminf (s_n+t_n)=1, \qquad \limsup (s_n+t_n)=3.
+\]
+
+For the product $v_n:=s_n t_n$, one period is
+\[
+(0,\,1,\,2,\,0),
+\]
+so the set of subsequential limits of $(v_n)$ is $\{0,1,2\}$ and hence
+\[
+\liminf (s_n t_n)=0, \qquad \limsup (s_n t_n)=2.
+\]
+
+Now report each requested quantity:
+\[
+\text{(a)}\quad \liminf s_n + \liminf t_n = 0+0 = 0,
+\]
+\[
+\text{(b)}\quad \liminf (s_n+t_n) = 1,
+\]
+\[
+\text{(c)}\quad \liminf s_n + \limsup t_n = 0+2 = 2,
+\]
+\[
+\text{(d)}\quad \limsup (s_n+t_n) = 3,
+\]
+\[
+\text{(e)}\quad \limsup s_n + \limsup t_n = 2+2 = 4,
+\]
+\[
+\text{(f)}\quad \liminf (s_n t_n) = 0,
+\]
+\[
+\text{(g)}\quad \limsup (s_n t_n) = 2.
+\]
 \qed
 
 % ------------------ problem 6 ------------------
@@ -239,9 +409,43 @@ Find
 Prove ($s_n$) is bounded if and only if $\lim \sup | s_n | < +\infty$.\\
 \vspace{0.75em}
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+Future me — the two directions are:  
+(1) If $(s_n)$ is bounded, then there is an $M$ with $\lvert s_n\rvert\le M$ for all $n$. Hence every tail supremum $\sup\{\lvert s_n\rvert:n>N\}\le M$, so the limit of these tail suprema (i.e., $\limsup\lvert s_n\rvert$) is $\le M<+\infty$.  
+(2) Conversely, write $V_N=\sup\{\lvert s_n\rvert:n>N\}$. If $\limsup\lvert s_n\rvert<+\infty$, say $\lim_{N\to\infty}V_N=M\in\mathbb{R}$, then for large $N$ all tail suprema are $<M+1$, which makes the tail of $(s_n)$ bounded by $M+1$. Fold the first finitely many terms into the bound by taking a maximum; that gives a global bound. That’s the whole idea.
+
 \vspace{0.25em}
 \textbf{Proof.}\\
-% (Your proof goes here.)
+($\Rightarrow$) Suppose $(s_n)$ is bounded. Then there exists $M\in\mathbb{R}$ such that $\lvert s_n\rvert\le M$ for all $n$. Hence for every $N$,
+\[
+\sup\{\lvert s_n\rvert:n>N\}\le M,
+\]
+and therefore
+\[
+\limsup_{n\to\infty}\lvert s_n\rvert=\lim_{N\to\infty}\sup\{\lvert s_n\rvert:n>N\}\le M<+\infty.
+\]
+
+($\Leftarrow$) Suppose $\limsup_{n\to\infty}\lvert s_n\rvert<+\infty$. Define the tail suprema
+\[
+V_N=\sup\{\lvert s_n\rvert:n>N\}\qquad(N\in\mathbb{N}).
+\]
+By hypothesis, $V_N\to M$ for some finite $M\in\mathbb{R}$. Choose $N_1$ such that
+\[
+\lvert V_N-M\rvert<1\quad\text{for all }N\ge N_1,
+\]
+which implies
+\[
+V_N<M+1\quad\text{for all }N\ge N_1.
+\]
+In particular, for every $n>N_1$ we have
+\[
+\lvert s_n\rvert\le V_{N_1}<M+1.
+\]
+Set
+\[
+U=\max\bigl\{\lvert s_1\rvert,\lvert s_2\rvert,\dots,\lvert s_{N_1}\rvert,\,M+1\bigr\}.
+\]
+Then $\lvert s_n\rvert\le U$ for all $n$, so $(s_n)$ is bounded.
+
+This proves that $(s_n)$ is bounded if and only if $\limsup\lvert s_n\rvert<+\infty$.
 \qed
 \end{document}
