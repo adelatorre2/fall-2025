@@ -4,6 +4,14 @@
 \usepackage{setspace}
 \usepackage{enumitem}
 \usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\sisetup{
+  table-number-alignment = center,
+  table-figures-integer = 4,
+  table-figures-decimal = 4
+}
 
 \geometry{margin=1in}
 \setstretch{1.2}
@@ -16,8 +24,656 @@
 \maketitle
 
 \section*{AI Disclaimer}
-I used AI tools to help format this document and check for grammatical errors. However, all the content and answers are my own work. 
+I used AI tools (ChatGPT) to help troubleshoot minor LaTeX and Python issues, to reorganize sections for clarity (namely indentation conventions and organization in the \verb+PS5_twins.ipynb+ file), and to draft descriptive tables (because they are a pain in LaTeX). All analysis, model specification, interpretation, and final write-up are my own.
 
-\section*{Question 1: }
+\section*{Twins Study (Princeton Twins Survey)}
+In this problem set I work with the Princeton Twins Survey (\texttt{twins.csv}). Each observation is a twin from a pair of identical twins, indexed by a family id \(i\) and a twin indicator \(t\in\{1,2\}\). Below I restate the variable dictionary from the assignment for ease of reference:
+\begin{itemize}[leftmargin=1.25em]
+  \item \texttt{famid} = family id variable.
+  \item \texttt{t} \(=1,2\) for twin \#1 or twin \#2.
+  \item \texttt{age} = age (some observations include fractional years).
+  \item \texttt{educ} = education (years).
+  \item \texttt{oeduc} = education of the other twin.
+  \item \texttt{lw} = log wage.
+  \item \texttt{married} = \(1\) if married, \(0\) otherwise.
+  \item \texttt{omarried} = marriage status of the other twin.
+  \item \texttt{female} = \(1\) if female.
+  \item \texttt{ofemale} = \(1\) if the other twin is female.
+  \item \texttt{exp} = ``labor market experience'' \(=\texttt{age}-\texttt{educ}-6\).
+  \item \texttt{oexp} = experience of the other twin.
+\end{itemize}
+\noindent\textbf{Note.} All pairs in the file are identical twins, so \(\texttt{female}=\texttt{ofemale}\) for every observation.
+
+\subsection*{Data setup \& quick checks}
+Before starting Question 1, I performed basic checks in the notebook:
+\begin{enumerate}[label=\arabic*)]
+  \item Uniqueness: \((\texttt{famid},\texttt{t})\) combinations are unique (one row per twin).
+  \item Sex consistency: \(\texttt{female}=\texttt{ofemale}\) holds for all pairs (same sex by design).
+  \item Feature engineering: I created \(\texttt{exp2}=\texttt{exp}^2\) for use in quadratic experience profiles.
+\end{enumerate}
+
+\subsection*{Descriptive statistics (key variables)}
+I summarize several variables that are used repeatedly below (sample size \(n=1{,}074\)). The values match the notebook output produced via \texttt{pandas.describe()}.
+\begin{table}[h!]
+  \centering
+  \caption{Summary statistics}
+  \label{tab:desc}
+  \begin{tabular}{l
+                  S[table-format=4.0]
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {count} & {mean} & {std} & {min} & {25\%} & {50\%} & {75\%} & {max} \\
+    \midrule
+    \texttt{lw}     & 1074 & 2.4710 & 0.6098 & 0.7226 & 2.0441 & 2.4571 & 2.8212 & 4.8929 \\
+    \texttt{educ}   & 1074 & 14.0805 & 2.0298 & 8.0000 & 12.0000 & 14.0000 & 16.0000 & 18.0000 \\
+    \texttt{exp}    & 1074 & 17.8336 & 11.8061 & -2.0000 & 9.0000 & 16.7361 & 25.0000 & 53.0000 \\
+    \texttt{exp2}   & 1074 & 457.2928 & 518.2904 & 0.0000 & 81.0000 & 280.1114 & 625.0000 & 2809.0000 \\
+    \texttt{married}& 1074 & 0.4795 & 0.4998 & 0.0000 & 0.0000 & 0.0000 & 1.0000 & 1.0000 \\
+    \texttt{female} & 1074 & 0.5345 & 0.4990 & 0.0000 & 0.0000 & 1.0000 & 1.0000 & 1.0000 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\bigskip
+
+\section*{Q1. Simple Model: Log Wages on Schooling, Experience, Marital Status, and Sex}
+
+\begin{quote}
+Estimate a simple model relating log wages to: education, experience, experience-squared, married status, and female.
+\end{quote}
+
+\subsection*{Model}
+I estimate the OLS model
+\[
+  \underbrace{\texttt{lw}_{it}}_{\log(\text{wage})}
+  \;=\;
+  \beta_0
+  + \beta_1\,\texttt{educ}_{it}
+  + \beta_2\,\texttt{exp}_{it}
+  + \beta_3\,\texttt{exp}_{it}^{2}
+  + \beta_4\,\texttt{married}_{it}
+  + \beta_5\,\texttt{female}_{it}
+  + \varepsilon_{it},
+\]
+using heteroskedasticity–robust (HC1) standard errors. The marginal effect of experience is
+\( \frac{\partial\,\texttt{lw}_{it}}{\partial\,\texttt{exp}_{it}} = \beta_2 + 2\,\beta_3\,\texttt{exp}_{it} \).
+
+\subsection*{Results}
+\begin{table}[h!]
+  \centering
+  \caption{Baseline OLS with HC1 standard errors}
+  \label{tab:q1_ols}
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.2]
+                  S[table-format=1.3]}
+    \toprule
+    Variable & {Coefficient} & {Robust SE} & {$t$} & {$p$} \\
+    \midrule
+    Intercept       & 0.3455 & 0.1386 &  2.49 & 0.013 \\
+    Education       & 0.1238 & 0.0086 & 14.36 & 0.000 \\
+    Experience      & 0.0523 & 0.0048 & 10.88 & 0.000 \\
+    Experience$^{2}$& -0.0009& 0.0001 & -8.28 & 0.000 \\
+    Married         & 0.0693 & 0.0321 &  2.16 & 0.031 \\
+    Female          & -0.3341& 0.0309 & -10.83& 0.000 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=1{,}074$;\quad $R^2=0.3146$;\quad $\bar R^{2}=0.3113$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection*{Interpretation}
+\begin{itemize}[leftmargin=1.25em]
+  \item Schooling: an additional year of education raises expected log wages by about \(0.124\) log points; using the exact transformation, this is \(100\times(\exp(0.1238)-1)\approx 13.2\%\).
+  \item Experience: wages rise with experience but at a diminishing rate because \(\beta_3<0\). The implied turning point is
+  \[
+    \texttt{exp}^{*} \;=\; \frac{\beta_2}{-2\beta_3}
+    \;=\; \frac{0.0523}{2(0.0009)} \;\approx\; 29.1 \text{ years},
+  \]
+  beyond which additional experience adds little to wages on average.
+  \item Marital status: being married is associated with roughly \(100\times(\exp(0.0693)-1)\approx 7.2\%\) higher wages, significant at the \(5\%\) level.
+  \item Sex: the coefficient on \(\texttt{female}\) is \(-0.334\); in levels this corresponds to \(100\times(\exp(-0.3341)-1)\approx -28.4\%\), i.e., women earn about \(28\%\) less than men on average, conditional on covariates.
+  \item Model fit: the model explains about \(31\%\) of the variation in \(\log(\text{wage})\) (\(R^2=0.3146\)), which is reasonable for a cross-sectional wage regression.
+\end{itemize}
+
+
+\section*{Q2. Separate Models for Men and Women}
+
+\begin{quote}
+Fit the same model separately for men and women. Does the model look different?
+\end{quote}
+
+\subsection*{Specification}
+For each gender \(g\in\{\text{men},\text{women}\}\) I estimate
+\[
+  \texttt{lw}_{i} \;=\; \beta_{0g}
+  + \beta_{1g}\,\texttt{educ}_{i}
+  + \beta_{2g}\,\texttt{exp}_{i}
+  + \beta_{3g}\,\texttt{exp}_{i}^{2}
+  + \beta_{4g}\,\texttt{married}_{i}
+  + u_{i},
+\]
+using HC1 robust standard errors.
+
+\subsection*{Results}
+
+% --- Q2 results: separate, non-overlapping tables ---
+\begin{table}[htbp]
+  \centering
+  \caption{Men: OLS with HC1 robust standard errors}
+  \label{tab:q2_men}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {Coef.} & {SE(HC1)} & {$t$} & {$p$} \\
+    \midrule
+    Intercept        & 0.5197 & 0.2194 &  2.3685 & 0.0179 \\
+    Education        & 0.1027 & 0.0135 &  7.5896 & 0.0000 \\
+    Experience       & 0.0588 & 0.0080 &  7.3951 & 0.0000 \\
+    Experience$^{2}$ & -0.0010& 0.0002 & -5.8950 & 0.0000 \\
+    Married          & 0.1993 & 0.0506 &  3.9419 & 0.0001 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=500$;\; $R^2=0.2553$;\; $\bar R^{2}=0.2493$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Women: OLS with HC1 robust standard errors}
+  \label{tab:q2_women}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {Coef.} & {SE(HC1)} & {$t$} & {$p$} \\
+    \midrule
+    Intercept        & -0.0854 & 0.1595 & -0.5353 & 0.5924 \\
+    Education        & 0.1369  & 0.0101 & 13.5113 & 0.0000 \\
+    Experience       & 0.0529  & 0.0059 &  8.9736 & 0.0000 \\
+    Experience$^{2}$ & -0.0010 & 0.0001 & -6.8237 & 0.0000 \\
+    Married          & -0.0399 & 0.0407 & -0.9813 & 0.3264 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=574$;\; $R^2=0.3033$;\; $\bar R^{2}=0.2984$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection*{Turning points}
+With the quadratic experience term, the implied turning point is
+\[
+  \texttt{exp}^{*}_g \;=\; \frac{\beta_{2g}}{-2\,\beta_{3g}}.
+\]
+Plugging in the estimates gives
+\[
+  \text{Men: } \texttt{exp}^{*}\approx 29.8 \text{ years}
+  \qquad\text{and}\qquad
+  \text{Women: } \texttt{exp}^{*}\approx 26.9 \text{ years}.
+\]
+
+\subsection*{Does the model look different?}
+\begin{itemize}[leftmargin=1.25em]
+  \item \textbf{Education:} Positive and highly significant for both; the effect is \emph{larger for women} (\(0.137\) vs. \(0.103\)).
+  \item \textbf{Experience profile:} Positive \(\beta_2\) and negative \(\beta_3\) in both groups (concave), with a slightly earlier peak for women (26.9 vs.\ 29.8 years).
+  \item \textbf{Married:} \emph{Men:} positive and significant (\(\approx 0.20\)). \emph{Women:} small, negative, and insignificant (\(-0.040\)).
+  \item \textbf{Fit:} \(R^2\) is a bit higher for women (0.303) than men (0.255).
+\end{itemize}
+
+\section*{Q3. Mean Family Marriage Rate}
+
+\begin{quote}
+Construct the mean family marriage rate for each person in the data set (i.e., the fraction of the twins that is married, which can be 0, 1/2, or 1).
+\end{quote}
+
+\subsection*{Part (a): Verifying the Auxiliary Regression}
+
+We define the mean family marriage rate for each family \(f\) as the average of the twins’ marriage indicators:
+\[
+  \texttt{mean\_married}_f \;=\; \frac{1}{2}\sum_{t=1}^{2}\texttt{married}_{ft},
+\]
+which can take values \(0\), \(0.5\), or \(1\), depending on whether neither, one, or both twins are married.
+
+We then estimate the auxiliary regression
+\[
+  \texttt{married}_{ft} = \alpha + \rho\,\texttt{mean\_married}_{f} + \varepsilon_{ft},
+\]
+using HC1 robust standard errors.
+
+\begin{table}[h!]
+  \centering
+  \caption{Auxiliary regression: verifying the mean–marriage relationship}
+  \label{tab:q3a_aux}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.2]
+                  S[table-format=1.3]}
+    \toprule
+    Variable & {Coefficient} & {Robust SE (HC1)} & {$t$} & {$p$} \\
+    \midrule
+    Intercept       & -0.0000 & 0.0074 & -0.0000 & 1.0000 \\
+    Mean Married    &  1.0000 & 0.0009 & 1147.51 & 0.0000 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=1{,}074$;\quad $R^2=0.7370$;\quad $\bar R^{2}=0.7367$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsubsection*{Interpretation}
+The estimated coefficient on \(\texttt{mean\_married}\) is essentially 1, confirming the theoretical result discussed in Lecture 8.  
+Intuitively, each twin’s marital status is mechanically tied to the family’s mean marriage rate: if one twin’s status changes (from 0 to 1, or vice versa), the family average changes in the same direction by exactly half for both siblings, implying a perfect one-to-one mapping in the regression. 
+
+Mathematically, for any twin \(t\) in family \(f\),
+\[
+  \texttt{mean\_married}_{f}
+  = \frac{1}{2}\big(\texttt{married}_{f1} + \texttt{married}_{f2}\big)
+  = \frac{1}{2}\texttt{married}_{ft} + \frac{1}{2}\texttt{married}_{f(-t)}.
+\]
+Because \(\texttt{mean\_married}_f\) contains \(\texttt{married}_{ft}\) as part of its own definition, regressing \(\texttt{married}_{ft}\) on \(\texttt{mean\_married}_f\) yields an estimated slope of 1 by construction: any within-family change in \(\texttt{married}_{ft}\) moves both sides of the equation equally.
+
+Empirically, this is reflected in the near-perfect fit (\(R^2\approx0.74\)) and a coefficient statistically indistinguishable from 1.
+
+\subsection*{Part (b): Adding the family mean marriage rate to gender-specific wage models}
+
+We augment the Q2 models to include the family mean marriage rate \(\texttt{mean\_married}_f\) and estimate, separately by gender,
+\[
+  \texttt{lw}_{i} \;=\; \beta_0 + \beta_1\,\texttt{educ}_{i}
+  + \beta_2\,\texttt{exp}_{i} + \beta_3\,\texttt{exp}_{i}^{2}
+  + \beta_4\,\texttt{married}_{i}
+  + \beta_5\,\texttt{mean\_married}_{f} + u_{i},
+\]
+using HC1 robust standard errors.
+
+% --- Q3(b) results: Men ---
+\begin{table}[htbp]
+  \centering
+  \caption{Men: OLS with \texttt{mean\_married} (HC1 robust)}
+  \label{tab:q3b_men}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {Coef.} & {SE(HC1)} & {$t$} & {$p$} \\
+    \midrule
+    Intercept         & 0.5102 & 0.2200 &  2.3187 & 0.0204 \\
+    Education         & 0.1029 & 0.0135 &  7.6062 & 0.0000 \\
+    Experience        & 0.0572 & 0.0079 &  7.1902 & 0.0000 \\
+    Experience$^{2}$  & -0.0010& 0.0002 & -5.8788 & 0.0000 \\
+    Married           & 0.0300 & 0.0897 &  0.3339 & 0.7385 \\
+    Mean married      & 0.2500 & 0.1108 &  2.2571 & 0.0240 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=500$;\; $R^2=0.2619$;\; $\bar R^{2}=0.2544$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% --- Q3(b) results: Women ---
+\begin{table}[htbp]
+  \centering
+  \caption{Women: OLS with \texttt{mean\_married} (HC1 robust)}
+  \label{tab:q3b_women}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {Coef.} & {SE(HC1)} & {$t$} & {$p$} \\
+    \midrule
+    Intercept         & -0.0826 & 0.1597 & -0.5173 & 0.6050 \\
+    Education         & 0.1368  & 0.0102 & 13.4580 & 0.0000 \\
+    Experience        & 0.0534  & 0.0062 &  8.6071 & 0.0000 \\
+    Experience$^{2}$  & -0.0010 & 0.0001 & -6.6896 & 0.0000 \\
+    Married           & -0.0221 & 0.0728 & -0.3031 & 0.7618 \\
+    Mean married      & -0.0268 & 0.0915 & -0.2930 & 0.7695 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=574$;\; $R^2=0.3034$;\; $\bar R^{2}=0.2972$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% --- compact comparison of marriage coefficients ---
+\begin{table}[htbp]
+  \centering
+  \caption{Marriage coefficients before (Q2) vs after adding \texttt{mean\_married} (Q3b)}
+  \label{tab:q3b_compare}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=+1.4]}
+    \toprule
+    Group & {Married (Q2)} & {Married (Q3b)} & {Mean married} & {$\Delta$ Married (Q3b$-$Q2)} \\
+    \midrule
+    Men    & 0.1993 & 0.0300 & 0.2500 & -0.1693 \\
+    Women  & -0.0399 & -0.0221 & -0.0268 & 0.0179 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsubsection*{What changed?}
+\begin{itemize}[leftmargin=1.25em]
+  \item \textbf{Men.} The individual marriage coefficient shrinks from \(\approx 0.199\) (Q2) to \(\approx 0.030\) (Q3b) and becomes insignificant, while the family mean term is positive and significant (\(\widehat\beta_5\approx 0.25\)).
+  \item \textbf{Women.} The marriage coefficient was already small and insignificant in Q2 (\(\approx -0.040\)) and remains small/insignificant in Q3b; the family mean term is also small and insignificant.
+\end{itemize}
+
+\subsubsection*{Interpretation (men vs. women)}
+With two siblings per family, \(\texttt{mean\_married}_f=(\texttt{married}_{f1}+\texttt{married}_{f2})/2\) captures a \emph{family-level (shared) component} of marriage—selection or common factors that influence both twins (values, timing, labor-market conditions).  
+For men, most of the apparent “marriage premium” in Q2 is absorbed by this shared component (strong \(\widehat\beta_5>0\)), leaving little individual-specific premium after controlling for the family mean.  
+For women, there is no evident premium to begin with, and controlling for the family mean changes little—both the individual and family components are economically small and statistically insignificant.
+
+\subsubsection*{Model fit}
+Fit is essentially unchanged for women (\(R^2 \approx 0.303 \to 0.303\)) and rises only slightly for men (\(0.255 \to 0.262\)), consistent with explanatory power from the family mean operating mainly in the male sample.
+
+\subsection*{Part (c): Using the co-twin's marriage status instead of the family mean}
+
+We re-estimate the gender-specific models from Q2 replacing the family mean term with the
+other twin’s marriage status \(\texttt{omarried}_{i}\):
+\[
+  \texttt{lw}_{i}
+  \;=\; \beta_0 + \beta_1\,\texttt{educ}_{i}
+  + \beta_2\,\texttt{exp}_{i} + \beta_3\,\texttt{exp}_{i}^{2}
+  + \beta_4\,\texttt{married}_{i} + \beta_5\,\texttt{omarried}_{i} + u_{i},
+\]
+using HC1 robust SEs.
+
+% --- Q3(c) results: Men ---
+\begin{table}[htbp]
+  \centering
+  \caption{Men: OLS with \texttt{omarried} (HC1 robust)}
+  \label{tab:q3c_men}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {Coef.} & {SE(HC1)} & {$t$} & {$p$} \\
+    \midrule
+    Intercept        & 0.5102 & 0.2200 &  2.3187 & 0.0204 \\
+    Education        & 0.1029 & 0.0135 &  7.6062 & 0.0000 \\
+    Experience       & 0.0572 & 0.0079 &  7.1902 & 0.0000 \\
+    Experience$^{2}$ & -0.0010& 0.0002 & -5.8788 & 0.0000 \\
+    Married          & 0.1550 & 0.0539 &  2.8771 & 0.0040 \\
+    Other twin married & 0.1250 & 0.0554 &  2.2571 & 0.0240 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=500$;\; $R^2=0.2619$;\; $\bar R^{2}=0.2544$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% --- Q3(c) results: Women ---
+\begin{table}[htbp]
+  \centering
+  \caption{Women: OLS with \texttt{omarried} (HC1 robust)}
+  \label{tab:q3c_women}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {Coef.} & {SE(HC1)} & {$t$} & {$p$} \\
+    \midrule
+    Intercept        & -0.0826 & 0.1597 & -0.5173 & 0.6050 \\
+    Education        & 0.1368  & 0.0102 & 13.4580 & 0.0000 \\
+    Experience       & 0.0534  & 0.0062 &  8.6071 & 0.0000 \\
+    Experience$^{2}$ & -0.0010 & 0.0001 & -6.6896 & 0.0000 \\
+    Married          & -0.0355 & 0.0432 & -0.8202 & 0.4121 \\
+    Other twin married & -0.0134 & 0.0457 & -0.2930 & 0.7695 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=574$;\; $R^2=0.3034$;\; $\bar R^{2}=0.2972$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% --- concise comparison with Q2 and Q3(b) ---
+\begin{table}[htbp]
+  \centering
+  \caption{Marriage coefficients across specifications}
+  \label{tab:q3c_compare}
+  \small
+  \begin{tabular}{l
+                  S[table-format=+1.4]
+                  S[table-format=+1.4]
+                  S[table-format=+1.4]
+                  S[table-format=+1.4]
+                  S[table-format=+1.4]
+                  S[table-format=+1.4]
+                 }
+    \toprule
+    Group & {Married (Q2)} & {Married (Q3b)} & {Mean married (Q3b)} & {Married (Q3c)} & {Other twin (Q3c)} \\
+    \midrule
+    Men   &  0.1993 &  0.0300 &  0.2500 &  0.1550 &  0.1250 \\
+    Women & -0.0399 & -0.0221 & -0.0268 & -0.0355 & -0.0134 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsubsection*{Comparison and interpretation}
+\paragraph{Link between (b) and (c).}
+With two siblings per family,
+\[
+  \texttt{mean\_married}_f
+  = \tfrac12\big(\texttt{married}_{f1}+\texttt{married}_{f2}\big)
+  = \tfrac12\,\texttt{married}_{i} + \tfrac12\,\texttt{omarried}_{i}.
+\]
+In a linear model, this implies the \emph{mean-marriage} slope in (b) should be close to the average of the two slopes in (c):
+\[
+  \widehat\beta^{(b)}_{\text{mean}} \;\approx\; \tfrac12
+  \big(\widehat\beta^{(c)}_{\text{married}}+\widehat\beta^{(c)}_{\text{omarried}}\big).
+\]
+Our estimates line up: for men,
+\(\widehat\beta^{(c)}_{\text{married}}+\widehat\beta^{(c)}_{\text{omarried}}
+=0.155+0.125=0.280\), so \(\tfrac12(\cdot)\approx 0.140\), which is close in magnitude to the strong family-mean effect in (b) (\(\approx0.25\)) and explains why adding \(\texttt{mean\_married}\) in (b) pulled the own-marriage coefficient toward zero.
+
+\paragraph{Men.}
+Relative to Q2, the individual marriage premium falls when adding \(\texttt{mean\_married}\) (Q3b), but when we instead add \(\texttt{omarried}\) (Q3c), both own marriage (\(0.155\), \(p=0.004\)) and co-twin marriage (\(0.125\), \(p=0.024\)) are positive and significant. Taken together, they recover a combined effect near the family-mean channel from (b). This pattern is consistent with a shared (family/selection) component to the “marriage premium” among men rather than a large individual-specific causal effect.
+
+\paragraph{Women.}
+Coefficients on both \(\texttt{married}\) and \(\texttt{omarried}\) remain small and statistically insignificant, echoing Q2–Q3(b). Controlling for the family mean or the co-twin’s status does not reveal a meaningful association between marriage and wages for women in this sample.
+
+\paragraph{Bottom line.}
+Replacing \(\texttt{mean\_married}\) with \(\texttt{omarried}\) leaves the substantive story intact: the apparent premium in men is largely accounted for by shared (family-level) factors that influence both twins; for women, marriage has no robust association with wages across specifications.
+
+\section*{Q4. Three Ways to Get the Within Estimator (men only)}
+
+\subsection*{(a) Within estimator via family demeaning}
+
+\paragraph{Setup.}
+Restrict the sample to \emph{male} twins ($N=500$). For each family $f$ with twins $t\in\{1,2\}$,
+apply the within (demeaning) transformation
+\[
+  \tilde y_{ft} \equiv y_{ft}-\bar y_f, \qquad
+  \tilde x_{ft} \equiv x_{ft}-\bar x_f ,
+\]
+where $x_{ft}\in\{\texttt{educ},\,\texttt{exp}^2,\,\texttt{married}\}$ and $y_{ft}=\texttt{lw}_{ft}$.
+Because experience is defined as $\texttt{exp}=\texttt{age}-\texttt{educ}-6$ and identical twins are the
+same age, $\widetilde{\texttt{exp}}_{ft} = -\,\widetilde{\texttt{educ}}_{ft}$ within family. Hence
+$\tilde{\texttt{exp}}$ is perfectly collinear with $\tilde{\texttt{educ}}$ (corr.\ $=-1$), so we drop
+$\tilde{\texttt{exp}}$ and keep $\widetilde{\texttt{exp}^2}$.
+
+\paragraph{Model.}
+We estimate the within regression (no intercept after demeaning):
+\[
+  \tilde{\texttt{lw}}_{ft}
+  \;=\;
+  \gamma_1\,\tilde{\texttt{educ}}_{ft}
+  \;+\;
+  \gamma_3\,\widetilde{\texttt{exp}^2}_{ft}
+  \;+\;
+  \gamma_4\,\tilde{\texttt{married}}_{ft}
+  \;+\; u^{W}_{ft},
+\]
+with HC1 robust standard errors.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Within-family (demeaned) regression for men (HC1 robust)}
+  \label{tab:q4a_within_men}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {Coef.} & {SE(HC1)} & {$t$} & {$p$} \\
+    \midrule
+    $\tilde{\texttt{educ}}$         & 0.0851 & 0.0369 &  2.3087 & 0.0210 \\
+    $\widetilde{\texttt{exp}^2}$    & 0.0004 & 0.0010 &  0.4402 & 0.6598 \\
+    $\tilde{\texttt{married}}$      & 0.0247 & 0.0470 &  0.5261 & 0.5988 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=500$;\; $R^2=0.0357$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsubsection*{Interpretation}
+\begin{itemize}[leftmargin=1.25em]
+  \item The within estimator compares twins \emph{within the same family}, removing all time-invariant shared family factors.  
+  \item A one-year within-pair difference in schooling is associated with about \(0.085\) higher log wages for the more educated brother (significant at 5\%).  
+  \item The coefficients on the demeaned quadratic experience term and marital status are small and imprecise, suggesting little additional \emph{within-pair} wage difference from these factors once shared family effects are removed.  
+\end{itemize} 
+
+
+\subsection*{(b) Fixed Effects}
+
+\paragraph{Model.}
+We now estimate the wage equation for male twins using a \emph{family fixed effects} model, which controls for all unobserved, time-invariant family characteristics shared by the twins (e.g., parental background, neighborhood). The regression is
+\[
+  \texttt{lw}_{ft} \;=\; \alpha_f \;+\; \beta_1\,\texttt{educ}_{ft}
+  \;+\; \beta_3\,\texttt{exp}^2_{ft}
+  \;+\; \beta_4\,\texttt{married}_{ft} \;+\; u_{ft},
+\]
+where $\alpha_f$ denotes the family fixed effect. As in part (a), we omit $\texttt{exp}_{ft}$ because, for identical twins of the same age, $\widetilde{\texttt{exp}}_{ft}$ is perfectly collinear with $\widetilde{\texttt{educ}}_{ft}$ when conditioning on $\alpha_f$.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Fixed effects (men): family FE with HC1 robust SEs}
+  \label{tab:q4b_fe_men}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {Coef.} & {SE(HC1)} & {$t$} & {$p$} \\
+    \midrule
+    Education         & 0.0851 & 0.0523 & 1.6276 & 0.1049 \\
+    Experience$^{2}$  & 0.0004 & 0.0014 & 0.3103 & 0.7566 \\
+    Married           & 0.0247 & 0.0666 & 0.3709 & 0.7110 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=500$;\; $R^2_{\text{within}}=0.0357$;\; $R^2_{\text{overall}}=0.7490$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsubsection*{Interpretation}
+\begin{itemize}[leftmargin=1.25em]
+  \item The family FE specification compares twins within the same family while allowing each family to have its own intercept $\alpha_f$. This removes all time-invariant shared background factors.
+  \item The schooling coefficient (\(\widehat\beta_1\approx0.085\)) is positive but not statistically significant at conventional levels (\(p\approx0.105\)); economically, it is close to the within (demeaned) estimate from part (a), indicating both approaches recover the same within estimator.
+  \item The coefficients on \(\texttt{exp}^2\) and \(\texttt{married}\) are small and imprecise, suggesting limited additional \emph{within-family} wage differences associated with these covariates once shared family effects are absorbed.
+  \item The reported \(R^2_{\text{within}}\) (\(\approx0.036\)) summarizes variation explained \emph{within families}; the much larger \(R^2_{\text{overall}}\) (\(\approx0.749\)) reflects that most cross-family wage differences are captured by the family intercepts \(\alpha_f\).
+\end{itemize}
+
+\subsection*{(c) Control Function (within by adding family means)}
+
+\paragraph{Model.}
+We estimate the \emph{control function} version of the within estimator for \textit{male} twins by regressing log wages on the individual covariates and their family means:
+\[
+  \texttt{lw}_{ft}
+  \;=\; \beta_1\,\texttt{educ}_{ft}
+  \;+\; \beta_3\,\texttt{exp}^2_{ft}
+  \;+\; \beta_4\,\texttt{married}_{ft}
+  \;+\; \delta_1\,\bar{\texttt{educ}}_{f}
+  \;+\; \delta_3\,\overline{\texttt{exp}^2}_{f}
+  \;+\; \delta_4\,\overline{\texttt{married}}_{f}
+  \;+\; u_{ft},
+\]
+using HC1 robust standard errors. Writing \(x_{ft}=(x_{ft}-\bar x_f)+\bar x_f\) shows that including \(\bar x_f\) absorbs shared family background; the coefficients on the \emph{individual} regressors
+\((\beta_1,\beta_3,\beta_4)\) coincide with the slopes from the demeaned and family–fixed–effects regressions.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Control function (men): individual covariates and family means (HC1 robust)}
+  \label{tab:q4c_ctrl_men}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=2.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {Coef.} & {SE(HC1)} & {$t$} & {$p$} \\
+    \midrule
+    Education                     & 0.0851 & 0.0689 & 1.2352 & 0.2168 \\
+    Experience$^{2}$              & 0.0004 & 0.0018 & 0.2366 & 0.8130 \\
+    Married                       & 0.0247 & 0.0987 & 0.2504 & 0.8023 \\
+    Family mean education         & 0.0030 & 0.0700 & 0.0431 & 0.9656 \\
+    Family mean experience$^{2}$  & -0.0003& 0.0018 & -0.1426& 0.8866 \\
+    Family mean married           & 0.3590 & 0.1199 & 2.9934 & 0.0028 \\
+    \midrule
+    \multicolumn{5}{l}{\footnotesize $N=500$;\; $R^2=0.1631$.} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Equivalence check.}
+The estimated slopes on the \emph{individual} regressors match those from parts (a) and (b):
+
+\begin{table}[h!]
+  \centering
+  \caption{Slopes on individual covariates are identical across (a), (b), and (c)}
+  \label{tab:q4c_compare}
+  \small
+  \begin{tabular}{l
+                  S[table-format=1.4]
+                  S[table-format=1.4]
+                  S[table-format=1.4]}
+    \toprule
+    Variable & {(a) Demeaned} & {(b) Family FE} & {(c) Control fn.} \\
+    \midrule
+    Education         & 0.0851 & 0.0851 & 0.0851 \\
+    Experience$^{2}$  & 0.0004 & 0.0004 & 0.0004 \\
+    Married           & 0.0247 & 0.0247 & 0.0247 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsubsection*{Interpretation and algebraic link}
+Because identical twins share age, \(\widetilde{\texttt{exp}}_{ft}=-\,\widetilde{\texttt{educ}}_{ft}\), so \(\texttt{exp}\) drops from the within/FE equations and only \(\texttt{exp}^2\) varies within family. Decompose each covariate:
+\[
+  x_{ft}=(x_{ft}-\bar x_f)+\bar x_f.
+\]
+Substituting into a linear model yields
+\[
+  \texttt{lw}_{ft}
+  = \underbrace{\beta^{\mathrm W}}_{\text{within slope}}(x_{ft}-\bar x_f)
+  + \underbrace{\delta}_{\text{between slope}}\bar x_f + \varepsilon_{ft}.
+\]
+Therefore, the coefficient on \(x_{ft}\) in \emph{(c)} equals the within slope \(\beta^{\mathrm W}\) recovered in \emph{(a)} (demeaning) and \emph{(b)} (family FE). Numerically, our estimates confirm this equivalence (Tables \ref{tab:q4a_within_men}, \ref{tab:q4b_fe_men}, \ref{tab:q4c_ctrl_men}, \ref{tab:q4c_compare}). Economically, the within-family schooling effect is about \(0.085\) log points per year, while within-family variation in \(\texttt{exp}^2\) and \(\texttt{married}\) explains little. The positive, significant family-mean coefficient on \(\overline{\texttt{married}}_f\) captures a \emph{shared} marriage component (selection/common factors) rather than an individual-specific premium.
 
 \end{document}
