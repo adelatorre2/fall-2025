@@ -22,7 +22,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{MATH 421 — 003, Fall 2025}
-\lhead{Homework [ENTER HW \# HERE]}
+\lhead{Homework 8}
 \cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
@@ -67,11 +67,49 @@ Prove, directly from the definitions, that ($s_n$) where $s_n = \frac{1}{n}$ is 
 \vspace{0.75em}
 
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+So I initially wanted to prove that $s_n = \frac{1}{n}$ is a converges and then say by 10.9 Lemma that since it converges, it must be Cauchy. However, the problem specifically asks to prove it directly from the definitions, so I will need to work with the definition of a Cauchy sequence directly. So to review, here is the definition of a Cauchy sequences: 
+
+\vspace{0.25em}
+
+\textbf{10.8 Definition.}\\
+\textit{A sequence ($s_n$) of real numbers is called a \textit{Cauchy sequence} if for each $\varepsilon > 0$, there exists an $N$ such that $m, n >N$ implies $|s_n - s_m| < \varepsilon$.}
+
+\vspace{0.25em}
+
+My plan is to show that for any given $\varepsilon > 0$, I can find an $N$ such that for all $m, n \geq N$, the absolute difference $|s_n - s_m|$ is less than $\varepsilon$. I will manipulate the expression $|s_n - s_m| = \left|\frac{1}{n} - \frac{1}{m}\right|$ and find a suitable $N$ based on $\varepsilon$ that guarantees that $\frac{1}{n} + \frac{1}{m} < \varepsilon$ for all $m, n \geq N$.
+
+To find such an $N$, notice that for $m, n \geq N$,
+\[
+\left| \frac{1}{n} - \frac{1}{m} \right|
+= \left| \frac{1}{n} + (\frac{-1}{m}) \right|
+\leq \frac{1}{n} + \frac{1}{m}.
+\]
+By triangle inequality.
+
+Thus, if we can make $\frac{1}{m} + \frac{1}{n} < \varepsilon$, the Cauchy condition will hold. So the question becomes: how can we choose an $N$ such that for all $m, n \geq N$, we guarantee $\frac{1}{m} + \frac{1}{n} < \varepsilon$? Well, we would just need to ensure that both $\frac{1}{m} < \frac{\varepsilon}{2}$ and $\frac{1}{n} < \frac{\varepsilon}{2}$. This would guarantee that their sum is less than $\varepsilon$.
+
+Then we would just manipulate these inequalities to find a suitable $N$. More concretely though, for $\frac{1}{n} < \frac{\varepsilon}{2}$, how big would $n$ need to be for $\frac{1}{n} < \frac{\varepsilon}{2}$ to hold? Rearranging gives $n > \frac{2}{\varepsilon}$. Similarly, for $\frac{1}{m} < \frac{\varepsilon}{2}$, we get $m > \frac{2}{\varepsilon}$. Thus, if we choose $N$ to be any natural number greater than $\frac{2}{\varepsilon}$, then for all $m, n \geq N$, both inequalities will hold.
+
+But then how could we know that we can find such an $N$? We know we can find a natural number $N$ such that $N > \frac{2}{\varepsilon}$? Well, by the Archimedean property, for any real number $\frac{2}{\varepsilon}$ there exists a natural number $N$ such that 
+\[
+N > \frac{2}{\varepsilon}.
+\]
+Then, for all $m, n \geq N$ we have $\frac{1}{m} \leq \frac{\varepsilon}{2}$ and $\frac{1}{n} \leq \frac{\varepsilon}{2}$, so that
+\[
+\frac{1}{n} + \frac{1}{m} \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+Therefore, this choice of $N$ guarantees that $|s_n - s_m| < \varepsilon$ for all $m, n \geq N$.
+
+
 \vspace{0.25em}
 
 \textbf{Proof.}\\
-% (Your proof goes here.)
+Let $\varepsilon >0$ and $N > \frac{2}{\varepsilon}$. Then, for all $m, n > N$,
+\[
+|s_n - s_m| = \left| \frac{1}{n} - \frac{1}{m} \right| = \left| \frac{1}{n} + \left( \frac{-1}{m} \right) \right| \leq \frac{1}{n} + \frac{1}{m} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+
+Since $\varepsilon > 0$ was arbitrary, ($s_n$) is a Cauchy sequence.
 \qed
 
 % ------------------ problem 2 ------------------
@@ -102,7 +140,10 @@ Let ($s_n$) be a sequence such that $|s_{n+1} - s_n| < 2^{-n}$ for all $n \in \m
 
 % ------------------ problem 4 ------------------
 \problem[Ross Chapter 2 14.6]{4}
-
+\begin{enumerate}[label=(\alph*)]
+  \item Prove that if $\sum |a_n|$ converges and ($b_n$) is a bounded sequence, then $\sum a_n b_n$ converges. \textit{Hint: Use Theorem 14.4.}
+  \item Observe that Corollary 14.7 is a special case of part (a).
+\end{enumerate}
 \vspace{0.75em}
 
 \textbf{Discussion.} \\
@@ -115,7 +156,7 @@ Let ($s_n$) be a sequence such that $|s_{n+1} - s_n| < 2^{-n}$ for all $n \in \m
 
 % ------------------ problem 5 ------------------
 \problem[Ross Chapter 2 14.7]{5}
-
+Prove that if $\sum a_n$ is a convergent series of nonnegative numbers and $p > 1$, then $\sum a_{n}^p$ converges.
 \vspace{0.75em}
 
 \textbf{Discussion.} \\
