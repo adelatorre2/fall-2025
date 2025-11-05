@@ -1,0 +1,143 @@
+% !TEX root = ./adlt_homework_8.tex
+\documentclass[12pt]{article}
+
+% --- Core math + proof tools ---
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Lists and spacing ---
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=\textbf{(\alph*)}, leftmargin=2em, itemsep=0.25em}
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+
+% --- Page geometry + header/footer ---
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{csquotes} % to use blockquotes
+\usepackage{graphicx} % for figures
+\graphicspath{{images/}} % tells LaTeX to look in the “images” folder
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 421 — 003, Fall 2025}
+\lhead{Homework [ENTER HW \# HERE]}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Links (nice for references, stays subtle) ---
+\usepackage[hidelinks]{hyperref}
+
+% --- Title info ---
+\title{Homework 8}
+\author{Alejandro De La Torre \\ MATH 421 — The Theory of Single Variable Calculus \\ Section 003 \\ Instructor: Grace Work}
+\date{November 2025}
+
+% --- (Optional) proof environments you might want ---
+\newtheorem*{claim}{Claim}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{remark}{Remark}
+
+% --- Convenience: a Problem header command ---
+\newcommand{\problem}[2][]{%
+  \vspace{0.5em}
+  \hrule\vspace{0.4em}
+  \textbf{Problem #2}\if\relax\detokenize{#1}\relax\else\; \textit{(#1)}\fi
+  \vspace{0.25em}\hrule\vspace{0.8em}
+}
+
+% --- Convenience: an ignore command to comment out blocks ---
+\newcommand{\ignore}[1]{}
+
+
+\begin{document}
+\maketitle
+
+% ------------------ collaboration + sources ------------------
+\section*{Collaboration Statement}
+% (List any classmates you collaborated with here, or write ``I worked alone'' if you did not collaborate with anyone.)
+
+\bigskip
+
+
+% ------------------ problem 1 ------------------
+\problem[Cauchy Sequence: $s_n = \frac{1}{n}$]{1}
+Prove, directly from the definitions, that ($s_n$) where $s_n = \frac{1}{n}$ is a Cauchy sequence.
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+% ------------------ problem 2 ------------------
+\problem[Cauchy Sequence: $x_n = \sqrt{n}$]{2}
+Let $x_n = \sqrt{n}$. Show that while the difference between consecutve terms goes to 0, i.e., show $\lim |x_{n+1} - x_n| = 0$, the sequence ($x_n$) is not a Cauchy sequence.
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+% ------------------ problem 3 ------------------
+\problem[Ross Chapter 2 10.6 (a)]{3}
+Let ($s_n$) be a sequence such that $|s_{n+1} - s_n| < 2^{-n}$ for all $n \in \mathbb{N}$. Prove that ($s_n$) is a Cauchy sequence and hence a cin
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+% ------------------ problem 4 ------------------
+\problem[Ross Chapter 2 14.6]{4}
+
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+% ------------------ problem 5 ------------------
+\problem[Ross Chapter 2 14.7]{5}
+
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+% ------------------ problem 6 ------------------
+\problem[$\varepsilon - \delta$ Convgernce Proof]{6}
+Prove using the $\varepsilon - \delta$ definition of the limit of a function that if $\lim_{x \to a} f(x) = L$, then $\lim_{x \to a} 4f(x) = 4L$.
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+
+\end{document}
