@@ -28,24 +28,30 @@
 
 % --- Links (nice for references, stays subtle) ---
 \usepackage[hidelinks]{hyperref}
+\setcounter{tocdepth}{1}
 
 % --- Title info ---
 \title{Homework 8}
 \author{Alejandro De La Torre \\ MATH 421 — The Theory of Single Variable Calculus \\ Section 003 \\ Instructor: Grace Work}
 \date{November 2025}
 
-% --- (Optional) proof environments you might want ---
+% --- proof environments that might be relevant ---
 \newtheorem*{claim}{Claim}
 \newtheorem*{lemma}{Lemma}
 \newtheorem*{remark}{Remark}
 
-% --- Convenience: a Problem header command ---
+% --- Convenience: a Problem header command (section-like with TOC/bookmarks) ---
+% Usage: \problem[Optional short title]{<number>}
+\makeatletter
 \newcommand{\problem}[2][]{%
-  \vspace{0.5em}
-  \hrule\vspace{0.4em}
-  \textbf{Problem #2}\if\relax\detokenize{#1}\relax\else\; \textit{(#1)}\fi
-  \vspace{0.25em}\hrule\vspace{0.8em}
+  \def\prob@title{Problem #2\if\relax\detokenize{#1}\relax\else\ (\textit{#1})\fi}%
+  \phantomsection%
+  \pdfbookmark[1]{\prob@title}{prob#2}%
+  \addcontentsline{toc}{section}{\prob@title}%
+  \section*{\prob@title}%
+  \vspace{-0.25em}\hrule\vspace{0.8em}%
 }
+\makeatother
 
 % --- Convenience: an ignore command to comment out blocks ---
 \newcommand{\ignore}[1]{}
@@ -58,7 +64,14 @@
 \section*{Collaboration Statement}
 % (List any classmates you collaborated with here, or write ``I worked alone'' if you did not collaborate with anyone.)
 
+\tableofcontents
 \bigskip
+\hrule
+\bigskip
+
+
+
+\newpage
 
 
 % ------------------ problem 1 ------------------
@@ -71,7 +84,7 @@ So I initially wanted to prove that $s_n = \frac{1}{n}$ is a converges and then 
 
 \vspace{0.25em}
 
-\textbf{10.8 Definition.}\\
+\textbf{10.8 Definition.}\label{def:10.8}\\
 \textit{A sequence ($s_n$) of real numbers is called a \textit{Cauchy sequence} if for each $\varepsilon > 0$, there exists an $N$ such that $m, n >N$ implies $|s_n - s_m| < \varepsilon$.}
 
 \vspace{0.25em}
@@ -118,24 +131,158 @@ Let $x_n = \sqrt{n}$. Show that while the difference between consecutve terms go
 \vspace{0.75em}
 
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+So got to go back and review the definition of a Cauchy sequence again, which is the following:
+
+\textbf{10.8 Definition.}\\
+\textit{A sequence ($s_n$) of real numbers is called a \textit{Cauchy sequence} if for each $\varepsilon > 0$, there exists an $N$ such that $m, n >N$ implies $|s_n - s_m| < \varepsilon$.}
+
+Now my intuition lead me down the path of trying to directly prove the negation of the statement/definition of a Cauchy sequence, however I am not a mathematician at this juncture to define what a non-Cauchy sequence is (and matter of fact just about everything is not a Cauchy sequence --- a slice of pizza is not a Cauchy sequence, but that is not very helpful), and thus we must approach this differently. In particular, since we know what a Cauchy sequence is, we can prove that ($x_n$) is not Cauchy by showing that it fails to meet the criteria of being a Cauchy sequence by proving by contradiction (i.e. assume is a Cauchy sequence, attempt to prove Cauchy, then hit the contradiction that indeed ).
+
+Yet at the same time, I want to be a mathematician, and as such I need to be lazy; I can prove that is not Cauchy by using what we have proven and applying known theorems and lemmas to deduce that it is not Cauchy. To do this, we know that $x_n = \sqrt{n}$ is unbounded above and monotonically increasing and thus diverges to infinity (we have proven this in class/homework/etc). So by \textbf{Theorem 10.9}, which states: \textit{"convergent sequences are Cauchy sequences"}, we can say that since it diverges, it cannot be Cauchy. We could also potentially say that since it is unbounded above, then it cannot be Cauchy by \textbf{10.10 Lemma} which states: \textit{"Cauchy sequences are bounded"}, and thus since it is not bounded above then it cannot be Cauchy. 
+
+In short, we just need to show that $\lim |x_{n+1} - x_n| = 0$ and then use the above theorems/lemmas to conclude that it is not Cauchy.
 \vspace{0.25em}
 
+
+% \textbf{Proof (by contradiction).}
+% Assume by way of contradiction, that $(x_n)$ with $x_n=\sqrt{n}$ is a Cauchy sequence. Let $\varepsilon=\tfrac12$. There exists $N$ such that for all $m,n>N$,
+% \[
+% |x_m-x_n|=\big|\sqrt{m}-\sqrt{n}\big|<\tfrac12.
+% \]
+
+% Now choose the specific indices
+% \[
+% n=(N+1)^2 \quad\text{and}\quad m=(N+2)^2.
+% \]
+% Clearly \(m,n>N\). But then
+% \[
+% |x_m-x_n|
+% =\big|\sqrt{(N+2)^2}-\sqrt{(N+1)^2}\big|
+% =\big|(N+2)-(N+1)\big|=1,
+% \]
+% which contradicts \(|x_m-x_n|<\tfrac12\).
+% Therefore our assumption that $(\sqrt{n})$ is Cauchy is false, and $(\sqrt{n})$ is not a Cauchy sequence. \qed
+
 \textbf{Proof.}\\
-% (Your proof goes here.)
+First, we show that $\lim_{n \to \infty} |x_{n+1} - x_n| = 0$.
+
+We have
+\[
+|x_{n+1} - x_n| = |\sqrt{n+1} - \sqrt{n}|.
+\]
+To simplify this, multiply by the conjugate $\frac{\sqrt{n+1} + \sqrt{n}}{\sqrt{n+1} + \sqrt{n}}$:
+\[
+|\sqrt{n+1} - \sqrt{n}| = \left| (\sqrt{n+1} - \sqrt{n}) 
+\cdot \frac{\sqrt{n+1} + \sqrt{n}}{\sqrt{n+1} + \sqrt{n}} \right|
+= \left| \frac{(n+1) - n}{\sqrt{n+1} + \sqrt{n}} \right|
+= \frac{1}{\sqrt{n+1} + \sqrt{n}}.
+\]
+Now, since $\sqrt{n+1} + \sqrt{n} > 2\sqrt{n}$ for all $n$, we have
+\[
+0 < \frac{1}{\sqrt{n+1} + \sqrt{n}} < \frac{1}{2\sqrt{n}}.
+\]
+We know that $\lim_{n \to \infty} \frac{1}{2\sqrt{n}} = 0$, so by the Squeeze Theorem,
+\[
+\lim_{n \to \infty} \frac{1}{\sqrt{n+1} + \sqrt{n}} = 0.
+\]
+Therefore,
+\[
+\lim_{n \to \infty} |x_{n+1} - x_n| = 0. 
+\]
+Next, since $x_n = \sqrt{n}$ diverges to $+\infty$, it is neither bounded nor convergent. By Theorem 10.9, only convergent sequences can be Cauchy, and by Lemma 10.10, Cauchy sequences are necessarily bounded. Hence, since $x_n$ is neither bounded nor convergent, it cannot be a Cauchy sequence.
 \qed
 
 % ------------------ problem 3 ------------------
 \problem[Ross Chapter 2 10.6 (a)]{3}
-Let ($s_n$) be a sequence such that $|s_{n+1} - s_n| < 2^{-n}$ for all $n \in \mathbb{N}$. Prove that ($s_n$) is a Cauchy sequence and hence a cin
+Let ($s_n$) be a sequence such that $|s_{n+1} - s_n| < 2^{-n}$ for all $n \in \mathbb{N}$. Prove ($s_n$) is a Cauchy sequence and hence a convergent sequence.
 \vspace{0.75em}
 
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+We are told that the difference between consecutive terms of the sequence $(s_n)$ is bounded by $2^{-n}$ for every $n$. 
+Although we do not know the explicit form of $s_n$ (believe me I tried), this bound tells us that the "steps" between successive terms get extremely small as $n$ grows larger. 
+Intuitively, this means that as we move further along the sequence, each new term changes less and less, suggesting the entire sequence should stabilize — which is what I understand to be the intuition behind the concept of a Cauchy sequence.
+
+To prove this rigorously, we recall the 10.8 definition: a sequence $(s_n)$ is Cauchy if, for every $\varepsilon > 0$, there exists an $N$ such that for all $m, n > N$, we have 
+\[
+|s_m - s_n| < \varepsilon.
+\]
+Since we are given a bound on $|s_{n+1} - s_n|$, we will use the triangle inequality to write $|s_m - s_n|$ as a telescoping sum of consecutive differences and then bound that sum using a geometric series. 
+
+Now the question becomes: WHY?!? How would be know how to do that?!? To spare you the stress that I went through for several hours Thursday night, lets first define what we know and do not know.
+
+We are not given a formula for $s_n$; we are only told that the \emph{increment} between consecutive terms is tiny:
+\[
+|s_{n+1}-s_n|<2^{-n}\qquad(n\in\mathbb N).
+\]
+The Cauchy goal, however, is global: for any far–apart indices $m>n$, we must control $|s_m-s_n|$. The only way to relate a far jump to the data we actually have (consecutive jumps) is to \emph{decompose the far jump into consecutive ones}:
+\[
+s_m-s_n=(s_m-s_{m-1})+(s_{m-1}-s_{m-2})+\cdots+(s_{n+1}-s_n),
+\]
+and then apply the triangle inequality to pass from one big absolute value to the sum of absolute values:
+\[
+|s_m-s_n|\le |s_m-s_{m-1}|+|s_{m-1}-s_{m-2}|+\cdots+|s_{n+1}-s_n|.
+\]
+This is the “telescoping of differences” step; it is \emph{forced} by the type of information we have (bounds on consecutive differences) and the type of conclusion we want (a bound on $|s_m-s_n|$).
+
+Next, why a geometric series? Each summand is controlled by the hypothesis with a \emph{geometric} decay:
+\[
+|s_{k+1}-s_k|<2^{-k}\qquad(k=n,n+1,\dots,m-1).
+\]
+Therefore
+\[
+|s_m-s_n| \;<\; 2^{-n}+2^{-(n+1)}+\cdots+2^{-(m-1)}
+\;\le\; 2^{-n}\Bigl(1+\tfrac12+\tfrac1{2^2}+\cdots\Bigr)
+\;<\; 2^{-n}\cdot\frac{1}{1-\tfrac12}
+\;=\;2^{-(n-1)}.
+\]
+We have turned a complicated difference $|s_m-s_n|$ into the \emph{tail of a geometric series}. Geometric tails are ideal here because they have a closed form and can be made arbitrarily small by choosing $n$ large.
+
+Finally, why this proves Cauchy efficiently. The Cauchy condition asks: given $\varepsilon>0$, can we choose $N$ so that for all $m,n\ge N$ we have $|s_m-s_n|<\varepsilon$? From the bound above,
+\[
+|s_m-s_n|\le 2^{-(n-1)}\le 2^{-(N-1)}.
+\]
+Thus it suffices to take $N$ so large that $2^{-(N-1)}<\varepsilon$, e.g.
+\[
+N>1+\log_2\!\Bigl(\tfrac1\varepsilon\Bigr).
+\]
+This uses only the given local information $|s_{k+1}-s_k|<2^{-k}$, avoids guessing a closed form for $s_n$, and directly matches the quantifiers in the Cauchy definition. In short:
+\begin{itemize}
+  \item We telescope because we only know bounds for consecutive gaps.
+  \item We sum a geometric tail because the bounds decay like $2^{-k}$.
+  \item A geometric tail has an explicit, rapidly vanishing bound, which lets us pick $N$ for any prescribed $\varepsilon$.
+\end{itemize}
+A helpful heuristic: imagine walking where each step is at most half as big as the previous (up to a factor of $2^{-k}$). After step $n$, the total distance you can still cover is less than twice the next step. That “tail” shrinking to zero is exactly the Cauchy property. 
+\textit{PS: with the benefit of hindsight; this is kinda sort hijacking the Cauchy criterion in the 14.3 Definition.}
 \vspace{0.25em}
 
 \textbf{Proof.}\\
-% (Your proof goes here.)
+Let $m, n \in \mathbb{N}$ with $m > n$. By the triangle inequality,
+\[
+|s_m - s_n| = |(s_m - s_{m-1}) + (s_{m-1} - s_{m-2}) + \dots + (s_{n+1} - s_n)|
+\leq |s_m - s_{m-1}| + |s_{m-1} - s_{m-2}| + \dots + |s_{n+1} - s_n|.
+\]
+Using the given inequality $|s_{k+1} - s_k| < 2^{-k}$, we obtain
+\[
+|s_m - s_n| < 2^{-n} + 2^{-(n+1)} + 2^{-(n+2)} + \dots + 2^{-(m-1)}.
+\]
+This is a finite geometric series with first term $2^{-n}$ and ratio $\frac{1}{2}$. 
+The sum of this series is
+\[
+2^{-n} \frac{1 - (1/2)^{m-n}}{1 - 1/2} = 2^{-n} (1 - (1/2)^{m-n}) \cdot 2 = 2^{1-n}(1 - (1/2)^{m-n}).
+\]
+Since $(1 - (1/2)^{m-n}) < 1$, we have
+\[
+|s_m - s_n| < 2^{1-n}.
+\]
+
+Now let $\varepsilon > 0$. Choose $N \in \mathbb{N}$ such that $2^{1-N} < \varepsilon$. 
+Then for all $m, n > N$, we have
+\[
+|s_m - s_n| < 2^{1-n} < 2^{1-N} < \varepsilon.
+\]
+Thus, by definition, $(s_n)$ is a Cauchy sequence.
+
+Since every Cauchy sequence in $\mathbb{R}$ is convergent, we conclude that $(s_n)$ converges.
 \qed
 
 % ------------------ problem 4 ------------------
@@ -147,11 +294,95 @@ Let ($s_n$) be a sequence such that $|s_{n+1} - s_n| < 2^{-n}$ for all $n \in \m
 \vspace{0.75em}
 
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+So before we tackle this problem I think it is absolutely essential we review the relevent theorems, definitions, corollaries, etc relevant to this problem, begining with 14.4 which is detailed below.
+
+\textbf{Theorem 14.4.}\\
+\textit{A series converges if and only if it satisfies the Cauchy criterion.}
 \vspace{0.25em}
 
-\textbf{Proof.}\\
-% (Your proof goes here.)
+We note that the "\textit{Cauchy criterion}" comes from 14.3 definition:
+
+\noindent\textbf{14.3 Definition.}\\
+We say a series $\sum a_n$ satisfies the \emph{Cauchy criterion} if its
+sequence $(s_n)$ of partial sums is a Cauchy sequence [see Definition \hyperref[def:10.8]{10.8}]:
+
+\begin{equation}\label{eq:cauchy-1}
+\text{for each }\ \varepsilon>0\ \text{ there exists a number }\ N\ \text{ such that }\
+m,n>N\ \ \implies\ \ |s_n-s_m|<\varepsilon .
+\tag{1}
+\end{equation}
+
+Nothing is lost in this definition if we impose the restriction $n>m$.
+Moreover, it is only a notational matter to work with $m-1$ where $m\le n$
+instead of $m$ where $m<n$. Therefore \eqref{eq:cauchy-1} is equivalent to
+
+\begin{equation}\label{eq:cauchy-2}
+\text{for each }\ \varepsilon>0\ \text{ there exists a number }\ N\ \text{ such that }\
+n\ge m > N\ \ \implies\ \ |s_n-s_{m-1}|<\varepsilon .
+\tag{2}
+\end{equation}
+
+Since $s_n-s_{m-1}=\sum_{k=m}^{n} a_k$, condition \eqref{eq:cauchy-2} can be rewritten
+\begin{equation}\label{eq:cauchy-3}
+\text{for each }\ \varepsilon>0\ \text{ there exists a number }\ N\ \text{ such that }\
+n\ge m > N\ \ \implies\ \ \left|\sum_{k=m}^{n} a_k\right|<\varepsilon .
+\tag{3}
+\end{equation}
+
+\textbf{Corollary 14.7.}\\
+\textit{Absolutely convergent series are convergent.}
+
+The corollary 14.7 is, to my understanding an application or result from 14.6 Comparison test (i) (well, corollary) such that if we suppose $\sum a_n$ converges where $a_n = |b_n|$ for all $n$, then $|b_n| \leq a_n$, so $\sum b_n$ converges by 14.6(i) and thus we say $\sum b_n$ is absolutely convergent.
+
+In continuation, lets discuss what exactly we seek to prove. From the problem statement, we are asked to show that if $\sum |a_n|$ converges and $(b_n)$ is a bounded sequence, then $\sum a_n b_n$ converges. This kind of problem asks us to relate two series: one whose absolute values converge, and another that introduces a bounded factor $b_n$. The challenge is that we do not know the explicit form of $(a_n)$ or $(b_n)$, so we cannot rely on direct computation or algebraic manipulation. Instead, we must reason from the structure of the problem using the \emph{Cauchy criterion for convergence} (Theorem 14.4).
+
+Theorem 14.4 gives us a tool that allows us to prove convergence without knowing a closed form for the series. Specifically, if we can show that the tails of the partial sums (i.e., the sums from index $n$ to $m$) can be made arbitrarily small for sufficiently large $n,m$, then the series converges. This is the natural setup for this problem because we are told that $\sum |a_n|$ converges, which by definition means its tails $\sum_{k=m}^{n}|a_k|$ can be made as small as we like. Hence, we already know that the “unweighted” series has shrinking tails; what we must now show is that introducing the bounded weights $b_k$ does not destroy this property.
+
+To do this, we take advantage of the given information that $(b_n)$ is bounded. This means there exists a constant $K$ such that $|b_n|\le K$ for all $n$. Conceptually, this means that while $b_n$ may vary in sign or value, it can never blow up; it acts as a controlled multiplier. This allows us to \emph{bound} the size of each term $|a_k b_k|$ by $K|a_k|$. The insight here is that if the “absolute” series $\sum |a_k|$ converges, then even after multiplying by a bounded factor $K$, the resulting sum remains controlled. Thus, the boundedness of $(b_n)$ ensures that the convergence of $\sum |a_n|$ “dominates” and enforces convergence of $\sum a_n b_n$.
+
+With this setup, the proof becomes straightforward under the Cauchy criterion. We fix $\varepsilon > 0$ and find $N$ such that for all $m,n > N$, the tail of $\sum |a_n|$ is less than $\varepsilon/K$. This scaling by $K$ is critical — it allows us to compensate for the largest possible value of $|b_n|$. Then we use the triangle inequality to compare the partial sum of $\sum a_n b_n$ to the partial sum of $\sum |a_n|$. Since the latter can be made arbitrarily small, so can the former, proving that $\sum a_n b_n$ satisfies the Cauchy condition and hence converges by Theorem 14.4.
+
+The second part (b) follows naturally once we understand this argument. If we choose $b_n = 1$ for all $n$, then the “bounded multiplier” becomes trivial ($K=1$), and the statement reduces exactly to the well-known Corollary 14.7: absolutely convergent series are convergent. The key realization is that (a) generalizes this corollary by showing that even when the sequence $(b_n)$ varies, as long as it remains bounded, the convergence of $\sum |a_n|$ guarantees the convergence of $\sum a_n b_n$.
+
+To summarize the reasoning chain:
+\begin{itemize}
+  \item Theorem 14.4 allows us to use tail sums to test convergence instead of finding explicit limits.
+  \item The boundedness of $(b_n)$ lets us uniformly control each term $|a_k b_k|$ by a constant multiple of $|a_k|$.
+  \item The convergence of $\sum |a_n|$ implies its tails are arbitrarily small, which transfers directly to $\sum a_n b_n$ via this bound.
+  \item Therefore, the Cauchy criterion holds for $\sum a_n b_n$, proving convergence.
+  \item Setting $b_n = 1$ recovers Corollary 14.7 as a special case.
+\end{itemize}
+
+This reasoning reveals why the Cauchy criterion is the ideal framework here: it circumvents the need to compute limits of partial sums and instead leverages structural properties — boundedness and absolute convergence — to prove convergence indirectly but rigorously.
+\vspace{0.25em}
+
+\textbf{Proof.}
+\begin{enumerate}[label=(\alph*)]
+\item
+Assume $\sum |a_n|$ converges and $(b_n)$ is bounded. Then there exists $K\ge 0$ such that $|b_n|\le K$ for all $n\in\mathbb N$.
+Let $(S_N)$ denote the partial sums of $\sum a_n b_n$, and fix $\varepsilon>0$.
+
+Because $\sum |a_n|$ converges, its tails go to $0$. Hence there is $N\in\mathbb N$ such that
+\[
+\sum_{k=n}^{m} |a_k| \;<\; 
+\begin{cases}
+\varepsilon/K, &\text{if } K>0,\\[0.2em]
+\varepsilon, &\text{if } K=0,
+\end{cases}
+\qquad\text{for all }m\ge n\ge N.
+\]
+For any $m\ge n\ge N$, by the triangle inequality and boundedness of $(b_n)$,
+\[
+\bigg|\sum_{k=n}^{m} a_k b_k\bigg|
+\;\le\; \sum_{k=n}^{m} |a_k|\,|b_k|
+\;\le\; K \sum_{k=n}^{m} |a_k|
+\;<\; \varepsilon .
+\]
+Thus the partial sums $(S_N)$ satisfy the Cauchy criterion (Theorem~14.4), so $\sum a_n b_n$ converges.
+
+\item
+Take $b_n\equiv 1$ (constant and hence bounded). Part (a) then yields that if $\sum |a_n|$ converges, so does $\sum a_n$. This is exactly Corollary~14.7 (``absolutely convergent $\Rightarrow$ convergent'').
+\end{enumerate}
 \qed
 
 % ------------------ problem 5 ------------------
@@ -160,12 +391,59 @@ Prove that if $\sum a_n$ is a convergent series of nonnegative numbers and $p > 
 \vspace{0.75em}
 
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+\emph{What the problem asks.} We must show: if $\sum a_n$ converges and $a_n\ge 0$ for all $n$, then for every fixed $p>1$ the series $\sum a_n^{\,p}$ also converges. In other words, from the convergence of one nonnegative series we want to deduce the convergence of a ``more rapidly vanishing'' series built from the same terms.
+
+\emph{What we need to prove in practice.} By the Comparison Test (Ross 14.6(i)), a standard way to prove convergence of a nonnegative series is to compare its terms to those of a \emph{known} convergent nonnegative series. Just recap, here is the 14.6 definition:
+
+\noindent\textbf{14.6 Comparison Test.}\\
+\textit{Let $\sum a_n$ be a series where $a_n \ge 0$ for all $n$.}
+\begin{enumerate}[label=(\roman*), leftmargin=2.5em, itemsep=0.25em]
+  \item If $\sum a_n$ converges and $|b_n| \le a_n$ for all $n$, then $\sum b_n$ converges.
+  \item If $\sum a_n = +\infty$ and $b_n \ge a_n$ for all $n$, then $\sum b_n = +\infty$.
+\end{enumerate}
+
+Since $\sum a_n$ itself is convergent and nonnegative, it is the most natural candidate to compare to. Thus the key is to show that \emph{eventually}
+\[
+0\le a_n^{\,p}\ \le\ a_n .
+\tag{$\ast$}
+\]
+Once $(\ast)$ holds for all $n\ge N$, the Comparison Test gives the convergence of the tail $\sum_{n=N}^\infty a_n^{\,p}$; adding the finite prefix $\sum_{n=1}^{N-1} a_n^{\,p}$ does not affect convergence of the whole series.
+
+\emph{Why $(\ast)$ is the right inequality and where it comes from.}
+From Corollary 14.5, convergence of $\sum a_n$ implies $a_n\to 0$. Since the terms are nonnegative, there exists $N$ with $0\le a_n\le 1$ for all $n\ge N$. On the interval $[0,1]$ the function $t\mapsto t^p$ is increasing and satisfies $t^p\le t$ when $p>1$ (geometrically, the graph of $t^p$ lies below the line $t$ on $[0,1]$; analytically, $t^{p-1}\le 1$ for $0\le t\le 1$). Therefore for all $n\ge N$ we have
+\[
+0\le a_n^{\,p}=a_n\cdot a_n^{\,p-1}\ \le\ a_n\cdot 1\ =\ a_n,
+\]
+which is precisely $(\ast)$.
+
+\emph{Why this approach is efficient/optimal here.}
+\begin{itemize}
+  \item It uses only two basic tools from this section: (i) ``$\sum a_n$ convergent $\Rightarrow a_n\to0$'' (14.5) to push the tail into $[0,1]$, and (ii) the Comparison Test 14.6(i) to transfer convergence from $\sum a_n$ to $\sum a_n^{\,p}$.
+  \item It avoids guessing a closed form or resorting to more advanced tests. The inequality $t^p\le t$ on $[0,1]$ is exactly tailored to nonnegative series whose terms go to $0$.
+  \item Working on the \emph{tail} is essential: a finite number of exceptional indices (where perhaps $a_n>1$) never affect convergence, so we do not waste effort controlling them.
+\end{itemize}
+
+\emph{How the proof will read.} We first pick $N$ so that $0\le a_n\le 1$ for $n\ge N$ (by 14.5). Then for $n\ge N$, $0\le a_n^{\,p}\le a_n$, so by 14.6(i) the tail $\sum_{n=N}^\infty a_n^{\,p}$ converges. Adding the finite sum $\sum_{n=1}^{N-1} a_n^{\,p}$ finishes the argument. This exactly establishes the desired conclusion that $\sum a_n^{\,p}$ converges.
 \vspace{0.25em}
 
 \textbf{Proof.}\\
-% (Your proof goes here.)
-\qed
+Assume $\sum_{n=1}^\infty a_n$ is a convergent series with $a_n\ge 0$ for all $n$, and let $p>1$.
+Since $\sum a_n$ converges with nonnegative terms, we have $a_n\to 0$ as $n\to\infty$.
+Hence there exists $N\in\mathbb N$ such that
+\[
+0 \le a_n \le 1 \qquad \text{for all } n\ge N.
+\]
+
+For $t\in[0,1]$ and $p>1$ we have $t^p \le t$ (because the function $t\mapsto t^p$ is increasing and lies below the line $t\mapsto t$ on $[0,1]$ when $p>1$). Therefore, for all $n\ge N$,
+\[
+0 \le a_n^p \le a_n .
+\]
+By the Comparison Test (Ross 14.6(i)), since $\sum_{n=N}^\infty a_n$ converges, the tail
+$\sum_{n=N}^\infty a_n^p$ also converges. Adding the finite sum
+$\sum_{n=1}^{N-1} a_n^p$ shows that the whole series $\sum_{n=1}^\infty a_n^p$ converges.
+
+Thus, if $\sum a_n$ is a convergent series of nonnegative numbers and $p>1$, then
+$\sum a_n^{\,p}$ converges. \qed
 
 % ------------------ problem 6 ------------------
 \problem[$\varepsilon - \delta$ Convgernce Proof]{6}
