@@ -1,0 +1,60 @@
+\usepackage[most]{tcolorbox}
+\tcbset{
+  defstyle/.style={
+    enhanced,
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    title=Definition,
+    sharp corners,
+    boxrule=0.8pt,
+    breakable,
+  }
+}
+
+\newenvironment{definitionbox}[1][]{
+  \begin{tcolorbox}[defstyle,title={#1}]
+}{
+  \end{tcolorbox}
+}
+
+% Usage
+\begin{definitionbox}[14.3 Definition — Cauchy Criterion]
+We say a series $\sum a_n$ satisfies the \emph{Cauchy criterion} if its
+sequence $(s_n)$ of partial sums is a Cauchy sequence:
+\[
+\text{for each } \varepsilon>0, \text{ there exists an } N
+\text{ such that } m,n > N \implies |s_n - s_m| < \varepsilon.
+\]
+\end{definitionbox}
+
+
+MORE POLISHED DESIGN:
+
+\tcbset{
+  fancystyle/.style={
+    enhanced,
+    colback=blue!3!white,
+    colframe=blue!60!black,
+    fonttitle=\bfseries,
+    title=Definition,
+    attach boxed title to top left={yshift=-2mm,xshift=2mm},
+    boxed title style={colback=blue!60!black, colframe=blue!60!black},
+    coltitle=white,
+    rounded corners,
+    shadow={0.7mm}{-0.7mm}{0mm}{black!20!white},
+    breakable,
+  }
+}
+
+\newenvironment{fancydef}[1][]{
+  \begin{tcolorbox}[fancystyle,title={#1}]
+}{
+  \end{tcolorbox}
+}
+
+% Usage
+\begin{fancydef}[14.3 Definition — Cauchy Criterion]
+We say a series $\sum a_n$ satisfies the \emph{Cauchy criterion} if its
+sequence $(s_n)$ of partial sums is a Cauchy sequence.
+\end{fancydef}
