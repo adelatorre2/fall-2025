@@ -1,0 +1,151 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{graphicx} % for q3 graph pic
+\hypersetup{colorlinks=true,linkcolor=black}
+\sisetup{table-number-alignment=center,table-figures-integer=1,table-figures-decimal=3}
+
+\title{ECON 695 Problem Set 6}
+\author{Alejandro De La Torre}
+\date{November 2, 2025}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Due: 11:59PM Central Time on Sunday 11/09/2025.}\\
+\emph{Note: This problem set will be graded on a complete/incomplete basis. You’ll receive full credit for each question as long as you make a reasonable attempt. Use this problem set to study for Midterm 2.}
+
+\bigskip
+
+\section*{1. (2 points) Lecture 6 -- Head Start Impact Study}
+In Lecture 6 we introduced the Head Start Impact Study, a nation-wide experiment in which Head Start (HS) seats are randomly assigned to families, and researchers use the experiment to assess the effects of HS on children’s school readiness and parental outcomes. 5,000 kids are randomly assigned to a treatment group (offered a HS seat) and a control group (no initial offer of HS seat). The table below comes from Bitler, Domina, and Hoynes (2015). Read the table and answer the following questions.
+
+\begin{table}[h!]
+  \centering
+  \caption{Child care setting, by treatment or control status}
+  \label{tab:hs_table2}
+  \begin{tabular}{l S S S}
+    \toprule
+    & {Treatment Mean} & {Control Mean} & {Difference T--C} \\
+    \midrule
+    \emph{Head Start in HS Year} & & & \\
+    Head Start (Administrative report) & 0.857 & 0.153 & 0.705\textsuperscript{***} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
+  \item Is the Head Start Impact Study a perfect randomized control trial (RCT)? Why or why not?\\[0.5em]
+  % ANSWER HERE
+
+  \item Let $D_i=1$ if the kid attended preschool using a Head Start seat, and let $Z_i=1$ if the kid $i$ is assigned to the treatment group with initial offers of HS seats. If you estimate a first-stage regression of $D_i$ on a constant and $Z_i$, what are the estimates $\hat{\pi}_0$ and $\hat{\pi}_1$? Hint: use the numbers in the Table.
+  \[
+    D_i = \hat{\pi}_0 + \hat{\pi}_1 Z_i + \hat{\varepsilon}_i.
+  \]
+  % ANSWER HERE
+
+  \item What does $\hat{\pi}_1$ represent? Hint: compliance.\\[0.5em]
+  % ANSWER HERE
+\end{enumerate}
+
+\newpage
+
+\section*{2. (2 points) Lecture 7 -- Local Average Treatment Effects (IV-LATE)}
+Let $Y_i(d)$ denote a person $i$'s potential outcome when $D_i=d\in\{0,1\}$. Suppose there is an instrument $Z_i$ for $D_i$ that is randomly assigned $\big(D_i(0),D_i(1)\big)\ \perp\!\!\!\perp\ Z_i$ and satisfies the exclusion restriction, $Y_i(d,z)\equiv Y_i(d)$. We can use the IV--LATE framework to estimate the average treatment effects for some subpopulations (compliers under the monotonicity assumption). However, suppose there are some defiers with $D_i(0)=1$ and $D_i(1)=0$ that violate the monotonicity assumption. Consider the following first-stage regression and reduced-form regression:
+\begin{align*}
+  D_i &= \pi_0 + \pi_1 Z_i + \varepsilon_i,\\
+  Y_i &= \delta_0 + \delta_1 Z_i + \nu_i.
+\end{align*}
+
+\begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
+  \item Derive expressions for the population estimates of the first-stage coefficient $\pi_1$. Show that if there are more compliers than defiers, then $\pi_1>0$.\\[0.5em]
+  % ANSWER HERE
+
+  \item Derive an expression for $\delta_1$ in the reduced form.\\[0.5em]
+  % ANSWER HERE
+
+  \item What is $\delta_1/\pi_1$ when $\mathbb{E}[\,Y_i(1)-Y_i(0)\mid\text{Complier}\,]=\mathbb{E}[\,Y_i(1)-Y_i(0)\mid\text{Defier}\,]$?\\[0.5em]
+  % ANSWER HERE
+\end{enumerate}
+
+\newpage
+
+\section*{3. (2 points) Lecture 7 -- Characteristics of Compliers}
+In Lecture 7 we presented a study on the health impacts of cesarean section (\emph{c}-section). The authors use whether a mother lives closer to a high (H) \emph{c}-section hospital as an instrument for delivery at a H rather than low (L) \emph{c}-section hospital. Hospital compliers refer to mothers who would choose to deliver at a H hospital if they live closer to a H hospital, but would have chosen a L hospital if they live closer to a L hospital instead. The figure below shows $\mathbb{E}[Y_{it}(0)\mid\text{Compliers}]$ and $\mathbb{E}[Y_{it}(1)\mid\text{Compliers}]$ at different days since birth.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.85\textwidth]{../input/images/q3_hospital_admissions.png}
+    \caption{Hospital Readmissions: $\mathbb{E}[Y_{it}(0)\mid\text{Compliers}]$ and $\mathbb{E}[Y_{it}(1)\mid\text{Compliers}]$}
+\end{figure}
+
+\begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
+  \item What is the first stage model? Does it vary by the days since birth (indexed by $t$ on the x-axis)?\\[0.5em]
+  % ANSWER HERE
+
+  \item Set up a reduced-form regression of some ``goofy'' outcome on the proposed instrument that allows you to estimate $\mathbb{E}[Y_{it}(1)\mid\text{Compliers}]$ at a given $t$ (days since birth). Show what you can estimate in the reduced form, and how you can use it in combination with the first-stage regression to estimate $\mathbb{E}[Y_{it}(1)\mid\text{Compliers}]$.\\[0.5em]
+  % ANSWER HERE
+
+  \item Repeat (b) for $\mathbb{E}[Y_{it}(0)\mid\text{Compliers}]$. Can you observe $\{Y_{it}(0)\}$ among compliers in the data?\\[0.5em]
+  % ANSWER HERE
+\end{enumerate}
+
+\newpage
+
+\section*{4. (2 points) Lecture 8 -- Panel Data -- Twins Study}
+Suppose you are given data from surveys at the Twins Festival. Each family has a pair of identical twins. Let $i$ index a family and $t=1,2$ denote the twin \#1 and \#2. The goal is to use this panel data at $(i,t)$ or family $\times$ twin level to estimate the returns to education. Consider the following regressions of log earnings $Y_{it}$ on education $S_{it}$ (and other controls):
+
+\begin{align}
+Y_{it} &= \beta_0^{FE} + \beta_1^{FE} S_{it} + \alpha_i + \epsilon_{it} \tag{1}\\
+Y_{it} &= \beta_0^{CF} + \beta_1^{CF} S_{it} + \bar{S_i}\gamma + u_{it} \tag{2}\\
+Y_{it} &= \delta_0^{CF} + \delta_1^{CF} S_{it} + \delta_2^{CF} S_{i(-t)} + v_{it} \tag{3}
+\end{align}
+
+\begin{itemize}
+  \item Model (1) controls for family fixed effects (controlling for dummies of each family $i$).
+  \item Model (2) represents the control function approach with a control of $\bar{S_i} = \frac{S_{i1}+S_{i2}}{2}$, the mean education of the twins in the same family.
+  \item Model (3) is an alternative control function that controls for $S_{i(-t)}$, which is the education of the identical twin instead of $\bar{S_i}$. For example, for twin $t=1$ in family $i$, $S_{i(-t)}=S_{i2}$ — education of his/her identical twin in the family.
+\end{itemize}
+
+\begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
+  \item Can you interpret $\hat{\beta}_1^{FE}$ as a causal estimate of return to education? State the assumption you need on model (1) to be able to consider $\hat{\beta}_1^{FE}$ as a causal estimate.\\[0.5em]
+  % ANSWER HERE
+
+  \textit{For questions (b)--(c), assume the correct assumption in (a) holds.}\\[0.5em]
+
+  \item Show the within estimator in (1) is equivalent to the estimator from the control function — $\hat{\beta}_1^{FE} = \hat{\beta}_1^{CF}$.\\[0.5em]
+  % ANSWER HERE
+
+  \item How does $\hat{\beta}_1^{CF}$ relate the coefficients in (3) — $\hat{\delta}_1^{CF}$ and $\hat{\delta}_2^{CF}$? Clearly state the assumptions you use.\\[0.5em]
+  % ANSWER HERE
+\end{enumerate}
+
+\newpage
+
+\newpage
+\section*{5. (2 points) Lecture 9 -- Difference in Differences}
+In this question we will use potential outcomes to interpret the difference-in-differences model. Consider the classic Card and Krueger (1994) minimum wage study. Let $i$ denote a restaurant that either be in NJ or in PA (but not both -- ignore chains like McDonalds that have locations in both states). $t=1$ denotes the period before NJ raised minimum wage, and $t=2$ denotes the period after the change. As before, define $NJ_i=1$ if restaurant $i$ is in NJ, and $Post_t=1$ if $t=2$ (after the minimum wage increase).
+
+Define the treatment variable as $D_{it}=NJ_i \times Post_t$, which equals to $1$ if the restaurant $i$ is in NJ, and $t=2$. The outcome of interest is full-time employment $Y_{it}$, and we want to estimate the difference-in-differences regression:
+\[
+  Y_{it}=\beta_0+\beta_1 NJ_i+\beta_2 Post_t+\beta_3 D_{it}+\epsilon_{it}.
+\]
+
+We can write the outcome as realized $Y_{it}=Y_{it}(D_{it})$. That is, $Y_{it}(0)$ is the potential full-time employment when there is no change in minimum wage, and $Y_{it}(1)$ is the potential outcome when the minimum wage is increased.
+
+\begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
+  \item Can you estimate $\mathbb{E}[\,Y_{i1}(0)\mid NJ\,]$ and $\mathbb{E}[\,Y_{i1}(0)\mid PA\,]$ in the data? Explain why or why not.\\[0.5em]
+  % ANSWER HERE
+
+  \item Can you estimate $\mathbb{E}[\,Y_{i2}(1)\mid NJ\,]$ and $\mathbb{E}[\,Y_{i2}(1)\mid PA\,]$ in the data? Explain why or why not.\\[0.5em]
+  % ANSWER HERE
+
+  \item Use potential outcomes $\{Y_{it}(0),Y_{it}(1)\}$ to express the parallel trend assumption. Under the parallel trend assumption, what does $\beta_3$ represent?\\[0.5em]
+  % ANSWER HERE
+\end{enumerate}
+
+\end{document}
