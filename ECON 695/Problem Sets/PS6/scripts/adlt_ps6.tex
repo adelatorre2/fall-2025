@@ -40,16 +40,37 @@ In Lecture 6 we introduced the Head Start Impact Study, a nation-wide experiment
 
 \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
   \item Is the Head Start Impact Study a perfect randomized control trial (RCT)? Why or why not?\\[0.5em]
-  % ANSWER HERE
+  
+  \textbf{Solution.} \\
+  The Head State Impact study is not a perfect RCT because we would likely not have complete compliance with regards to who takes the offered seat and who actually participates in the program. In a perfect PCT, treatment status is fully controlled where everyone assigned to treatment gets $D_i = 1$ and everyone assigned to control gets $D_i =0$ to get "full compliance", or everyone assigned to either control or treatment completely follow into their assigned groups. 
+  
+  In this context, this would mean forcing or expecting a family to take the head start seat upon recommendation, which would be problematic (CITI would come hunt you down). We observe from lecture 6 the first-stage regression,
+    \[
+    D_i=\hat\pi_0+\hat\pi_1 Z_i+\eta_i,
+    \]
+    with \(\hat\pi_0=E[D_i\mid Z_i=0]=0.153\) and \(\hat\pi_1=E[D_i\mid Z_i=1]-E[D_i\mid Z_i=0]=0.705\). These numbers mean some kids in the control group still attend preschool (\(\hat\pi_0>0\)) and some offered a seat do \emph{not} enroll (\(\hat\pi_1<1\)), that in fact there is cross-over between the treatment and control group in addition to incomplete take-up.
 
   \item Let $D_i=1$ if the kid attended preschool using a Head Start seat, and let $Z_i=1$ if the kid $i$ is assigned to the treatment group with initial offers of HS seats. If you estimate a first-stage regression of $D_i$ on a constant and $Z_i$, what are the estimates $\hat{\pi}_0$ and $\hat{\pi}_1$? Hint: use the numbers in the Table.
   \[
     D_i = \hat{\pi}_0 + \hat{\pi}_1 Z_i + \hat{\varepsilon}_i.
   \]
+
   % ANSWER HERE
+  \textbf{Solution.} \\
+  Upon estimating the first-stage regression of $D_i$ on a constant $Z_i$ as defined above, then the estimates $\hat{\pi}_0$ and $\hat{\pi}_1$ represent the following:
+  \begin{itemize}
+    \item The control mean represents the share of children in the same who attended the Head Start (HS) without being initially offered an HS seat which represents the coefficient: $\hat{\pi_0} = E[D_i | Z_i =0] = 0.153$
+    \item The treatment mean represents the share of children who attended HS and were offered an HS seat, which is represented/can be estimated by: $E[D_i | Z_i = 1] = \hat{\pi_0} + \hat{\pi_1} = 0.857$
+    \item The difference between the treatment and the control mean is exactly that, which is represented by $\hat{\pi_1}$ since $\hat{\pi}_1 = E[D_i | Z_i =1] - E[D_i | Z_i =0] = \left( \hat{\pi_1} + \hat{\pi_0} \right) - \hat{\pi_0} = (0.857) - 0.153 = 0.705$
+  \end{itemize}
+  In other words $\hat{\pi_1}$ represents the effect the offer on attendance in HS, or the compliance rate/share of compliers, whereas $\hat{\pi_0}$ represnts the "always-takers", or the share of students who attend the HS with-or-without an offer; the sum $\hat{\pi_1} + \hat{\pi_0}$ represents the students who attend HS with an offer.
 
   \item What does $\hat{\pi}_1$ represent? Hint: compliance.\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
+  I sort of answered it above, but $\hat{\pi_1}$ represents the share of compliers in the sample which in this context measures the effect of the offer of an HS seat has on HS attendance, which is in other words the compliance rate. This is calculated with the table of results as follows: $\hat{\pi}_1 = E[D_i | Z_i =1] - E[D_i | Z_i =0] = \left( \hat{\pi_1} + \hat{\pi_0} \right) - \hat{\pi_0} = (0.857) - 0.153 = 0.705$.
+
 \end{enumerate}
 
 \newpage
@@ -63,13 +84,19 @@ Let $Y_i(d)$ denote a person $i$'s potential outcome when $D_i=d\in\{0,1\}$. Sup
 
 \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
   \item Derive expressions for the population estimates of the first-stage coefficient $\pi_1$. Show that if there are more compliers than defiers, then $\pi_1>0$.\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
 
   \item Derive an expression for $\delta_1$ in the reduced form.\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
 
   \item What is $\delta_1/\pi_1$ when $\mathbb{E}[\,Y_i(1)-Y_i(0)\mid\text{Complier}\,]=\mathbb{E}[\,Y_i(1)-Y_i(0)\mid\text{Defier}\,]$?\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
 \end{enumerate}
 
 \newpage
@@ -85,13 +112,18 @@ In Lecture 7 we presented a study on the health impacts of cesarean section (\em
 
 \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
   \item What is the first stage model? Does it vary by the days since birth (indexed by $t$ on the x-axis)?\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
 
   \item Set up a reduced-form regression of some ``goofy'' outcome on the proposed instrument that allows you to estimate $\mathbb{E}[Y_{it}(1)\mid\text{Compliers}]$ at a given $t$ (days since birth). Show what you can estimate in the reduced form, and how you can use it in combination with the first-stage regression to estimate $\mathbb{E}[Y_{it}(1)\mid\text{Compliers}]$.\\[0.5em]
   % ANSWER HERE
+  \textbf{Solution.} \\
 
   \item Repeat (b) for $\mathbb{E}[Y_{it}(0)\mid\text{Compliers}]$. Can you observe $\{Y_{it}(0)\}$ among compliers in the data?\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
 \end{enumerate}
 
 \newpage
@@ -113,15 +145,21 @@ Y_{it} &= \delta_0^{CF} + \delta_1^{CF} S_{it} + \delta_2^{CF} S_{i(-t)} + v_{it
 
 \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
   \item Can you interpret $\hat{\beta}_1^{FE}$ as a causal estimate of return to education? State the assumption you need on model (1) to be able to consider $\hat{\beta}_1^{FE}$ as a causal estimate.\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
 
   \textit{For questions (b)--(c), assume the correct assumption in (a) holds.}\\[0.5em]
 
   \item Show the within estimator in (1) is equivalent to the estimator from the control function — $\hat{\beta}_1^{FE} = \hat{\beta}_1^{CF}$.\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
 
   \item How does $\hat{\beta}_1^{CF}$ relate the coefficients in (3) — $\hat{\delta}_1^{CF}$ and $\hat{\delta}_2^{CF}$? Clearly state the assumptions you use.\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
 \end{enumerate}
 
 \newpage
@@ -139,13 +177,21 @@ We can write the outcome as realized $Y_{it}=Y_{it}(D_{it})$. That is, $Y_{it}(0
 
 \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
   \item Can you estimate $\mathbb{E}[\,Y_{i1}(0)\mid NJ\,]$ and $\mathbb{E}[\,Y_{i1}(0)\mid PA\,]$ in the data? Explain why or why not.\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
 
   \item Can you estimate $\mathbb{E}[\,Y_{i2}(1)\mid NJ\,]$ and $\mathbb{E}[\,Y_{i2}(1)\mid PA\,]$ in the data? Explain why or why not.\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
 
   \item Use potential outcomes $\{Y_{it}(0),Y_{it}(1)\}$ to express the parallel trend assumption. Under the parallel trend assumption, what does $\beta_3$ represent?\\[0.5em]
+  
   % ANSWER HERE
+  \textbf{Solution.} \\
+  
+  
 \end{enumerate}
 
 \end{document}
