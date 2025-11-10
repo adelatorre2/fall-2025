@@ -87,16 +87,123 @@ Let $Y_i(d)$ denote a person $i$'s potential outcome when $D_i=d\in\{0,1\}$. Sup
   
   % ANSWER HERE
   \textbf{Solution.} \\
+  We start from the first-stage regression equation:
+    \[
+    D_i = \pi_0 + \pi_1 Z_i + \varepsilon_i, \qquad E[\varepsilon_i \mid Z_i] = 0.
+    \]
+    The population OLS coefficient on $Z_i$ is given by the difference in conditional means:
+    \[
+    \pi_1 = E[D_i \mid Z_i = 1] - E[D_i \mid Z_i = 0].
+    \]
+    Using the random assignment of $Z_i$, we can write this as
+    \[
+    \pi_1 = E[D_i(1)] - E[D_i(0)] = E[D_i(1) - D_i(0)].
+    \]
+
+    We classify individuals by their treatment type based on $(D_i(0), D_i(1))$:
+    \[
+    \begin{cases}
+    (0,0) & \text{Never-takers (NT)} \\
+    (0,1) & \text{Compliers (C)} \\
+    (1,0) & \text{Defiers (D)} \\
+    (1,1) & \text{Always-takers (AT)}
+    \end{cases}
+    \]
+    Let $\Pr(NT)$, $\Pr(C)$, $\Pr(D)$, and $\Pr(AT)$ denote the population shares of each group, with
+    $\Pr(NT) + \Pr(C) + \Pr(D) + \Pr(AT) = 1$.
+
+    Then we can compute the expected treatment rate for each instrument status:
+    \[
+    \begin{aligned}
+    E[D_i \mid Z_i = 1] &= 0 \cdot \Pr(NT) + 1 \cdot \Pr(C) + 0 \cdot \Pr(D) + 1 \cdot \Pr(AT)
+    = \Pr(C) + \Pr(AT), \\
+    E[D_i \mid Z_i = 0] &= 0 \cdot \Pr(NT) + 0 \cdot \Pr(C) + 1 \cdot \Pr(D) + 1 \cdot \Pr(AT)
+    = \Pr(D) + \Pr(AT).
+    \end{aligned}
+    \]
+
+    Therefore, the population first-stage coefficient is:
+    \[
+    \pi_1 = E[D_i \mid Z_i = 1] - E[D_i \mid Z_i = 0] = \Pr(C) - \Pr(D),
+    \]
+    and the intercept is given by:
+    \[
+    \pi_0 = E[D_i \mid Z_i = 0] = \Pr(D) + \Pr(AT).
+    \]
+
+  Thus, the first-stage coefficient measures the difference in treatment take-up between the treatment and control groups. If there are more compliers than defiers ($\Pr(C) > \Pr(D)$), then $\pi_1 > 0$.
 
   \item Derive an expression for $\delta_1$ in the reduced form.\\[0.5em]
   
   % ANSWER HERE
   \textbf{Solution.} \\
+  The reduced–form coefficient is the difference in mean outcomes across instrument status:
+  \[
+  \delta_1 \;=\; E[Y_i\mid Z_i=1]-E[Y_i\mid Z_i=0].
+  \]
+  Using the exclusion restriction $Y_i(d,z)\equiv Y_i(d)$ and random assignment, decompose each mean by principal strata $g\in\{\mathrm{NT},\mathrm{AT},\mathrm{Comp},\mathrm{Def}\}$:
+  \begin{align*}
+    E[Y_i\mid Z_i=1]
+      &= E[Y_i(0)\mid \mathrm{NT}]\,\Pr(\mathrm{NT})
+      \;+\;E[Y_i(1)\mid \mathrm{Comp}]\,\Pr(\mathrm{Comp})\\
+      &\quad+\;E[Y_i(1)\mid \mathrm{AT}]\,\Pr(\mathrm{AT})
+      \;+\;E[Y_i(0)\mid \mathrm{Def}]\,\Pr(\mathrm{Def}),\\[0.35em]
+      E[Y_i\mid Z_i=0]
+      &= E[Y_i(0)\mid \mathrm{NT}]\,\Pr(\mathrm{NT})
+      \;+\;E[Y_i(0)\mid \mathrm{Comp}]\,\Pr(\mathrm{Comp})\\
+      &\quad+\;E[Y_i(1)\mid \mathrm{AT}]\,\Pr(\mathrm{AT})
+      \;+\;E[Y_i(1)\mid \mathrm{Def}]\,\Pr(\mathrm{Def}).
+  \end{align*}
+  Subtracting, terms for NT and AT cancel, yielding
+  \[
+  \delta_1
+  = \big\{E[Y_i(1)-Y_i(0)\mid \mathrm{Comp}]\big\}\,\Pr(\mathrm{Comp})
+  \;+\;\big\{E[Y_i(0)-Y_i(1)\mid \mathrm{Def}]\big\}\,\Pr(\mathrm{Def}).
+  \]
+  Equivalently,
+  \[
+  \delta_1
+  = E[Y_i(1)-Y_i(0)\mid \mathrm{Comp}]\,\Pr(\mathrm{Comp})
+  \;-\;E[Y_i(1)-Y_i(0)\mid \mathrm{Def}]\,\Pr(\mathrm{Def}).
+  \]
 
+  \emph{Link to the in-class result.} In lecture (with monotonicity), there are no defiers, so $\Pr(\mathrm{Def})=0$ and the second term drops. Hence
+  \[
+  \delta_1^{\text{(mono)}} 
+  = E[Y_i(1)-Y_i(0)\mid \mathrm{Comp}]\,\Pr(\mathrm{Comp}),
+  \]
+  which is exactly the formula shown on the slide. Here, without monotonicity, the reduced form is the complier effect weighted by $\Pr(\mathrm{Comp})$ \emph{minus} the defier effect weighted by $\Pr(\mathrm{Def})$.
   \item What is $\delta_1/\pi_1$ when $\mathbb{E}[\,Y_i(1)-Y_i(0)\mid\text{Complier}\,]=\mathbb{E}[\,Y_i(1)-Y_i(0)\mid\text{Defier}\,]$?\\[0.5em]
   
   % ANSWER HERE
   \textbf{Solution.} \\
+  From part (b), the reduced–form effect and first–stage are
+    \[
+    \delta_1
+    = \big\{ E[Y_i(1)-Y_i(0)\mid \text{Comp}] \big\}\Pr(\text{Comp})
+    \;-\; \big\{ E[Y_i(1)-Y_i(0)\mid \text{Def}] \big\}\Pr(\text{Def}),
+    \]
+    \[
+    \pi_1 \;=\; \Pr(\text{Comp}) - \Pr(\text{Def}).
+    \]
+  Now impose the condition in the question that the complier and defier gains are equal:
+    \[
+    E[Y_i(1)-Y_i(0)\mid \text{Comp}] \;=\; E[Y_i(1)-Y_i(0)\mid \text{Def}] \;\equiv\; \tau .
+    \]
+  Substituting into the reduced form,
+    \[
+    \delta_1 \;=\; \tau\,\Pr(\text{Comp}) \;-\; \tau\,\Pr(\text{Def})
+    \;=\; \tau\,\big\{\Pr(\text{Comp})-\Pr(\text{Def})\big\}
+    \;=\; \tau\,\pi_1 .
+    \]
+  Therefore, provided $\pi_1 \neq 0$ (i.e., the share of compliers differs from the share of defiers),
+    \[
+    \frac{\delta_1}{\pi_1} \;=\; \tau
+    \;=\; E[Y_i(1)-Y_i(0)\mid \text{Comp}]
+    \;=\; E[Y_i(1)-Y_i(0)\mid \text{Def}] .
+    \]
+  Intuitively, when compliers and defiers have the same treatment effect, the reduced form just scales the common effect by the net fraction moved by the instrument, so the IV ratio recovers that common effect.
+
 \end{enumerate}
 
 \newpage
@@ -115,15 +222,164 @@ In Lecture 7 we presented a study on the health impacts of cesarean section (\em
   
   % ANSWER HERE
   \textbf{Solution.} \\
+  Let $D_i$ denote the treatment “delivered at a high-$c$-section hospital (H)” and let $Z_i$ be the instrument indicating that the mother lives closer to an H than to an L hospital
+  (relative distance). The outcome is indexed by days since birth $t$, so $Y_{it}$ is the (cumulative)
+  probability of readmission by day $t$.
+
+  \medskip
+  \emph{First stage (take-up of $D_i$).}
+  The population first-stage regression is
+  \[
+  D_i \;=\; \pi_0 \;+\; \pi_1 Z_i \;+\; \varepsilon_i,
+  \]
+  (optionally with covariates $X_i$: $D_i=\pi_0+\pi_1 Z_i+\pi_X'X_i+\varepsilon_i$).
+  By random assignment and the exclusion restriction, the first-stage coefficient is
+  \[
+  \pi_1 \;=\; E[D_i\mid Z_i=1]-E[D_i\mid Z_i=0]
+  \;=\; \Pr(\text{H-compliers}),
+  \]
+  i.e., the fraction of mothers whose hospital choice switches to H when $Z_i$ moves from $0$ to $1$.
+
+  \medskip
+  \emph{Does the first stage vary with $t$?}
+  No. $D_i$ (delivery at an H hospital) is decided at the birth and therefore does not depend on
+  the horizon $t$. The first stage $\pi_1$ is a single, time-invariant parameter that captures how
+  $Z_i$ shifts the \emph{treatment} at delivery. What varies with $t$ is the \emph{outcome} $Y_{it}$ and,
+  consequently, the reduced-form effect at horizon $t$,
+  \[
+  \delta_1(t)\;=\;E[Y_{it}\mid Z_i=1]-E[Y_{it}\mid Z_i=0],
+  \]
+  and the IV/LATE at each horizon,
+  \[
+  \frac{\delta_1(t)}{\pi_1}
+  \;=\; E\!\big[\,Y_{it}(1)-Y_{it}(0)\,\big|\,\text{H-compliers}\big],
+  \]
+  which is interpreted as the average effect of delivering at an H hospital on readmissions
+  \emph{by day $t$} for the complier subpopulation.
+
+  \medskip
+  \emph{Intuition.}
+  The instrument changes \emph{who} delivers at an H hospital (compliers), and that margin is the
+  same regardless of $t$. As we look farther out on the $x$–axis (days since birth), we track how
+  the readmission outcome accumulates for those same compliers. Hence $\pi_1$ is fixed across $t$,
+  while $\delta_1(t)$ and $\delta_1(t)/\pi_1$ trace out the time path of the complier effect.
 
   \item Set up a reduced-form regression of some ``goofy'' outcome on the proposed instrument that allows you to estimate $\mathbb{E}[Y_{it}(1)\mid\text{Compliers}]$ at a given $t$ (days since birth). Show what you can estimate in the reduced form, and how you can use it in combination with the first-stage regression to estimate $\mathbb{E}[Y_{it}(1)\mid\text{Compliers}]$.\\[0.5em]
   % ANSWER HERE
   \textbf{Solution.} \\
 
+  At each horizon $t$ (days since birth), define the goofy outcome
+  \[
+  Y_{it}(1)\,D_i \quad\text{where}\quad
+  Y_{it}(1)D_i =
+  \begin{cases}
+  Y_{it}, & D_i=1,\\
+  0, & D_i=0.
+  \end{cases}
+  \]
+  Consider the reduced-form regression of this goofy outcome on the instrument $Z_i$:
+  \[
+  Y_{it}(1)D_i \;=\; \delta_0(t) \;+\; \delta_1(t)\,Z_i \;+\; \nu_{it}.
+  \]
+  By definition of the reduced form,
+  \[
+  \delta_1(t)\;=\; E\!\left[Y_{it}(1)D_i \mid Z_i=1\right]
+  \;-\; E\!\left[Y_{it}(1)D_i \mid Z_i=0\right].
+  \]
+
+  Use the exclusion restriction $Y_i(d,z)=Y_i(d)$ and random assignment $(D_i(0),D_i(1))\!\perp\! Z_i$ to decompose each mean by principal stratum $g\in\{\text{NT},\text{AT},\text{Comp},\text{Def}\}$:
+  \[
+  \begin{aligned}
+  E\!\left[Y_{it}(1)D_i \mid Z_i=1\right]
+  &= \sum_{g} E\!\left[Y_{it}(1)D_i(1)\mid g\right]\Pr(g)
+  = E[Y_{it}(1)\mid \text{AT}]\,\Pr(\text{AT}) \\
+  &\quad + E[Y_{it}(1)\mid \text{Comp}]\,\Pr(\text{Comp}), \\[4pt]
+  E\!\left[Y_{it}(1)D_i \mid Z_i=0\right]
+  &= \sum_{g} E\!\left[Y_{it}(1)D_i(0)\mid g\right]\Pr(g)
+  = E[Y_{it}(1)\mid \text{AT}]\,\Pr(\text{AT}) \\
+  &\quad + E[Y_{it}(1)\mid \text{Def}]\,\Pr(\text{Def}),
+  \end{aligned}
+  \]
+  since $D_i(1)=1$ for AT and Compliers, and $D_i(0)=1$ for AT and Defiers.
+
+  Therefore,
+  \[
+  \delta_1(t)
+  = E[Y_{it}(1)\mid \text{Comp}]\,\Pr(\text{Comp})
+  \;-\; E[Y_{it}(1)\mid \text{Def}]\,\Pr(\text{Def}).
+  \]
+
+  \emph{Link to the in-class (monotonicity) result.} In lecture the monotonicity assumption rules out defiers, $\Pr(\text{Def})=0$, so the second term vanishes and we get the simple formula
+  \[
+  \delta_1^{\text{(mono)}}(t)
+  = E[Y_{it}(1)\mid \text{Comp}]\,\Pr(\text{Comp}).
+  \]
+  Combining with the first stage (from part (a)), $\pi_1=\Pr(\text{Comp})$, yields
+  \[
+  \frac{\delta_1^{\text{(mono)}}(t)}{\pi_1}
+  = E[Y_{it}(1)\mid \text{Comp}],
+  \]
+  which is exactly what we want at horizon $t$.
+
+  \noindent\textit{Note.} The first stage $\pi_1=\Pr(\text{Comp})-\Pr(\text{Def})$ is time-invariant, while the reduced form $\delta_1(t)$ varies with $t$ because $Y_{it}$ accumulates readmissions over days since birth. Without monotonicity, $\delta_1(t)$ identifies a weighted difference between complier and defier means and cannot by itself recover $E[Y_{it}(1)\mid\text{Comp}]$ unless $\Pr(\text{Def})=0$ or further assumptions are imposed.
+
   \item Repeat (b) for $\mathbb{E}[Y_{it}(0)\mid\text{Compliers}]$. Can you observe $\{Y_{it}(0)\}$ among compliers in the data?\\[0.5em]
   
   % ANSWER HERE
   \textbf{Solution.} \\
+
+  At each horizon $t$, define the “goofy’’ outcome that reveals potential outcome under no treatment only when the unit is untreated:
+    \[
+    Y_{it}(0)\,(1-D_i)
+    \qquad\text{where}\qquad
+    (1-D_i)=
+    \begin{cases}
+    1, & D_i=0,\\
+    0, & D_i=1.
+    \end{cases}
+    \]
+    Run the reduced form on the instrument $Z_i$:
+    \[
+    Y_{it}(0)(1-D_i)\;=\;\tilde\delta_0(t)\;+\;\tilde\delta_1(t)\,Z_i\;+\;\nu_{it},
+    \]
+    so by definition
+    \[
+    \tilde\delta_1(t)\;=\;E\!\left[Y_{it}(0)(1-D_i)\mid Z_i=1\right]\;-\;E\!\left[Y_{it}(0)(1-D_i)\mid Z_i=0\right].
+    \]
+
+    Using the exclusion restriction $Y_i(d,z)=Y_i(d)$ and random assignment $(D_i(0),D_i(1))\!\perp\! Z_i$, decompose each mean by principal stratum $g\in\{\text{NT},\text{AT},\text{Comp},\text{Def}\}$:
+    \[
+    \begin{aligned}
+    E\!\left[Y_{it}(0)(1-D_i)\mid Z_i=1\right]
+    &=\sum_g E\!\left[Y_{it}(0)(1-D_i(1))\mid g\right]\Pr(g)\\
+    &=E[Y_{it}(0)\mid \text{NT}]\,\Pr(\text{NT})\;+\;E[Y_{it}(0)\mid \text{Def}]\,\Pr(\text{Def}),\\[0.5em]
+    E\!\left[Y_{it}(0)(1-D_i)\mid Z_i=0\right]
+    &=\sum_g E\!\left[Y_{it}(0)(1-D_i(0))\mid g\right]\Pr(g)\\
+    &=E[Y_{it}(0)\mid \text{NT}]\,\Pr(\text{NT})\;+\;E[Y_{it}(0)\mid \text{Comp}]\,\Pr(\text{Comp}),
+    \end{aligned}
+    \]
+    since $D_i(1)=0$ for NT and Defiers (and $=1$ for AT and Compliers), while $D_i(0)=0$ for NT and Compliers (and $=1$ for AT and Defiers).
+
+    Subtracting,
+    \[
+    \boxed{\;\tilde\delta_1(t)\;=\;-\;E[Y_{it}(0)\mid \text{Comp}]\,\Pr(\text{Comp})
+    \;+\;E[Y_{it}(0)\mid \text{Def}]\,\Pr(\text{Def})\; }.
+    \]
+
+    \textit{Monotonicity link.} 
+    If there are no defiers (monotonicity), $\Pr(\text{Def})=0$ and the reduced form simplifies to
+    \[
+    \tilde\delta_1^{(\text{mono})}(t)\;=\;-\;E[Y_{it}(0)\mid \text{Comp}]\,\Pr(\text{Comp}).
+    \]
+    Combining with the first stage from part (a), $\pi_1=\Pr(\text{Comp})$, we obtain
+    \[
+    \frac{-\,\tilde\delta_1^{(\text{mono})}(t)}{\pi_1}\;=\;E[Y_{it}(0)\mid \text{Comp}],
+    \]
+    which is exactly the complier mean of $Y_{it}(0)$ at horizon $t$.
+
+  \textit{Can we directly observe $\{Y_{it}(0)\}$ for compliers?} 
+    We observe $Y_{it}(0)$ for units with $D_i=0$ in the data, but we do not know which of those units are \emph{compliers} (as opposed to never-takers). Hence we cannot condition on complier status directly. The goofy reduced form above, combined with the first stage, recovers $E[Y_{it}(0)\mid\text{Comp}]$ under monotonicity; without monotonicity it delivers a mixture that also involves defiers, as shown in the boxed formula.
+
 \end{enumerate}
 
 \newpage
@@ -148,6 +404,42 @@ Y_{it} &= \delta_0^{CF} + \delta_1^{CF} S_{it} + \delta_2^{CF} S_{i(-t)} + v_{it
   
   % ANSWER HERE
   \textbf{Solution.} \\
+  Consider the panel (family~$\times$ twin) model
+\[
+Y_{it} \;=\; \beta^{FE}_0 \;+\; \beta^{FE}_1\, S_{it} \;+\; \alpha_i \;+\; \varepsilon_{it},
+\qquad i=\text{family},\; t\in\{1,2\},
+\]
+where $Y_{it}$ is log earnings for twin $t$ in family $i$, $S_{it}$ is that twin’s schooling,
+$\alpha_i$ is a \emph{family fixed effect} (time-/twin-invariant unobservables shared by the pair),
+and $\varepsilon_{it}$ is the time-/twin-varying error.
+
+Applying the within (fixed-effects) transformation,
+\[
+Y_{it}-\bar Y_i \;=\; \beta^{FE}_1\,(S_{it}-\bar S_i) \;+\; (\varepsilon_{it}-\bar\varepsilon_i),
+\]
+so $\hat\beta^{FE}_1$ is estimated from variation \emph{within} families (i.e., differences across the twins).
+
+\smallskip
+\emph{Causal interpretation.}
+We can interpret $\hat\beta^{FE}_1$ as the causal return to education (the effect of one more year of schooling on log earnings) \emph{holding fixed} all family-level time-invariant factors (genes, home background, etc.) \emph{if} the following assumptions hold:
+
+\begin{enumerate}\setlength{\itemsep}{0.25em}
+\item \textbf{Strict exogeneity (within family):}
+\[
+E\!\left[\varepsilon_{it}\,\middle|\, S_{i1},S_{i2},\alpha_i\right] = 0 \quad\text{for } t=1,2.
+\]
+Equivalently, the \emph{within-family} regressor $(S_{it}-\bar S_i)$ is uncorrelated with the \emph{within-family} error $(\varepsilon_{it}-\bar\varepsilon_i)$. 
+Intuition: after netting out the family effect $\alpha_i$, there are no twin-specific shocks to earnings that are still correlated with twin-specific schooling.
+\item \textbf{Within-family variation:} $\operatorname{Var}(S_{it}-\bar S_i)>0$ (the twins differ in schooling so the parameter is identified).
+\item \textbf{Correct model for the fixed component:} all time-invariant unobservables relevant for earnings are absorbed by $\alpha_i$ (so they are allowed to be correlated with schooling, but do not vary across twins within a family).
+\end{enumerate}
+
+Under these conditions, the within estimator identifies
+\[
+\beta^{FE}_1 \;=\; \arg\min_b\, E\!\left[\big\{(Y_{it}-\bar Y_i) - b\,(S_{it}-\bar S_i)\big\}^2\right],
+\]
+which equals the causal effect of schooling on log earnings for the twins sample. 
+(Practically, this is numerically equivalent to OLS with family dummies.)
 
   \textit{For questions (b)--(c), assume the correct assumption in (a) holds.}\\[0.5em]
 
