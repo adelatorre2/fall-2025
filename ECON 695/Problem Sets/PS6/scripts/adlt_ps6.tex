@@ -405,41 +405,40 @@ Y_{it} &= \delta_0^{CF} + \delta_1^{CF} S_{it} + \delta_2^{CF} S_{i(-t)} + v_{it
   % ANSWER HERE
   \textbf{Solution.} \\
   Consider the panel (family~$\times$ twin) model
-\[
-Y_{it} \;=\; \beta^{FE}_0 \;+\; \beta^{FE}_1\, S_{it} \;+\; \alpha_i \;+\; \varepsilon_{it},
-\qquad i=\text{family},\; t\in\{1,2\},
-\]
-where $Y_{it}$ is log earnings for twin $t$ in family $i$, $S_{it}$ is that twin’s schooling,
-$\alpha_i$ is a \emph{family fixed effect} (time-/twin-invariant unobservables shared by the pair),
-and $\varepsilon_{it}$ is the time-/twin-varying error.
+    \[
+    Y_{it} \;=\; \beta^{FE}_0 \;+\; \beta^{FE}_1\, S_{it} \;+\; \alpha_i \;+\; \varepsilon_{it},
+    \qquad i=\text{family},\; t\in\{1,2\},
+    \]
+    where $Y_{it}$ is log earnings for twin $t$ in family $i$, $S_{it}$ is that twin’s schooling,
+    $\alpha_i$ is a \emph{family fixed effect} (time-/twin-invariant unobservables shared by the pair),
+    and $\varepsilon_{it}$ is the time-/twin-varying error.
 
-Applying the within (fixed-effects) transformation,
-\[
-Y_{it}-\bar Y_i \;=\; \beta^{FE}_1\,(S_{it}-\bar S_i) \;+\; (\varepsilon_{it}-\bar\varepsilon_i),
-\]
-so $\hat\beta^{FE}_1$ is estimated from variation \emph{within} families (i.e., differences across the twins).
+    Applying the within (fixed-effects) transformation,
+    \[
+    Y_{it}-\bar Y_i \;=\; \beta^{FE}_1\,(S_{it}-\bar S_i) \;+\; (\varepsilon_{it}-\bar\varepsilon_i),
+    \]
+    so $\hat\beta^{FE}_1$ is estimated from variation \emph{within} families (i.e., differences across the twins).
 
-\smallskip
-\emph{Causal interpretation.}
-We can interpret $\hat\beta^{FE}_1$ as the causal return to education (the effect of one more year of schooling on log earnings) \emph{holding fixed} all family-level time-invariant factors (genes, home background, etc.) \emph{if} the following assumptions hold:
+    \smallskip
+    \emph{Causal interpretation.}
+    We can interpret $\hat\beta^{FE}_1$ as the causal return to education (the effect of one more year of schooling on log earnings) \emph{holding fixed} all family-level time-invariant factors (genes, home background, etc.) \emph{if} the following assumptions hold:
 
-\begin{enumerate}\setlength{\itemsep}{0.25em}
-\item \textbf{Strict exogeneity (within family):}
-\[
-E\!\left[\varepsilon_{it}\,\middle|\, S_{i1},S_{i2},\alpha_i\right] = 0 \quad\text{for } t=1,2.
-\]
-Equivalently, the \emph{within-family} regressor $(S_{it}-\bar S_i)$ is uncorrelated with the \emph{within-family} error $(\varepsilon_{it}-\bar\varepsilon_i)$. 
-Intuition: after netting out the family effect $\alpha_i$, there are no twin-specific shocks to earnings that are still correlated with twin-specific schooling.
-\item \textbf{Within-family variation:} $\operatorname{Var}(S_{it}-\bar S_i)>0$ (the twins differ in schooling so the parameter is identified).
-\item \textbf{Correct model for the fixed component:} all time-invariant unobservables relevant for earnings are absorbed by $\alpha_i$ (so they are allowed to be correlated with schooling, but do not vary across twins within a family).
-\end{enumerate}
+    \begin{enumerate}\setlength{\itemsep}{0.25em}
+    \item \textbf{Strict exogeneity (within family):}
+    \[
+    E\!\left[\varepsilon_{it}\,\middle|\, S_{i1},S_{i2},\alpha_i\right] = 0 \quad\text{for } t=1,2.
+    \]
+    Equivalently, the \emph{within-family} regressor $(S_{it}-\bar S_i)$ is uncorrelated with the \emph{within-family} error $(\varepsilon_{it}-\bar\varepsilon_i)$. 
+    Intuition: after netting out the family effect $\alpha_i$, there are no twin-specific shocks to earnings that are still correlated with twin-specific schooling.
+    \item \textbf{Within-family variation:} $\operatorname{Var}(S_{it}-\bar S_i)>0$ (the twins differ in schooling so the parameter is identified).
+    \item \textbf{Correct model for the fixed component:} all time-invariant unobservables relevant for earnings are absorbed by $\alpha_i$ (so they are allowed to be correlated with schooling, but do not vary across twins within a family).
+    \end{enumerate}
 
-Under these conditions, the within estimator identifies
-\[
-\beta^{FE}_1 \;=\; \arg\min_b\, E\!\left[\big\{(Y_{it}-\bar Y_i) - b\,(S_{it}-\bar S_i)\big\}^2\right],
-\]
-which equals the causal effect of schooling on log earnings for the twins sample. 
-(Practically, this is numerically equivalent to OLS with family dummies.)
+  Under these conditions, the within estimator identifies
+    \[
+    \beta^{FE}_1 \;=\; \arg\min_b\, E\!\left[\big\{(Y_{it}-\bar Y_i) - b\,(S_{it}-\bar S_i)\big\}^2\right],
+    \]
+  which equals the causal effect of schooling on log earnings for the twins sample. (Practically, this is numerically equivalent to OLS with family dummies.)
 
   \textit{For questions (b)--(c), assume the correct assumption in (a) holds.}\\[0.5em]
 
@@ -447,11 +446,124 @@ which equals the causal effect of schooling on log earnings for the twins sample
   
   % ANSWER HERE
   \textbf{Solution.} \\
+  \textit{Models.}  Recall the two estimating equations:
+    \[
+    \underbrace{Y_{it}=\beta^{FE}_0+\beta^{FE}_1 S_{it}+\alpha_i+\varepsilon_{it}}_{\text{(1) family fixed effects}}
+    \qquad\text{and}\qquad
+    \underbrace{Y_{it}=\beta^{CF}_0+\beta^{CF}_1 S_{it}+\bar S_i\,\gamma+u_{it}}_{\text{(2) control function, }\bar S_i=\tfrac{S_{i1}+S_{i2}}{2}}.
+    \]
+
+    \textit{Goal.}  Prove $\hat\beta^{FE}_1=\hat\beta^{CF}_1$.
+
+    \medskip
+    \textit{Step 1 (Frisch–Waugh–Lovell for the CF regression).}
+    By FWL, the OLS coefficient on $S_{it}$ in the control–function model (2) equals the coefficient from regressing $Y_{it}$ on the residual from projecting $S_{it}$ onto the other regressors $(1,\bar S_i)$:
+    \[
+    \hat\beta^{CF}_1
+    =\frac{\sum_{i,t} \hat r_{it}\,Y_{it}}{\sum_{i,t}\hat r_{it}^2},
+    \qquad
+    \hat r_{it}:=S_{it}-\widehat{\mathbb E}[S_{it}\mid 1,\bar S_i].
+    \]
+
+    \textit{Step 2 (Compute the projection $S_{it}$ on $1$ and $\bar S_i$).}
+    Let the auxiliary regression be $S_{it}=a+b\,\bar S_i + \eta_{it}$. The OLS normal equations require orthogonality of the residuals $\eta_{it}$ to $1$ and $\bar S_i$:
+    \[
+    \sum_{i,t}\eta_{it}=0
+    \quad\text{and}\quad
+    \sum_{i,t}\eta_{it}\,\bar S_i=0.
+    \]
+    But for each family $i$, $\bar S_i$ is constant over $t$, and
+    \[
+    \sum_{t}(S_{it}-\bar S_i)=0
+    \quad\text{and}\quad
+    \sum_{t}(S_{it}-\bar S_i)\,\bar S_i=\bar S_i\sum_{t}(S_{it}-\bar S_i)=0.
+    \]
+    Therefore $a=0$ and $b=1$ solve the normal equations, so the OLS projection is
+    \[
+    \widehat{\mathbb E}[S_{it}\mid 1,\bar S_i]=\bar S_i,
+    \qquad\Rightarrow\qquad
+    \hat r_{it}=S_{it}-\bar S_i.
+    \]
+
+    \textit{Step 3 (FWL for the FE regression).}
+    Apply FWL to the FE model (1): the coefficient on $S_{it}$ equals the coefficient from regressing the within–transformed outcome on the within–transformed regressor,
+    \[
+    \hat\beta^{FE}_1
+    =\frac{\sum_{i,t}(S_{it}-\bar S_i)\,(Y_{it}-\bar Y_i)}{\sum_{i,t}(S_{it}-\bar S_i)^2}.
+    \]
+
+    \textit{Step 4 (Equality of the two coefficients).}
+    Using $\sum_t(S_{it}-\bar S_i)=0$, we have
+    \[
+    \sum_{i,t}(S_{it}-\bar S_i)\,\bar Y_i
+    =\sum_i \bar Y_i \sum_t (S_{it}-\bar S_i)=0,
+    \]
+    hence
+    \[
+    \sum_{i,t}(S_{it}-\bar S_i)\,Y_{it}
+    =\sum_{i,t}(S_{it}-\bar S_i)\,(Y_{it}-\bar Y_i).
+    \]
+    Together with $\hat r_{it}=S_{it}-\bar S_i$, this gives
+    \[
+    \hat\beta^{CF}_1
+    =\frac{\sum_{i,t}(S_{it}-\bar S_i)\,Y_{it}}{\sum_{i,t}(S_{it}-\bar S_i)^2}
+    =\frac{\sum_{i,t}(S_{it}-\bar S_i)\,(Y_{it}-\bar Y_i)}{\sum_{i,t}(S_{it}-\bar S_i)^2}
+    =\hat\beta^{FE}_1.
+    \]
+
+  \textit{Conclusion.}  The control–function estimator that includes the family mean $\bar S_i$ yields exactly the same slope on $S_{it}$ as the family fixed–effects (within) estimator:
+    \[
+    \boxed{\ \hat\beta^{FE}_1=\hat\beta^{CF}_1\ }.
+    \]
+  (For causal interpretation, we additionally use the assumption from part (a) that, conditional on family effects, $S_{it}$ is strictly exogenous: $E[u_{it}\mid S_{i1},S_{i2},\alpha_i]=0$.)
 
   \item How does $\hat{\beta}_1^{CF}$ relate the coefficients in (3) — $\hat{\delta}_1^{CF}$ and $\hat{\delta}_2^{CF}$? Clearly state the assumptions you use.\\[0.5em]
   
   % ANSWER HERE
   \textbf{Solution.} \\
+
+  \textbf{Setup and notation.} Model (2) (control function with the family mean) is
+  \[
+  Y_{it} \;=\; \beta^{CF}_0 \;+\; \beta^{CF}_1\, S_{it} \;+\; \bar S_i\,\gamma \;+\; u_{it},
+  \qquad \text{where } \bar S_i \equiv \frac{S_{i1}+S_{i2}}{2}.
+  \tag{CF-mean}
+  \]
+  Model (3) (control function with the sibling’s education) is
+  \[
+  Y_{it} \;=\; \delta^{CF}_0 \;+\; \delta^{CF}_1\, S_{it} \;+\; \delta^{CF}_2\, S_{i(-t)} \;+\; v_{it}.
+  \tag{CF-sib}
+  \]
+
+  \textbf{Algebraic link.} Using $\bar S_i = \tfrac{1}{2}(S_{it} + S_{i(-t)})$ in \eqref{CF-mean},
+  \[
+  \begin{aligned}
+  Y_{it}
+  &= \beta^{CF}_0 + \beta^{CF}_1 S_{it} + \gamma \cdot \frac{S_{it}+S_{i(-t)}}{2} + u_{it} \\
+  &= \underbrace{\beta^{CF}_0}_{\delta^{CF}_0}
+  \;+\; \underbrace{\left(\beta^{CF}_1 + \frac{\gamma}{2}\right)}_{\delta^{CF}_1} S_{it}
+  \;+\; \underbrace{\left(\frac{\gamma}{2}\right)}_{\delta^{CF}_2} S_{i(-t)}
+  \;+\; u_{it}.
+  \end{aligned}
+  \]
+  Matching coefficients with \eqref{CF-sib} yields
+  \[
+  \delta^{CF}_1 \;=\; \beta^{CF}_1 + \frac{\gamma}{2},
+  \qquad
+  \delta^{CF}_2 \;=\; \frac{\gamma}{2}.
+  \]
+  Eliminating $\gamma$ gives the desired relationship:
+  \[
+  \boxed{ \;\beta^{CF}_1 \;=\; \delta^{CF}_1 \;-\; \delta^{CF}_2\; }.
+  \]
+
+  \textbf{Assumptions used.}
+  \begin{itemize}\itemsep0.2em
+    \item Two observations per family (identical twins), so $S_{i(-t)}$ denotes the other twin’s schooling and $\bar S_i = (S_{i1}+S_{i2})/2$.
+    \item Both specifications use the same sample and are linear reparameterizations with the same composite error (up to relabeling), so OLS coefficients transform accordingly.
+    \item The control-function interpretation follows the lecture’s CRE assumption that the family effect is linearly related to the family mean of schooling (used in part (a)); this ensures consistency of either formulation.
+  \end{itemize}
+
+  \textbf{Intuition.} Including $\bar S_i$ loads half on own schooling and half on the sibling’s. Hence the coefficient on own schooling in the mean-control model equals the coefficient in the sibling-control model minus the “half-mean” piece, i.e., $\beta^{CF}_1=\delta^{CF}_1-\delta^{CF}_2$.
 \end{enumerate}
 
 \newpage
@@ -472,17 +584,107 @@ We can write the outcome as realized $Y_{it}=Y_{it}(D_{it})$. That is, $Y_{it}(0
   
   % ANSWER HERE
   \textbf{Solution.} \\
+  Recall $D_{it} = \text{NJ}_i \times \text{Post}_t$, where $\text{Post}_1=0$ (pre) and $\text{Post}_2=1$ (post). 
+  By consistency (realized outcome equals the potential outcome at the realized treatment), $Y_{it}=Y_{it}(D_{it})$.
+
+  In the pre period $t=1$, we have $D_{i1}=\text{NJ}_i \times 0 = 0$ for \emph{all} $i$. Hence
+  \[
+  Y_{i1}=Y_{i1}(0)\quad\text{for every unit.}
+  \]
+  Therefore the pre-period means of the observed outcomes identify the corresponding no-treatment potential outcome means:
+  \[
+  \mathbb{E}\!\left[\,Y_{i1}(0)\mid \text{NJ}\,\right] 
+  = \mathbb{E}\!\left[\,Y_{i1}\mid \text{NJ}\,\right],
+  \qquad
+  \mathbb{E}\!\left[\,Y_{i1}(0)\mid \text{PA}\,\right] 
+  = \mathbb{E}\!\left[\,Y_{i1}\mid \text{PA}\,\right].
+  \]
+  In practice, each is estimated by the sample average of $Y_{i1}$ among restaurants in the indicated state at $t=1$.
+
+  \emph{Why:} At $t=1$ no unit is treated, so the observed outcome equals the $0$-potential outcome for both NJ and PA. No additional assumptions (like parallel trends) are needed for this part beyond consistency/SUTVA and having the pre-period data.
 
   \item Can you estimate $\mathbb{E}[\,Y_{i2}(1)\mid NJ\,]$ and $\mathbb{E}[\,Y_{i2}(1)\mid PA\,]$ in the data? Explain why or why not.\\[0.5em]
   
   % ANSWER HERE
   \textbf{Solution.} \\
 
+  Recall $D_{it} = NJ_i \times Post_t$ and the realized outcome $Y_{it} = Y_{it}(D_{it})$,
+  where $Y_{it}(0)$ is full-time employment absent the increase in the minimum wage and
+  $Y_{it}(1)$ is employment when the higher minimum wage applies.
+
+  At $t=2$ (post):
+  \[
+  NJ_i=1 \;\Rightarrow\; D_{i2}=1 \;\Rightarrow\; Y_{i2}=Y_{i2}(1).
+  \]
+  Hence the post-treatment potential outcome under treatment for NJ is observed:
+  \[
+  E\!\left[Y_{i2}(1)\mid NJ\right] \;=\; E\!\left[Y_{i2}\mid NJ,\, t=2\right] \quad \text{(identifiable from the data).}
+  \]
+
+  For PA restaurants, $NJ_i=0$ so
+  \[
+  D_{i2}=0 \;\Rightarrow\; Y_{i2}=Y_{i2}(0),
+  \]
+  and the treated potential outcome is never observed in PA. Therefore,
+  \[
+  E\!\left[Y_{i2}(1)\mid PA\right] \quad \text{is \emph{not} identified from the data alone}.
+  \]
+  To learn about $E[Y_{i2}(1)\mid PA]$ one would need additional assumptions or structure
+  (e.g., treatment-effect homogeneity or a difference-in-differences/parallel-trends argument),
+  but it is not directly estimable from the observed outcomes.
+
   \item Use potential outcomes $\{Y_{it}(0),Y_{it}(1)\}$ to express the parallel trend assumption. Under the parallel trend assumption, what does $\beta_3$ represent?\\[0.5em]
   
   % ANSWER HERE
   \textbf{Solution.} \\
-  
+  Let the realized outcome satisfy $Y_{it}=Y_{it}(D_{it})$ with
+  $D_{it}=NJ_i\times Post_t$, where $Post_1=0$ (pre) and $Post_2=1$ (post).
+  Thus $D_{i1}=0$ for all $i$, and $D_{i2}=NJ_i$.
+
+  At $t=1$ (pre):
+  \[
+  \mathbb{E}[Y_{i1}\mid s] \;=\; \mathbb{E}[Y_{i1}(0)\mid s], 
+  \qquad s\in\{\text{NJ},\text{PA}\}.
+  \]
+
+  At $t=2$ (post):
+  \[
+  \mathbb{E}[Y_{i2}\mid \text{PA}] \;=\; \mathbb{E}[Y_{i2}(0)\mid \text{PA}], 
+  \qquad
+  \mathbb{E}[Y_{i2}\mid \text{NJ}] \;=\; \mathbb{E}[Y_{i2}(0)\mid \text{NJ}] 
+  + \mathbb{E}[\,Y_{i2}(1)-Y_{i2}(0)\mid \text{NJ}\,].
+  \]
+
+  \emph{Parallel trends in potential outcomes} is the restriction
+  \[
+  \mathbb{E}\!\big[Y_{i2}(0)-Y_{i1}(0)\mid \text{NJ}\big]
+  \;=\;
+  \mathbb{E}\!\big[Y_{i2}(0)-Y_{i1}(0)\mid \text{PA}\big].
+  \tag{PT}
+  \]
+
+  Consider the difference-in-differences contrast:
+  \[
+  \Delta 
+  = \big(\mathbb{E}[Y_{i2}\mid \text{NJ}]-\mathbb{E}[Y_{i1}\mid \text{NJ}]\big)
+  -\big(\mathbb{E}[Y_{i2}\mid \text{PA}]-\mathbb{E}[Y_{i1}\mid \text{PA}]\big).
+  \]
+  Substituting the displays above and using \textnormal{(PT)} yields
+  \[
+  \Delta 
+  = \mathbb{E}[\,Y_{i2}(1)-Y_{i2}(0)\mid \text{NJ}\,].
+  \]
+  Hence, under SUTVA/consistency and (PT), the coefficient on the interaction
+  in the regression
+  \[
+  Y_{it}=\beta_0+\beta_1 NJ_i+\beta_2 Post_t+\beta_3 D_{it}+\varepsilon_{it}
+  \]
+  identifies this contrast, so
+  \[
+  \beta_3 \;=\; \Delta
+  \;=\; \mathbb{E}[\,Y_{i2}(1)-Y_{i2}(0)\mid \text{NJ}\,],
+  \]
+  the average treatment effect for NJ restaurants at $t=2$ (the treated group).
   
 \end{enumerate}
 
