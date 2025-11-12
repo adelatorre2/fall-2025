@@ -1,0 +1,198 @@
+
+
+\documentclass[10pt]{article}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\begin{document}\small
+
+\textbf{\Large Two-Behavior (``Double-Complier'') LATE --- 1-Page Skeleton}
+
+\textbf{Setup (exactly as in class).}
+\begin{itemize}
+\item Instrument $Z\in\{0,1\}$ is randomly assigned. We observe two mutually exclusive binary behaviors $D_1,D_2\in\{0,1\}$ with
+$D_1(Z)+D_2(Z)\in\{0,1\}$ (cannot take both). The realized treatment vector is $(D_1,D_2)=(D_1(Z),D_2(Z))$.
+\item Potential outcomes: $Y(d_1,d_2)$ and \emph{exclusion} (no direct $Z$ effect): $Y=Y\!\big(D_1(Z),D_2(Z)\big)$.
+\item Random assignment: $\big(D_1(0),D_1(1),D_2(0),D_2(1),Y(\cdot,\cdot)\big)\perp Z$.
+\item (Sometimes given) \emph{Monotonicity}: no defiers \emph{for the behavior of interest}. For ``any-treatment'' define $T(z)\equiv D_1(z)+D_2(z)$ and monotonicity means $T(1)\ge T(0)$.
+\end{itemize}
+
+\textbf{Principal strata (two $Z$-worlds, multiple behaviors).}
+\[
+\begin{array}{l l}
+\text{NT:}& (D_1,D_2)=(0,0)\text{ under both }z\\
+\text{Always-$D_1$:}& (1,0)\text{ under both }z\\
+\text{Always-$D_2$:}& (0,1)\text{ under both }z\\
+\text{$D_1$-compliers:}& (0,0)\to(1,0)\\
+\text{$D_2$-compliers:}& (0,0)\to(0,1)\\
+\text{(if no mono) $D_1$-defiers:}& (1,0)\to(0,0),\quad \text{(if no mono) $D_2$-defiers: }(0,1)\to(0,0)
+\end{array}
+\]
+
+\textbf{First-stages (net shifts induced by $Z$).}
+\[
+\pi^{(1)}\equiv E[D_1\!\mid Z{=}1]-E[D_1\!\mid Z{=}0]=\Pr(D_1\text{-comp})-\Pr(D_1\text{-def}),
+\]
+\[
+\pi^{(2)}\equiv E[D_2\!\mid Z{=}1]-E[D_2\!\mid Z{=}0]=\Pr(D_2\text{-comp})-\Pr(D_2\text{-def}),
+\]
+\[
+\pi^{(T)}\equiv E[T\!\mid Z{=}1]-E[T\!\mid Z{=}0]=\pi^{(1)}+\pi^{(2)}.
+\]
+
+\textbf{Reduced form for the outcome.}
+\[
+\delta\;\equiv\;E[Y\!\mid Z{=}1]-E[Y\!\mid Z{=}0]
+\]
+\[
+=\; \underbrace{E\!\big[Y(1,0){-}Y(0,0)\mid D_1\text{-comp}\big]\Pr(D_1\text{-comp})}_{\text{$Z$ creates $D_1$}}
++\underbrace{E\!\big[Y(0,1){-}Y(0,0)\mid D_2\text{-comp}\big]\Pr(D_2\text{-comp})}_{\text{$Z$ creates $D_2$}}
+\]
+\[
+\phantom{=}\;-\;\underbrace{E\!\big[Y(1,0){-}Y(0,0)\mid D_1\text{-def}\big]\Pr(D_1\text{-def})}_{\text{if present}}
+\;-\;\underbrace{E\!\big[Y(0,1){-}Y(0,0)\mid D_2\text{-def}\big]\Pr(D_2\text{-def})}_{\text{if present}}.
+\]
+
+\textbf{Wald ratios and interpretations.}  Always state the assumption you use.
+\begin{align*}
+\frac{\delta}{\pi^{(1)}} &=
+\begin{cases}
+E\!\big[Y(1,0)-Y(0,0)\mid D_1\text{-compliers}\big], & \text{if } D_1 \text{ monotonicity holds;}\\
+\text{signed avg. over }D_1\text{-compliers/defiers}, & \text{without monotonicity.}
+\end{cases}\\[4pt]
+\frac{\delta}{\pi^{(2)}} &=
+\begin{cases}
+E\!\big[Y(0,1)-Y(0,0)\mid D_2\text{-compliers}\big], & \text{if } D_2 \text{ monotonicity holds;}\\
+\text{signed avg. over }D_2\text{-compliers/defiers}, & \text{without monotonicity.}
+\end{cases}\\[4pt]
+\frac{\delta}{\pi^{(T)}} &= 
+\begin{cases}
+\displaystyle \frac{
+E[\tau_1\mid D_1\text{-comp}]\Pr(D_1\text{-comp})
++E[\tau_2\mid D_2\text{-comp}]\Pr(D_2\text{-comp})
+}{\Pr(D_1\text{-comp})+\Pr(D_2\text{-comp})},
+& \text{mono. in }T,\\
+\text{signed mix incl. defiers,} & \text{otherwise,}
+\end{cases}
+\end{align*}
+where $\tau_1\equiv Y(1,0){-}Y(0,0)$ and $\tau_2\equiv Y(0,1){-}Y(0,0)$.
+
+\textbf{``Goofy'' reduced forms you can deploy fast.}
+\[
+\frac{\delta^{X\cdot D_1}}{\pi^{(1)}}=E[X\mid D_1\text{-comp}],\qquad
+\frac{\delta^{Y\cdot D_1}}{\pi^{(1)}}=E[Y(1,0)\mid D_1\text{-comp}],
+\]
+\[
+-\frac{\delta^{Y\cdot(1-D_1-D_2)}}{\pi^{(1)}}=E[Y(0,0)\mid D_1\text{-comp}]
+\quad(\text{analogous formulas for }D_2).
+\]
+
+\textbf{Exam checklist (what to do on the page).}
+\begin{enumerate}
+\item \emph{Table}: rows = strata (NT, always-$D_1$, always-$D_2$, $D_1$-comp, $D_2$-comp, $\pm$ defiers), columns = $Z{=}0,1$, fill $(D_1,D_2)$ and $Y(\cdot,\cdot)$.
+\item \emph{First stage(s)}: write $\pi^{(1)},\pi^{(2)},\pi^{(T)}$; interpret as net shares moved.
+\item \emph{Reduced form}: difference the two $Z$ columns; cancel NT/always-takers; keep complier (and defier if any) terms.
+\item \emph{Ratio}: pick the ratio the question asks for and state the assumption (mono or not) and the correct interpretation.
+\item \emph{Optionally} recover complier means with the goofy products above.
+\end{enumerate}
+
+\textbf{Nested (provider $\to$ treatment) view you might see.}
+Sometimes $Z$ first changes a setting $H(Z)\in\{0,1\}$ and treatment is $D(H)$.
+Then $D_Z=D(H(Z))$, $Y=Y(D(H(Z)))$, and the Wald ratio using $D$ as the first stage identifies the LATE for those who are moved into the setting \emph{and}, because of it, into the treatment (``double compliers''), under random assignment, exclusion, and monotonicity for the final uptake.
+
+\vfill\hfill\emph{Rule of thumb: two counterfactual worlds ($Z{=}0$ vs $Z{=}1$); possibly many binary behaviors. Every behavior has a $D_k(0)$ and a $D_k(1)$.}
+
+\end{document}
+\documentclass[10pt]{article}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\begin{document}\small
+
+\textbf{\Large Smoking (Counseling IV) with Two Mutually-Exclusive Behaviors}
+
+\textbf{Empirical story.}
+\begin{itemize}
+  \item Instrument $Z\in\{0,1\}$: randomized counseling offer ($Z{=}1$ treated).
+  \item Outcome $Y$: infant birthweight.
+  \item Two binary, \emph{mutually exclusive} behaviors at delivery:
+    \begin{align*}
+      D_1&=1\ \text{if the mother \emph{desists} (quits smoking)},\\
+      D_2&=1\ \text{if the mother \emph{does not quit but changes behavior} (e.g., low-intensity smoking / NRT only)},
+    \end{align*}
+    so $D_1(Z)+D_2(Z)\in\{0,1\}$. Define \emph{any uptake} $T(Z)\equiv D_1(Z)+D_2(Z)$.
+  \item Potential outcomes $Y(d_1,d_2)$ and \emph{exclusion:} $Y=Y\!\big(D_1(Z),D_2(Z)\big)$ (no direct $Z$ effect).
+  \item Random assignment: $\big(D_1(0),D_1(1),D_2(0),D_2(1),Y(\cdot,\cdot)\big)\perp Z$.
+  \item (Sometimes given) \emph{Monotonicity:} no defiers for the uptake of interest. For \emph{any} uptake, $T(1)\ge T(0)$. Optionally, monotonicity behavior-by-behavior: $D_k(1)\ge D_k(0)$ for $k\in\{1,2\}$.
+\end{itemize}
+
+\textbf{Principal strata (by $(D_1(0),D_2(0))\to(D_1(1),D_2(1))$).}
+\[
+\begin{array}{l l}
+\text{NT:}& (0,0)\to(0,0)\\
+\text{Always-$D_1$:}& (1,0)\to(1,0)\quad \text{Always-$D_2$: }(0,1)\to(0,1)\\
+\text{$D_1$-compliers:}& (0,0)\to(1,0)\quad \text{$D_2$-compliers: }(0,0)\to(0,1)\\
+\text{(if no mono) $D_1$-defiers:}& (1,0)\to(0,0)\quad \text{(if no mono) $D_2$-defiers: }(0,1)\to(0,0)
+\end{array}
+\]
+
+\textbf{First-stages (what $Z$ shifts).}
+\[
+\pi^{(1)}=E[D_1\mid Z{=}1]-E[D_1\mid Z{=}0]=\Pr(D_1\text{-comp})-\Pr(D_1\text{-def}),
+\]
+\[
+\pi^{(2)}=E[D_2\mid Z{=}1]-E[D_2\mid Z{=}0]=\Pr(D_2\text{-comp})-\Pr(D_2\text{-def}),
+\]
+\[
+\pi^{(T)}=E[T\mid Z{=}1]-E[T\mid Z{=}0]=\pi^{(1)}+\pi^{(2)}.
+\]
+
+\textbf{Reduced form for birthweight.}
+\[
+\delta\equiv E[Y\mid Z{=}1]-E[Y\mid Z{=}0]
+=E\big[Y(1,0)-Y(0,0)\mid D_1\text{-comp}\big]\Pr(D_1\text{-comp})
++E\big[Y(0,1)-Y(0,0)\mid D_2\text{-comp}\big]\Pr(D_2\text{-comp})
+\]
+\[
+\phantom{\delta=}\;-\;E\big[Y(1,0)-Y(0,0)\mid D_1\text{-def}\big]\Pr(D_1\text{-def})
+\;-\;E\big[Y(0,1)-Y(0,0)\mid D_2\text{-def}\big]\Pr(D_2\text{-def}).
+\]
+
+\textbf{Which Wald ratio equals which LATE? \ (State the extra condition you use.)}
+\begin{align*}
+\frac{\delta}{\pi^{(1)}}&=\begin{cases}
+E\big[Y(1,0)-Y(0,0)\mid D_1\text{-comp}\big],&\text{if (i) $D_1$-monotonicity and (ii) \underline{either} $\pi^{(2)}=0$ \underline{or} $Y(0,1)=Y(0,0)$;}\\
+\text{signed mix of types},&\text{otherwise.}
+\end{cases}\\[4pt]
+\frac{\delta}{\pi^{(2)}}&=\begin{cases}
+E\big[Y(0,1)-Y(0,0)\mid D_2\text{-comp}\big],&\text{if (i) $D_2$-monotonicity and (ii) \underline{either} $\pi^{(1)}=0$ \underline{or} $Y(1,0)=Y(0,0)$;}\\
+\text{signed mix of types},&\text{otherwise.}
+\end{cases}\\[4pt]
+\frac{\delta}{\pi^{(T)}}&=\begin{cases}
+\displaystyle \frac{E[\tau_1\mid D_1\!\text{-comp}]\Pr(D_1\!\text{-comp})+E[\tau_2\mid D_2\!\text{-comp}]\Pr(D_2\!\text{-comp})}{\Pr(D_1\!\text{-comp})+\Pr(D_2\!\text{-comp})},&\text{if $T$-monotonicity;}\\
+\text{signed mix incl. defiers},&\text{otherwise,}
+\end{cases}
+\end{align*}
+where $\tau_1\equiv Y(1,0)-Y(0,0)$ is the \emph{birthweight gain from quitting}, and $\tau_2\equiv Y(0,1)-Y(0,0)$ is the \emph{gain from the non-quit behavior} (e.g., low-intensity/NRT).
+
+\textbf{Fast “goofy” formulas to recover complier means (smoking context).}
+\begin{align*}
+\frac{\delta^{Y\cdot D_1}}{\pi^{(1)}}&=E\big[Y(1,0)\mid D_1\text{-comp}\big], & -\frac{\delta^{Y\cdot(1-D_1-D_2)}}{\pi^{(1)}}&=E\big[Y(0,0)\mid D_1\text{-comp}\big],\\
+\frac{\delta^{X\cdot D_1}}{\pi^{(1)}}&=E\big[X\mid D_1\text{-comp}\big], & \frac{\delta^{X\cdot D_2}}{\pi^{(2)}}&=E\big[X\mid D_2\text{-comp}\big],
+\end{align*}
+for any covariate $X$ (e.g., maternal age). Analogous formulas hold swapping $D_1$/$D_2$.
+
+\textbf{Exam checklist (apply to smoking).}
+\begin{enumerate}
+  \item Draw the table: rows = NT / always-$D_1$ / always-$D_2$ / $D_1$-comp / $D_2$-comp (and defiers if allowed); columns $Z{=}0,1$; fill $(D_1,D_2)$ and realized $Y$.
+  \item Compute $\pi^{(1)},\pi^{(2)},\pi^{(T)}$ and interpret (net shares moved by counseling).
+  \item Write the reduced form $\delta$ by differencing the two $Z$ columns.
+  \item Pick the relevant Wald ratio and \emph{state the extra condition} that kills the “other-behavior” term.
+  \item (Optional) Use goofy products to back out $E[Y(1,0)|\cdot],E[Y(0,0)|\cdot]$ or complier characteristics.
+\end{enumerate}
+
+\vfill\hfill\emph{Only two counterfactual worlds ($Z{=}0$ vs $Z{=}1$); multiple binary behaviors. Every behavior has its own $D_k(0),D_k(1)$.}
+
+\end{document}
