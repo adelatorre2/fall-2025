@@ -41,15 +41,18 @@ In Lecture 6 we introduced the Head Start Impact Study, a nation-wide experiment
 \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
   \item Is the Head Start Impact Study a perfect randomized control trial (RCT)? Why or why not?\\[0.5em]
   % ANSWER HERE
+  \vspace{3cm}
 
   \item Let $D_i=1$ if the kid attended preschool using a Head Start seat, and let $Z_i=1$ if the kid $i$ is assigned to the treatment group with initial offers of HS seats. If you estimate a first-stage regression of $D_i$ on a constant and $Z_i$, what are the estimates $\hat{\pi}_0$ and $\hat{\pi}_1$? Hint: use the numbers in the Table.
   \[
     D_i = \hat{\pi}_0 + \hat{\pi}_1 Z_i + \hat{\varepsilon}_i.
   \]
   % ANSWER HERE
+  \vspace{3cm}
 
   \item What does $\hat{\pi}_1$ represent? Hint: compliance.\\[0.5em]
   % ANSWER HERE
+  \vspace{3cm}
 \end{enumerate}
 
 \newpage
@@ -64,12 +67,15 @@ Let $Y_i(d)$ denote a person $i$'s potential outcome when $D_i=d\in\{0,1\}$. Sup
 \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
   \item Derive expressions for the population estimates of the first-stage coefficient $\pi_1$. Show that if there are more compliers than defiers, then $\pi_1>0$.\\[0.5em]
   % ANSWER HERE
+  \newpage
 
   \item Derive an expression for $\delta_1$ in the reduced form.\\[0.5em]
   % ANSWER HERE
+  \newpage
 
   \item What is $\delta_1/\pi_1$ when $\mathbb{E}[\,Y_i(1)-Y_i(0)\mid\text{Complier}\,]=\mathbb{E}[\,Y_i(1)-Y_i(0)\mid\text{Defier}\,]$?\\[0.5em]
   % ANSWER HERE
+  \newpage
 \end{enumerate}
 
 \newpage
@@ -86,12 +92,15 @@ In Lecture 7 we presented a study on the health impacts of cesarean section (\em
 \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
   \item What is the first stage model? Does it vary by the days since birth (indexed by $t$ on the x-axis)?\\[0.5em]
   % ANSWER HERE
+  \newpage
 
   \item Set up a reduced-form regression of some ``goofy'' outcome on the proposed instrument that allows you to estimate $\mathbb{E}[Y_{it}(1)\mid\text{Compliers}]$ at a given $t$ (days since birth). Show what you can estimate in the reduced form, and how you can use it in combination with the first-stage regression to estimate $\mathbb{E}[Y_{it}(1)\mid\text{Compliers}]$.\\[0.5em]
   % ANSWER HERE
+  \newpage
 
   \item Repeat (b) for $\mathbb{E}[Y_{it}(0)\mid\text{Compliers}]$. Can you observe $\{Y_{it}(0)\}$ among compliers in the data?\\[0.5em]
   % ANSWER HERE
+  
 \end{enumerate}
 
 \newpage
@@ -114,14 +123,15 @@ Y_{it} &= \delta_0^{CF} + \delta_1^{CF} S_{it} + \delta_2^{CF} S_{i(-t)} + v_{it
 \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
   \item Can you interpret $\hat{\beta}_1^{FE}$ as a causal estimate of return to education? State the assumption you need on model (1) to be able to consider $\hat{\beta}_1^{FE}$ as a causal estimate.\\[0.5em]
   % ANSWER HERE
-
+  \newpage
   \textit{For questions (b)--(c), assume the correct assumption in (a) holds.}\\[0.5em]
 
   \item Show the within estimator in (1) is equivalent to the estimator from the control function — $\hat{\beta}_1^{FE} = \hat{\beta}_1^{CF}$.\\[0.5em]
   % ANSWER HERE
-
+\newpage
   \item How does $\hat{\beta}_1^{CF}$ relate the coefficients in (3) — $\hat{\delta}_1^{CF}$ and $\hat{\delta}_2^{CF}$? Clearly state the assumptions you use.\\[0.5em]
   % ANSWER HERE
+  \newpage
 \end{enumerate}
 
 \newpage
@@ -140,12 +150,13 @@ We can write the outcome as realized $Y_{it}=Y_{it}(D_{it})$. That is, $Y_{it}(0
 \begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=1.5em]
   \item Can you estimate $\mathbb{E}[\,Y_{i1}(0)\mid NJ\,]$ and $\mathbb{E}[\,Y_{i1}(0)\mid PA\,]$ in the data? Explain why or why not.\\[0.5em]
   % ANSWER HERE
-
+\newpage
   \item Can you estimate $\mathbb{E}[\,Y_{i2}(1)\mid NJ\,]$ and $\mathbb{E}[\,Y_{i2}(1)\mid PA\,]$ in the data? Explain why or why not.\\[0.5em]
   % ANSWER HERE
-
+\newpage
   \item Use potential outcomes $\{Y_{it}(0),Y_{it}(1)\}$ to express the parallel trend assumption. Under the parallel trend assumption, what does $\beta_3$ represent?\\[0.5em]
   % ANSWER HERE
+  \newpage
 \end{enumerate}
 
 \end{document}
