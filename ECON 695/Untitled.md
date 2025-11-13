@@ -1,0 +1,1 @@
+$P^{-1} = \begin{bmatrix} 3 & 5 \\ -7 & -12 \end{Bmatrix}$
