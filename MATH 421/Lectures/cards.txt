@@ -1,0 +1,647 @@
+
+
+## **Card 9**
+**Front:**  
+What does Theorem 11.4 guarantee about any sequence, even if the sequence oscillates wildly?
+
+**Back:**  
+It guarantees the existence of a monotonic subsequence—**every** sequence contains either an increasing or decreasing subsequence.
+
+---
+
+## **Card 10 (Major Theorem)**
+**Front:**  
+State the Bolzano–Weierstrass Theorem (Theorem 11.5).
+
+**Back:**  
+Every **bounded** sequence of real numbers has a **convergent subsequence**.
+
+---
+
+## **Card 11**
+**Front:**  
+Why does Bolzano–Weierstrass follow from Theorem 11.4 + Theorem 10.2?
+
+**Back:**  
+- By Theorem 11.4, every sequence has a **monotonic** subsequence.  
+- If the original sequence is bounded, the subsequence is also bounded.  
+- By Theorem 10.2 (Monotone Convergence Theorem), every bounded monotonic sequence **converges**.  
+Thus, bounded sequence ⇒ monotonic subsequence ⇒ convergent subsequence.
+
+---
+
+## **Card 12**
+**Front:**  
+What is the importance of the Bolzano–Weierstrass Theorem?
+
+**Back:**  
+It guarantees that **bounded sequences always have some form of convergence** (via subsequences), even if the full sequence does not converge.  
+It underlies compactness in \(\mathbb{R}\) and is foundational in analysis.
+
+---
+
+## **Card 13**
+**Front:**  
+What does a bounded sequence mean?
+
+**Back:**  
+A sequence \((s_n)\) is bounded if there is some number \(M > 0\) such that  
+\[
+|s_n| \le M \quad \text{for all } n.
+\]
+
+---
+
+## **Card 14**
+**Front:**  
+Intuition: Why must a bounded sequence always have a convergent subsequence?
+
+**Back:**  
+Because bounded sequences cannot “escape to infinity,” and by the infinite pigeonhole principle + monotonic subsequence theorem, you can always extract a subsequence that converges.
+
+---
+
+# Want More Flashcards?
+
+If you'd like, I can also prepare:
+
+✅ Flashcards for limits of sequences  
+✅ Epsilon–N proofs  
+✅ Epsilon–delta function limits  
+✅ Cauchy sequences  
+✅ Absolute/conditional convergence  
+✅ Comparison & ratio tests  
+…or anything else from your course.
+
+Just tell me what you want next.
+
+Here are clean, Quizlet/Anki-ready flashcards (your preferred format: **term ↔ definition separated by a tab; blank line between cards**).  
+Each card isolates a single fact so you can review efficiently.
+
+---
+
+# ✅ **ANKI FLASHCARDS — SUBSEQUENTIAL LIMITS & EXAMPLES**  
+*(formatted exactly how you like: term, tab, definition, then blank line)*
+
+---
+
+**Subsequential limit (definition)**  
+	A subsequential limit of a sequence \((s_n)\) is any real number or symbol \(+\infty\) or \(-\infty\) that is the limit of some subsequence of \((s_n)\).
+
+---
+
+**What does it mean for a subsequence \((t_k)\) to be of \((s_n)\)?**  
+	A subsequence \((t_k)\) is obtained by selecting terms \(s_{n_k}\) with indices \(n_1 < n_2 < n_3 < \cdots\).
+
+---
+
+**Every subsequence preserves order**  
+	If \((t_k)\) is a subsequence of \((s_n)\), then the indices satisfy \(n_1 < n_2 < \cdots\), meaning subsequences keep the original order.
+
+---
+
+**Subsequences and infinity**  
+	A subsequence may diverge to \(+\infty\) or \(-\infty\), and these count as subsequential limits.
+
+---
+
+**If a sequence \((s_n)\) converges to \(s\)**  
+	Then **every** subsequence also converges to \(s\), so the only subsequential limit is \(\{s\}\).
+
+---
+
+**Bolzano–Weierstrass Theorem**  
+	Every bounded sequence has a **convergent subsequence**.
+
+---
+
+**Meaning of Bolzano–Weierstrass**  
+	If \((s_n)\) is bounded, the set of subsequential limits is nonempty and contains at least one real number.
+
+---
+
+**Subsequence extraction (theorem 11.4)**  
+	Every sequence has a **monotonic subsequence**.
+
+---
+
+### **EXAMPLE-BASED CARDS**
+
+---
+
+**Example 5: sequence \(s_n = n^2(-1)^n\)**  
+	The even subsequence goes to \(+\infty\) and the odd subsequence goes to \(-\infty\).  
+	Subsequential limits = \(\{-\infty, +\infty\}\).
+
+---
+
+**Example 5: Why does the subsequence diverge to \(+\infty\)?**  
+	When \(n\) is even: \(s_n = n^2\) which → \(+\infty\).
+
+---
+
+**Example 5: Why does the subsequence diverge to \(-\infty\)?**  
+	When \(n\) is odd: \(s_n = -n^2\) which → \(-\infty\).
+
+---
+
+**Example 6: sequence \(a_n = \sin(\frac{n\pi}{3})\)**  
+	The subsequential limits are \(\{-\frac{\sqrt{3}}{2}, 0, \frac{\sqrt{3}}{2}\}\).
+
+---
+
+**Example 6: Why does \(\sin(\frac{n\pi}{3})\) produce 3 subsequential limits?**  
+	Because \(\frac{n\pi}{3}\) cycles through angles whose sine values are \( \frac{\sqrt{3}}{2}, 0, -\frac{\sqrt{3}}{2} \).
+
+---
+
+**Example 7: subsequential limits of all rational numbers \((r_n)\)**  
+	The set of subsequential limits is all of \(\mathbb{R} \cup \{-\infty,+\infty\}\).
+
+---
+
+**Example 7: Why do rationals have every real number as a subsequential limit?**  
+	Because rationals are dense in \(\mathbb{R}\), so a subsequence can be chosen to converge to any real \(t\).
+
+---
+
+**Example 7: Why do rationals also have \(\pm \infty\) as subsequential limits?**  
+	Because the rationals are unbounded above and below.
+
+---
+
+**Example 8: sequence \(b_n = n[1+(-1)^n]\)**  
+	If \(n\) is even: \(b_n = 2n \to +\infty\). If \(n\) is odd: \(b_n = 0\).  
+	Subsequential limits = \(\{0, +\infty\}\).
+
+---
+
+**Example 8: Why is 0 a subsequential limit?**  
+	Because all odd-index terms are exactly 0.
+
+---
+
+**Example 8: Why is \(+\infty\) a subsequential limit?**  
+	Because even-index terms equal \(2n \to +\infty\).
+
+---
+
+# If you want, I can also generate:
+✅ Cloze deletion cards  
+✅ Cards grouped by theorem vs. examples  
+✅ More examples for practice  
+✅ A full Anki deck file (if you want to import directly)
+
+Would you like expansions like that?
+
+Below are **clean Anki-ready flashcards** (your format: **TERM ↔ DEFINITION separated by a tab, blank line between cards**).  
+These cards cover:
+
+- The statement of **Theorem 11.7**
+- What limsup/liminf **mean**
+- Their connection to **subsequential limits**
+- Why monotonic subsequences appear
+- The key logical structure behind the proof
+
+---
+
+# ✅ **ANKI FLASHCARDS — Theorem 11.7, limsup, liminf, subsequential limits**
+
+---
+
+**Theorem 11.7 (statement)**  
+	For any sequence \((s_n)\), there exists a monotonic subsequence whose limit is \(\limsup s_n\), and there exists a monotonic subsequence whose limit is \(\liminf s_n\).
+
+---
+
+**Definition of limsup \(s_n\)**  
+	\(\limsup s_n\) is the limit of the sequence \(\sup\{s_n : n > N\}\) as \(N \to \infty\).
+
+---
+
+**Definition of liminf \(s_n\)**  
+	\(\liminf s_n\) is the limit of the sequence \(\inf\{s_n : n > N\}\) as \(N \to \infty\).
+
+---
+
+**Intuition: limsup**  
+	\(\limsup s_n\) is the “eventual supremum” — the largest value that subsequences can accumulate near infinitely often.
+
+---
+
+**Intuition: liminf**  
+	\(\liminf s_n\) is the “eventual infimum” — the smallest value that subsequences can accumulate near infinitely often.
+
+---
+
+**Connection to subsequential limits**  
+	The limsup is the **largest subsequential limit**, and the liminf is the **smallest subsequential limit**.
+
+---
+
+**All subsequential limits lie between liminf and limsup**  
+	For every subsequential limit \(t\), we have \(\liminf s_n \le t \le \limsup s_n\).
+
+---
+
+**Characterization of limsup in terms of subsequential limits**  
+	\(\limsup s_n = \sup\{t : t \text{ is a subsequential limit of } s_n\}\).
+
+---
+
+**Characterization of liminf in terms of subsequential limits**  
+	\(\liminf s_n = \inf\{t : t \text{ is a subsequential limit of } s_n\}\).
+
+---
+
+**Why monotonic subsequences exist (Theorem 11.4)**  
+	Every sequence has a monotonic subsequence, found by tracking dominant or non-dominant indices.
+
+---
+
+**Why monotonic subsequences help with limsup/liminf**  
+	Monotonic sequences have limits (finite or infinite), so finding monotonic subsequences allows you to produce actual limits equal to limsup or liminf.
+
+---
+
+**If a sequence is unbounded above**  
+	Then some monotonic subsequence diverges to \(+\infty\), which equals \(\limsup s_n\).
+
+---
+
+**If a sequence is unbounded below**  
+	Then some monotonic subsequence diverges to \(-\infty\), which equals \(\liminf s_n\).
+
+---
+
+**Key step in the limsup proof (bounded-above case)**  
+	Let \(t = \limsup s_n\). For any \(\varepsilon > 0\), eventually all tail suprema satisfy \(\sup\{s_n : n > N\} < t + \varepsilon\).
+
+---
+
+**Why the set \(\{n : t - \varepsilon < s_n < t + \varepsilon\}\) must be infinite**  
+	If it were finite, tails would be bounded by \(t - \varepsilon\), contradicting the definition of limsup.
+
+---
+
+**From the infinite set condition to a subsequence**  
+	Because infinitely many terms lie in any neighborhood around \(t\), we can extract an increasing subsequence converging to \(t = \limsup s_n\).
+
+---
+
+**Parallel fact for liminf**  
+	Infinitely many terms lie within any neighborhood of \(\liminf s_n\), letting us extract a subsequence decreasing to \(\liminf s_n\).
+
+---
+
+**Interpretation of Theorem 11.7**  
+	The limsup and liminf are always realized by actual subsequences, not just abstract bounds.
+
+---
+
+**Connection to Bolzano–Weierstrass**  
+	If the sequence is bounded, then by Bolzano–Weierstrass it has a convergent subsequence; Theorem 11.7 identifies the **extreme** limits of such subsequences.
+
+---
+
+If you'd like, I can also generate:
+
+✅ Cloze-deletion versions  
+✅ A compact summary card  
+✅ Cards for the definitions of limsup/liminf via “hills and valleys” intuition  
+✅ A full ready-to-import Anki deck file  
+
+Would you like any of these additions?
+
+
+Here you go — a strong, clean set of **Anki-ready flashcards** for *Theorem 11.8*, its meaning, and all the key examples.  
+Everything is formatted in **Term ↦ Definition** pairs, separated by newlines exactly as Anki likes.
+
+---
+
+# ✅ **ANKI FLASHCARDS — Theorem 11.8 & Applications**
+
+(Each card is *one line*, tab-separated, and cards are separated by a blank line.)
+
+---
+
+## **Theorem 11.8 – Statement**
+
+**Term:** Theorem 11.8 — Part (i)  
+**Definition:** Let \((s_n)\) be a sequence in \(\mathbb{R}\). The set \(S\) of all subsequential limits of \((s_n)\) is **nonempty**.
+
+---
+
+**Term:** Why is the set of subsequential limits always nonempty?  
+**Definition:** By Theorem 11.7, every sequence has a monotone subsequence; a monotone subsequence must converge (possibly to \(\pm\infty\)). Thus at least one subsequential limit exists.
+
+---
+
+**Term:** Theorem 11.8 — Part (ii)  
+**Definition:** For any sequence \((s_n)\), \(\sup S = \limsup s_n\) and \(\inf S = \liminf s_n\), where \(S\) is the set of all subsequential limits.
+
+---
+
+**Term:** Meaning of Theorem 11.8(ii)  
+**Definition:** The limsup is the **largest** subsequential limit and the liminf is the **smallest** subsequential limit.
+
+---
+
+**Term:** Theorem 11.8 — Part (iii)  
+**Definition:** The sequence \((s_n)\) has a limit **if and only if** the set \(S\) of subsequential limits contains exactly one number. That unique element is \(\lim s_n\).
+
+---
+
+**Term:** Why does “\(S\) has exactly one element” imply the sequence converges?  
+**Definition:** Because every subsequence must converge to the same number, forcing the entire sequence to converge.
+
+---
+
+# ✅ **Conceptual Cards**
+
+**Term:** What is a subsequential limit?  
+**Definition:** Any real number (or \(\pm\infty\)) that is the limit of **some subsequence** of \((s_n)\).
+
+---
+
+**Term:** Relationship between subsequential limits and limsup/liminf  
+**Definition:** The set of subsequential limits always contains **every limit point** of the sequence, with largest = limsup, smallest = liminf.
+
+---
+
+**Term:** When does \((s_n)\) converge?  
+**Definition:** When **all** subsequences converge to the **same** subsequential limit. Equivalently, when limsup = liminf.
+
+---
+
+# ✅ **Important Examples as Flashcards**
+
+---
+
+### **Example 9: \(s_n = n^2(-1)^n\)**
+
+**Term:** \(s_n = n^2(-1)^n\) — what are its subsequential limits?  
+**Definition:** Even subsequence → \(+\infty\); odd subsequence → \(-\infty\). So \(S = \{-\infty, +\infty\}\).
+
+---
+
+**Term:** \(s_n = n^2(-1)^n\) — limsup and liminf  
+**Definition:** \(\limsup s_n = +\infty\), \(\liminf s_n = -\infty\).
+
+---
+
+### **Example 10: \(a_n = \sin\left(\frac{n\pi}{3}\right)\)**
+
+**Term:** Values visited by \(a_n = \sin(n\pi/3)\)  
+**Definition:** The sequence cycles through \(\frac{\sqrt3}{2}, 0, -\frac{\sqrt3}{2}\).
+
+---
+
+**Term:** Set of subsequential limits of \(a_n = \sin(n\pi/3)\)  
+**Definition:** \(S = \{-\tfrac{\sqrt3}{2}, 0, \tfrac{\sqrt3}{2}\}\).
+
+---
+
+**Term:** limsup and liminf of \(a_n = \sin(n\pi/3)\)  
+**Definition:** \(\limsup a_n = \tfrac{\sqrt3}{2}\), \(\liminf a_n = -\tfrac{\sqrt3}{2}\).
+
+---
+
+### **Example 11: \(r_n\) enumerates the rationals**
+
+**Term:** Subsequence limits of \(r_n\), an enumeration of \(\mathbb{Q}\)  
+**Definition:** Every real number is hit infinitely often by some subsequence; \(S = \mathbb{R} \cup \{-\infty,+\infty\}\).
+
+---
+
+**Term:** limsup and liminf of a sequence that enumerates \(\mathbb{Q}\)  
+**Definition:** \(\limsup r_n = +\infty\), \(\liminf r_n = -\infty\).
+
+---
+
+### **Example 12: \(b_n = n[1 + (-1)^n]\)**
+
+**Term:** Describe the behavior of \(b_n = n(1 + (-1)^n)\).  
+**Definition:** Even \(n\): \(b_n = 2n \to +\infty\). Odd \(n\): \(b_n = 0\).
+
+---
+
+**Term:** Set of subsequential limits of \(b_n = n(1 + (-1)^n)\)  
+**Definition:** \(S = \{0, +\infty\}\).
+
+---
+
+**Term:** limsup and liminf of \(b_n = n(1 + (-1)^n)\)  
+**Definition:** \(\limsup b_n = +\infty\), \(\liminf b_n = 0\).
+
+---
+
+# ✅ **Key Technique Cards**
+
+---
+
+**Term:** How to compute limsup using subsequences?  
+**Definition:** Find the largest possible limit of any subsequence of \((s_n)\). That value is \(\limsup s_n\).
+
+---
+
+**Term:** How to compute liminf using subsequences?  
+**Definition:** Find the smallest possible limit of any subsequence of \((s_n)\). That value is \(\liminf s_n\).
+
+---
+
+**Term:** What does Theorem 11.8 tell us about computing limsup/liminf in practice?  
+**Definition:** You can compute limsup/liminf by identifying subsequences approaching extreme cluster points of the sequence.
+
+---
+
+This is the *optimal path* for learning this material. Follow these steps in order, practicing examples at each stage.
+
+---
+
+# **1. Start With Subsequence Definition (11.1)**
+
+### Core idea  
+A *subsequence* is made by selecting terms of the original sequence but keeping their order:
+\[
+t_k = s_{n_k},\quad n_1 < n_2 < n_3 < \cdots
+\]
+
+### Why it matters  
+Subsequences allow us to “zoom in” on particular long-term behaviors inside a sequence.  
+Even if the full sequence doesn't converge, some subsequences might.
+
+---
+
+# **2. Every Sequence Has a Monotone Subsequence (11.4)**
+
+### Why this is huge:
+Monotone sequences always converge (possibly to \(\pm\infty\)).  
+So:
+
+**Every sequence has *at least one* subsequence that converges.**
+
+This guarantees the set of subsequential limits is **never empty**.
+
+This is the foundation for limsup/liminf.
+
+---
+
+# **3. Learn Definition of Subsequential Limits (11.6)**
+
+A subsequential limit is:
+> “Any limit of any subsequence.”
+
+A sequence may have  
+• one subsequential limit → implies convergence  
+• several → oscillation  
+• infinitely many → dense behavior (e.g., rational enumeration)  
+• \(\pm\infty\) → divergence in that direction
+
+---
+
+# **4. Theorem 11.7 – Existence of Monotone Subsequences Reaching limsup/liminf**
+
+This theorem connects subsequences to limsup/liminf:
+
+- There exists a subsequence whose limit is \(\limsup s_n\).  
+- There exists a subsequence whose limit is \(\liminf s_n\).
+
+This tells us:
+
+> **limsup = largest subsequential limit**  
+> **liminf = smallest subsequential limit**
+
+---
+
+# **5. Theorem 11.8 – The Core Framework**
+
+Let \(S\) be the set of subsequential limits.
+
+1. **Nonempty** (from monotone subsequences).  
+2.  
+\[
+\sup S = \limsup s_n,\quad \inf S = \liminf s_n.
+\]
+3.  
+\[
+\lim s_n \text{ exists } \iff S \text{ has exactly one element.}
+\]
+
+This theorem is the *bridge* that lets you compute limsup/liminf by finding subsequences.
+
+
+
+# ✅ **PLAIN TEXT ANKI CARDS (COPY & PASTE READY)**
+
+You asked for a plain-text version—here it is. Each card is:
+
+**Front TAB Back**
+
+and blank lines separate cards.
+
+---
+
+**Term:** Theorem 11.8 — Part (i)  
+**Definition:** The set S of subsequential limits of a sequence (s_n) is nonempty.
+
+---
+
+**Term:** Why is the set of subsequential limits always nonempty?  
+**Definition:** Every sequence has a monotone subsequence (Theorem 11.4), and a monotone subsequence converges, so at least one subsequential limit exists.
+
+---
+
+**Term:** Theorem 11.8 — Part (ii)  
+**Definition:** The limsup of (s_n) is the supremum of the set S of subsequential limits, and liminf is the infimum of S.
+
+---
+
+**Term:** Meaning of Theorem 11.8(ii)  
+**Definition:** limsup is the largest subsequential limit; liminf is the smallest subsequential limit.
+
+---
+
+**Term:** Theorem 11.8 — Part (iii)  
+**Definition:** The limit of (s_n) exists if and only if the set S has exactly one element.
+
+---
+
+**Term:** Why does “S has exactly one element” imply the sequence converges?  
+**Definition:** If all subsequences converge to the same number, the whole sequence must converge to that number.
+
+---
+
+**Term:** What is a subsequential limit?  
+**Definition:** Any limit (finite or infinite) of a subsequence of (s_n).
+
+---
+
+**Term:** Relationship between subsequential limits and limsup/liminf  
+**Definition:** limsup is the largest subsequential limit; liminf is the smallest subsequential limit.
+
+---
+
+**Term:** When does a sequence converge?  
+**Definition:** When limsup equals liminf; equivalently when S has exactly one subsequential limit.
+
+---
+
+**Term:** Example 9 — subsequential limits of s_n = n^2(-1)^n  
+**Definition:** Even subsequence → +∞; odd subsequence → −∞; so S = {−∞, +∞}.
+
+---
+
+**Term:** Example 9 — limsup and liminf of n^2(-1)^n  
+**Definition:** limsup = +∞; liminf = −∞.
+
+---
+
+**Term:** Example 10 — subsequential limits of sin(nπ/3)  
+**Definition:** S = {−√3/2, 0, √3/2}.
+
+---
+
+**Term:** Example 10 — limsup and liminf of sin(nπ/3)  
+**Definition:** limsup = √3/2; liminf = −√3/2.
+
+---
+
+**Term:** Example 11 — subsequential limits of an enumeration of Q  
+**Definition:** S = ℝ ∪ {−∞, +∞}; every real number is a subsequential limit.
+
+---
+
+**Term:** Example 11 — limsup and liminf of a rational enumeration  
+**Definition:** limsup = +∞; liminf = −∞.
+
+---
+
+**Term:** Example 12 — subsequential limits of b_n = n(1 + (−1)^n)  
+**Definition:** Even subsequence → +∞; odd subsequence → 0; S = {0, +∞}.
+
+---
+
+**Term:** Example 12 — limsup and liminf of b_n  
+**Definition:** limsup = +∞; liminf = 0.
+
+---
+
+**Term:** How to compute limsup using subsequences  
+**Definition:** Find the largest limit of all subsequences.
+
+---
+
+**Term:** How to compute liminf using subsequences  
+**Definition:** Find the smallest limit of all subsequences.
+
+---
+
+**Term:** Bolzano–Weierstrass Theorem  
+**Definition:** Every bounded sequence has a convergent subsequence.
+
+---
+
+**Term:** Why is Bolzano–Weierstrass true?  
+**Definition:** Every sequence has a monotone subsequence; a bounded monotone subsequence must converge.
+
