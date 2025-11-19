@@ -11,14 +11,24 @@
             "id": "796ac7082df531d5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "Notes/Panel Data.md",
-                "mode": "source",
-                "source": false
+                "file": "Lectures/lecture6_ATE/lecture6_ATE.pdf"
               },
-              "icon": "lucide-file",
-              "title": "Panel Data"
+              "icon": "lucide-file-text",
+              "title": "lecture6_ATE"
+            }
+          },
+          {
+            "id": "90d99ed478544431",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.10.3"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.10.3"
             }
           }
         ]
@@ -173,10 +183,10 @@
   },
   "active": "796ac7082df531d5",
   "lastOpenFiles": [
+    "Notes/Panel Data.md",
     "Untitled.md",
     "Problem Sets/PS6/scripts/adlt_ps6.synctex(busy)",
     "IV-LATE-framework_Lec7.md",
-    "Notes/Panel Data.md",
     "Lec7_IV-LATE.md",
     "Notes/Lec7_IV-LATE.md",
     "Lectures/lecture6_ATE/lecture6_ATE.pdf",
