@@ -1,0 +1,733 @@
+% !TEX root = ./adlt_homework_8.tex
+\documentclass[12pt]{article}
+
+% --- Core math + proof tools ---
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Lists and spacing ---
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=\textbf{(\alph*)}, leftmargin=2em, itemsep=0.25em}
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+
+% --- Page geometry + header/footer ---
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{csquotes} % to use blockquotes
+\usepackage{graphicx} % for figures
+\graphicspath{{images/}} % tells LaTeX to look in the “images” folder
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 421 — 003, Fall 2025}
+\lhead{Homework 9}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Links (nice for references, stays subtle) ---
+
+\usepackage[hidelinks]{hyperref}
+\setcounter{tocdepth}{1}
+
+% --- Colored definition/theorem boxes ---
+\usepackage[most]{tcolorbox}
+
+% Reusable styles for boxes
+\tcbset{
+  definitionstyle/.style={
+    enhanced,
+    colback=blue!3!white,
+    colframe=blue!60!black,
+    fonttitle=\bfseries,
+    attach boxed title to top left={yshift=-2mm,xshift=2mm},
+    boxed title style={colback=blue!60!black, colframe=blue!60!black},
+    coltitle=white,
+    rounded corners,
+    shadow={0.7mm}{-0.7mm}{0mm}{black!20!white},
+    breakable,
+  },
+  theoremstyle/.style={
+    enhanced,
+    colback=green!3!white,
+    colframe=green!50!black,
+    fonttitle=\bfseries,
+    attach boxed title to top left={yshift=-2mm,xshift=2mm},
+    boxed title style={colback=green!50!black, colframe=green!50!black},
+    coltitle=white,
+    rounded corners,
+    shadow={0.7mm}{-0.7mm}{0mm}{black!20!white},
+    breakable,
+  }
+}
+
+% Environments you can use in discussions
+\newenvironment{definitionbox}[1][]% optional title
+{\begin{tcolorbox}[definitionstyle,title={#1}]}%
+{\end{tcolorbox}}
+
+\newenvironment{theorembox}[1][]% optional title
+{\begin{tcolorbox}[theoremstyle,title={#1}]}%
+{\end{tcolorbox}}
+
+% --- Title info ---
+\title{Homework 9}
+\author{Alejandro De La Torre \\ MATH 421 — The Theory of Single Variable Calculus \\ Section 003 \\ Instructor: Grace Work}
+\date{November 2025}
+
+% --- proof environments that might be relevant ---
+\newtheorem*{claim}{Claim}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{remark}{Remark}
+
+% --- Convenience: a Problem header command (section-like with TOC/bookmarks) ---
+% Usage: \problem[Optional short title]{<number>}
+\makeatletter
+\newcommand{\problem}[2][]{%
+  \def\prob@title{Problem #2\if\relax\detokenize{#1}\relax\else\ (\textit{#1})\fi}%
+  \phantomsection%
+  \pdfbookmark[1]{\prob@title}{prob#2}%
+  \addcontentsline{toc}{section}{\prob@title}%
+  \section*{\prob@title}%
+  \vspace{-0.25em}\hrule\vspace{0.8em}%
+}
+\makeatother
+
+% --- Convenience: an ignore command to comment out blocks ---
+\newcommand{\ignore}[1]{}
+
+
+\begin{document}
+\maketitle
+
+% ------------------ collaboration + sources ------------------
+\section*{Collaboration Statement}
+% (List any classmates you collaborated with here, or write ``I worked alone'' if you did not collaborate with anyone.)
+I worked on this homework independently. No outside collaborators or resources were used.
+
+\tableofcontents
+\bigskip
+\hrule
+\bigskip
+
+
+
+\newpage
+
+% ------------------ problem 1 ------------------
+\problem[Ross Chapter 3 17.1]{1}
+Let $f(x) = \sqrt{4 - x}$ for $x \le 4$ and $g(x) = x^2$ for all $x \in \mathbb{R}$.
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \item Give the domains of $f + g$, $fg$, $f \circ g$, and $g \circ f$.
+    
+    \item Find the values $f \circ g(0)$, $g \circ f(0)$, $f \circ g(1)$, $g \circ f(1)$, $f \circ g(2)$, and $g \circ f(2)$.
+    
+    \item Are the functions $f \circ g$ and $g \circ f$ equal?
+    
+    \item Are $f \circ g(3)$ and $g \circ f(3)$ meaningful?
+\end{enumerate}
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+% discuss thy thoughts here
+\vspace{0.25em}
+
+\textbf{Solution.}
+\textbf{(a)}  
+We are given  
+\[
+f(x)=\sqrt{4-x}\quad (x\le 4), \qquad g(x)=x^2\quad (x\in\mathbb{R}).
+\]
+
+Domain of $f+g$.  
+The sum $f+g$ is defined where both $f$ and $g$ are defined. Since  
+\[
+\operatorname{dom}(f)=\{x\in\mathbb{R}:x\le 4\}, \qquad 
+\operatorname{dom}(g)=\mathbb{R},
+\]
+we have
+\[
+\operatorname{dom}(f+g)=\operatorname{dom}(f)\cap \operatorname{dom}(g)
+=\{x:x\le 4\}.
+\]
+
+Domain of $fg$. 
+Similarly,  
+\[
+fg(x)=x^2\sqrt{4-x}
+\]
+is defined exactly when $f$ is defined, so
+\[
+\operatorname{dom}(fg)=\{x:x\le 4\}.
+\]
+
+Domain of $f\circ g$.
+We compute
+\[
+(f\circ g)(x)=f(g(x))=f(x^2)=\sqrt{\,4-x^2\,}.
+\]
+This is defined when
+\[
+4-x^2\ge 0 \quad\Longleftrightarrow\quad -2\le x\le 2.
+\]
+Thus,
+\[
+\operatorname{dom}(f\circ g)=\{x\in\mathbb{R}:-2\le x\le 2\}.
+\]
+
+Domain of $g\circ f$.
+We compute
+\[
+(g\circ f)(x)=g(f(x))=(\sqrt{4-x})^{2}=4-x.
+\]
+This requires only that $f(x)$ be defined, so
+\[
+\operatorname{dom}(g\circ f)=\{x:x\le 4\}.
+\]
+
+\bigskip
+
+\textbf{(b)}  
+Evaluating the compositions:
+
+\[
+\begin{aligned}
+f\circ g(0) &= \sqrt{4-0^2}=2,\\
+f\circ g(1) &= \sqrt{4-1^2}=\sqrt{3},\\
+f\circ g(2) &= \sqrt{4-4}=0,
+\end{aligned}
+\qquad
+\begin{aligned}
+g\circ f(0) &= (\sqrt{4-0})^2 =4,\\
+g\circ f(1) &= (\sqrt{4-1})^2 =3,\\
+g\circ f(2) &= (\sqrt{4-2})^2 =2.
+\end{aligned}
+\]
+
+\bigskip
+
+\textbf{(c)}  
+The two composite functions are
+\[
+(f\circ g)(x)=\sqrt{4-x^2}, \qquad (g\circ f)(x)=4-x.
+\]
+These expressions are not equal as functions, so
+\[
+f\circ g \neq g\circ f.
+\]
+
+\bigskip
+
+\textbf{(d)}  
+The value $f\circ g(3)$ is not meaningful because $3\notin\operatorname{dom}(f\circ g)$ (since $|3|>2$).  
+
+However, $g\circ f(3)$ \emph{is} meaningful because $3\le 4$ lies in $\operatorname{dom}(g\circ f)$:
+\[
+g\circ f(3)=\big(\sqrt{4-3}\big)^2 = 1.
+\]
+\qed
+
+\newpage
+% ------------------ problem 2 ------------------
+\problem[$\varepsilon – \delta$ Continuity of Real Valued Functions]{2}
+Prove, using the $\varepsilon$-$\delta$ definition of continuity, Theorem 17.4 (i). Let $f$ and $g$ be real-valued functions that are continuous at $x_0$ in $\mathbb{R}$. Then $f + g$ is continuous at $x_0$.
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+To prove that $f+g$ is continuous at $x_0$ using the $\varepsilon$--$\delta$ definition, we begin by recalling the definition of continuity.  
+A function $h$ is continuous at $x_0$ if for every $\varepsilon > 0$ there exists a $\delta > 0$ such that
+\[
+|x - x_0| < \delta \quad \Longrightarrow \quad |h(x) - h(x_0)| < \varepsilon.
+\]
+
+Since both $f$ and $g$ are continuous at $x_0$, we are guaranteed the existence of numbers $\delta_1$ and $\delta_2$ corresponding to $f$ and $g$, respectively.  
+The key intuition is that
+\[
+|(f+g)(x) - (f+g)(x_0)| 
+= |f(x)-f(x_0) + g(x)-g(x_0)|
+\]
+can be controlled using the triangle inequality.  
+By splitting the tolerance $\varepsilon$ into two equal parts, $\varepsilon/2$ and $\varepsilon/2$, we may force each term
+\[
+|f(x) - f(x_0)| \qquad\text{and}\qquad |g(x) - g(x_0)|
+\]
+to be small simultaneously.  
+To ensure this, we take
+\[
+\delta = \min\{\delta_1, \delta_2\},
+\]
+which guarantees that both inequalities hold whenever $|x - x_0| < \delta$.  
+This approach is standard in proofs where the triangle inequality is used to break a sum into two individually controlled pieces.  
+Thus, the continuity of $f+g$ at $x_0$ follows from the continuity of $f$ and $g$ at $x_0$.
+
+\vspace{1em}
+
+\textbf{Proof.}  \\
+Fix $\varepsilon > 0$.  
+Since $f$ is continuous at $x_0$, there exists $\delta_1 > 0$ such that
+\[
+|x - x_0| < \delta_1 \quad \Longrightarrow \quad |f(x) - f(x_0)| < \varepsilon/2.
+\]
+Since $g$ is continuous at $x_0$, there exists $\delta_2 > 0$ such that
+\[
+|x - x_0| < \delta_2 \quad \Longrightarrow \quad |g(x) - g(x_0)| < \varepsilon/2.
+\]
+
+Let
+\[
+\delta = \min\{\delta_1, \delta_2\}.
+\]
+
+Now suppose $|x - x_0| < \delta$. Then $|x - x_0| < \delta_1$ and $|x - x_0| < \delta_2$, so the above inequalities apply. Using the triangle inequality,
+\[
+\begin{aligned}
+|(f+g)(x) - (f+g)(x_0)| 
+&= |f(x) - f(x_0) + g(x) - g(x_0)| \\
+&\le |f(x) - f(x_0)| + |g(x) - g(x_0)| \\
+&< \varepsilon/2 + \varepsilon/2 = \varepsilon.
+\end{aligned}
+\]
+
+Since $\varepsilon > 0$ was arbitrary, this proves that $f+g$ is continuous at $x_0$.  
+\qed
+
+\newpage
+% ------------------ problem 3 ------------------
+\problem[Limit Theorems for Sequences Applied to Functions]{3}
+Prove, using the limit theoerems for sequences, Thoerem 17.4 (ii). Let $f$ and $g$ be real-valued functions that are continuous at $x_0$ in $\mathbb{R}$. Then $fg$ is continuous at $x_0$.
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+The goal is to prove part \textbf{(ii)} of Theorem 17.4 using \emph{only} the
+limit theorems for sequences.
+
+From earlier in the chapter we know the \emph{sequential characterization of
+continuity}: a real-valued function $h$ is continuous at $x_0$ iff for every
+sequence $(x_n)$ in $\mathbb{R}$ with $x_n \to x_0$, we have
+\[
+  h(x_n) \to h(x_0).
+\]
+In words: to test continuity at $x_0$, it is enough to see what $h$ does to
+sequences that converge to $x_0$.
+
+We also have the standard limit theorem for products of sequences:
+if $(a_n)$ and $(b_n)$ are sequences with $a_n \to A$ and $b_n \to B$, then
+\[
+  a_n b_n \to AB.
+\]
+
+Putting these two facts together suggests the strategy:
+
+\begin{itemize}
+  \item Start with an arbitrary sequence $(x_n)$ with $x_n \to x_0$.
+  \item Because $f$ and $g$ are continuous at $x_0$, the sequential definition
+        tells us that
+        \[
+          f(x_n) \to f(x_0) \quad\text{and}\quad g(x_n) \to g(x_0).
+        \]
+  \item Now we can view $\big(f(x_n)\big)$ and $\big(g(x_n)\big)$ as two
+        sequences and apply the product limit theorem to obtain
+        \[
+          f(x_n)g(x_n) \to f(x_0)g(x_0).
+        \]
+  \item Finally, observe that $f(x_n)g(x_n) = (fg)(x_n)$ and
+        $f(x_0)g(x_0) = (fg)(x_0)$, so we have shown
+        \[
+          (fg)(x_n) \to (fg)(x_0)
+        \]
+        for every sequence $(x_n)$ with $x_n \to x_0$.
+        By the sequential characterization, this is exactly the statement
+        that $fg$ is continuous at $x_0$.
+\end{itemize}
+
+So the whole proof is really about “passing to sequences,” using continuity of
+$f$ and $g$ one at a time, then recombining them with the product theorem.
+
+\begin{theorembox}[17.4 Theorem]
+Let $f$ and $g$ be real-valued functions that are continuous at $x_0$ in $\mathbb{R}$.  
+Then  
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \item $f + g$ is continuous at $x_0$;
+    \item $fg$ is continuous at $x_0$;
+    \item $f/g$ is continuous at $x_0$ if $g(x_0) \ne 0$.
+\end{enumerate}
+\end{theorembox}
+\vspace{0.25em}
+
+\textbf{Proof.}
+Let $f$ and $g$ be real-valued functions that are continuous at $x_0$ in $\mathbb{R}$.
+We want to show that $fg$ is continuous at $x_0$.
+
+By the sequential characterization of continuity, it suffices to prove that
+for every sequence $(x_n)$ in $\mathbb{R}$ with $x_n \to x_0$, we have
+\[
+  (fg)(x_n) \to (fg)(x_0).
+\]
+
+So let $(x_n)$ be an arbitrary sequence with $x_n \to x_0$.
+Since $f$ is continuous at $x_0$, the sequence $(f(x_n))$ satisfies
+\[
+  f(x_n) \to f(x_0).
+\]
+Similarly, since $g$ is continuous at $x_0$, the sequence $(g(x_n))$ satisfies
+\[
+  g(x_n) \to g(x_0).
+\]
+
+Now apply the product limit theorem for sequences: because
+$f(x_n) \to f(x_0)$ and $g(x_n) \to g(x_0)$, we obtain
+\[
+  f(x_n)g(x_n) \to f(x_0)g(x_0).
+\]
+But $f(x_n)g(x_n) = (fg)(x_n)$ and $f(x_0)g(x_0) = (fg)(x_0)$, so we have shown
+\[
+  (fg)(x_n) \to (fg)(x_0)
+\]
+for every sequence $(x_n)$ with $x_n \to x_0$.
+
+By the sequential characterization of continuity, this means that $fg$ is
+continuous at $x_0$. \qed
+
+
+\newpage
+% ------------------ problem 4 ------------------
+\problem[Ross Chapter 3 17.8]{4}
+\textit{Note: Example 5 on page 130 may be helpful.}
+Let $f$ and $g$ be real-valued functions.
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+    \item Show $\min(f,g) = \tfrac12(f+g) - \tfrac12 |f - g|$.
+    
+    \item Show $\min(f,g) = -\max(-f,-g)$.
+    
+    \item Use (a) or (b) to prove that if $f$ and $g$ are continuous at $x_0$ in $\mathbb{R}$, then $\min(f,g)$ is continuous at $x_0$.
+\end{enumerate}
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+In Example 5, Ross shows
+\[
+  \max(f,g) = \tfrac12(f+g) + \tfrac12|f-g|
+\]
+and then proves continuity of $\max(f,g)$ by breaking it into pieces built
+from $f$ and $g$ using the sum, product, and absolute–value theorems.
+
+Here we are doing the same game, but with the \emph{minimum} instead of the
+maximum.  Parts (a) and (b) are purely algebraic identities: first we show
+that for real numbers $a,b$,
+\[
+  \min\{a,b\} = \tfrac12(a+b) - \tfrac12|a-b|
+  \qquad\text{and}\qquad
+  \min\{a,b\} = -\max\{-a,-b\}.
+\]
+Those formulas are then applied pointwise with $a = f(x)$ and $b = g(x)$.
+
+For part (c) there are two natural strategies:
+\begin{itemize}
+  \item Use part (a) directly and imitate Example~5, writing $\min(f,g)$
+        as a combination of $f+g$ and $|f-g|$, both of which are continuous
+        when $f$ and $g$ are.
+  \item Use part (b) together with Example~5: if $f$ and $g$ are continuous,
+        then so are $-f$ and $-g$, so Example~5 tells us that
+        $\max(-f,-g)$ is continuous; then
+        $\min(f,g) = -\max(-f,-g)$ is just $-1$ times a continuous function.
+\end{itemize}
+I’ll use both approaches in the algebraic parts, and then for continuity
+in (c) I will lean on part (b) plus Example~5, since that’s exactly what
+Ross had in mind.
+
+\vspace{0.5em}
+
+\textbf{Proof.} \\[0.25em]
+\textbf{(a)}  We first prove the identity for real numbers and then apply it
+to functions.  Let $a,b \in \mathbb{R}$ and define
+\[
+  m := \frac12(a+b) - \frac12|a-b|.
+\]
+We show that $m = \min\{a,b\}$ by considering the two cases $a \ge b$ and
+$a < b$.
+
+\emph{Case 1: $a \ge b$.} Then $|a-b| = a-b$, so
+\[
+  m \;=\; \frac12(a+b) - \frac12(a-b)
+      \;=\; \frac12(a+b-a+b)
+      \;=\; \frac12(2b)
+      \;=\; b.
+\]
+Since $a \ge b$, the minimum of $\{a,b\}$ is $b$, so in this case
+$m = \min\{a,b\}$.
+
+\emph{Case 2: $a < b$.} Then $|a-b| = b-a$, so
+\[
+  m \;=\; \frac12(a+b) - \frac12(b-a)
+      \;=\; \frac12(a+b-b+a)
+      \;=\; \frac12(2a)
+      \;=\; a.
+\]
+Now $a < b$, so the minimum of $\{a,b\}$ is $a$, and again $m = \min\{a,b\}$.
+
+Since these are the only two possibilities, we have proved
+\[
+  \min\{a,b\} = \frac12(a+b) - \frac12|a-b|
+  \quad \text{for all } a,b \in \mathbb{R}.
+\]
+Replacing $a$ by $f(x)$ and $b$ by $g(x)$ gives
+\[
+  \min(f,g)(x)
+  = \frac12\big(f(x)+g(x)\big) - \frac12\big|f(x)-g(x)\big|
+\]
+for all $x$, which is exactly
+\[
+  \min(f,g) = \tfrac12(f+g) - \tfrac12|f-g|.
+\]
+
+\bigskip
+\textbf{(b)}  Again start with real numbers $a,b \in \mathbb{R}$.  We claim
+\[
+  \min\{a,b\} = -\max\{-a,-b\}.
+\]
+Consider the same two cases.
+
+\emph{Case 1: $a \le b$.} Then $-a \ge -b$, so
+\[
+  \max\{-a,-b\} = -a
+  \quad\Rightarrow\quad
+  -\max\{-a,-b\} = -(-a) = a.
+\]
+Since $a \le b$, the minimum of $\{a,b\}$ is $a$, so
+$\min\{a,b\} = -\max\{-a,-b\}$.
+
+\emph{Case 2: $a > b$.} Then $-a < -b$, so
+\[
+  \max\{-a,-b\} = -b
+  \quad\Rightarrow\quad
+  -\max\{-a,-b\} = -(-b) = b.
+\]
+Here $\min\{a,b\} = b$, so once again $\min\{a,b\} = -\max\{-a,-b\}$.
+
+Thus the identity holds for all $a,b \in \mathbb{R}$.  Substituting
+$a = f(x)$ and $b = g(x)$ yields
+\[
+  \min(f,g)(x) = -\max(-f,-g)(x),
+\]
+that is,
+\[
+  \min(f,g) = -\max(-f,-g).
+\]
+
+\bigskip
+\textbf{(c)}  Assume now that $f$ and $g$ are continuous at $x_0 \in \mathbb{R}$.
+We prove that $\min(f,g)$ is continuous at $x_0$.
+
+By continuity and Theorem~17.3, the functions $-f$ and $-g$ are continuous
+at $x_0$ (they are just constant multiples of $f$ and $g$).  Then, by
+Example~5, the function $\max(-f,-g)$ is continuous at $x_0$.
+
+From part~(b) we have the identity
+\[
+  \min(f,g) = -\max(-f,-g).
+\]
+The right-hand side is $-1$ times a continuous function, hence continuous at
+$x_0$ by Theorem~17.3 again.
+
+Therefore $\min(f,g)$ is continuous at $x_0$. \qed
+
+
+
+\newpage
+% ------------------ problem 5 ------------------
+\problem[Ross Chapter 3 17.12]{5}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+  \item Let $f$ be a continuous real-valued function with domain $(a,b)$.
+  Show that if $f(r) = 0$ for each rational number $r$ in $(a,b)$, then
+  $f(x) = 0$ for all $x \in (a,b)$.
+
+  \item Let $f$ and $g$ be continuous real-valued functions on $(a,b)$ such
+  that $f(r) = g(r)$ for each rational number $r$ in $(a,b)$.  Prove
+  $f(x) = g(x)$ for all $x \in (a,b)$. \emph{Hint:} Use part (a).
+\end{enumerate}
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+Part (a) is really about how much mileage we get out of continuity together with the
+density of the rational numbers in $(a,b)$.  
+Intuitively, if $f$ is continuous and vanishes at every rational point, then it has
+no room to ``jump up'' at an irrational point: any irrational $x$ can be approached
+by a sequence of rationals $r_n \to x$, and continuity forces
+\[
+  f(x) = \lim_{n\to\infty} f(r_n) = \lim_{n\to\infty} 0 = 0.
+\]
+So the strategy is:
+
+\begin{itemize}
+  \item Fix an arbitrary $x \in (a,b)$.
+  \item If $x$ is rational, we already know $f(x)=0$ by hypothesis.
+  \item If $x$ is irrational, use the density of $\mathbb{Q}$ to choose a sequence
+        of rational numbers $(r_n)$ with $r_n \in (a,b)$ and $r_n \to x$.
+        Since $f$ is continuous, $f(r_n) \to f(x)$; but each $f(r_n)=0$, so the limit
+        must be $0$, forcing $f(x)=0$.
+\end{itemize}
+
+Part (b) is then a simple and elegant reuse of (a).  If $f$ and $g$ are continuous
+and agree on all rationals, we consider the difference
+\[
+  h := f-g.
+\]
+This $h$ is continuous on $(a,b)$ (by the algebra of continuous functions),
+and on every rational $r$ we have $h(r) = f(r)-g(r) = 0$.  By part (a), $h(x)=0$
+for all $x \in (a,b)$, which is just another way of saying $f(x)=g(x)$ everywhere
+on $(a,b)$.  So the hard work is done in (a); (b) is an application of that general
+principle to the difference of two functions.
+
+\vspace{0.25em}
+\textbf{Proof.} \\[0.25em]
+\textbf{(a)}  
+Let $f$ be a continuous real-valued function with domain $(a,b)$, and assume
+$f(r)=0$ for every rational $r \in (a,b)$.  We must show that $f(x)=0$ for all
+$x \in (a,b)$.
+
+Let $x \in (a,b)$ be arbitrary.
+
+\emph{Case 1: $x$ is rational.}  
+Then, by hypothesis, $f(x)=0$.
+
+\emph{Case 2: $x$ is irrational.}  
+Because the rational numbers are dense in $\mathbb{R}$, there exists a sequence
+$(r_n)$ of rational numbers in $(a,b)$ such that $r_n \to x$ as $n\to\infty$.
+By assumption, each $r_n$ is rational, so
+\[
+  f(r_n) = 0 \quad\text{for all } n.
+\]
+Hence
+\[
+  \lim_{n\to\infty} f(r_n) = 0.
+\]
+On the other hand, $f$ is continuous at $x$, and $(r_n)$ is a sequence with
+$r_n \to x$, so by the sequential characterization of continuity,
+\[
+  \lim_{n\to\infty} f(r_n) = f(x).
+\]
+Combining these equalities gives $f(x)=0$.
+
+Since $x \in (a,b)$ was arbitrary, we have shown that $f(x)=0$ for all
+$x \in (a,b)$, as required.
+
+\bigskip
+\textbf{(b)}  
+Let $f$ and $g$ be continuous real-valued functions on $(a,b)$ such that
+$f(r)=g(r)$ for every rational $r \in (a,b)$.  Define
+\[
+  h(x) := f(x) - g(x)\quad\text{for } x \in (a,b).
+\]
+By Theorem~17.4(i), $h$ is continuous on $(a,b)$, since it is the sum of $f$
+and $-g$.
+
+For each rational $r \in (a,b)$ we have
+\[
+  h(r) = f(r) - g(r) = 0.
+\]
+Thus $h$ is a continuous function on $(a,b)$ that vanishes at every rational in
+$(a,b)$.  By part~(a) applied to $h$, it follows that
+\[
+  h(x) = 0 \quad\text{for all } x \in (a,b).
+\]
+Therefore $f(x)-g(x)=0$ for all $x \in (a,b)$, i.e.,
+\[
+  f(x) = g(x) \quad\text{for all } x \in (a,b).
+\]
+\qed
+
+\newpage
+% ------------------ problem 6 ------------------
+\problem[Ross Chapter 17.13 (b)]{6}
+Let $h(x) = x$ for rational numbers $x$ and $h(x) = 0$ for irrational
+numbers. Show $h$ is continuous at $x = 0$ and at no other point.
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+The definition of $h$ tells us that it ``remembers'' the input $x$ if $x$ is
+rational, and drops it to $0$ if $x$ is irrational.  Since rationals and
+irrationals are both dense in $\mathbb{R}$, every neighborhood of any point
+contains lots of points of each type.  Intuitively, this suggests that $h$
+should jump around wildly near most points, because in any small interval we
+see values of $h$ equal to $x$ (at rational $x$) and equal to $0$ (at
+irrational $x$).  The one exception is at $x=0$: there $h(0)=0$, and near $0$
+the actual values $h(x)$ are either $x$ or $0$, both of which are small in
+absolute value when $|x|$ is small.  That gives us hope that we can make
+$|h(x)-h(0)|$ as small as we like by forcing $|x|$ to be small.
+
+To turn this into a proof we will split the problem into two parts:
+\begin{itemize}
+  \item Show $h$ is continuous at $0$ using the $\varepsilon$--$\delta$
+        definition.  The key inequality will be $|h(x)-h(0)| \le |x|$.
+  \item Show $h$ is \emph{not} continuous at any $x_0\neq 0$ using the
+        sequential characterization of continuity: we will construct, for
+        each $x_0\neq 0$, a sequence $(x_n)$ converging to $x_0$ such that
+        $\lim h(x_n) \neq h(x_0)$.  Because both $\mathbb{Q}$ and its
+        complement are dense, we can always choose a sequence of rationals
+        or irrationals approaching $x_0$, whichever is more convenient.
+\end{itemize}
+
+\vspace{0.25em}
+\textbf{Proof.} \\
+We first show that $h$ is continuous at $x=0$.  Note that $h(0)=0$ because
+$0$ is rational.  Let $\varepsilon>0$ be given.  Set $\delta=\varepsilon$.
+If $|x-0|<\delta$, then $|x|<\delta=\varepsilon$.  By the definition of $h$,
+either $h(x)=x$ (if $x$ is rational) or $h(x)=0$ (if $x$ is irrational).  In
+either case,
+\[
+  |h(x)-h(0)| = |h(x)| \le |x| < \varepsilon.
+\]
+Since $\varepsilon>0$ was arbitrary, this shows that $h$ is continuous at
+$x=0$.
+
+Now let $x_0\neq 0$.  We will show that $h$ is not continuous at $x_0$ by
+producing a sequence $(x_n)$ with $x_n\to x_0$ but $\lim h(x_n)\neq h(x_0)$.
+We consider two cases.
+
+\emph{Case 1: $x_0\in\mathbb{Q}$.}  Define
+\[
+  x_n := x_0 + \frac{\sqrt{2}}{n}, \qquad n\in\mathbb{N}.
+\]
+Then $x_n\to x_0$ as $n\to\infty$.  We claim that each $x_n$ is irrational.
+Indeed, if some $x_n$ were rational, then
+\[
+  \frac{\sqrt{2}}{n} = x_n - x_0
+\]
+would be the difference of two rationals, hence rational, which would imply
+$\sqrt{2}$ is rational---a contradiction.  Thus every $x_n$ is irrational,
+so $h(x_n)=0$ for all $n$, and therefore
+\[
+  \lim_{n\to\infty} h(x_n) = 0.
+\]
+On the other hand, $x_0$ is rational and $x_0\neq 0$, so
+\[
+  h(x_0) = x_0 \neq 0 = \lim_{n\to\infty} h(x_n).
+\]
+By the sequential characterization of continuity, $h$ is not continuous at
+this rational $x_0$.
+
+\emph{Case 2: $x_0\notin\mathbb{Q}$.}  Because the rationals are dense in
+$\mathbb{R}$, there exists a sequence $(r_n)$ of rational numbers such that
+$r_n\to x_0$ as $n\to\infty$.  For each $n$ we then have
+\[
+  h(r_n) = r_n,
+\]
+so
+\[
+  \lim_{n\to\infty} h(r_n) = \lim_{n\to\infty} r_n = x_0.
+\]
+But $x_0$ is irrational, so by definition $h(x_0)=0$.  Hence
+\[
+  \lim_{n\to\infty} h(r_n) = x_0 \neq 0 = h(x_0).
+\]
+Again, by the sequential characterization of continuity, $h$ is not
+continuous at this irrational $x_0$.
+
+In both cases we have shown that $h$ fails to be continuous at every
+$x_0\neq 0$, while it is continuous at $x_0=0$.  Therefore $h$ is continuous
+exactly at $x=0$ and at no other point. \qed
+
+\end{document}
