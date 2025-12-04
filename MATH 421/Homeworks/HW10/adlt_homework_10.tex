@@ -1,0 +1,206 @@
+% !TEX root = ./adlt_homework_8.tex
+\documentclass[12pt]{article}
+
+% --- Core math + proof tools ---
+\usepackage{amsmath, amssymb, amsthm}
+
+% --- Lists and spacing ---
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=\textbf{(\alph*)}, leftmargin=2em, itemsep=0.25em}
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.25em}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+
+% --- Page geometry + header/footer ---
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{csquotes} % to use blockquotes
+\usepackage{graphicx} % for figures
+\graphicspath{{images/}} % tells LaTeX to look in the “images” folder
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MATH 421 — 003, Fall 2025}
+\lhead{Homework 10}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Links (nice for references, stays subtle) ---
+
+\usepackage[hidelinks]{hyperref}
+\setcounter{tocdepth}{1}
+
+% --- Colored definition/theorem boxes ---
+\usepackage[most]{tcolorbox}
+
+% Reusable styles for boxes
+\tcbset{
+  definitionstyle/.style={
+    enhanced,
+    colback=blue!3!white,
+    colframe=blue!60!black,
+    fonttitle=\bfseries,
+    attach boxed title to top left={yshift=-2mm,xshift=2mm},
+    boxed title style={colback=blue!60!black, colframe=blue!60!black},
+    coltitle=white,
+    rounded corners,
+    shadow={0.7mm}{-0.7mm}{0mm}{black!20!white},
+    breakable,
+  },
+  theoremstyle/.style={
+    enhanced,
+    colback=green!3!white,
+    colframe=green!50!black,
+    fonttitle=\bfseries,
+    attach boxed title to top left={yshift=-2mm,xshift=2mm},
+    boxed title style={colback=green!50!black, colframe=green!50!black},
+    coltitle=white,
+    rounded corners,
+    shadow={0.7mm}{-0.7mm}{0mm}{black!20!white},
+    breakable,
+  }
+}
+
+% Environments you can use in discussions
+\newenvironment{definitionbox}[1][]% optional title
+{\begin{tcolorbox}[definitionstyle,title={#1}]}%
+{\end{tcolorbox}}
+
+\newenvironment{theorembox}[1][]% optional title
+{\begin{tcolorbox}[theoremstyle,title={#1}]}%
+{\end{tcolorbox}}
+
+% --- Title info ---
+\title{Homework 10}
+\author{Alejandro De La Torre \\ MATH 421 — The Theory of Single Variable Calculus \\ Section 003 \\ Instructor: Grace Work}
+\date{December 2025}
+
+% --- proof environments that might be relevant ---
+\newtheorem*{claim}{Claim}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{remark}{Remark}
+
+% --- Convenience: a Problem header command (section-like with TOC/bookmarks) ---
+% Usage: \problem[Optional short title]{<number>}
+\makeatletter
+\newcommand{\problem}[2][]{%
+  \def\prob@title{Problem #2\if\relax\detokenize{#1}\relax\else\ (\textit{#1})\fi}%
+  \phantomsection%
+  \pdfbookmark[1]{\prob@title}{prob#2}%
+  \addcontentsline{toc}{section}{\prob@title}%
+  \section*{\prob@title}%
+  \vspace{-0.25em}\hrule\vspace{0.8em}%
+}
+\makeatother
+
+% --- Convenience: an ignore command to comment out blocks ---
+\newcommand{\ignore}[1]{}
+
+
+\begin{document}
+\maketitle
+
+% ------------------ collaboration + sources ------------------
+\section*{Collaboration Statement}
+% (List any classmates you collaborated with here, or write ``I worked alone'' if you did not collaborate with anyone.)
+I worked on this homework independently. No outside collaborators or resources were used.
+
+\tableofcontents
+\bigskip
+\hrule
+\bigskip
+
+\newpage
+
+
+% ------------------ problems ------------------
+\problem[Ross Chapter 3 18.5 (a)]{1}
+%\textit{(Problem statement goes here if needed.)}
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+\newpage
+
+\problem[Ross Chapter 3 18.10]{2}
+%\textit{(Problem statement goes here if needed.)}
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+\newpage
+
+\problem[Ross Chapter 3 19.6 (b)]{3}
+%\textit{(Problem statement goes here if needed.)}
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+\newpage
+
+\problem[Ross Chapter 3 19.7]{4}
+%\textit{(Problem statement goes here if needed.)}
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+\newpage
+
+\problem[Uniform Continuity of $f$]{5}
+%\textit{(Problem statement goes here if needed.)}
+Suppose $f : \mathbb{R} \rightarrow \mathbb{R}$. Prove that if there exists a real number $M \geq 0$ such that $f(x) - f(y)| \leq M|x-y|$ for all $x,y \in \mathbb{R}$, then $f$ is uniformly continuous on $\mathbb{R}$.
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+\newpage
+
+
+\problem[Differntiability of $f$]{6}
+Suppose that $0 \in (a,b)$ and $f(x)=xg(x)$ for some function $g: (a,b) \rightarrow \mathbb{R}$ which is continuous at $x=0$. Prove that $f$ is differentiable at $x=0$, and find $f'(0)$ in terms of $g$.
+
+\textit{Hint: Note that you cannot use the product rule, since $g(x)$ is not guaranteed to be differentiable at $x=0$}
+
+\vspace{0.75em}
+
+\textbf{Discussion.} \\
+%(Very brief plan / key ideas.)
+\vspace{0.25em}
+
+\textbf{Proof.}\\
+% (Your proof goes here.)
+\qed
+
+
+\end{document}
