@@ -141,7 +141,7 @@ and
 \]
 Thus $0$ lies between $h(a)$ and $h(b)$; equivalently, $h(b) \le 0 \le h(a)$.
 
-By the Intermediate Value Theorem (Theorem 18.2 in Ross), since $h$ is continuous
+By the \hyperref[thm:18.2]{Intermediate Value Theorem}, since $h$ is continuous
 on $[a,b]$ and $0$ lies between $h(a)$ and $h(b)$, there exists some $x_0 \in [a,b]$
 such that
 \[
@@ -162,12 +162,67 @@ Suppose $f$ is continuous on $[0,2]$ and $f(0)=f(2)$. Prove there exist $x,y$ in
 \vspace{0.75em}
 
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+We want two points $x,y$ with $|y-x|=1$ and $f(x)=f(y)$.  Writing $y=x+1$, this is
+equivalent to finding $x\in[0,1]$ such that
+\[
+f(x+1)-f(x)=0.
+\]
+So it is natural to define
+\[
+g(x)=f(x+1)-f(x) \text{, for }x\in[0,1].
+\]
+Because $f$ is continuous on $[0,2]$, both $f(x+1)$ and $f(x)$ are continuous on $[0,1]$,
+so their difference $g$ is continuous on $[0,1]$.  The condition $f(0)=f(2)$ then forces
+\[
+g(0)=f(1)-f(0),\qquad g(1)=f(2)-f(1)=f(0)-f(1)=-g(0),
+\]
+so either $g(0)=0$ or $g(0)$ and $g(1)$ have opposite signs.  In either case, $0$ lies between $g(0)$ and $g(1)$, so by the \hyperref[thm:18.2]{Intermediate Value Theorem} there is some $x\in[0,1]$ with $g(x)=0$, i.e.\ $f(x+1)=f(x)$ and $| (x+1)-x|=1$.
+
+\textit{\textbf{TL;DR}}: We basically have to translate the statement we are trying to prove to make it in terms of just $x$ (which we do by defining $g$) to then make the question about applying the IVT to $g$ to prove that it has a zero, which then maps back to the original statement we are trying to prove about $f$.
+
 \vspace{0.25em}
 
 \textbf{Proof.}\\
-% (Your proof goes here.)
-\qed
+Let $g$ be a function defined on $[0,1]$ as
+\[
+g(x)=f(x+1)-f(x).
+\]
+Since $f$ is continuous on $[0,2]$ (and $[0,1] \subset [0,2]$), then $g$ must be continuous on $[0,1]$.
+
+We compute the endpoint values of $g$:
+\[
+g(0)=f(1)-f(0),
+\]
+and, using $f(0)=f(2)$,
+\[
+g(1)=f(2)-f(1)=f(0)-f(1)=-g(0).
+\]
+
+If $g(0)=0$, then taking $x=0$ and $y=1$ gives
+\[
+|y-x|=|1-0|=1,\qquad f(x)=f(0)=f(1)=f(y),
+\]
+so the desired property holds.
+
+Otherwise $g(0)\neq 0$, so $g(1)=-g(0)$ has the opposite sign. Thus
+\[
+g(0)\cdot g(1)<0,
+\]
+which means $0$ lies strictly between $g(0)$ and $g(1)$. Since $g$ is continuous on $[0,1]$, the \hyperref[thm:18.2]{Intermediate Value Theorem} guarantees the existence of some $x\in(0,1)$ such that
+\[
+g(x)=0.
+\]
+For this $x$, set $y=x+1$.  Then $x,y\in[0,2]$, we have
+\[
+|y-x|=|x+1-x|=1,
+\]
+and
+\[
+f(y)=f(x+1)=f(x),
+\]
+because $g(x)=f(x+1)-f(x)=0$.
+
+Therefore there exist $x,y\in[0,2]$ with $|y-x|=1$ and $f(x)=f(y)$, as required. \qed
 
 \newpage
 
@@ -234,5 +289,201 @@ Suppose that $0 \in (a,b)$ and $f(x)=xg(x)$ for some function $g: (a,b) \rightar
 % (Your proof goes here.)
 \qed
 
+
+\newpage
+\appendix
+\section*{Appendix: Theorems}
+\addcontentsline{toc}{section}{Appendix: Theorems Used}
+
+% ===============================
+% 17.2 Theorem — ε–δ definition of continuity
+% ===============================
+\begin{theorembox}[Theorem 17.2]
+\label{thm:17.2}
+Let $f$ be a real-valued function whose domain is a subset of $\mathbb{R}$.  
+Then $f$ is continuous at $x_{0} \in \mathrm{dom}(f)$ if and only if  
+\[
+\begin{gathered}
+\text{for each } \varepsilon > 0 \text{ there exists } \delta > 0 \text{ such that } 
+x \in \mathrm{dom}(f) \text{ and}\\[0.4em]
+|x - x_{0}| < \delta \;\Longrightarrow\; |f(x) - f(x_{0})| < \varepsilon.
+\end{gathered}
+\]
+\end{theorembox}
+
+% ===============================
+% 18.1 Theorem Extreme Value Theorem
+% ===============================
+\begin{theorembox}[Theorem 18.1 — Extreme Value Theorem]
+\label{thm:18.1}
+Let $f$ be a continuous real-valued function on a closed interval $[a,b]$.  
+Then $f$ is a bounded function. Moreover, $f$ assumes its maximum and minimum
+values on $[a,b]$; that is, there exist $x_{0}, y_{0}$ in $[a,b]$ such that  
+\[
+  f(x_{0}) \le f(x) \le f(y_{0}) \quad \text{for all } x \in [a,b].
+\]
+\end{theorembox}
+
+% ===============================
+% 18.2 Intermediate Value Theorem
+% ===============================
+\begin{theorembox}[Theorem 18.2 — Intermediate Value Theorem]
+\label{thm:18.2}
+If $f$ is a continuous real-valued function on an interval $I$, then $f$ has  
+the intermediate value property on $I$: Whenever $a,b \in I$, $a < b$, and $y$  
+lies between $f(a)$ and $f(b)$ (i.e., $f(a) < y < f(b)$ or $f(b) < y < f(a)$),  
+there exists at least one $x$ in $(a,b)$ such that  
+\[
+  f(x) = y.
+\]
+\end{theorembox}
+
+% ===============================
+% 18.3 Corollary
+% ===============================
+\begin{theorembox}[Corollary 18.3]
+\label{thm:18.3}
+If $f$ is a continuous real-valued function on an interval $I$, then the set  
+\[
+  f(I) = \{ f(x) : x \in I \}
+\]
+is also an interval or a single point.
+\end{theorembox}
+
+% ===============================
+% 19.1 Definition — Uniform Continuity
+% ===============================
+\begin{definitionbox}[Definition 19.1 — Uniform Continuity]
+\label{def:19.1}
+Let $f$ be a real-valued function defined on a set $S \subseteq \mathbb{R}$.  
+Then $f$ is \emph{uniformly continuous} on $S$ if  
+
+\[
+\text{for each } \varepsilon > 0 \text{ there exists } \delta > 0 \text{ such that }  
+x,y \in S \text{ and } |x-y| < \delta \;\Rightarrow\; |f(x)-f(y)| < \varepsilon.
+\]
+
+We will say $f$ is \emph{uniformly continuous} if $f$ is uniformly continuous  
+on $\mathrm{dom}(f)$.
+\end{definitionbox}
+
+% ===============================
+% 19.2 Theorem — Uniform Continuity on [a,b]
+% ===============================
+\begin{theorembox}[Theorem 19.2]
+\label{thm:19.2}
+If $f$ is continuous on a closed interval $[a,b]$,  
+then $f$ is uniformly continuous on $[a,b]$.
+\end{theorembox}
+
+
+% ===============================
+% 19.3 Discussion
+% ===============================
+\begin{definitionbox}[Discussion 19.3]
+Example 5 illustrates the power of Theorem~\ref{thm:19.2}, but it still may  
+not be clear why uniform continuity is worth studying. One of the important  
+applications of uniform continuity concerns the integrability of continuous  
+functions on closed intervals.
+
+To see the relevance of uniform continuity, consider a continuous nonnegative  
+real-valued function $f$ on $[0,1]$. For $n \in \mathbb{N}$ and  
+$i = 0,1,2,\ldots,n-1$, let  
+\[
+M_{i,n} = \sup\{f(x) : x \in [\tfrac{i}{n}, \tfrac{i+1}{n}]\},  
+\qquad
+m_{i,n} = \inf\{f(x) : x \in [\tfrac{i}{n}, \tfrac{i+1}{n}]\}.
+\]
+
+Then the upper sum and lower sum are given by  
+\[
+U_n = \frac{1}{n} \sum_{i=0}^{n-1} M_{i,n},
+\qquad
+L_n = \frac{1}{n} \sum_{i=0}^{n-1} m_{i,n}.
+\]
+
+The function $f$ would be Riemann integrable provided $U_n - L_n \to 0$, i.e.,
+\[
+\lim_{n\to\infty}(U_n - L_n) = 0.
+\]
+
+Since $f$ is uniformly continuous on $[0,1]$ by Theorem~\ref{thm:19.2},  
+there exists $\delta>0$ such that  
+\[
+x,y\in[0,1], \ |x-y|<\delta \quad\Rightarrow\quad |f(x)-f(y)|<\varepsilon.
+\]
+Choosing $N$ such that $\tfrac{1}{N}<\delta$ and $n>N$ gives
+\[
+0 \le U_n - L_n
+  = \frac{1}{n} \sum_{i=0}^{n-1} (M_{i,n} - m_{i,n})
+  < \varepsilon.
+\]
+
+This proves the claim. The next two theorems show uniformly continuous  
+functions have nice properties.
+\end{definitionbox}
+
+
+% ===============================
+% 28.1 Definition — Differentiability at a point
+% ===============================
+\begin{definitionbox}[Definition 28.1 — Differentiability]
+\label{def:28.1}
+Let $f$ be a real-valued function defined on an open interval that contains a point $a$.  
+We say that $f$ is \emph{differentiable at $a$}, or that $f$ \emph{has a derivative at $a$}, if the limit
+\[
+\lim_{x \to a} \frac{f(x)-f(a)}{x-a}
+\]
+exists (as a finite real number).
+\end{definitionbox}
+
+% ===============================
+% 28.2 Theorem — Differentiability implies continuity
+% ===============================
+\begin{theorembox}[Theorem 28.2]
+\label{thm:28.2}
+If $f$ is differentiable at a point $a$, then $f$ is continuous at $a$.
+\end{theorembox}
+
+% ===============================
+% 28.3 Theorem — Algebra rules for derivatives
+% ===============================
+\begin{theorembox}[Theorem 28.3 — Algebra Rules]
+\label{thm:28.3}
+Let $f$ and $g$ be functions that are differentiable at a point $a$, and let $c$ be a real constant.  
+Then each of the following functions is differentiable at $a$ (whenever it is defined), and their derivatives
+are given by:
+\begin{enumerate}[(i)]
+  \item \textbf{Constant multiple:}
+        \[
+        (cf)'(a) = c \cdot f'(a).
+        \]
+  \item \textbf{Sum:}
+        \[
+        (f+g)'(a) = f'(a) + g'(a).
+        \]
+  \item \textbf{Product rule:}
+        \[
+        (fg)'(a) = f(a)g'(a) + f'(a)g(a).
+        \]
+  \item \textbf{Quotient rule:} If $g(a) \neq 0$, then $f/g$ is differentiable at $a$ and
+        \[
+        \biggl(\frac{f}{g}\biggr)'(a)
+          = \frac{g(a)f'(a) - f(a)g'(a)}{[g(a)]^{2}}.
+        \]
+\end{enumerate}
+\end{theorembox}
+
+% ===============================
+% 28.4 Theorem — Chain Rule
+% ===============================
+\begin{theorembox}[Theorem 28.4 — Chain Rule]
+\label{thm:28.4}
+Assume $f$ is differentiable at $a$ and $g$ is differentiable at $f(a)$.  
+Then the composite function $g \circ f$ is differentiable at $a$, and
+\[
+(g \circ f)'(a) = g'\bigl(f(a)\bigr)\, f'(a).
+\]
+\end{theorembox}
 
 \end{document}
