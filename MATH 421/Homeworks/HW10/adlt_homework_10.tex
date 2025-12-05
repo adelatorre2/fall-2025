@@ -119,13 +119,41 @@ I worked on this homework independently. No outside collaborators or resources w
 Let $f$ and $g$ be continuous functions in $[a,b]$ such that $f(a) \geq g(a)$ and $f(b) \leq g(b)$. Prove $f(x_0) = g(x_0)$ for at least one $x_0$ in $[a,b]$.
 \vspace{0.75em}
 
-\textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+\textbf{Discussion.}\\
+We want a point where $f(x_0) = g(x_0)$.  This is equivalent to $f(x_0) - g(x_0) = 0$, so it is natural to consider the difference $h(x) = f(x) - g(x)$.  Since $f$ and $g$ are continuous, $h$ is continuous on $[a,b]$.  The inequalities $f(a)\ge g(a)$ and $f(b)\le g(b)$ then say $h(a)\ge 0$ and $h(b)\le 0$, so $0$ lies between $h(a)$ and $h(b)$.  By the Intermediate Value Theorem applied to $h$, there is some $x_0\in [a,b]$ with $h(x_0)=0$, i.e.\ $f(x_0)=g(x_0)$.
 \vspace{0.25em}
 
 \textbf{Proof.}\\
-% (Your proof goes here.)
-\qed
+Define $h : [a,b] \to \mathbb{R}$ by
+\[
+  h(x) = f(x) - g(x).
+\]
+Since $f$ and $g$ are continuous on $[a,b]$ and the difference of two continuous
+functions is continuous, it follows that $h$ is continuous on $[a,b]$.
+
+From the hypotheses we have
+\[
+  f(a) \ge g(a) \quad\Longrightarrow\quad h(a) = f(a) - g(a) \ge 0,
+\]
+and
+\[
+  f(b) \le g(b) \quad\Longrightarrow\quad h(b) = f(b) - g(b) \le 0.
+\]
+Thus $0$ lies between $h(a)$ and $h(b)$; equivalently, $h(b) \le 0 \le h(a)$.
+
+By the Intermediate Value Theorem (Theorem 18.2 in Ross), since $h$ is continuous
+on $[a,b]$ and $0$ lies between $h(a)$ and $h(b)$, there exists some $x_0 \in [a,b]$
+such that
+\[
+  h(x_0) = 0.
+\]
+By the definition of $h$ this means
+\[
+  f(x_0) - g(x_0) = 0,
+\]
+so $f(x_0) = g(x_0)$.
+
+Therefore there exists at least one $x_0 \in [a,b]$ with $f(x_0) = g(x_0)$, as required. \qed
 
 \newpage
 
