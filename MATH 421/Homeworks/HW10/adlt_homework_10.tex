@@ -229,15 +229,78 @@ Therefore there exist $x,y\in[0,2]$ with $|y-x|=1$ and $f(x)=f(y)$, as required.
 \problem[Ross Chapter 3 19.6 (b)]{3}
 \textit{(From Part (a):) Let $f(x) = \sqrt{x}$ for $x \geq 0$. Show $f'$ is unbounded on $(0,1]$ but $f$ is nevertheless uniformly continuous on $(0,1]$ Compare with Theorem 19.6.}
 
-Show that $f$ is uniformly continuous on $[1,\infty)$.
+(b) Show that $f$ is uniformly continuous on $[1,\infty)$.
 \vspace{0.75em}
 
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+We want to prove that $f(x) = \sqrt{x}$ is \emph{uniformly} continuous on $[1,\infty)$.
+By \hyperref[def:19.1]{Definition 19.1}, this means:
+
+\[
+\text{for each } \varepsilon > 0 \text{ there exists } \delta > 0 \text{ such that }
+x,y \in [1,\infty),\ |x-y| < \delta \Longrightarrow |\sqrt{x} - \sqrt{y}| < \varepsilon.
+\]
+
+So the game is: fix an arbitrary $\varepsilon>0$ and then cook up a $\delta$ that depends
+\emph{only} on $\varepsilon$, not on a particular choice of $x$ or $y$.
+
+A standard trick for square roots is to use the algebraic identity
+\[
+|\sqrt{x}-\sqrt{y}|
+ = \left|\frac{x-y}{\sqrt{x}+\sqrt{y}}\right|.
+\]
+On our domain $[1,\infty)$ we always have $\sqrt{x} \ge 1$ and $\sqrt{y} \ge 1$, so
+\[
+\sqrt{x} + \sqrt{y} \ge 2.
+\]
+That means we can bound the difference by
+\[
+|\sqrt{x}-\sqrt{y}| \le \frac{|x-y|}{2}.
+\]
+
+This is the key estimate: on $[1,\infty)$, the function $\sqrt{x}$ cannot change
+faster than ``slope $\tfrac12$'' in the sense that
+\[
+|\sqrt{x}-\sqrt{y}| \le \frac12\,|x-y|.
+\]
+Once we have this, the $\varepsilon$–$\delta$ choice is easy: if we make
+$|x-y|$ smaller than $2\varepsilon$, then $\frac12|x-y|$ will automatically be
+smaller than $\varepsilon$. So in the proof we will take
+\[
+\delta = 2\varepsilon
+\]
+and then check that this choice satisfies the definition of uniform continuity
+on $[1,\infty)$.
 \vspace{0.25em}
 
 \textbf{Proof.}\\
-% (Your proof goes here.)
+Let $\varepsilon > 0$, and $\delta = 2\varepsilon$. From \hyperref[def:19.1]{Definition 19.1} let $x,y \in S$ with $|x-y| < \delta$.
+Then,
+\[
+|\sqrt{x} - \sqrt{y}|
+  = \left|\frac{x-y}{\sqrt{x} + \sqrt{y}}\right|.
+\]
+
+Because $x,y \in [1,\infty)$, we have $\sqrt{x} \ge 1$ and $\sqrt{y} \ge 1$, so
+\[
+\sqrt{x} + \sqrt{y} \ge 2.
+\]
+Therefore
+\[
+|\sqrt{x} - \sqrt{y}|
+  = \frac{|x-y|}{\sqrt{x} + \sqrt{y}}
+  \le \frac{|x-y|}{2}.
+\]
+
+Using $|x-y| < \delta = 2\varepsilon$, we obtain
+\[
+|\sqrt{x} - \sqrt{y}|
+  \le \frac{|x-y|}{2}
+  < \frac{2\varepsilon}{2}
+  = \varepsilon.
+\]
+
+Since $\varepsilon>0$ was arbitrary, by \hyperref[def:19.1]{Definition 19.1}, $f(x)=\sqrt{x}$ is uniformly continuous on $[1,\infty)$. 
 \qed
 
 \newpage
