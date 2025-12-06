@@ -465,7 +465,7 @@ This will match the definition of uniform continuity on $\mathbb{R}$.
 \vspace{0.25em}
 
 \textbf{Proof.}\\
-Let $\varepsilon>0$ be given.
+Let $\varepsilon>0$. Let $M \geq 0$ be such that:
 
 \emph{Case 1: $M=0$.}  
 Then for all $x,y\in\mathbb{R}$ we have
@@ -503,18 +503,44 @@ By \hyperref[def:19.1]{Definition 19.1}, $f$ is uniformly continuous on $\mathbb
 
 
 \problem[Differentiability of $f$]{6}
-Suppose that $0 \in (a,b)$ and $f(x)=xg(x)$ for some function $g: (a,b) \rightarrow \mathbb{R}$ which is continuous at $x=0$. Prove that $f$ is differentiable at $x=0$, and find $f'(0)$ in terms of $g$.
+Suppose that $0 \in (a,b)$ and $f(x)=xg(x)$ for some function $g: (a,b) \mapsto \mathbb{R}$ which is continuous at $x=0$. Prove that $f$ is differentiable at $x=0$, and find $f'(0)$ in terms of $g$.
 
 \textit{Hint: Note that you cannot use the product rule, since $g(x)$ is not guaranteed to be differentiable at $x=0$}
 
 \vspace{0.75em}
 
 \textbf{Discussion.} \\
-%(Very brief plan / key ideas.)
+To show that $f(x)=xg(x)$ is differentiable at $x=0$, we use the definition of the derivative ()\hyperref[def:28.1]{Definition 28.1}) directly. Like the hint says, we can't use the product rule because $g$ is only assumed to be continuous at $0$, not differentiable (the converse of \hyperref[thm:28.2]{Theorem 28.2} is not true; differentiability $\implies$ continuity, but not the other way around). So we apply \hyperref[def:28.1]{Definition 28.1}:
+\[
+\frac{f(x)-f(0)}{x-0}.
+\]
+Since $f(0)=0\cdot g(0)=0$, this becomes
+\[
+\frac{xg(x)-0}{x}=g(x)
+\quad (x\ne 0).
+\]
+So the entire derivative computation reduces to studying the limit $\lim_{x\to 0} g(x)$. Because $g$ is continuous at $0$, we know that
+\[
+\lim_{x\to 0} g(x) = g(0).
+\]
+Thus the derivative exists and equals $g(0)$. The key idea is that continuity of $g$ gives us that the limit exists and thus $f$ is differentiable directly from the defintion of a derivative, which simplifies in a way that avoids product rule entirely. #winning
 \vspace{0.25em}
 
 \textbf{Proof.}\\
-% (Your proof goes here.)
+Since $f(0)=0\cdot g(0)=0$, for $x\ne 0$ we compute
+\[
+\frac{f(x)-f(0)}{x-0}=\frac{xg(x)}{x}=g(x).
+\]
+Taking limits,
+\[
+\lim_{x\to 0}\frac{f(x)-f(0)}{x-0}
+ = \lim_{x\to 0} g(x)
+ = g(0),
+\]
+where the last equality follows from continuity of $g$ at $0$. Therefore $f$ is differentiable at $0$, and
+\[
+f'(0)=g(0).
+\]
 \qed
 
 
