@@ -1,0 +1,660 @@
+Front: What does it mean for a real-valued function to be bounded?  
+Back: A function \(f\) is bounded if there exists \(M \in \mathbb{R}\) such that \(|f(x)| \le M\) for all \(x\) in its domain.  
+
+
+
+Front: Give an example of a bounded function on \(\mathbb{R}\).  
+Back: Example: \(f(x) = \sin(x)\); it satisfies \(|f(x)| \le 1\) for all \(x \in \mathbb{R}\).  
+
+
+
+Front: Give an example of an unbounded function on \(\mathbb{R}\).  
+Back: Example: \(f(x) = x\); as \(|x| \to \infty\), the function is unbounded.  
+
+
+
+Front: {{c1::Definition of bounded function}}  
+Back: A function \(f\) is bounded if {{c1::there exists \(M\) such that \(|f(x)| \le M\) for all \(x\) in the domain}}.  
+
+
+
+Front: Example of a function bounded below but not above.  
+Back: \(f(x) = x^2\); satisfies \(f(x) \ge 0\) but is unbounded above.  
+
+
+
+Front: State the Extreme Value Theorem.  
+Back: If \(f\) is continuous on a closed interval \([a,b]\), then:  
+1. \(f\) is bounded.  
+2. \(f\) attains a maximum and minimum on \([a,b]\).  
+
+
+
+Front: {{c1::Hypotheses of the Extreme Value Theorem}}  
+Back: {{c1::\(f\) is continuous on a closed interval \([a,b]\)}}  
+
+
+
+Front: {{c1::Conclusions of the EVT}}  
+Back: {{c1::\(f\) is bounded; \(f\) achieves max and min values on \([a,b]\)}}  
+
+
+
+Front: Explain why the EVT can fail if continuity is removed.  
+Back: A discontinuous function on \([a,b]\) may fail to achieve its max or min (e.g., jump discontinuity creating missing extrema).  
+
+
+
+Front: Give a counterexample showing EVT fails on an open interval.  
+Back: Example: \(f(x)=x\) on \((0,1)\); function is continuous but does not attain a maximum or minimum.  
+
+
+
+Front: Why does continuity matter in the EVT?  
+Back: Without continuity, the supremum or infimum may not correspond to values attained by the function.  
+
+
+
+Front: Why does the closed interval matter in the EVT?  
+Back: Without closedness, limit points at endpoints may not be included, so extrema might not occur in the domain.  
+
+
+
+Front: Describe the proof idea behind showing a continuous function on \([a,b]\) is bounded.  
+Back: Assume unbounded; construct sequence contradicting continuity. Use Bolzano–Weierstrass to extract convergent subsequence, contradicting unboundedness.  
+
+
+
+Front: Challenge: True or false? Every continuous function on \((a,b)\) is bounded.  
+Back: False. Example: \(f(x)=1/(x-a)\) is continuous on \((a,b)\) but unbounded near \(a\). Explanation: open intervals allow blow-up behavior.  
+
+
+
+Front: Challenge: Identify which EVT hypothesis fails if \(f(x)=1/x\) on \([0,1]\).  
+Back: Continuity fails at 0. Because \(f\) is not continuous on the closed interval, EVT does not apply.  
+
+
+
+Front: Challenge: Explain why a bounded sequence is used in the EVT proof sketch.  
+Back: Because continuity allows passing limits through \(f\), using subsequences to derive contradictions unless \(f\) is bounded.  
+
+
+
+Front: Challenge: Construct a continuous function on an open interval that is unbounded but has no maximum.  
+Back: \(f(x)=1/x\) on \((0,1)\). It is continuous, unbounded near 0, and has no maximum.  
+
+
+Front: State the Intermediate Value Theorem.  
+Back: If \(f\) is continuous on \([a,b]\) and \(L\) is any value between \(f(a)\) and \(f(b)\), then there exists \(c \in [a,b]\) such that \(f(c) = L\).  
+
+
+Front: {{c1::Hypothesis of IVT}}  
+Back: {{c1::\(f\) is continuous on \([a,b]\)}}  
+
+
+Front: {{c1::Conclusion of IVT}}  
+Back: {{c1::There exists \(c\in[a,b]\) with \(f(c) = L\) for any \(L\) between \(f(a)\) and \(f(b)\)}}  
+
+
+Front: True or false: The IVT guarantees the location of the point \(c\).  
+Back: False. IVT only guarantees existence, not the value of \(c\).  
+
+
+Front: Give an example where IVT applies to guarantee a root.  
+Back: For \(f(x)=x^3 - 2\), we have \(f(1)=-1\) and \(f(2)=6\). By IVT, a root exists in \([1,2]\).  
+
+
+Front: State the formal definition of continuity used in IVT.  
+Back: \(f\) is continuous at \(x_0\) if for every \(\varepsilon > 0\) there exists \(\delta > 0\) such that \(|x - x_0| < \delta \Rightarrow |f(x) - f(x_0)| < \varepsilon.\)  
+
+
+Front: Why does the IVT need continuity?  
+Back: Without continuity, the function may "jump" over values, so it may fail to take on intermediate values.  
+
+
+Front: State the Extreme Value Theorem as shown in the new slides.  
+Back: If \(f\) is continuous on a closed interval \([a,b]\), then \(f\) attains both a maximum and a minimum on \([a,b]\).  
+
+
+Front: {{c1::Required domain condition for EVT}}  
+Back: {{c1::The interval must be closed and bounded (\([a,b]\)).}}  
+
+
+Front: True or false: EVT guarantees boundedness of a continuous function on \([a,b]\).  
+Back: True.  
+
+
+Front: Why can EVT fail on an open interval?  
+Back: Without endpoints included, the supremum or infimum may not be attained inside the domain.  
+
+
+Front: Discuss a function where EVT fails because the domain is not closed.  
+Back: \(f(x)=x\) on \((0,1)\) is continuous but achieves no maximum or minimum.  
+
+
+Front: Challenge: IVT vs. EVT — what does each guarantee?  
+Back: IVT guarantees existence of intermediate values; EVT guarantees existence of extrema. They address different behaviors of continuous functions. Explanation: IVT concerns values between endpoints; EVT concerns global maxima/minima.  
+
+
+Front: Challenge: Suppose \(f\) is continuous on \([a,b]\). Does EVT imply IVT?  
+Back: No. EVT concerns extrema; IVT concerns intermediate values. Both rely on continuity but neither implies the other.  
+
+
+Front: What is the common strategy when applying IVT to show an equation \(f(x_0)=0\) has a solution?  
+Back: Show that \(0\) lies between \(f(a)\) and \(f(b)\), i.e.\ either \(f(a) < 0 < f(b)\) or \(f(b) < 0 < f(a)\), then apply the IVT to conclude there exists \(x_0 \in (a,b)\) with \(f(x_0)=0\).  
+
+
+Front: {{c1::Step IV in the IVT problem-solving recipe}}  
+Back: {{c1::Establish that \(f\) is continuous on \([a,b]\).}}  
+
+
+Front: {{c1::Step V in the IVT problem-solving recipe}}  
+Back: {{c1::Show that \(y\) lies between \(f(a)\) and \(f(b)\).}}  
+
+
+Front: Example application: Why does the equation \(x^3 + 2x - 5 = 0\) have a solution in \((0,2)\)?  
+Back: Because \(f(0) = -5 < 0\) and \(f(2) = 8+4-5 = 7 > 0\), so by IVT there exists \(x_0\in(0,2)\) with \(f(x_0)=0\).  
+
+
+Front: In the example \(g:[0,1]\to[0,1]\), how do we set up the IVT to solve \(g(x_0)=1-x_0\)?  
+Back: Define \(f(x)=g(x)-(1-x)\). Because both terms are continuous, \(f\) is continuous. Show that \(f(0)\) and \(f(1)\) have opposite signs, then apply IVT to find \(x_0\) with \(f(x_0)=0\).  
+
+
+Front: {{c1::Why does defining \(f(x)=g(x)-(1-x)\) help in solving \(g(x_0)=1-x_0\)?}}  
+Back: {{c1::Because roots of \(f\) correspond exactly to points where \(g(x)=1-x\).}}  
+
+
+Front: True or false: To use IVT, it is necessary to know the exact value of \(x_0\).  
+Back: False. IVT guarantees existence of \(x_0\); it does not locate it explicitly.  
+
+
+Front: Challenge: For the equation \(3x^5 - 4x^2 = 3\), which function and interval should you choose to apply IVT?  
+Back: Let \(f(x)=3x^5 - 4x^2 - 3\) on \([0,2]\). Compute \(f(0)\) and \(f(2)\) to verify a sign change, then apply IVT.  
+
+Front: Definition of uniform continuity  
+Back: A function \(f\) on a set \(S\) is uniformly continuous if for every \(\varepsilon > 0\) there exists \(\delta > 0\) such that whenever \(x,y \in S\) and \(|x - y| < \delta\), we have \(|f(x) - f(y)| < \varepsilon\).
+
+
+Front: {{c1::Key difference between continuity and uniform continuity}}  
+Back: {{c1::In uniform continuity, the \(\delta\) depends only on \(\varepsilon\), not on the point \(x_0\).}}
+
+
+Front: If a function is uniformly continuous on its domain, is it continuous on its domain?  
+Back: Yes. Uniform continuity is a stronger condition that implies continuity.
+
+
+Front: State Theorem 19.2  
+Back: If \(f\) is continuous on a closed interval \([a,b]\), then \(f\) is uniformly continuous on \([a,b]\).
+
+
+Front: Example: Why is \(g(x)=x^2\) uniformly continuous on \([-4,4]\)?  
+Back: Because when \(|x-y|<\delta\), the difference \(|x^2 - y^2| = |x-y||x+y|\) can be bounded using \(|x+y|\le 8\), allowing choice of \(\delta = \varepsilon/8\).
+
+
+Front: True or false: \(x^2\) is uniformly continuous on \(\mathbb{R}\).  
+Back: False. The slope increases without bound, so no single \(\delta\) works for all \(x\).
+
+
+Front: Definition of differentiability at a point  
+Back: \(f\) is differentiable at \(a\) if the limit \(\lim_{x\to a} \frac{f(x)-f(a)}{x-a}\) exists and is finite.
+
+
+Front: {{c1::Derivative of \(x^2\)}}  
+Back: {{c1::\(f'(a) = 2a\)}}
+
+
+Front: Compute the derivative of \(f(x)=mx+b\).  
+Back: \(f'(a) = m\) for all \(a\).
+
+
+Front: For \(f(x)=|x|\), why must differentiability be checked in cases?  
+Back: Because the formula for \(|x|\) changes sign at 0, so the difference quotient behaves differently on \(x>0\), \(x<0\), and \(x=0\).
+
+Front: State Theorem 28.2 (Differentiable Implies Continuous).  
+Back: If \(f\) is differentiable at \(a\), then \(f\) is continuous at \(a\).  
+
+
+Front: {{c1::Key idea of proof for Theorem 28.2}}  
+Back: {{c1::Rewrite \(f(x)\) as \((x-a)\frac{f(x)-f(a)}{x-a} + f(a)\) and take limits as \(x \to a\).}}  
+
+
+Front: True or false: If a function is continuous at a point, then it must be differentiable there.  
+Back: False. Example: \(f(x)=|x|\) is continuous everywhere but not differentiable at 0.  
+
+
+Front: Example of a function continuous everywhere but differentiable nowhere (conceptual).  
+Back: A function with infinitely sharp oscillations (as sketched in lecture), similar to “sawtooth” behavior at every scale.  
+
+
+Front: {{c1::Converse of Theorem 28.2}}  
+Back: {{c1::False — continuity does not imply differentiability.}}  
+
+
+Front: State the algebraic derivative rules (Theorem 28.3).  
+Back:  
+i. \((cf)'(a) = c f'(a)\)  
+ii. \((f+g)'(a) = f'(a) + g'(a)\)  
+iii. \((fg)'(a) = f'(a)g(a) + f(a)g'(a)\)  
+iv. If \(g(a) \neq 0\), \(\left(\frac{f}{g}\right)'(a) = \frac{g(a)f'(a) - f(a)g'(a)}{(g(a))^2}\).  
+
+
+Front: {{c1::Hypotheses required for product and quotient rules}}  
+Back: {{c1::Both \(f\) and \(g\) must be differentiable at \(a\); also \(g(a)\neq 0\) for quotient rule.}}  
+
+
+Front: Conceptual question: Why does the product rule require adding and subtracting \(f(a)g(x)\)?  
+Back: This allows rewriting the numerator to separate terms that resemble the difference quotients of \(f\) and \(g\).  
+
+
+Front: State the power rule for natural numbers.  
+Back: If \(f(x) = x^n\) for \(n \in \mathbb{N}\), then \(f'(x) = n x^{n-1}\).  
+
+
+Front: {{c1::Proof strategy for the power rule}}  
+Back: {{c1::Use induction: base case \(n=1\); inductive step applies product rule to \(x^{n+1} = x \cdot x^n\).}}  
+
+
+Front: Negative power rule example (from activity).  
+Back: For \(h(x)=x^{-m}\), write \(h(x)=\frac{1}{x^m}\) and use quotient rule to obtain \(h'(a) = -m a^{-m-1}\).  
+
+
+Front: True or false: Differentiability implies continuity, and the converse is also true.  
+Back: False. Differentiability ⇒ continuity, but continuity does NOT ⇒ differentiability.  
+
+
+Front: Challenge: Identify where differentiability fails for \(f(x)=|x|\).  
+Back: It fails at \(x=0\) because left and right difference quotients are \(-1\) and \(1\), which do not agree.  
+
+
+Front: Challenge: Give a condition under which algebraic derivative rules cannot be applied.  
+Back: If either function is not differentiable at the point, or if \(g(a)=0\) when applying the quotient rule.  
+
+Front: State the Mean Value Theorem.  
+Back: If \(f\) is continuous on \([a,b]\) and differentiable on \((a,b)\), then there exists \(x_0 \in (a,b)\) such that \[ f'(x_0) = \frac{f(b) - f(a)}{b - a}. \]  
+
+
+
+Front: {{c1::Hypotheses of the Mean Value Theorem}}  
+Back: {{c1::Continuity on \([a,b]\) and differentiability on \((a,b)\)}}  
+
+
+
+Front: {{c1::Conclusion of the MVT}}  
+Back: {{c1::There exists \(x_0 \in (a,b)\) with \(f'(x_0) = \frac{f(b)-f(a)}{b-a}\)}}  
+
+
+
+Front: Describe the idea of the proof of the MVT.  
+Back: Define a function combining \(f\) with a straight line so that Rolle’s Theorem applies, then solve for \(f'(x_0)\).  
+
+
+
+Front: State Corollary 29.4 (Zero Derivative Implies Constant).  
+Back: If \(f'(x)=0\) for all \(x\in(a,b)\), then \(f\) is constant on \((a,b)\).  
+
+
+
+Front: True or False: If \(f'(x)=0\) for all \(x\) in the domain of \(f\), then \(f\) is constant.  
+Back: False. If the domain is disconnected, \(f\) may take different constants on different components.  
+
+
+
+Front: State Corollary 29.5 (Equal Derivatives Differ by a Constant).  
+Back: If \(f'(x)=g'(x)\) for all \(x\in(a,b)\), then there exists \(c\in\mathbb{R}\) such that \(f(x)=g(x)+c\) for all \(x\in(a,b)\).  
+
+
+
+Front: Definition of increasing function.  
+Back: \(f\) is increasing on an interval if \(x_1<x_2\Rightarrow f(x_1)\le f(x_2).\)  
+
+
+
+Front: Definition of strictly increasing function.  
+Back: \(f\) is strictly increasing on an interval if \(x_1<x_2\Rightarrow f(x_1)<f(x_2).\)  
+
+
+
+Front: State Corollary 29.7 (Derivative Sign Implies Monotonicity).  
+Back: If \(f'(x)\ge 0\) for all \(x\in(a,b)\), then \(f\) is increasing. If \(f'(x)>0\), then \(f\) is strictly increasing.  
+
+
+
+Front: {{c1::Condition ensuring strict increase from derivative}}  
+Back: {{c1::\(f'(x) > 0\) for all \(x \in (a,b)\)}}  
+
+
+
+Front: Explain why Corollary 29.7 follows from the MVT.  
+Back: For any \(x_1<x_2\), the MVT gives \(f'(x_0)=\frac{f(x_2)-f(x_1)}{x_2-x_1}\). If \(f'(x_0)\ge0\), the difference quotient is nonnegative, so \(f(x_2)\ge f(x_1)\).  
+
+
+
+Front: Challenge: Give an example where \(f'(x)>0\) fails at a single point but \(f\) is still strictly increasing.  
+Back: Example: \(f(x)=x^3\). Here \(f'(0)=0\), but \(f\) is strictly increasing on \(\mathbb{R}\).  
+
+
+
+Front: Challenge: Why does Corollary 29.4 fail if the interval is not connected?  
+Back: Constantness follows from MVT applied between any two points; disconnected intervals lack such paths.
+
+Front: State the Chain Rule (Theorem 28.4).  
+Back: If \(f\) is differentiable at \(a\) and \(g\) is differentiable at \(f(a)\), then \(g \circ f\) is differentiable at \(a\) and \((g \circ f)'(a) = g'(f(a))\, f'(a).\)
+
+
+
+Front: {{c1::Hypotheses of the Chain Rule}}  
+Back: {{c1::\(f\) differentiable at \(a\); \(g\) differentiable at \(f(a)\).}}
+
+
+
+Front: {{c1::Conclusion of Chain Rule}}  
+Back: {{c1::\(g \circ f\) is differentiable at \(a\) and \((g \circ f)'(a) = g'(f(a)) f'(a).\)}}
+
+
+
+Front: What is the main flaw in the naïve “proof” of the Chain Rule shown in lecture?  
+Back: It incorrectly treats the substitution \(y = f(x)\) as if \(y \to f(a)\) automatically as \(x \to a\). The proof does not justify that \(f(x) - f(a)\) behaves linearly enough to allow quotient manipulation.
+
+
+
+Front: True or false: If \(f'(x_0)=0\), then \(x_0\) must be a maximum or minimum.  
+Back: False. Example: \(f(x)=x^3\). At \(x_0=0\), \(f'(0)=0\) but the point is an inflection point.
+
+
+
+Front: True or false: If \(x_0\) is a maximum or minimum of a differentiable function, then \(f'(x_0)=0\).  
+Back: True. This is exactly Theorem 29.1 (interior extrema imply derivative zero) provided differentiability holds.
+
+
+
+Front: State Theorem 29.1 (Interior Extremum Theorem).  
+Back: If \(f\) is defined on an open interval containing \(x_0\), if \(f\) assumes a maximum or minimum at \(x_0\), and if \(f\) is differentiable at \(x_0\), then \(f'(x_0)=0\).
+
+
+
+Front: {{c1::Why must the extremum be interior for Theorem 29.1?}}  
+Back: {{c1::Because endpoints need not have symmetric neighborhoods, so the derivative need not vanish.}}
+
+
+
+Front: State Rolle’s Theorem (Theorem 29.2).  
+Back: If \(f\) is continuous on \([a,b]\), differentiable on \((a,b)\), and satisfies \(f(a)=f(b)\), then there exists \(x_0\in(a,b)\) such that \(f'(x_0)=0\).
+
+
+
+Front: {{c1::Key hypotheses of Rolle’s Theorem}}  
+Back: {{c1::Continuity on \([a,b]\); differentiability on \((a,b)\); \(f(a)=f(b)\).}}
+
+
+
+Front: {{c1::Conclusion of Rolle’s Theorem}}  
+Back: {{c1::There exists \(x_0\in(a,b)\) with \(f'(x_0)=0\).}}
+
+
+
+Front: Why does continuity on \([a,b]\) matter in Rolle’s Theorem?  
+Back: EVT requires continuity on a closed interval in order to guarantee the existence of maxima and minima needed in the proof.
+
+
+
+Front: State the Mean Value Theorem (Theorem 29.3).  
+Back: If \(f\) is continuous on \([a,b]\) and differentiable on \((a,b)\), then there exists \(x_0\in(a,b)\) such that \(f'(x_0)=\frac{f(b)-f(a)}{b-a}.\)
+
+
+
+Front: {{c1::Geometric meaning of the MVT}}  
+Back: {{c1::There is a point where the tangent line is parallel to the secant line connecting \((a,f(a))\) and \((b,f(b))\).}}
+
+
+
+Front: Example application of MVT: If \(f'(x)=0\) for all \(x\), what can we conclude?  
+Back: MVT implies \(f(b)-f(a)=0\) for all \(a,b\), hence \(f\) is constant.
+
+
+
+Front: Example application of MVT: If \(f'(x)>0\) everywhere, what does MVT show?  
+Back: For any \(a<b\), MVT gives \(f(b)-f(a)=f'(x_0)(b-a) > 0\), so \(f\) is strictly increasing.
+
+
+
+Front: Challenge: Which MVT hypothesis fails for \(f(x)=|x|\) on \([-1,1]\)?  
+Back: Differentiability fails at \(x=0\). Therefore MVT cannot be applied.
+
+
+
+Front: Challenge: Give a function that is continuous everywhere and differentiable everywhere except one point where Rolle’s Theorem fails.  
+Back: Example: \(f(x)=|x|\) on \([-1,1]\). Here, \(f(-1)=f(1)=1\), but Rolle’s Theorem fails because \(f\) is not differentiable at 0.
+
+
+
+Front: State the definition of a partition of the interval \([a,b]\).  
+Back: A partition of \([a,b]\) is a finite collection of points \(P = \{t_0,t_1,\dots,t_{n-1},t_n\}\subset [a,b]\) such that \(a = t_0 < t_1 < \dots < t_{n-1} < t_n = b\).  
+
+
+
+Front: {{c1::Definition of a partition of \([a,b]\)}}  
+Back: {{c1::A finite ordered set of points \(P = \{t_0,\dots,t_n\}\) with \(a = t_0 < t_1 < \dots < t_n = b\).}}  
+
+
+
+Front: What is the upper Darboux sum \(U(f,P)\) for a bounded function \(f:[a,b]\to\mathbb{R}\) and a partition \(P=\{t_0,\dots,t_n\}\)?  
+Back: \(U(f,P) = \displaystyle\sum_{k=1}^n M_k (t_k - t_{k-1})\), where \(M_k = \sup\{f(x): x\in[t_{k-1},t_k]\}\).  
+
+
+
+Front: {{c1::Formula for the upper Darboux sum}}  
+Back: {{c1::\(U(f,P) = \sum_{k=1}^n M_k (t_k - t_{k-1})\) with \(M_k = \sup\{f(x): x\in[t_{k-1},t_k]\}\).}}  
+
+
+
+Front: What is the lower Darboux sum \(L(f,P)\) for a bounded function \(f\) and partition \(P\)?  
+Back: \(L(f,P) = \displaystyle\sum_{k=1}^n m_k (t_k - t_{k-1})\), where \(m_k = \inf\{f(x): x\in[t_{k-1},t_k]\}\).  
+
+
+
+Front: {{c1::Formula for the lower Darboux sum}}  
+Back: {{c1::\(L(f,P) = \sum_{k=1}^n m_k (t_k - t_{k-1})\) with \(m_k = \inf\{f(x): x\in[t_{k-1},t_k]\}\).}}  
+
+
+
+Front: State Theorem 29.8 (Intermediate Value Property for derivatives).  
+Back: If \(f\) is differentiable on \((a,b)\), then \(f'(x)\) has the intermediate value property on \((a,b)\): whenever \(a < x_1 < x_2 < b\) and \(c\) lies between \(f'(x_1)\) and \(f'(x_2)\), there exists \(x_0\in(x_1,x_2)\) such that \(f'(x_0)=c\).  [oai_citation:1‡120325-421-Integrability-11.pdf](sediment://file_00000000087c71fd9924a994187f34c1)  
+
+
+
+Front: {{c1::Hypothesis of Theorem 29.8 about \(f\)}}  
+Back: {{c1::\(f\) is differentiable on the open interval \((a,b)\).}}  
+
+
+
+Front: {{c1::Conclusion of Theorem 29.8 about \(f'\)}}  
+Back: {{c1::\(f'\) has the intermediate value property: for any \(a<x_1<x_2<b\) and any \(c\) between \(f'(x_1)\) and \(f'(x_2)\), there exists \(x_0\in(x_1,x_2)\) with \(f'(x_0)=c\).}}  
+
+
+
+Front: What does it mean, intuitively, that \(f'\) has the intermediate value property?  
+Back: It means \(f'\) cannot “jump” over values: whenever the derivative takes two values at nearby points, it must take every intermediate value somewhere in between.  
+
+
+
+Front: Give an example of a differentiable function whose derivative is not continuous at 0.  
+Back: \(f(x) = \begin{cases} x^2 \sin\!\bigl(\tfrac{1}{x}\bigr), & x\ne 0,\\[4pt] 0, & x=0,\end{cases}\) is differentiable everywhere, but \(f'\) is not continuous at \(0\).  
+
+
+
+Front: What is the derivative of \(f(x) = x^2 \sin\!\bigl(\tfrac{1}{x}\bigr)\) for \(x\ne 0\) and at \(x=0\)?  
+Back: For \(x\ne 0\), \(f'(x) = -\cos\!\bigl(\tfrac{1}{x}\bigr) + 2x \sin\!\bigl(\tfrac{1}{x}\bigr)\); for \(x=0\), \(f'(0)=0\).  
+
+
+
+Front: For \(f(x)=x^2\) on \([-1,4]\) and partition \(Q=\{-1,0,2,4\}\), what is the upper Darboux sum \(U(f,Q)\)?  
+Back: On \([-1,0]\) the maximum of \(x^2\) is 1; on \([0,2]\) it is 4; on \([2,4]\) it is 16. Thus \(U(f,Q)=1\cdot 1 + 4\cdot 2 + 16\cdot 2 = 41\).  
+
+
+
+Front: For \(f(x)=x^2\) on \([-1,4]\) and partition \(Q=\{-1,0,2,4\}\), what is the lower Darboux sum \(L(f,Q)\)?  
+Back: On \([-1,0]\) the minimum is 0; on \([0,2]\) it is 0; on \([2,4]\) it is 4. Thus \(L(f,Q)=0\cdot 1 + 0\cdot 2 + 4\cdot 2 = 8\).  
+
+
+
+Front: For \(f(x)=x^2\) on \([-1,4]\) and coarse partition \(P=\{-1,4\}\), what are the upper and lower Darboux sums?  
+Back: On \([-1,4]\) the maximum of \(x^2\) is 16 and the minimum is 0, with width \(5\). So \(U(f,P)=16\cdot5=80\) and \(L(f,P)=0\cdot5=0\).  
+
+
+
+Front: Is the derivative of a differentiable function always continuous?  
+Back: No. A function can be differentiable everywhere while its derivative has discontinuities.  
+
+
+
+Front: What kinds of discontinuities can a derivative have?  
+Back: A derivative cannot have jump, removable, or infinite (vertical asymptote) discontinuities; any discontinuity of a derivative must be an essential discontinuity.  
+
+
+
+Front: Why can’t a derivative have a jump discontinuity?  
+Back: Because by Theorem 29.8 the derivative has the intermediate value property, so it must take all values between nearby derivative values and therefore cannot “jump” over a gap.  
+
+
+
+Front: In the informal picture of integration, how are upper and lower sums used to approximate the area under \(f\) on \([a,b]\)?  
+Back: The interval \([a,b]\) is partitioned, heights are chosen using suprema (upper sums) or infima (lower sums) on each subinterval, and rectangle areas are summed; refining the partition makes these sums approach the true area.  
+
+
+
+Front: Conceptually, what do the numbers \(M_k\) and \(m_k\) represent in the definitions of \(U(f,P)\) and \(L(f,P)\)?  
+Back: \(M_k\) is the largest value of \(f\) on the subinterval \([t_{k-1},t_k]\), giving the height of the \(k\)-th upper rectangle; \(m_k\) is the smallest value of \(f\) there, giving the height of the \(k\)-th lower rectangle.  
+
+
+
+Front: True or false: If \(f'\) has the intermediate value property on \((a,b)\), then \(f'\) must be continuous on \((a,b)\).  
+Back: False. The example \(f(x)=x^2\sin(1/x)\) for \(x\ne 0\), \(f(0)=0\), has a derivative with the intermediate value property but a discontinuity at 0; Darboux’s theorem does not imply continuity.  
+
+
+
+Front: True or false: A derivative can have a jump discontinuity.  
+Back: False. Because derivatives satisfy the intermediate value property, they cannot jump over values; any discontinuity must be essential.  
+
+
+
+Front: Suppose \(f\) is differentiable on \((a,b)\) and \(f'(x_1)=-1\), \(f'(x_2)=3\) with \(a<x_1<x_2<b\). What does Theorem 29.8 guarantee?  
+Back: It guarantees there exists \(x_0\in(x_1,x_2)\) with \(f'(x_0)=0\), since 0 lies between \(-1\) and \(3\).  
+
+
+
+Front: For \(f(x)=x^2\) on \([-1,4]\), compare the upper and lower sums for partitions \(P=\{-1,4\}\) and \(Q=\{-1,0,2,4\}\). Which are larger?  
+Back: The finer partition \(Q\) gives \(U(f,Q)=41 < U(f,P)=80\) and \(L(f,Q)=8 > L(f,P)=0\); refining partitions lowers upper sums and raises lower sums for this example.  
+
+
+
+Front: Explain how the example \(f(x)=x^2\sin(1/x)\) (with \(f(0)=0\)) shows that differentiability does not imply continuity of the derivative.  
+Back: \(f\) is differentiable everywhere, but \(f'(x)\) oscillates between \(-1\) and \(1\) near \(0\) and does not converge to \(f'(0)=0\); thus \(f'\) is discontinuous at \(0\) even though \(f\) is differentiable there.
+
+
+Front: Definition of the upper Darboux integral of a bounded function \(f:[a,b]\to\mathbb{R}\)  
+Back: The upper Darboux integral of \(f\) over \([a,b]\) is \(U(f) = \inf\{U(f,P) : P \text{ is a partition of } [a,b]\}.\)  
+
+
+
+Front: Definition of the lower Darboux integral of a bounded function \(f:[a,b]\to\mathbb{R}\)  
+Back: The lower Darboux integral of \(f\) over \([a,b]\) is \(L(f) = \sup\{L(f,P) : P \text{ is a partition of } [a,b]\}.\)  
+
+
+
+Front: {{c1::Upper Darboux integral formula}}  
+Back: {{c1::For bounded \(f:[a,b]\to\mathbb{R}\), \(U(f) = \inf\{U(f,P) : P \text{ a partition of } [a,b]\}.\}}  
+
+
+
+Front: {{c1::Lower Darboux integral formula}}  
+Back: {{c1::For bounded \(f:[a,b]\to\mathbb{R}\), \(L(f) = \sup\{L(f,P) : P \text{ a partition of } [a,b]\}.\}}  
+
+
+
+Front: Definition of Darboux integrability  
+Back: A bounded function \(f\) on \([a,b]\) is (Darboux) integrable on \([a,b]\) if \(L(f) = U(f)\). In this case we write \(\displaystyle \int_a^b f = \int_a^b f(x)\,dx\).  
+
+
+
+Front: {{c1::Condition for a bounded function \(f\) to be integrable on \([a,b]\)}}  
+Back: {{c1::\(f\) is integrable on \([a,b]\) if and only if \(L(f) = U(f)\).}}  
+
+
+
+Front: Lemma 32.2 (relationship between partitions)  
+Back: If \(P \subseteq Q\) are partitions of \([a,b]\) and \(f\) is bounded on \([a,b]\), then \(L(f,P) \le L(f,Q) \le U(f,Q) \le U(f,P).\)  
+
+
+
+Front: {{c1::Inequality chain relating lower and upper sums for nested partitions}}  
+Back: {{c1::If \(P \subseteq Q\), then \(L(f,P) \le L(f,Q) \le U(f,Q) \le U(f,P)\).}}  
+
+
+
+Front: Lemma 32.3 (lower sums are always \(\le\) upper sums)  
+Back: For any partitions \(P_1,P_2\) of \([a,b]\) and bounded \(f\), we have \(L(f,P_1) \le U(f,P_2)\).  
+
+
+
+Front: {{c1::Statement of Lemma 32.3 in terms of arbitrary partitions}}  
+Back: {{c1::For any partitions \(P_1,P_2\) of \([a,b]\) and bounded \(f\), \(L(f,P_1) \le U(f,P_2)\).}}  
+
+
+
+Front: State Theorem 32.4 relating upper and lower integrals  
+Back: If \(f\) is bounded on \([a,b]\), then the lower integral is always less than or equal to the upper integral: \(L(f) \le U(f)\).  
+
+
+
+Front: {{c1::Inequality between lower and upper Darboux integrals for a bounded function}}  
+Back: {{c1::For bounded \(f\) on \([a,b]\), \(L(f) \le U(f)\).}}  
+
+
+
+Front: Conceptual meaning of the inequality \(L(f) \le U(f)\)  
+Back: Lower sums approximate the area from below and upper sums from above. Taking the supremum of all lower sums and the infimum of all upper sums cannot reverse the inequality, so the best lower approximation never exceeds the best upper approximation.  
+
+
+
+Front: For a constant function \(f(x)=c\) on \([a,b]\), what are the upper and lower Darboux sums \(U(f,P)\) and \(L(f,P)\) for any partition \(P\)?  
+Back: On each subinterval, \(\sup f = \inf f = c\), so \(U(f,P) = L(f,P) = c(b-a)\) for every partition \(P\).  
+
+
+
+Front: For the constant function \(f(x)=c\) on \([a,b]\), what are \(U(f)\) and \(L(f)\)? Is \(f\) integrable?  
+Back: We have \(U(f)=L(f)=c(b-a)\), so \(f\) is integrable and \(\displaystyle \int_a^b f(x)\,dx = c(b-a)\).  
+
+
+
+Front: Consider \(g(x)=\begin{cases}c, & x\in\mathbb{Q},\\\\ 0, & x\notin\mathbb{Q},\end{cases}\) on \([a,b]\). What are \(U(g,P)\) and \(L(g,P)\) for any partition \(P\)?  
+Back: On every subinterval, \(\sup g = c\) and \(\inf g = 0\). Thus for any partition \(P\), \(U(g,P) = c(b-a)\) and \(L(g,P) = 0\).  
+
+
+
+Front: For the function \(g(x)=c\) on rationals and \(0\) on irrationals in \([a,b]\), compute \(U(g)\) and \(L(g)\). Is \(g\) integrable?  
+Back: We have \(U(g) = c(b-a)\) and \(L(g) = 0\). If \(c \ne 0\), then \(U(g) \ne L(g)\), so \(g\) is not integrable. If \(c=0\), then \(g\equiv 0\) and is integrable.  
+
+
+
+Front: {{c1::Key difference in integrability behavior between the constant function \(f(x)=c\) and the rational/irrational function \(g(x)\)}}  
+Back: {{c1::For \(f(x)=c\), all upper and lower sums coincide; for \(g(x)\), all upper sums equal \(c(b-a)\) and all lower sums equal 0, so \(L(g)\ne U(g)\) when \(c\ne0\).}}  
+
+
+
+Front: Conceptual question: How does refining a partition affect upper and lower sums according to Lemma 32.2?  
+Back: Refining a partition (adding more points) cannot decrease lower sums or increase upper sums: lower sums go up or stay the same, and upper sums go down or stay the same.  
+
+
+
+Front: Conceptual question: Strategy used in the proof of Theorem 32.4  
+Back: Given \(\varepsilon>0\), choose a partition \(P_1\) so that \(U(f,P_1) < U(f)+\varepsilon\) and a partition \(P_2\) so that \(L(f,P_2) > L(f)-\varepsilon\); then use Lemma 32.3 to compare \(L(f,P_2)\) and \(U(f,P_1)\) and let \(\varepsilon \to 0\) to conclude \(L(f)\le U(f)\).  
+
+
+
+Front: Challenge: True or false? If there exists a partition \(P\) with \(U(f,P) = L(f,P)\), then \(f\) is integrable on \([a,b]\).  
+Back: True. If some partition has equal upper and lower sums, then all refinements have equal sums, so \(\sup L(f,P) = \inf U(f,P)\) and hence \(L(f)=U(f)\).  
+
+
+
+Front: Challenge: Explain why the function \(g(x)=c\) on rationals and \(0\) on irrationals fails to be integrable when \(c\ne0\).  
+Back: Because for every partition, upper sums are \(c(b-a)\) and lower sums are 0, so the lower integral is 0 and the upper integral is \(c(b-a)\); since they differ, the integrability condition \(L(g)=U(g)\) fails.
