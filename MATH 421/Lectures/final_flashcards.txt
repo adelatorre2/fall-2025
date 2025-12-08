@@ -164,6 +164,8 @@ Front: {{c1::Why does defining \(f(x)=g(x)-(1-x)\) help in solving \(g(x_0)=1-x_
 Back: {{c1::Because roots of \(f\) correspond exactly to points where \(g(x)=1-x\).}}  
 
 
+EMPIEZA AQUI CABRON!! START HERE
+
 Front: True or false: To use IVT, it is necessary to know the exact value of \(x_0\).  
 Back: False. IVT guarantees existence of \(x_0\); it does not locate it explicitly.  
 
