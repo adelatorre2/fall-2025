@@ -658,3 +658,110 @@ Back: True. If some partition has equal upper and lower sums, then all refinemen
 
 Front: Challenge: Explain why the function \(g(x)=c\) on rationals and \(0\) on irrationals fails to be integrable when \(c\ne0\).  
 Back: Because for every partition, upper sums are \(c(b-a)\) and lower sums are 0, so the lower integral is 0 and the upper integral is \(c(b-a)\); since they differ, the integrability condition \(L(g)=U(g)\) fails.
+Front: State Theorem 33.1 about monotone functions and integrability on \([a,b]\).
+Back: Theorem 33.1: Every monotonic function \(f\) on \([a,b]\) is integrable on \([a,b]\).
+
+
+
+Front: {{c1::Main content of Theorem 33.1}}
+Back: {{c1::Every monotonic function \(f\) on \([a,b]\) is integrable on \([a,b]\).}}
+
+
+
+Front: Conceptual question: Why does monotonicity help guarantee integrability?
+Back: A monotone function on \([a,b]\) can only have jump discontinuities, and at most countably many of them. Such functions still admit upper and lower sums that can be made arbitrarily close, so by Theorem 33.1 every monotone function on \([a,b]\) is integrable.
+
+
+
+Front: State Theorem 33.2 about continuity and integrability.
+Back: Theorem 33.2: Every continuous function \(f\) on \([a,b]\) is integrable on \([a,b]\).
+
+
+
+Front: {{c1::Relationship between continuity and integrability from Theorem 33.2}}
+Back: {{c1::If \(f\) is continuous on \([a,b]\), then \(f\) is integrable on \([a,b]\).}}
+
+
+
+Front: True or false: Every integrable function on \([a,b]\) is continuous on \([a,b]\).
+Back: False. Theorems 33.1 and 33.2 say that every monotone or continuous function is integrable, but there are integrable functions with jump discontinuities, so integrability does not imply continuity.
+
+
+
+Front: State Theorem 33.3(i) about scalar multiples of integrable functions.
+Back: Theorem 33.3(i): If \(f\) is integrable on \([a,b]\) and \(c\in\mathbb{R}\), then \(cf\) is integrable on \([a,b]\) and \(\displaystyle \int_a^b cf = c \int_a^b f.\)
+
+
+
+Front: State Theorem 33.3(ii) about sums of integrable functions.
+Back: Theorem 33.3(ii): If \(f\) and \(g\) are integrable on \([a,b]\), then \(f+g\) is integrable on \([a,b]\) and \(\displaystyle \int_a^b (f+g) = \int_a^b f + \int_a^b g.\)
+
+
+
+Front: {{c1::Linearity of the integral from Theorem 33.3}}
+Back: {{c1::If \(f,g\) are integrable and \(c\in\mathbb{R}\), then \(cf\) and \(f+g\) are integrable and \(\int_a^b (cf + g) = c\int_a^b f + \int_a^b g.\)}}
+
+
+
+Front: State Theorem 33.4(i) (comparison theorem for integrals).
+Back: Theorem 33.4(i): If \(f\) and \(g\) are integrable on \([a,b]\) and \(f(x) \le g(x)\) for all \(x\in[a,b]\), then \(\displaystyle \int_a^b f \le \int_a^b g.\)
+
+
+
+Front: {{c1::Inequality relating \(f\) and \(g\) in Theorem 33.4(i)}}
+Back: {{c1::If \(f\le g\) pointwise on \([a,b]\) and both are integrable, then \(\int_a^b f \le \int_a^b g\).}}
+
+
+
+Front: State Theorem 33.4(ii) about nonnegative continuous functions with zero integral.
+Back: Theorem 33.4(ii): If \(g\) is a continuous nonnegative function on \([a,b]\) and \(\displaystyle \int_a^b g = 0\), then \(g\) is identically zero on \([a,b]\).
+
+
+
+Front: Conceptual meaning of Theorem 33.4(ii).
+Back: If a continuous function \(g\ge 0\) on \([a,b]\) has integral zero, then it must satisfy \(g(x)=0\) for every \(x\) in \([a,b]\); a continuous nonnegative graph can have zero “area” only if it lies on the \(x\)-axis.
+
+
+
+Front: State Theorem 33.5.
+Back: Theorem 33.5: If \(f\) is integrable on \([a,b]\), then \(|f|\) is integrable on \([a,b]\) and \(\displaystyle \left|\int_a^b f\right| \le \int_a^b |f|.\)
+
+
+
+Front: {{c1::First part of Theorem 33.5}}
+Back: {{c1::If \(f\) is integrable on \([a,b]\), then \(|f|\) is integrable on \([a,b]\).}}
+
+
+
+Front: {{c1::Inequality in Theorem 33.5 relating \(f\) and \(|f|\)}}
+Back: {{c1::For integrable \(f\), \(\left|\int_a^b f\right| \le \int_a^b |f|.\)}}
+
+
+
+Front: What is the contrapositive of the first part of Theorem 33.5?
+Back: Theorem 33.5 says: if \(f\) is integrable on \([a,b]\), then \(|f|\) is integrable on \([a,b]\). Its contrapositive is: if \(|f|\) is not integrable on \([a,b]\), then \(f\) is not integrable on \([a,b]\). This contrapositive is logically equivalent to Theorem 33.5.
+
+
+
+Front: True or false: If \(|f|\) is not integrable on \([a,b]\), then \(f\) is not integrable on \([a,b]\).
+Back: True. This is exactly the contrapositive of the first part of Theorem 33.5, which states: if \(f\) is integrable on \([a,b]\), then \(|f|\) is integrable on \([a,b]\).
+
+
+
+Front: What is the converse of the first part of Theorem 33.5?
+Back: The first part of Theorem 33.5 says: if \(f\) is integrable on \([a,b]\), then \(|f|\) is integrable on \([a,b]\). Its converse is: if \(|f|\) is integrable on \([a,b]\), then \(f\) is integrable on \([a,b]\).
+
+
+
+Front: True or false: The converse of the first part of Theorem 33.5 is true.
+Back: False. Theorem 33.5 states that if \(f\) is integrable on \([a,b]\), then \(|f|\) is integrable on \([a,b]\) and \(\left|\int_a^b f\right| \le \int_a^b |f|\). The converse "if \(|f|\) is integrable, then \(f\) is integrable" need not hold; one can construct bounded functions \(f\) for which \(|f|\) is integrable but \(f\) is not Riemann integrable.
+
+
+
+Front: Example-style question: Which of the following corresponds to the converse of the statement "If \(f\) is integrable on \([a,b]\), then \(|f|\) is integrable on \([a,b]\)"?
+Back: The converse is: "If \(|f|\) is integrable on \([a,b]\), then \(f\) is integrable on \([a,b]\)." The original is Theorem 33.5; its contrapositive is "If \(|f|\) is not integrable, then \(f\) is not integrable."
+
+
+
+Front: Challenge: Explain how Theorem 33.5 guides your reasoning about integrability when given information about \(f\) versus \(|f|\).
+Back: Theorem 33.5 tells us: (1) If \(f\) is integrable on \([a,b]\), then we automatically know \(|f|\) is integrable and \(\left|\int f\right| \le \int |f|\). (2) By contrapositive, if \(|f|\) is not integrable, then \(f\) cannot be integrable. (3) However, the converse is false: even if \(|f|\) is integrable, we cannot conclude from Theorem 33.5 alone that \(f\) is integrable.
