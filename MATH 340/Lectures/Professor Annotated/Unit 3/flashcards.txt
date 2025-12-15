@@ -1,0 +1,83 @@
+What does it mean for a linear transformation \(T: V \to W\) to be one-to-one (injective)?	T is one-to-one iff \(T(v_1)=T(v_2)\Rightarrow v_1=v_2\). Equivalently, \(\ker(T)=\{0\}\).
+
+What does it mean for a linear transformation \(T: V \to W\) to be onto (surjective)?	T is onto iff \(\operatorname{im}(T)=W\).
+
+What is an isomorphism?	A linear transformation that is both one-to-one and onto.
+
+What does \(V \cong W\) mean?	There exists an isomorphism \(T: V \to W\).
+
+What is the kernel of a linear transformation?	\(\ker(T)=\{v\in V : T(v)=0\}\).
+
+What is the image (range) of a linear transformation?	\(\operatorname{im}(T)=\{T(v): v\in V\}\).
+
+
+True or False: If \(\ker(T)=\{0\}\), then \(T\) is one-to-one.	True.
+
+True or False: If \(\ker(T)\neq\{0\}\), then \(T\) is not one-to-one.	True.
+
+True or False: Every linear transformation has a kernel.	True — at least \(\{0\}\).
+
+True or False: If \(\dim(\ker T)=0\), then \(T\) is injective.	True.
+
+True or False: If \(T\) is injective, then \(\dim(\ker T)=1\).	False — it must be 0.
+
+
+True or False: If \(\operatorname{im}(T)=W\), then \(T\) is onto.	True.
+
+True or False: If \(T\) is onto, then \(\dim(\operatorname{im}T)=\dim(W)\).	True.
+
+True or False: If \(\dim(\operatorname{im}T)<\dim(W)\), then \(T\) is not onto.	True.
+
+True or False: A linear transformation into \(\mathbb{R}^3\) must be onto.	False.
+
+State the Dimension Theorem.	\[\dim(\ker T)+\dim(\operatorname{im}T)=\dim(V)\]
+
+If \(\dim(V)=5\) and \(\dim(\ker T)=2\), what is \(\dim(\operatorname{im}T)\)?	\(3\)
+
+If \(\dim(V)=\dim(W)\) and \(T\) is one-to-one, what can you conclude?	T is onto.
+
+If \(\dim(V)=\dim(W)\) and \(T\) is onto, what can you conclude?	T is one-to-one.
+
+True or False: If \(\dim(V)=\dim(W)\), every linear transformation \(T:V\to W\) is an isomorphism.	False.
+
+
+Let \(T(x)=Ax\). What is \(\ker(T)\)?	\(\ker(T)=\operatorname{null}(A)\).
+
+Let \(T(x)=Ax\). What is \(\operatorname{im}(T)\)?	\(\operatorname{im}(T)=\operatorname{col}(A)\).
+
+True or False: \(T(x)=Ax\) is one-to-one iff \(\operatorname{rank}(A)=n\).	True.
+
+True or False: \(T(x)=Ax\) is onto iff \(\operatorname{rank}(A)=m\).	True.
+
+True or False: If \(A\) is invertible, then \(\ker(A)=\{0\}\).	True.
+
+
+True or False: Every square matrix is invertible.	False.
+
+True or False: If \(A\) is invertible, then \(\det(A)\neq0\).	True.
+
+True or False: If \(\det(A)\neq0\), then \(Ax=0\) has only the trivial solution.	True.
+
+True or False: If \(Ax=b\) has a unique solution for every \(b\), then \(A\) is invertible.	True.
+
+True or False: If the columns of \(A\) are linearly independent, then \(A\) is invertible.	True (for square \(A\)).
+
+True or False: If \(V \cong W\), then \(\dim(V)=\dim(W)\).	True.
+
+True or False: If \(\dim(V)=\dim(W)\), then \(V\cong W\).	True (finite-dimensional).
+
+True or False: \(P_2 \cong \mathbb{R}^3\).	True.
+
+True or False: \(M_{2\times2} \cong \mathbb{R}^4\).	True.
+
+True or False: \(P_2 \cong M_{2\times2}\).	False.
+
+True or False: If \(T\) is linear, then \(\ker(T)\) has dimension at least 1.	False — it can be 0.
+
+True or False: If \(\ker(T)=\{0\}\), then \(T\) must be onto.	False (unless dimensions match).
+
+True or False: If \(T\) is onto, then it must be injective.	False (unless dimensions match).
+
+True or False: If \(T:V\to W\) is an isomorphism, then \(T^{-1}\) exists and is linear.	True.
+
+What are the three equivalent ways to show \(T\) is an isomorphism?	\(T\) is one-to-one and onto; \(\ker(T)=\{0\}\) and \(\operatorname{im}(T)=W\); \(\dim(V)=\dim(W)\) and either injective or surjective.
