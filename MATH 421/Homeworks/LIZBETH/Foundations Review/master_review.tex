@@ -1,0 +1,108 @@
+\documentclass[12pt,twoside]{report}
+
+% =========================
+% Packages
+% =========================
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{threeparttable} % for tables with notes
+\usepackage{nameref} % for referencing section names
+\usepackage{subcaption, caption, float}  % for subfigures [H] placement
+\usepackage{natbib} % author–date citations
+
+
+
+
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{fancyhdr}
+
+
+
+
+
+% --------------------------
+\raggedbottom % prevent uneven vertical spacing
+
+% graphics path
+\graphicspath{{figures/}}
+
+% line spacing
+\onehalfspacing
+
+% hyperref setup (tweak colors if you want)
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+% =========================
+% Title info
+% =========================
+\title{ECON 695 Final Project: Gender Wage Gaps and Coworker Wages}
+\author{Alejandro De La Torre}
+\date{Winter Break 2025}
+
+% =========================
+% Document
+% =========================
+\begin{document}
+
+% ---------- Title page ----------
+\begin{titlepage}
+  \thispagestyle{empty}
+  \begin{center}
+    {\Large BIG IDEAS MATH}\\[0.5em]
+    {\large Course 3 (Common Core)}\\[0.5em]
+    {\large California Edition}\\[2em]
+
+    {\LARGE \textbf{Foundations Review}}\\[2em]
+
+    {\large Alejandro De La Torre}\\[1.5em]
+
+    {\large Winter Break 2025}\\[2em]
+
+    \href{https://github.com/adelatorre2/fall-2025/tree/main/MATH%20421/Homeworks/LIZBETH}{Latest version and replication files}
+  \end{center}
+
+  \vfill
+
+  \noindent\textbf{Dedication.} 
+  For Lizbeth. You are smart, brilliant, and capable of anything you set your mind to. Please remember to take breaks, drink water, and get some fresh air, eat good yums, mimis, and take your time.
+
+\end{titlepage}
+
+
+
+% ---------- Table of contents ----------
+\clearpage
+\tableofcontents
+\clearpage
+
+% ---------- Main text ----------
+% \input{sections/intro}          
+
+
+% ---------- Appendix ----------
+\input{sections/appendix}       % e.g., robustness, extra tables
+
+% ---------- References ----------
+\clearpage
+\renewcommand{\bibname}{References}
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{chicago}
+\bibliography{references/math-c3_bigideas_prac-pak}
+
+
+\end{document}
