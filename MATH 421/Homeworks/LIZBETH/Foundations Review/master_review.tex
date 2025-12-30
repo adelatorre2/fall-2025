@@ -5,29 +5,26 @@
 % =========================
 \usepackage[margin=1in]{geometry}
 \usepackage{setspace}
-\usepackage{amsmath, amssymb}
+\usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{caption}
-\usepackage{hyperref}
-\usepackage{threeparttable} % for tables with notes
-\usepackage{nameref} % for referencing section names
-\usepackage{subcaption, caption, float}  % for subfigures [H] placement
-\usepackage{natbib} % author–date citations
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{threeparttable}
+\usepackage{nameref}
 
-
-
-
-\documentclass[11pt]{article}
-
-\usepackage[margin=1in]{geometry}
-\usepackage{amsmath, amssymb}
+% for clean problem formatting
 \usepackage{enumitem}
-\usepackage{array}
-\usepackage{fancyhdr}
 
+% for colored theorem boxes
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
 
+% for better typography to improve readability
+\usepackage{microtype}
 
+% for reference linking
+\usepackage{hyperref} 
 
 
 % --------------------------
@@ -50,7 +47,7 @@
 % =========================
 % Title info
 % =========================
-\title{ECON 695 Final Project: Gender Wage Gaps and Coworker Wages}
+\title{Foundations Review}
 \author{Alejandro De La Torre}
 \date{Winter Break 2025}
 
@@ -71,7 +68,7 @@
 
     {\large Alejandro De La Torre}\\[1.5em]
 
-    {\large Winter Break 2025}\\[2em]
+    {\large \textit{Winter Break 2025}}\\[2em]
 
     \href{https://github.com/adelatorre2/fall-2025/tree/main/MATH%20421/Homeworks/LIZBETH}{Latest version and replication files}
   \end{center}
@@ -91,11 +88,13 @@
 \clearpage
 
 % ---------- Main text ----------
-% \input{sections/intro}          
+\setcounter{chapter}{-1}
+\input{sections/ch0_absolute_foundations/ch0_absolute_foundations.tex}
+\input{sections/ch1_equations/ch1_equations.tex}
 
 
 % ---------- Appendix ----------
-\input{sections/appendix}       % e.g., robustness, extra tables
+\input{sections/appendix}
 
 % ---------- References ----------
 \clearpage
@@ -103,6 +102,5 @@
 \addcontentsline{toc}{chapter}{References}
 \bibliographystyle{chicago}
 \bibliography{references/math-c3_bigideas_prac-pak}
-
 
 \end{document}
