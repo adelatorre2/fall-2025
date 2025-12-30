@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "fe7868f7056a82b3",
+        "id": "093654652d94771f",
         "type": "tabs",
         "children": [
           {
-            "id": "8c93356bd50f34a8",
+            "id": "9d7dd878e21377b9",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "!NOTES/3.20 Limits of Functions and 3.17 Continuous Functions.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "3.20 Limits of Functions and 3.17 Continuous Functions"
+              "title": "New tab"
             }
           }
         ]
@@ -78,8 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "e93b0b711897f718",
@@ -178,8 +173,10 @@
       "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "8c93356bd50f34a8",
+  "active": "b324e58c967e5239",
   "lastOpenFiles": [
+    "Untitled.canvas",
+    "Homeworks/HW6/adlt_homework_6.pdf",
     "!NOTES/3.20 Limits of Functions and 3.17 Continuous Functions.md",
     "Lectures/Unannotated/102425-421-liminflimsup(cont).pdf",
     "Books/Elementary Analysis by Ross.pdf",
@@ -192,8 +189,6 @@
     "Lectures/Professor Annotated/091925-421-AbsValue(cont.)-11.pdf",
     "Lectures/Professor Annotated/092225-Bounded-InfSup-11.pdf",
     "Lectures/Professor Annotated/092425-421-Completeness-11.pdf",
-    "Lectures/Professor Annotated/091525-421-Induction(cont.)-11.pdf",
-    "Untitled.canvas",
     "HW6 Latex test.md",
     "2025-10-24.md",
     "Convergence.md",
