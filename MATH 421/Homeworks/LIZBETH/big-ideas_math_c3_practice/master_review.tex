@@ -19,6 +19,21 @@
 % for colored theorem boxes
 \usepackage[dvipsnames]{xcolor}
 \usepackage[most]{tcolorbox}
+\tcbuselibrary{raster}
+\tcbset{
+  linkbutton/.style={
+    enhanced,
+    colback=RoyalBlue!7,
+    colframe=RoyalBlue!60!black,
+    boxrule=0.6pt,
+    arc=2.5mm,
+    left=4mm,right=4mm,top=2.5mm,bottom=2.5mm,
+    fontupper=\bfseries,
+    valign=center,
+    halign=center,
+    drop shadow={0.6mm}{-0.6mm}{0mm}{black!15},
+  }
+}
 
 % for better typography to improve readability
 \usepackage{microtype}
@@ -62,24 +77,60 @@
   \begin{center}
     {\Large BIG IDEAS MATH}\\[0.5em]
     {\large Course 3 (Common Core)}\\[0.5em]
-    {\large California Edition}\\[2em]
+    {\large California Edition}\\[1.25em]
 
-    {\LARGE \textbf{Foundations Review}}\\[2em]
+    {\LARGE \textbf{Foundations Review}}\\[1.25em]
 
-    {\large Alejandro De La Torre}\\[1.5em]
+    {\large Alejandro De La Torre}\\[0.75em]
 
     {\large \textit{Winter Break 2025}}\\[2em]
 
-    \href{MATH 421/Homeworks/LIZBETH/Foundations Review/master_review.pdf}{Latest version and replication files}\\[1.5em]
+    {\large \textbf{Quick Links}}\\[0.75em]
+    \rule{0.75\textwidth}{0.4pt}\\[1.0em]
 
-    \href{https://bim.easyaccessmaterials.com/protected/content/dcs_ca/g8/g8.html}{Link to Textbook}
-  \end{center}
+% ---------- Quick links (buttons) ----------
+\begingroup
+\setlength{\parindent}{0pt}
+\vspace*{-0.5\baselineskip}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=white,
+  colframe=black!10,
+  boxrule=0pt,
+  left=0pt,right=0pt,top=0pt,bottom=0pt,
+]
+\begin{tcbraster}[raster columns=2, raster column skip=6mm, raster row skip=4mm]
+  \begin{tcolorbox}[linkbutton]
+    \href{MATH 421/Homeworks/LIZBETH/Foundations Review/master_review.pdf}{Latest version \& replication files}
+  \end{tcolorbox}
+  \begin{tcolorbox}[linkbutton]
+    \href{https://bim.easyaccessmaterials.com/protected/content/dcs_ca/g8/g8.html}{Textbook (Online Access)}
+  \end{tcolorbox}
+  \begin{tcolorbox}[linkbutton]
+    \href{https://bim.easyaccessmaterials.com/protected/content/dcs_ca/bsh/index.html}{Basic Skills Handbook}
+  \end{tcolorbox}
+  \begin{tcolorbox}[linkbutton]
+    \href{https://bim.easyaccessmaterials.com/protected/content/dcs_ca/srh/index.html}{Skills Review Handbook}
+  \end{tcolorbox}
+  \begin{tcolorbox}[linkbutton]
+    \href{https://static.bigideasmath.com/protected/content/mlg/ccms/g8.php}{Multi-Language Glossary}
+  \end{tcolorbox}
+  \begin{tcolorbox}[linkbutton]
+    \href{https://bim.easyaccessmaterials.com/protected/content/dcs_ca/flashcards/glossary_flashcards_g8.pdf}{Glossary Flashcards (PDF)}
+  \end{tcolorbox}
+\end{tcbraster}
+\end{tcolorbox}
+
+\vspace{0.75\baselineskip}
+\endgroup
 
   \vfill
 
   \noindent\textbf{Dedication.} 
   For Lizbeth. You are smart, brilliant, and capable of anything you set your mind to. Please remember to take breaks, drink water, and get some fresh air, eat good yums, mimis, and take your time.
 
+\end{center}
 \end{titlepage}
 
 
@@ -89,11 +140,18 @@
 \tableofcontents
 \clearpage
 
+
 % ---------- Main text ----------
 \setcounter{chapter}{-1}
 \input{sections/ch0_absolute_foundations/ch0_absolute_foundations.tex}
 \input{sections/ch1_equations/ch1_equations.tex}
 \input{sections/ch2_transformations/ch2_transformations.tex}
+
+\input{sections/ch3_angles_&_triangles/ch3_angles_&_triangles.tex}
+
+\input{sections/ch4_graphing_&_writing_linear-equations/ch4_graphing_&_writing_linear-equations.tex}
+
+
 
 
 % ---------- Appendix ----------
